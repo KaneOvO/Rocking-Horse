@@ -6,23 +6,67 @@ namespace GameSystem.Input
 {
     public class InputLayer
     {
+        private static int ControllerID = 0;
+
         public delegate void AccelerateEvent(float value);
         public delegate void RotateEvent(float value);
+        public delegate void JumpEvent(float value);
 
-        private static event AccelerateEvent OnAccelerateUpdate;
-        private static event RotateEvent OnRotateUpdate;
+        private static Dictionary<int, AccelerateEvent> AccelerateEventDict = new Dictionary<int, AccelerateEvent>();
+        private static Dictionary<int, RotateEvent> RotateEventDict = new Dictionary<int, RotateEvent>();
+        private static Dictionary<int, JumpEvent> JumpEventDict = new Dictionary<int, JumpEvent>();
 
-        public int RegisterConatroller()
+        public static int RegisterConatroller(bool debug = false)
         {
-            return 0;
+            ControllerID++;
+
+            AccelerateEventDict.Add(ControllerID, new AccelerateEvent((float value) => { if (debug && value != 0) Debug.Log($"{ControllerID} - Accelerate:{value}"); }));
+            RotateEventDict.Add(ControllerID, new RotateEvent((float value) => { if (debug && value != 0) Debug.Log($"{ControllerID} - Rotate:{value}"); }));
+            JumpEventDict.Add(ControllerID, new JumpEvent((float value) => { if (debug && value != 0) Debug.Log($"{ControllerID} - jump:{value}"); }));
+
+            return ControllerID;
         }
-        public void Updateccelerate(float value)
+        public static void RemoveController(int cid)
         {
-
+            if (AccelerateEventDict.ContainsKey(cid)) AccelerateEventDict.Remove(cid);
+            if (RotateEventDict.ContainsKey(cid)) RotateEventDict.Remove(cid);
+            if (JumpEventDict.ContainsKey(cid)) JumpEventDict.Remove(cid);
         }
-        public void UpdateRotation()
+        public static void UpdateAccelerate(int cid, float value)
         {
-
+            if (AccelerateEventDict.ContainsKey(cid)) AccelerateEventDict[cid].Invoke(value);
+        }
+        public static void UpdateRotation(int cid, float value)
+        {
+            if (RotateEventDict.ContainsKey(cid)) RotateEventDict[cid].Invoke(value);
+        }
+        public static void Jump(int cid, float value)
+        {
+            if (JumpEventDict.ContainsKey(cid)) JumpEventDict[cid].Invoke(value);
+        }
+        public static void AddAccelerateEventListener(int cid, AccelerateEvent evt)
+        {
+            if (AccelerateEventDict.ContainsKey(cid)) AccelerateEventDict[cid] += evt;
+        }
+        public static void AddRotateEventListener(int cid, RotateEvent evt)
+        {
+            if (RotateEventDict.ContainsKey(cid)) RotateEventDict[cid] += evt;
+        }
+        public static void AddJumpEventListener(int cid, JumpEvent evt)
+        {
+            if (JumpEventDict.ContainsKey(cid)) JumpEventDict[cid] += evt;
+        }
+        public static void RemoveAccelerateEventListener(int cid, AccelerateEvent evt)
+        {
+            if (AccelerateEventDict.ContainsKey(cid)) AccelerateEventDict[cid] -= evt;
+        }
+        public static void RemoveRotateEventListener(int cid, RotateEvent evt)
+        {
+            if (RotateEventDict.ContainsKey(cid)) RotateEventDict[cid] -= evt;
+        }
+        public static void RemoveJumpEventListener(int cid, JumpEvent evt)
+        {
+            if (JumpEventDict.ContainsKey(cid)) JumpEventDict[cid] -= evt;
         }
     }
 
