@@ -24,6 +24,10 @@ namespace GameSystem.Input
         [SerializeField]
         private KeyCode RightKey = KeyCode.D;
         [SerializeField]
+        private KeyCode ChangeLeftKey = KeyCode.Q;
+        [SerializeField]
+        private KeyCode ChangeRightKey = KeyCode.E;
+        [SerializeField]
         private KeyCode JumpKey = KeyCode.Space;
 
         private List<KeyRecord> Direction = new List<KeyRecord>();
@@ -38,6 +42,7 @@ namespace GameSystem.Input
                 InputLayer.AddAccelerateEventListener(CID, (float value) => { Debug.Log( $"OnAccelerate: {value}"); });
                 InputLayer.AddRotateEventListener(CID, (float value) => { Debug.Log($"OnRotate: {value}"); });
                 InputLayer.AddJumpEventListener(CID, (float value) => { Debug.Log($"OnJump: {value}"); });
+                InputLayer.AddChangeLaneEventListener(CID, (Vector2 value) => { Debug.Log($"OnChangeLane: {value}"); });
             }
         }
         private void Update()
@@ -101,6 +106,14 @@ namespace GameSystem.Input
             if (UnityEngine.Input.GetKeyDown(JumpKey))
             {
                 InputLayer.Jump(CID, 0.5f);
+            }
+            if (UnityEngine.Input.GetKeyDown(ChangeLeftKey))
+            {
+                InputLayer.ChangeLane(CID, Vector2.left);
+            }
+            if (UnityEngine.Input.GetKeyDown(ChangeRightKey))
+            {
+                InputLayer.ChangeLane(CID, Vector2.right);
             }
         }
     }

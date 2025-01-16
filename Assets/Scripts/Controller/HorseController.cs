@@ -35,7 +35,7 @@ namespace GameSystem.Input
         }
         private void OnJump(float value)
         {
-            VVelocity += JumpSpeed * value;
+            if(IsOnGround) VVelocity += JumpSpeed * value;
         }
         private void OnAccelerateUpdate(float value)
         {
