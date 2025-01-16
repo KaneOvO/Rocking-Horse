@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameSystem.Input
 {
-    public class KeyBoardController : MonoBehaviour
+    public class KeyBoardController : Controller
     {
         private struct KeyRecord
         {
@@ -17,10 +17,17 @@ namespace GameSystem.Input
         [SerializeField]
         private bool PrintEvent = false;
 
+        [SerializeField]
+        private KeyCode MoveKey = KeyCode.W;
+        [SerializeField]
+        private KeyCode LeftKey = KeyCode.A;
+        [SerializeField]
+        private KeyCode RightKey = KeyCode.D;
+        [SerializeField]
+        private KeyCode JumpKey = KeyCode.Space;
+
         private List<KeyRecord> Direction = new List<KeyRecord>();
         private List<KeyRecord> MoveRecord = new List<KeyRecord>();
-
-        public int CID { get; private set; }
 
         private void Awake()
         {
@@ -47,51 +54,51 @@ namespace GameSystem.Input
             recordSpeed = Mathf.Min(recordSpeed, 1);
             InputLayer.UpdateAccelerate(CID, recordSpeed);
 
-            if (UnityEngine.Input.GetKeyDown(KeyCode.W))
+            if (UnityEngine.Input.GetKeyDown(MoveKey))
             {
                 KeyRecord record = new KeyRecord();
-                record.KeyCode = KeyCode.W;
+                record.KeyCode = MoveKey;
                 record.PressTime = Time.realtimeSinceStartup;
                 MoveRecord.Add(record);
             }
-            if (UnityEngine.Input.GetKeyDown(KeyCode.A))
+            if (UnityEngine.Input.GetKeyDown(LeftKey))
             {
                 KeyRecord record = new KeyRecord();
-                record.KeyCode = KeyCode.A;
+                record.KeyCode = LeftKey;
                 record.PressTime = Time.realtimeSinceStartup;
                 Direction.Add(record);
             }
-            else if (UnityEngine.Input.GetKeyUp(KeyCode.A))
+            else if (UnityEngine.Input.GetKeyUp(LeftKey))
             {
                 for (int i = Direction.Count - 1; i >= 0; i--)
                 {
-                    if (Direction[i].KeyCode == KeyCode.A)
+                    if (Direction[i].KeyCode == LeftKey)
                     {
                         Direction.RemoveAt(i);
                     }
                 }
             }
-            if (UnityEngine.Input.GetKeyDown(KeyCode.D))
+            if (UnityEngine.Input.GetKeyDown(RightKey))
             {
                 KeyRecord record = new KeyRecord();
-                record.KeyCode = KeyCode.D;
+                record.KeyCode = RightKey;
                 record.PressTime = Time.realtimeSinceStartup;
                 Direction.Add(record);
             }
-            else if (UnityEngine.Input.GetKeyUp(KeyCode.D))
+            else if (UnityEngine.Input.GetKeyUp(RightKey))
             {
                 for (int i = Direction.Count - 1; i >= 0; i--)
                 {
-                    if (Direction[i].KeyCode == KeyCode.D)
+                    if (Direction[i].KeyCode == RightKey)
                     {
                         Direction.RemoveAt(i);
                     }
                 }
             }
             if (Direction.Count == 0) InputLayer.UpdateRotation(CID, 0);
-            else InputLayer.UpdateRotation(CID, Direction[^1].KeyCode == KeyCode.A ? -1 : 1);
+            else InputLayer.UpdateRotation(CID, Direction[^1].KeyCode == LeftKey ? -1 : 1);
 
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
+            if (UnityEngine.Input.GetKeyDown(JumpKey))
             {
                 InputLayer.Jump(CID, 0.5f);
             }

@@ -135,8 +135,9 @@ GameObject:
   - component: {fileID: 201620441}
   - component: {fileID: 201620440}
   - component: {fileID: 201620445}
-  - component: {fileID: 201620446}
   - component: {fileID: 201620447}
+  - component: {fileID: 201620449}
+  - component: {fileID: 201620448}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -244,29 +245,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.0754838, b: 1, a: 1}
---- !u!114 &201620446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201620439}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61bae235f933a9c4bbad35c716312313, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 30
-  midSpeed: 20
-  lowSpeed: 10
-  turnSpeed: 50
-  jumpHeight: 5
-  jumpKey: 305
-  clickCountLevel1: 3
-  clickCountLevel2: 5
-  moveKey: 273
-  turnLeftKey: 276
-  turnRightKey: 275
 --- !u!54 &201620447
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -289,11 +267,46 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &201620448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201620439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9ad4b3eff6e5b42a91f2762cdc27cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 0
+  PrintEvent: 0
+  MoveKey: 119
+  LeftKey: 97
+  RightKey: 100
+  JumpKey: 32
+--- !u!114 &201620449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201620439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135479d8064efec4a8732218746b5e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxSpeed: 10
+  Acceleration: 10
+  MaxRotation: 45
+  JumpSpeed: 10
+  Gravity: 9.8
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +910,7 @@ GameObject:
   - component: {fileID: 927947618}
   - component: {fileID: 927947617}
   - component: {fileID: 927947616}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Ground
   m_Icon: {fileID: 0}
