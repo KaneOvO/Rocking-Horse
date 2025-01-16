@@ -55,6 +55,8 @@ namespace GameSystem.Input
                 VVelocity -= Gravity * Time.deltaTime;
             }
 
+            CurrentAcceleration -= 0.5f;
+
             float acceleration = IsOnGround ? CurrentAcceleration : (CurrentAcceleration * 0.15f);
             float frameAccelerate = acceleration * Time.deltaTime;
 
@@ -64,7 +66,7 @@ namespace GameSystem.Input
             }
             else
             {
-                frameAccelerate = Acceleration * Time.deltaTime;
+                frameAccelerate = Mathf.Abs(frameAccelerate);
                 if (HVelocity.magnitude < frameAccelerate) HVelocity = Vector2.zero;
                 else HVelocity = HVelocity * (HVelocity.magnitude - frameAccelerate) / HVelocity.magnitude;
             }
