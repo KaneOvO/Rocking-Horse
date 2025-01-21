@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 431550943}
   - component: {fileID: 431550942}
   - component: {fileID: 431550941}
-  - component: {fileID: 431550946}
+  - component: {fileID: 431550945}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -228,7 +228,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &431550946
+--- !u!114 &431550945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,74 +237,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 431550940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e696a46f9f55a67478ea6bc5e53d2fab, type: 3}
+  m_Script: {fileID: 11500000, guid: dd3381d6a5204824aa1b7a207c118128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1256273621
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 128384, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: m_Name
-      value: SerialController
-      objectReference: {fileID: 0}
-    - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11442534, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: messageListener
-      value: 
-      objectReference: {fileID: 431550940}
-    - target: {fileID: 11442534, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
-      propertyPath: reconnectionDelay
-      value: 3000
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
+  strReceived: 
+  strData:
+  - 
+  - 
+  - 
+  - 
+  strData_received:
+  - 
+  - 
+  - 
+  - 
+  qw: 0
+  qx: 0
+  qy: 0
+  qz: 0
 --- !u!1 &1617957344
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +292,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -567,4 +517,3 @@ SceneRoots:
   - {fileID: 1617957347}
   - {fileID: 1680226343}
   - {fileID: 431550944}
-  - {fileID: 1256273621}
