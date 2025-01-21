@@ -25,6 +25,7 @@ namespace Character
         public CinemachineVirtualCamera VirtualCamera;
 
         private int CurrentTrack;
+        private float StunTime = 0;
         private float CurrentBoostTime = 0;
         private float CurrentEnergy = 0;
         private float CurrentAcceleration = 0;
@@ -162,7 +163,9 @@ namespace Character
 
             Vector3 velocity = new Vector3(HVelocity.x, VVelocity, HVelocity.y);
 
-            Rigidbody.velocity = velocity;
+            Rigidbody.velocity = StunTime > 0 ? Vector3.zero : velocity;
+
+            if(StunTime > 0) StunTime -= Time.deltaTime;
 
             if(VirtualCamera != null) VirtualCamera.m_Lens.FieldOfView = 40 + 
                     Mathf.Clamp(HVelocity.magnitude * HVelocity.magnitude, 0, 400f) / 20f;
@@ -175,7 +178,7 @@ namespace Character
         }
         public void OnHitBarrier()
         {
-            Debug.Log("HitBarrier");
+            StunTime = 1;
         }
     }
 

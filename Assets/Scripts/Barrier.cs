@@ -10,20 +10,28 @@ public class Barrier : MonoBehaviour
     public Trigger PassTrigger;
     public Trigger HitTrigger;
 
+    public MeshRenderer BarrierRenderer;
+
     private void Awake()
     {
         PassTrigger.OnEnter += OnTriggered;
+        HitTrigger.OnEnter += OnHit;
         HitTrigger.OnEnter += OnTriggered;
     }
     private void OnDestroy()
     {
         PassTrigger.OnEnter -= OnTriggered;
+        HitTrigger.OnEnter -= OnHit;
         HitTrigger.OnEnter -= OnTriggered;
     }
     private void OnTriggered(HorseController controller)
     {
         PassTrigger.enabled = false;
         HitTrigger.enabled = false;
+    }
+    private void OnHit(HorseController controller)
+    {
+        this.BarrierRenderer.enabled = false;
     }
 
 }
