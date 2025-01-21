@@ -172,6 +172,7 @@ namespace Character
         {
             CurrentEnergy += energyAddValue;
             CurrentEnergy = Mathf.Clamp(CurrentEnergy, 0, MaxEnergy);
+            Debug.Log("CrossingBarrier");
         }
         public void OnHitBarrier()
         {
