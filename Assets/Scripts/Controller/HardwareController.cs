@@ -12,6 +12,7 @@ namespace GameSystem.Input
             public float Time;
         }
 
+        public bool DebugMode = false;
         private float MinGyroscopeZ = 0;
         private float MaxGyroscopeZ = 0;
 
@@ -20,16 +21,19 @@ namespace GameSystem.Input
 
         private void Awake()
         {
+            if (!Enabled) return;
             CID = InputLayer.RegisterConatroller(false);
             MyListener.OnSensorDataUpdated += OnMessageUpdate;
         }
         private void OnDestroy()
         {
+            if (!Enabled) return;
             MyListener.OnSensorDataUpdated -= OnMessageUpdate;
         }
 
         private void OnMessageUpdate(SensorData data)
         {
+            if (!Enabled) return;
             MinGyroscopeZ = Mathf.Min(MinGyroscopeZ, data.gyroscopeZ);
             MaxGyroscopeZ = Mathf.Max(MaxGyroscopeZ, data.gyroscopeZ);
 
@@ -52,6 +56,11 @@ namespace GameSystem.Input
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
                 MaxGyroscopeZ = MistakeRange;
+            }
+
+            if (DebugMode)
+            {
+                Debug.Log($"Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
             }
 
             float acceleration = 0;
