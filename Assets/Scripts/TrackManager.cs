@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class TrackManager : MonoBehaviour
 {
+    public static TrackManager Instance { get; private set; }
+
+    public float Offset = 0;
     public List<GameObject> tracks_ = new List<GameObject>();
     private Dictionary<int, SwitchTrakInfo> trackDict_ = new Dictionary<int, SwitchTrakInfo>();
 
-    void Start()
+    void Awake()
     {
         init();
+        Instance = this;
     }
 
     void init()
@@ -34,11 +38,11 @@ public class TrackManager : MonoBehaviour
     {
         if(CanSwitchLeft(currentTrackIndex))
         {
-            return trackDict_[currentTrackIndex - 1].coordinate;
+            return trackDict_[currentTrackIndex - 1].coordinate + Offset;
         }
         else
         {
-            return trackDict_[currentTrackIndex].coordinate;
+            return trackDict_[currentTrackIndex].coordinate + Offset;
         }
     }
 
@@ -46,12 +50,17 @@ public class TrackManager : MonoBehaviour
     {
         if (CanSwitchRight(currentTrackIndex))
         {
-            return trackDict_[currentTrackIndex + 1].coordinate;
+            return trackDict_[currentTrackIndex + 1].coordinate + Offset;
         }
         else
         {
-            return trackDict_[currentTrackIndex].coordinate;
+            return trackDict_[currentTrackIndex].coordinate + Offset;
         }
+    }
+
+    public float GetCoordinate(int trackIndex)
+    {
+        return trackDict_.GetValueOrDefault(trackIndex).coordinate + Offset;
     }
 
     public int GetCurrentTrackIndex(Vector3 PlayerPosition)
@@ -60,7 +69,7 @@ public class TrackManager : MonoBehaviour
         int currentTrackIndex = 0;
         for (int i = 0; i < tracks_.Count; i++)
         {
-            float distance = Mathf.Abs(PlayerPosition.x - trackDict_[i].coordinate);
+            float distance = Mathf.Abs(PlayerPosition.x - (trackDict_[i].coordinate + Offset));
             if (distance < minDistance)
             {
                 minDistance = distance;

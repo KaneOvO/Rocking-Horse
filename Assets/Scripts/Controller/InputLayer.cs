@@ -11,10 +11,14 @@ namespace GameSystem.Input
         public delegate void AccelerateEvent(float value);
         public delegate void RotateEvent(float value);
         public delegate void JumpEvent(float value);
+        public delegate void ChangeLaneEvent(Vector2 direction);
+        public delegate void BoosterEvent();
 
         private static Dictionary<int, AccelerateEvent> AccelerateEventDict = new Dictionary<int, AccelerateEvent>();
         private static Dictionary<int, RotateEvent> RotateEventDict = new Dictionary<int, RotateEvent>();
         private static Dictionary<int, JumpEvent> JumpEventDict = new Dictionary<int, JumpEvent>();
+        private static Dictionary<int, ChangeLaneEvent> ChangeLaneEventDict = new Dictionary<int, ChangeLaneEvent>();
+        private static Dictionary<int, BoosterEvent> BoosterEventDict = new Dictionary<int, BoosterEvent>();
 
         public static int RegisterConatroller(bool debug = false)
         {
@@ -23,6 +27,8 @@ namespace GameSystem.Input
             AccelerateEventDict.Add(ControllerID, new AccelerateEvent((float value) => { if (debug && value != 0) Debug.Log($"{ControllerID} - Accelerate:{value}"); }));
             RotateEventDict.Add(ControllerID, new RotateEvent((float value) => { if (debug && value != 0) Debug.Log($"{ControllerID} - Rotate:{value}"); }));
             JumpEventDict.Add(ControllerID, new JumpEvent((float value) => { if (debug && value != 0) Debug.Log($"{ControllerID} - jump:{value}"); }));
+            ChangeLaneEventDict.Add(ControllerID, new ChangeLaneEvent((Vector2 direction) => { if (debug && direction.magnitude != 0) Debug.Log($"{ControllerID} - change lane:{direction}"); }));
+            BoosterEventDict.Add(ControllerID, new BoosterEvent(() => { if (debug) Debug.Log($"{ControllerID} - booster"); }));
 
             return ControllerID;
         }
@@ -31,6 +37,8 @@ namespace GameSystem.Input
             if (AccelerateEventDict.ContainsKey(cid)) AccelerateEventDict.Remove(cid);
             if (RotateEventDict.ContainsKey(cid)) RotateEventDict.Remove(cid);
             if (JumpEventDict.ContainsKey(cid)) JumpEventDict.Remove(cid);
+            if (ChangeLaneEventDict.ContainsKey(cid)) ChangeLaneEventDict.Remove(cid);
+            if (BoosterEventDict.ContainsKey(cid)) BoosterEventDict.Remove(cid);
         }
         public static void UpdateAccelerate(int cid, float value)
         {
@@ -44,6 +52,14 @@ namespace GameSystem.Input
         {
             if (JumpEventDict.ContainsKey(cid)) JumpEventDict[cid].Invoke(value);
         }
+        public static void ChangeLane(int cid, Vector2 direction)
+        {
+            if (ChangeLaneEventDict.ContainsKey(cid)) ChangeLaneEventDict[cid].Invoke(direction);
+        }
+        public static void UseBooster(int cid)
+        {
+            if (BoosterEventDict.ContainsKey(cid)) BoosterEventDict[cid].Invoke();
+        }
         public static void AddAccelerateEventListener(int cid, AccelerateEvent evt)
         {
             if (AccelerateEventDict.ContainsKey(cid)) AccelerateEventDict[cid] += evt;
@@ -56,6 +72,14 @@ namespace GameSystem.Input
         {
             if (JumpEventDict.ContainsKey(cid)) JumpEventDict[cid] += evt;
         }
+        public static void AddChangeLaneEventListener(int cid, ChangeLaneEvent evt)
+        {
+            if (ChangeLaneEventDict.ContainsKey(cid)) ChangeLaneEventDict[cid] += evt;
+        }
+        public static void AddBoosterEventListener(int cid, BoosterEvent evt)
+        {
+            if (BoosterEventDict.ContainsKey(cid)) BoosterEventDict[cid] += evt;
+        }
         public static void RemoveAccelerateEventListener(int cid, AccelerateEvent evt)
         {
             if (AccelerateEventDict.ContainsKey(cid)) AccelerateEventDict[cid] -= evt;
@@ -67,6 +91,14 @@ namespace GameSystem.Input
         public static void RemoveJumpEventListener(int cid, JumpEvent evt)
         {
             if (JumpEventDict.ContainsKey(cid)) JumpEventDict[cid] -= evt;
+        }
+        public static void RemoveChangeLaneEventListener(int cid, ChangeLaneEvent evt)
+        {
+            if (ChangeLaneEventDict.ContainsKey(cid)) ChangeLaneEventDict[cid] -= evt;
+        }
+        public static void RemoveBoosterEventListener(int cid, BoosterEvent evt)
+        {
+            if (BoosterEventDict.ContainsKey(cid)) BoosterEventDict[cid] -= evt;
         }
     }
 

@@ -1,20 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameSystem.Input;
+using Character;
 using UnityEngine;
+using Triggers;
 
 public class Barrier : MonoBehaviour
 {
-    public float EnergyAddValue = 20f;
-    private List<GameObject> Players = new List<GameObject>();
+    public Trigger PassTrigger;
+    public Trigger HitTrigger;
 
-    private void OnTriggerEnter(Collider other)
+    private void Awake()
     {
-        if (other.CompareTag("Player") && !Players.Contains(other.gameObject))
-        {
-            Players.Add(other.gameObject);
-
-            other.GetComponent<HorseController>().OnCrossingBarrier(EnergyAddValue);
-        }
+        PassTrigger.OnEnter += OnTriggered;
+        HitTrigger.OnEnter += OnTriggered;
     }
+    private void OnDestroy()
+    {
+        PassTrigger.OnEnter -= OnTriggered;
+        HitTrigger.OnEnter -= OnTriggered;
+    }
+    private void OnTriggered(HorseController controller)
+    {
+        PassTrigger.enabled = false;
+        HitTrigger.enabled = false;
+    }
+
 }
