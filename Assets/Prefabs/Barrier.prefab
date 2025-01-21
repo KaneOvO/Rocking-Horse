@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enabled: 1
-  EnergyIncreasement: 50
+  EnergyIncreasement: 25
 --- !u!65 &5066577416076832764
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -236,6 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PassTrigger: {fileID: 662259821392476400}
   HitTrigger: {fileID: 6221490789871819005}
+  BarrierRenderer: {fileID: 5846235594318602855}
 --- !u!1001 &5108091250498109155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -312,6 +313,12 @@ PrefabInstance:
 --- !u!4 &4713347485438122248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9bf3805c3789d6844883b696223a68c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5108091250498109155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5846235594318602855 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 9bf3805c3789d6844883b696223a68c6,
     type: 3}
   m_PrefabInstance: {fileID: 5108091250498109155}
   m_PrefabAsset: {fileID: 0}

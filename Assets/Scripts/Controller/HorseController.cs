@@ -25,8 +25,8 @@ namespace Character
         public CinemachineVirtualCamera VirtualCamera;
 
         private int CurrentTrack;
+        private float StunTime = 0;
         private float CurrentBoostTime = 0;
-        private float CurrentEnergy = 0;
         private float CurrentAcceleration = 0;
         private float VVelocity;
         private float TargetX;
@@ -36,6 +36,8 @@ namespace Character
         private Controller Controller;
 
         private bool IsOnGround = true;
+
+        public float CurrentEnergy { get; private set; } = 0;
 
         private void Start()
         {
@@ -158,11 +160,17 @@ namespace Character
                 else HVelocity = HVelocity * (HVelocity.magnitude - frameAccelerate) / HVelocity.magnitude;
             }
 
+            if (StunTime > 0)
+            {
+                StunTime -= Time.deltaTime;
+                VVelocity = 0;
+            }
+
             HVelocity = Direction * HVelocity.magnitude;
 
             Vector3 velocity = new Vector3(HVelocity.x, VVelocity, HVelocity.y);
 
-            Rigidbody.velocity = velocity;
+            Rigidbody.velocity = StunTime > 0 ? Vector3.zero : velocity;
 
             if(VirtualCamera != null) VirtualCamera.m_Lens.FieldOfView = 40 + 
                     Mathf.Clamp(HVelocity.magnitude * HVelocity.magnitude, 0, 400f) / 20f;
@@ -172,11 +180,10 @@ namespace Character
         {
             CurrentEnergy += energyAddValue;
             CurrentEnergy = Mathf.Clamp(CurrentEnergy, 0, MaxEnergy);
-            Debug.Log("CrossingBarrier");
         }
         public void OnHitBarrier()
         {
-            Debug.Log("HitBarrier");
+            StunTime = 1;
         }
     }
 
