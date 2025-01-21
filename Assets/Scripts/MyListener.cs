@@ -5,7 +5,8 @@ public class MyListener : MonoBehaviour
 {
     public static MyListener instance;
 
-    public float gyroscopeX, gyroscopeY, gyroscopeZ;
+    public SensorData sensorData;
+    public static System.Action<SensorData> OnSensorDataUpdated;
 
     void Awake()
     {
@@ -22,15 +23,23 @@ public class MyListener : MonoBehaviour
 
     void OnMessageArrived(string msg)
     {
-        Debug.Log("moving at speed: " + msg);
+        Debug.Log("Received Msg: " + msg);
         string[] msgSplit = msg.Split(',');
-        gyroscopeX = float.Parse(msgSplit[0]);
-        gyroscopeY = float.Parse(msgSplit[1]);
-        gyroscopeZ = float.Parse(msgSplit[2]);
+        sensorData.gyroscopeX = float.Parse(msgSplit[0]);
+        sensorData.gyroscopeY = float.Parse(msgSplit[1]);
+        sensorData.gyroscopeZ = float.Parse(msgSplit[2]);
+        OnSensorDataUpdated?.Invoke(sensorData);
     }
     
     void OnConnectionEvent(bool success)
     {
         Debug.Log(success ? "Device connected" : "Device disconnected");
     }
+}
+
+public struct SensorData
+{
+    public float gyroscopeX;
+    public float gyroscopeY;
+    public float gyroscopeZ;
 }
