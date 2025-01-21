@@ -29,6 +29,8 @@ namespace GameSystem.Input
         private KeyCode ChangeRightKey = KeyCode.E;
         [SerializeField]
         private KeyCode JumpKey = KeyCode.Space;
+        [SerializeField]
+        private KeyCode BoosterKey = KeyCode.LeftShift;
 
         private List<KeyRecord> Direction = new List<KeyRecord>();
         private List<KeyRecord> MoveRecord = new List<KeyRecord>();
@@ -43,6 +45,7 @@ namespace GameSystem.Input
                 InputLayer.AddRotateEventListener(CID, (float value) => { Debug.Log($"OnRotate: {value}"); });
                 InputLayer.AddJumpEventListener(CID, (float value) => { Debug.Log($"OnJump: {value}"); });
                 InputLayer.AddChangeLaneEventListener(CID, (Vector2 value) => { Debug.Log($"OnChangeLane: {value}"); });
+                InputLayer.AddBoosterEventListener(CID, () => { Debug.Log($"OnUseBooster"); });
             }
         }
         private void Update()
@@ -114,6 +117,10 @@ namespace GameSystem.Input
             if (UnityEngine.Input.GetKeyDown(ChangeRightKey))
             {
                 InputLayer.ChangeLane(CID, Vector2.right);
+            }
+            if (UnityEngine.Input.GetKeyDown(BoosterKey))
+            {
+                InputLayer.UseBooster(CID);
             }
         }
     }
