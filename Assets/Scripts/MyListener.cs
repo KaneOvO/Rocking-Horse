@@ -23,7 +23,7 @@ public class MyListener : MonoBehaviour
 
     void OnMessageArrived(string msg)
     {
-        Debug.Log("Received Msg: " + msg);
+        //Debug.Log("Received Msg: " + msg);
         string[] msgSplit = msg.Split(',');
         sensorData.gyroscopeX = float.Parse(msgSplit[0]);
         sensorData.gyroscopeY = float.Parse(msgSplit[1]);

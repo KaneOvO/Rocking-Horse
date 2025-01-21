@@ -13,6 +13,7 @@ namespace GameSystem.Input
         }
 
         public bool DebugMode = false;
+        private int Direction = 0;
         private float MinGyroscopeZ = 0;
         private float MaxGyroscopeZ = 0;
 
@@ -37,8 +38,10 @@ namespace GameSystem.Input
             MinGyroscopeZ = Mathf.Min(MinGyroscopeZ, data.gyroscopeZ);
             MaxGyroscopeZ = Mathf.Max(MaxGyroscopeZ, data.gyroscopeZ);
 
-            if (data.gyroscopeZ < MaxGyroscopeZ - MistakeRange)
+            if (Direction == 0 && data.gyroscopeZ < MaxGyroscopeZ - MistakeRange)
             {
+                Debug.Log($"Reach Max# Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
+
                 float strength = Mathf.Abs(MaxGyroscopeZ - MinGyroscopeZ) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
                 RockRecord record = new RockRecord();
@@ -46,9 +49,12 @@ namespace GameSystem.Input
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
                 MinGyroscopeZ = MaxGyroscopeZ;
+                Direction = 1;
             }
-            else if(data.gyroscopeZ > MinGyroscopeZ + MistakeRange)
+            else if(Direction == 1 && data.gyroscopeZ > MinGyroscopeZ + MistakeRange)
             {
+                Debug.Log($"Reach Min# Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
+
                 float strength = Mathf.Abs(MaxGyroscopeZ - MinGyroscopeZ) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
                 RockRecord record = new RockRecord();
@@ -56,11 +62,12 @@ namespace GameSystem.Input
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
                 MaxGyroscopeZ = MistakeRange;
+                Direction = 0;
             }
 
             if (DebugMode)
             {
-                Debug.Log($"Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
+                //Debug.Log($"Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
             }
 
             float acceleration = 0;
