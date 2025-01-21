@@ -77,6 +77,11 @@ namespace GameSystem.Input
 
             Rigidbody.velocity = velocity;
         }
+
+        public void OnCrossingBarrier(float energyAddValue)
+        {
+            //TODO: Add some effect
+        }
     }
 
 }
