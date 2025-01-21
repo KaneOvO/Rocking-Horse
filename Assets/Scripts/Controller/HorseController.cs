@@ -44,6 +44,7 @@ namespace Character
             CurrentEnergy = MaxEnergy;
 
             Direction = Vector2.up;
+            HVelocity = Vector2.zero;
             Rigidbody = this.GetComponent<Rigidbody>();
 
             foreach(Controller controller in this.GetComponents<Controller>())
@@ -159,13 +160,13 @@ namespace Character
             if (frameAccelerate > 0)
             {
                 HVelocity += Direction * frameAccelerate;
-                HVelocity = HVelocity.magnitude > maxSpeed ? HVelocity * maxSpeed / HVelocity.magnitude : HVelocity;
+                if(HVelocity.magnitude > 0) HVelocity = HVelocity.magnitude > maxSpeed ? HVelocity * maxSpeed / HVelocity.magnitude : HVelocity;
             }
             else
             {
                 frameAccelerate = Mathf.Abs(frameAccelerate);
                 if (HVelocity.magnitude < frameAccelerate) HVelocity = Vector2.zero;
-                else HVelocity = HVelocity * (HVelocity.magnitude - frameAccelerate) / HVelocity.magnitude;
+                else if(HVelocity.magnitude > 0) HVelocity = HVelocity * (HVelocity.magnitude - frameAccelerate) / HVelocity.magnitude;
             }
 
             if (StunTime > 0)
