@@ -40,7 +40,7 @@ namespace GameSystem.Input
 
             if (Direction == 0 && data.gyroscopeZ < MaxGyroscopeZ - MistakeRange)
             {
-                Debug.Log($"Reach Max# Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
+                //Debug.Log($"Reach Max# Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
 
                 float strength = Mathf.Abs(MaxGyroscopeZ - MinGyroscopeZ) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
@@ -53,7 +53,7 @@ namespace GameSystem.Input
             }
             else if(Direction == 1 && data.gyroscopeZ > MinGyroscopeZ + MistakeRange)
             {
-                Debug.Log($"Reach Min# Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
+                //Debug.Log($"Reach Min# Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
 
                 float strength = Mathf.Abs(MaxGyroscopeZ - MinGyroscopeZ) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
@@ -67,7 +67,7 @@ namespace GameSystem.Input
 
             if (DebugMode)
             {
-                //Debug.Log($"Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
+                Debug.Log($"Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
             }
 
             float acceleration = 0;
