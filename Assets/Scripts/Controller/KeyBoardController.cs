@@ -37,6 +37,7 @@ namespace GameSystem.Input
 
         private void Awake()
         {
+            if (!Enabled) return;
             CID = InputLayer.RegisterConatroller(DebugMode);
 
             if (PrintEvent)
@@ -50,6 +51,7 @@ namespace GameSystem.Input
         }
         private void Update()
         {
+            if (!Enabled) return;
             float recordSpeed = 0;
             for(int i = MoveRecord.Count - 1; i >= 0; i--)
             {

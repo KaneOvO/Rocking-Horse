@@ -44,8 +44,16 @@ namespace Character
             CurrentEnergy = MaxEnergy;
 
             Direction = Vector2.up;
-            Controller = this.GetComponent<Controller>();
             Rigidbody = this.GetComponent<Rigidbody>();
+
+            foreach(Controller controller in this.GetComponents<Controller>())
+            {
+                if(controller.Enabled)
+                {
+                    Controller = controller;
+                    break;
+                }
+            }
 
             InputLayer.AddAccelerateEventListener(Controller.CID, OnAccelerateUpdate);
             InputLayer.AddJumpEventListener(Controller.CID, OnJump);
