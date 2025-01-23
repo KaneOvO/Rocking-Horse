@@ -14,6 +14,7 @@ namespace GameSystem.Input
 
         public bool DebugMode = false;
         private int Direction = 0;
+        private int LastBoosterStatus = 0;
         private float MinGyroscopeZ = 0;
         private float MaxGyroscopeZ = 0;
 
@@ -80,9 +81,15 @@ namespace GameSystem.Input
                     RockRecords.RemoveAt(i);
                 }
             }
-            acceleration = Mathf.Clamp(acceleration, 0.0f, 1.0f);
 
+            acceleration = Mathf.Clamp(acceleration, 0.0f, 1.0f);
             InputLayer.UpdateAccelerate(CID, acceleration);
+
+            if(data.isBoosted == 1 && LastBoosterStatus == 0)
+            {
+                InputLayer.UseBooster(CID);
+            }
+            LastBoosterStatus = data.isBoosted;
         }
     }
 
