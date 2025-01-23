@@ -15,6 +15,7 @@ namespace GameSystem.Input
         public bool DebugMode = false;
         private int Direction = 0;
         private int LastBoosterStatus = 0;
+        private int LastJumpStatus = 0;
         private float MinGyroscopeZ = 0;
         private float MaxGyroscopeZ = 0;
 
@@ -90,6 +91,12 @@ namespace GameSystem.Input
                 InputLayer.UseBooster(CID);
             }
             LastBoosterStatus = data.isBoosted;
+
+            if (data.isJumped == 1 && LastJumpStatus == 0)
+            {
+                InputLayer.Jump(CID, 0.5f);
+            }
+            LastJumpStatus = data.isJumped;
         }
     }
 
