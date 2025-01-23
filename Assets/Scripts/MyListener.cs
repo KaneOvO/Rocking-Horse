@@ -28,6 +28,7 @@ public class MyListener : MonoBehaviour
         sensorData.gyroscopeX = float.Parse(msgSplit[0]);
         sensorData.gyroscopeY = float.Parse(msgSplit[1]);
         sensorData.gyroscopeZ = float.Parse(msgSplit[2]);
+        sensorData.isBoosted = int.Parse(msgSplit[3]);
         OnSensorDataUpdated?.Invoke(sensorData);
     }
     
@@ -42,4 +43,5 @@ public struct SensorData
     public float gyroscopeX;
     public float gyroscopeY;
     public float gyroscopeZ;
+    public int isBoosted;
 }
