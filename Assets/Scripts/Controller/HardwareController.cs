@@ -85,7 +85,11 @@ namespace GameSystem.Input
             acceleration = Mathf.Clamp(acceleration, 0.0f, 1.0f);
             InputLayer.UpdateAccelerate(CID, acceleration);
 
-            LastBoosterStatus = data.
+            if(data.isBoosted == 1 && LastBoosterStatus == 0)
+            {
+                InputLayer.UseBooster(CID);
+            }
+            LastBoosterStatus = data.isBoosted;
         }
     }
 
