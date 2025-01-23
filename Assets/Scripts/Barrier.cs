@@ -26,8 +26,8 @@ public class Barrier : MonoBehaviour
     }
     private void OnTriggered(HorseController controller)
     {
-        PassTrigger.enabled = false;
-        HitTrigger.enabled = false;
+        PassTrigger.Enabled = false;
+        HitTrigger.Enabled = false;
     }
     private void OnHit(HorseController controller)
     {
