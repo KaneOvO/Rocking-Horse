@@ -31,7 +31,11 @@ public class MyListener : MonoBehaviour
         sensorData.isBoosted = int.Parse(msgSplit[3]);
         if(msgSplit.Length > 4)
             sensorData.isJumped = int.Parse(msgSplit[4]);
-        
+        if(msgSplit.Length > 5)
+            sensorData.isChangedLeft = int.Parse(msgSplit[5]);
+        if (msgSplit.Length > 6)
+            sensorData.isChangedRight = int.Parse(msgSplit[6]);
+
         OnSensorDataUpdated?.Invoke(sensorData);
     }
     
@@ -48,4 +52,6 @@ public struct SensorData
     public float gyroscopeZ;
     public int isBoosted;
     public int isJumped;
+    public int isChangedLeft;
+    public int isChangedRight;
 }
