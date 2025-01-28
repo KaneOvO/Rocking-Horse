@@ -191,6 +191,7 @@ namespace Character
                     Mathf.Clamp(HVelocity.magnitude * HVelocity.magnitude, 0, 400f) / 20f;
 
             HorseAnimator.SetFloat("Velocity", StunTime > 0 ? 0 : HVelocity.magnitude);
+            HorseAnimator.SetFloat("BoosterTime", CurrentBoostTime);
         }
 
         public void OnCrossingBarrier(float energyAddValue)
