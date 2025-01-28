@@ -39,14 +39,11 @@ namespace GameSystem.Input
         private void OnMessageUpdate(SensorData data)
         {
             if (!Enabled) return;
-            float amplifiedGyroscopeZ = data.gyroscopeZ * 2.0f;
-            MinGyroscopeZ = Mathf.Min(MinGyroscopeZ, amplifiedGyroscopeZ);
-            MaxGyroscopeZ = Mathf.Max(MaxGyroscopeZ, amplifiedGyroscopeZ);
 
-            // MinGyroscopeZ = Mathf.Min(MinGyroscopeZ, data.gyroscopeZ);
-            // MaxGyroscopeZ = Mathf.Max(MaxGyroscopeZ, data.gyroscopeZ);
+            MinGyroscopeZ = Mathf.Min(MinGyroscopeZ, data.gyroscopeZ);
+            MaxGyroscopeZ = Mathf.Max(MaxGyroscopeZ, data.gyroscopeZ);
 
-            if (Direction == 0 && amplifiedGyroscopeZ < MaxGyroscopeZ - MistakeRange)
+            if (Direction == 0 && data.gyroscopeZ < MaxGyroscopeZ - MistakeRange)
             {
                 //Debug.Log($"Reach Max# Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
 
@@ -59,7 +56,7 @@ namespace GameSystem.Input
                 MinGyroscopeZ = MaxGyroscopeZ;
                 Direction = 1;
             }
-            else if (Direction == 1 && amplifiedGyroscopeZ > MinGyroscopeZ + MistakeRange)
+            else if (Direction == 1 && data.gyroscopeZ > MinGyroscopeZ + MistakeRange)
             {
                 //Debug.Log($"Reach Min# Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
 
