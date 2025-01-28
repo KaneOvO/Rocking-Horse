@@ -39,6 +39,7 @@ namespace GameSystem.Input
         private void OnMessageUpdate(SensorData data)
         {
             if (!Enabled) return;
+
             MinGyroscopeZ = Mathf.Min(MinGyroscopeZ, data.gyroscopeZ);
             MaxGyroscopeZ = Mathf.Max(MaxGyroscopeZ, data.gyroscopeZ);
 
@@ -55,7 +56,7 @@ namespace GameSystem.Input
                 MinGyroscopeZ = MaxGyroscopeZ;
                 Direction = 1;
             }
-            else if(Direction == 1 && data.gyroscopeZ > MinGyroscopeZ + MistakeRange)
+            else if (Direction == 1 && data.gyroscopeZ > MinGyroscopeZ + MistakeRange)
             {
                 //Debug.Log($"Reach Min# Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
 
@@ -88,7 +89,7 @@ namespace GameSystem.Input
             acceleration = Mathf.Clamp(acceleration, 0.0f, 1.0f);
             InputLayer.UpdateAccelerate(CID, acceleration);
 
-            if(data.isBoosted == 1 && LastBoosterStatus == 0)
+            if (data.isBoosted == 1 && LastBoosterStatus == 0)
             {
                 InputLayer.UseBooster(CID);
             }
