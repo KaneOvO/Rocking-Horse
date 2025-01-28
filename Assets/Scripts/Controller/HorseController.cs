@@ -23,6 +23,7 @@ namespace Character
         public float Gravity = 9.8f;
 
         public CinemachineVirtualCamera VirtualCamera;
+        public Animator HorseAnimator;
 
         private int CurrentTrack;
         private float StunTime = 0;
@@ -73,13 +74,18 @@ namespace Character
         }
         private void OnJump(float value)
         {
-            if(IsOnGround) VVelocity += JumpSpeed * value;
+            if(IsOnGround)
+            {
+                VVelocity += JumpSpeed * value;
+                HorseAnimator.SetTrigger("Jump");
+            }
         }
         private void OnUseBooster()
         {
             if (CurrentEnergy < 100f) return;
             CurrentBoostTime += BoosterTime;
             CurrentEnergy -= 100f;
+            HorseAnimator.SetTrigger("Booster");
         }
         private void OnChangeLane(Vector2 direction)
         {
@@ -183,6 +189,8 @@ namespace Character
 
             if(VirtualCamera != null) VirtualCamera.m_Lens.FieldOfView = 40 + 
                     Mathf.Clamp(HVelocity.magnitude * HVelocity.magnitude, 0, 400f) / 20f;
+
+            HorseAnimator.SetFloat("Velocity", StunTime > 0 ? 0 : HVelocity.magnitude);
         }
 
         public void OnCrossingBarrier(float energyAddValue)
