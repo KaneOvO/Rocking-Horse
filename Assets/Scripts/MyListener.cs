@@ -6,6 +6,9 @@ public class MyListener : MonoBehaviour
     public static MyListener instance;
 
     public SensorData sensorData;
+    public bool isConnected;
+    private bool isSentConnected = false;
+    public static System.Action<SensorData> OnEquipmentConnected;
     public static System.Action<SensorData> OnSensorDataUpdated;
 
     void Awake()
@@ -29,18 +32,32 @@ public class MyListener : MonoBehaviour
         sensorData.gyroscopeY = float.Parse(msgSplit[1]);
         sensorData.gyroscopeZ = float.Parse(msgSplit[2]);
         sensorData.isBoosted = int.Parse(msgSplit[3]);
-        if(msgSplit.Length > 4)
+        if (msgSplit.Length > 4)
             sensorData.isJumped = int.Parse(msgSplit[4]);
-        if(msgSplit.Length > 5)
+        if (msgSplit.Length > 5)
             sensorData.isChangedLeft = int.Parse(msgSplit[5]);
         if (msgSplit.Length > 6)
             sensorData.isChangedRight = int.Parse(msgSplit[6]);
 
         OnSensorDataUpdated?.Invoke(sensorData);
     }
-    
+
     void OnConnectionEvent(bool success)
     {
+        if (isConnected == success) return;
+
+        isConnected = success;
+
+        if (success && !isSentConnected)
+        {
+            OnEquipmentConnected?.Invoke(sensorData);
+            isSentConnected = true;
+        }
+        else if (!success)
+        {
+            isSentConnected = false;
+        }
+
         Debug.Log(success ? "Device connected" : "Device disconnected");
     }
 }
