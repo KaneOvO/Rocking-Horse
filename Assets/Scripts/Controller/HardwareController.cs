@@ -21,7 +21,7 @@ namespace GameSystem.Input
         private float MinGyroscopeZ = 0;
         private float MaxGyroscopeZ = 0;
 
-        private const float MistakeRange = 5;
+        private const float MistakeRange = 3;
         private List<RockRecord> RockRecords = new List<RockRecord>();
 
         private void Awake()
@@ -50,7 +50,7 @@ namespace GameSystem.Input
                 float strength = Mathf.Abs(MaxGyroscopeZ - MinGyroscopeZ) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
                 RockRecord record = new RockRecord();
-                record.Strength = strength;
+                record.Strength = strength*2;
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
                 MinGyroscopeZ = MaxGyroscopeZ;
@@ -63,7 +63,7 @@ namespace GameSystem.Input
                 float strength = Mathf.Abs(MaxGyroscopeZ - MinGyroscopeZ) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
                 RockRecord record = new RockRecord();
-                record.Strength = strength;
+                record.Strength = strength*2;
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
                 MaxGyroscopeZ = MistakeRange;
