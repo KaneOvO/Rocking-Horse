@@ -42,6 +42,10 @@ namespace Character
 
         private void Start()
         {
+            GameManager.GameStartEvent += InitController;
+        }
+        private void InitController()
+        {
             CurrentEnergy = MaxEnergy;
 
             Direction = Vector2.up;
