@@ -16,7 +16,7 @@ namespace GameUI
             }
             else if(GameManager.TimeBeforeStart > 0)
             {
-                Text.text = GameManager.TimeBeforeStart.ToString();
+                Text.text = Mathf.CeilToInt(GameManager.TimeBeforeStart).ToString();
             }
             else
             {
