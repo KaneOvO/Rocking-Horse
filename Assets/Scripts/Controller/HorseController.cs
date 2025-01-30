@@ -42,10 +42,6 @@ namespace Character
 
         private void Start()
         {
-            GameManager.GameStartEvent += InitController;
-        }
-        private void InitController()
-        {
             CurrentEnergy = MaxEnergy;
 
             Direction = Vector2.up;
@@ -78,7 +74,7 @@ namespace Character
         }
         private void OnJump(float value)
         {
-            if(IsOnGround)
+            if(IsOnGround || !GameManager.IsGameBegin)
             {
                 VVelocity += JumpSpeed * value;
                 HorseAnimator.SetTrigger("Jump");
@@ -86,14 +82,14 @@ namespace Character
         }
         private void OnUseBooster()
         {
-            if (CurrentEnergy < 100f) return;
+            if (CurrentEnergy < 100f || !GameManager.IsGameBegin) return;
             CurrentBoostTime += BoosterTime;
             CurrentEnergy -= 100f;
             HorseAnimator.SetTrigger("Booster");
         }
         private void OnChangeLane(Vector2 direction)
         {
-            if (TrackManager.Instance == null) return;
+            if (TrackManager.Instance == null || !GameManager.IsGameBegin) return;
             if (direction.x < 0)
             {
                 if (TrackManager.Instance.CanSwitchLeft(CurrentTrack))
@@ -113,6 +109,7 @@ namespace Character
         }
         private void OnAccelerateUpdate(float value)
         {
+            if (!GameManager.IsGameBegin) return;
             value = value * 2f - 1f;
             value = Mathf.Clamp(value, -1f, 1f);
             CurrentAcceleration = value * Acceleration;
@@ -120,6 +117,11 @@ namespace Character
 
         private void Update()
         {
+            if (!GameManager.IsGameBegin)
+            {
+                Rigidbody.velocity = Vector3.zero;
+                return;
+            }
             IsOnGround = Physics.Raycast(this.transform.position, Vector3.down, 0.65f, LayerMask.GetMask("Ground"));
 
             if (IsOnGround && VVelocity < 0)

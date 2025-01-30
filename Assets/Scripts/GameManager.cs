@@ -16,6 +16,18 @@ public class GameManager : MonoBehaviour
     public static bool IsStarted { get; private set; } = false;
 
     public static Action GameStartEvent;
+    private void Awake()
+    {
+        MyListener.OnEquipmentConnected += OnControllerConnected;
+    }
+    private void nDestroy()
+    {
+        MyListener.OnEquipmentConnected -= OnControllerConnected;
+    }
+    private void OnControllerConnected(SensorData data)
+    {
+        IsStarted = true;
+    }
 
     private void Update()
     {

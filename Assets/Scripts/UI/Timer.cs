@@ -10,9 +10,9 @@ namespace GameUI
         public TextMeshProUGUI Text;
         public void Update()
         {
-            if (GameManager.IsStarted)
+            if (!GameManager.IsStarted)
             {
-                Text.text = "--";
+                Text.text = "...";
             }
             else if(GameManager.TimeBeforeStart > 0)
             {
