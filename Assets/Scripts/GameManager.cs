@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public bool RequiredAltController = true;
     public static float TimeBeforeStart = 3;
 
     public static bool IsGameBegin
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public static Action GameStartEvent;
     private void Awake()
     {
+        IsStarted = !RequiredAltController;
         MyListener.OnEquipmentConnected += OnControllerConnected;
     }
     private void nDestroy()
