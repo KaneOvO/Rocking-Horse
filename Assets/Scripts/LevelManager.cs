@@ -58,4 +58,5 @@ public class LevelManager: MonoBehaviour
             UI[i].GetComponentInChildren<RocketBooster>().Controller = GameManager.Instance.Players[i].GetComponent<Character.HorseController>();
         }
     }
+    
 }
