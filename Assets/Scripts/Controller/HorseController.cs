@@ -22,7 +22,7 @@ namespace Character
 
         public float Gravity = 9.8f;
 
-        public CinemachineVirtualCamera VirtualCamera;
+        public Camera VirtualCamera;
         public Animator HorseAnimator;
 
         private int CurrentTrack;
@@ -90,6 +90,7 @@ namespace Character
         }
         private void OnRotate(float value)
         {
+            if (!GameManager.IsGameBegin) return;
             float angle = Mathf.Atan2(Direction.y, Direction.x) - value / 180 * Mathf.PI * Time.deltaTime;
             Direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
@@ -175,6 +176,16 @@ namespace Character
                 acceleration += BoosterAcceleration;
             }
 
+            if(HVelocity.magnitude > 0.1f && Direction.magnitude > 0.1f)
+            {
+                Vector2 vDir = HVelocity.normalized;
+                Vector2 dir = Direction.normalized;
+
+                float k = (vDir - dir).magnitude * 2;
+
+                HVelocity *= (1 - k * Time.deltaTime);
+            }
+
             float frameAccelerate = (HVelocity.magnitude > maxSpeed ? -Acceleration : acceleration) * Time.deltaTime;
 
             if (frameAccelerate > 0)
@@ -201,7 +212,7 @@ namespace Character
 
             Rigidbody.velocity = StunTime > 0 ? Vector3.zero : velocity;
 
-            if(VirtualCamera != null) VirtualCamera.m_Lens.FieldOfView = 40 + 
+            if(VirtualCamera != null) VirtualCamera.fieldOfView = 40 + 
                     Mathf.Clamp(HVelocity.magnitude * HVelocity.magnitude, 0, 400f) / 20f;
 
             HorseAnimator.SetFloat("Velocity", StunTime > 0 ? 0 : HVelocity.magnitude);
