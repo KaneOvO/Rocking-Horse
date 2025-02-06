@@ -106,7 +106,7 @@ namespace GameSystem.Input
                 }
             }
             if (Direction.Count == 0) InputLayer.UpdateRotation(CID, 0);
-            else InputLayer.UpdateRotation(CID, Direction[^1].KeyCode == LeftKey ? -1 : 1);
+            else InputLayer.UpdateRotation(CID, Direction[^1].KeyCode == LeftKey ? -60 : 60);
 
             if (UnityEngine.Input.GetKeyDown(JumpKey))
             {
