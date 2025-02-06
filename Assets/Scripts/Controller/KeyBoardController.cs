@@ -125,6 +125,50 @@ namespace GameSystem.Input
                 InputLayer.UseBooster(CID);
             }
         }
+
+        public void UpdateController()
+        {
+            if(GameManager.Instance.Players.Count == 1) return;
+
+            if (GameManager.Instance.Players[1] == gameObject)
+            {
+                MoveKey = KeyCode.UpArrow;
+                LeftKey = KeyCode.LeftArrow;
+                RightKey = KeyCode.RightArrow;
+                ChangeLeftKey = KeyCode.Alpha1;
+                ChangeRightKey = KeyCode.Alpha2;
+                JumpKey = KeyCode.KeypadEnter;
+                BoosterKey = KeyCode.KeypadPlus;
+                return;
+            }
+
+            if (GameManager.Instance.Players[2] == gameObject)
+            {
+                MoveKey = KeyCode.I;
+                LeftKey = KeyCode.J;
+                RightKey = KeyCode.L;
+                ChangeLeftKey = KeyCode.U;
+                ChangeRightKey = KeyCode.O;
+                JumpKey = KeyCode.K;
+                BoosterKey = KeyCode.P;
+                return;
+            }
+
+            if (GameManager.Instance.Players[3] == gameObject)
+            {
+                MoveKey = KeyCode.T;
+                LeftKey = KeyCode.F;
+                RightKey = KeyCode.H;
+                ChangeLeftKey = KeyCode.G;
+                ChangeRightKey = KeyCode.J;
+                JumpKey = KeyCode.Y;
+                BoosterKey = KeyCode.U;
+                return;
+            }
+            
+        }
     }
+
+    
 
 }

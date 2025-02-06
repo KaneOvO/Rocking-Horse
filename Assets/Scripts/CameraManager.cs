@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance { get; private set; }
 
-    public GameObject camera1_;
-    public GameObject camera2_;
-    public GameObject camera3_;
-    public GameObject camera4_;
+    public List<GameObject> MainCameras = new List<GameObject>();
+    public List<GameObject> UICameras = new List<GameObject>();
 
     void Awake()
     {
@@ -36,32 +35,61 @@ public class CameraManager : MonoBehaviour
         
     }
 
-    void TwoPlayeMode()
+    void GetAllCamras()
     {
-        //camera1_.SetActive(true);
-        camera2_.SetActive(true);
-        camera1_.GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1);
-        camera2_.GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1);
+        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)
+        {
+            GameObject player = GameManager.Instance.Players[i];
+            MainCameras.Add(player.transform.Find("Main Camera").gameObject);
+            UICameras.Add(player.transform.Find("UI Camera").gameObject);
+        }
+
+    }
+
+    void OnePlayerMode()
+    {
+        MainCameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
+        UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
+    }
+
+    void TwoPlayerMode()
+    {
+        MainCameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 1, 0.5f);
+        MainCameras[1].GetComponent<Camera>().rect = new Rect(0, 0, 1, 0.5f);
+
+        UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 1, 0.5f);
+        UICameras[1].GetComponent<Camera>().rect = new Rect(0, 0, 1, 0.5f);
     }
 
     void FourPlayerMode()
     {
-        //camera1_.SetActive(true);
-        camera2_.SetActive(true);
-        camera3_.SetActive(true);
-        camera4_.SetActive(true);
-        camera1_.GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
-        camera2_.GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-        camera3_.GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
-        camera4_.GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+        MainCameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+        MainCameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+        MainCameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
+        MainCameras[3].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+
+        UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+        UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+        UICameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
+        UICameras[3].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
     }
 
-    void OnDisable()
+    public void SetCamera()
     {
-        camera2_.SetActive(false);
-        camera3_.SetActive(false);
-        camera4_.SetActive(false);
-        camera1_.GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
-        
+        GetAllCamras();
+        switch (GameManager.Instance.PlayerCount)
+        {
+            case 1:
+                OnePlayerMode();
+                break;
+            case 2:
+                TwoPlayerMode();
+                break;
+            case 4:
+                FourPlayerMode();
+                break;
+            default:
+                break;
+        }
     }
 }
