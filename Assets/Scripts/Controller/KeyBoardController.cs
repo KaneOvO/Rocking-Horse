@@ -62,7 +62,8 @@ namespace GameSystem.Input
                 }
             }
             recordSpeed = Mathf.Min(recordSpeed, 1);
-            InputLayer.UpdateAccelerate(CID, recordSpeed);
+            //InputLayer.UpdateAccelerate(CID, recordSpeed);
+            InputLayer.UpdateAccelerate(CID, UnityEngine.Input.GetKey(MoveKey) ? 0.85f : 0);
 
             if (UnityEngine.Input.GetKeyDown(MoveKey))
             {
@@ -71,6 +72,7 @@ namespace GameSystem.Input
                 record.PressTime = Time.realtimeSinceStartup;
                 MoveRecord.Add(record);
             }
+
             if (UnityEngine.Input.GetKeyDown(LeftKey))
             {
                 KeyRecord record = new KeyRecord();
