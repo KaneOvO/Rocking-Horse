@@ -60,7 +60,8 @@ namespace Character
             InputLayer.AddAccelerateEventListener(Controller.CID, OnAccelerateUpdate);
             InputLayer.AddJumpEventListener(Controller.CID, OnJump);
             InputLayer.AddBoosterEventListener(Controller.CID, OnUseBooster);
-            InputLayer.AddChangeLaneEventListener(Controller.CID, OnChangeLane);
+            InputLayer.AddRotateEventListener(Controller.CID, OnRotate);
+            //InputLayer.AddChangeLaneEventListener(Controller.CID, OnChangeLane);
 
             if(TrackManager.Instance == null)
             {
@@ -86,6 +87,13 @@ namespace Character
             CurrentBoostTime += BoosterTime;
             CurrentEnergy -= 100f;
             HorseAnimator.SetTrigger("Booster");
+        }
+        private void OnRotate(float value)
+        {
+            float angle = Mathf.Atan2(Direction.y, Direction.x) - value / 180 * Mathf.PI * Time.deltaTime;
+            Direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+
+            this.transform.localEulerAngles = new Vector3(0, -angle / Mathf.PI * 180 + 90, 0);
         }
         private void OnChangeLane(Vector2 direction)
         {
@@ -136,9 +144,9 @@ namespace Character
             float acceleration = IsOnGround ? CurrentAcceleration : (CurrentAcceleration * 0.15f);
             float maxSpeed = MaxSpeed;
 
-            float xMovement = HVelocity.magnitude * Mathf.Sqrt(2) / 2 * Time.fixedDeltaTime;
+            // This code is for changing lane
+            /*float xMovement = HVelocity.magnitude * Mathf.Sqrt(2) / 2 * Time.fixedDeltaTime;
             float xDiff = this.transform.position.x - TargetX;
-
 
             if (xMovement >= Mathf.Abs(xDiff))
             {
@@ -157,7 +165,7 @@ namespace Character
             else
             {
                 Direction = new Vector2(1, 1).normalized;
-            }
+            }*/
 
             if (CurrentBoostTime > 0)
             {
@@ -187,7 +195,7 @@ namespace Character
                 VVelocity = 0;
             }
 
-            HVelocity = Direction * HVelocity.magnitude;
+            //HVelocity = Direction * HVelocity.magnitude;
 
             Vector3 velocity = new Vector3(HVelocity.x, VVelocity, HVelocity.y);
 
