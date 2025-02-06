@@ -17,7 +17,7 @@ namespace Character
         public float BoosterTime = 2.5f;
         public float MaxEnergy = 100f;
         [Space(5)]
-        public float MaxRotation = 45f;
+        public float RotationRevision = 30f;
         public float JumpSpeed = 10f;
 
         public float Gravity = 9.8f;
@@ -75,7 +75,8 @@ namespace Character
         }
         private void OnJump(float value)
         {
-            if(IsOnGround || !GameManager.IsGameBegin)
+            if (!GameManager.IsGameBegin) return;
+            if (IsOnGround && VVelocity < 0.5f)
             {
                 VVelocity += JumpSpeed * value;
                 HorseAnimator.SetTrigger("Jump");
@@ -91,6 +92,7 @@ namespace Character
         private void OnRotate(float value)
         {
             if (!GameManager.IsGameBegin) return;
+            if (!IsOnGround) value *= 0.1f;
             float angle = Mathf.Atan2(Direction.y, Direction.x) - value / 180 * Mathf.PI * Time.deltaTime;
             Direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
@@ -184,6 +186,31 @@ namespace Character
                 float k = (vDir - dir).magnitude * 2;
 
                 HVelocity *= (1 - k * Time.deltaTime);
+
+                float vAngle = Mathf.Atan2(vDir.y, vDir.x) / Mathf.PI * 180;
+                float angle = Mathf.Atan2(dir.y, dir.x) / Mathf.PI * 180;
+
+                float angleDiff = vAngle - angle;
+                while (angleDiff > 180) angleDiff -= 360f;
+                while (angleDiff < -180) angleDiff += 360f;
+
+                float deltaAngle = RotationRevision * Time.deltaTime;
+
+                if (Mathf.Abs(angleDiff) < deltaAngle)
+                {
+                    vAngle = angle;
+                }
+                else if(angleDiff > 0)
+                {
+                    vAngle -= deltaAngle;
+                }
+                else
+                {
+                    vAngle += deltaAngle;
+                }
+
+                float result = vAngle / 180f * Mathf.PI;
+                HVelocity = new Vector2(Mathf.Cos(result), Mathf.Sin(result)) * HVelocity.magnitude;
             }
 
             float frameAccelerate = (HVelocity.magnitude > maxSpeed ? -Acceleration : acceleration) * Time.deltaTime;
