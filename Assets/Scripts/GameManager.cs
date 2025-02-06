@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f; // Unfreeze time
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload current scene
     }
+    
 
     
 }
