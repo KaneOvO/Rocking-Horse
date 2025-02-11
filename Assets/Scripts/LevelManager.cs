@@ -4,6 +4,7 @@ using GameSystem.Input;
 using GameUI;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public class LevelManager: MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
@@ -21,11 +22,13 @@ public class LevelManager: MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        SpawnPlayer();
     }
     // Start is called before the first frame update
     void Start()
     {
-        SpawnPlayer();
+        
     }
 
     // Update is called once per frame

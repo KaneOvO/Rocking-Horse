@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[DefaultExecutionOrder(-2)]
 public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance { get; private set; }

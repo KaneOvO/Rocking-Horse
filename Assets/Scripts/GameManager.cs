@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[DefaultExecutionOrder(-3)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
