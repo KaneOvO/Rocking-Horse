@@ -277,7 +277,19 @@ namespace Character
 
         public void OnHitManure()
         {
-            SlowedTime = 3;
+            SlowedTime += 3;
+        }
+
+        public void OnLassoHitTarget()
+        {
+            Debug.Log(gameObject.name + " use Lasso");
+        }
+        
+        public void OnHitByLasso()
+        {
+            SlowedTime += 2;
+            
+            Debug.Log(gameObject.name + " hit by lasso");
         }
     }
 

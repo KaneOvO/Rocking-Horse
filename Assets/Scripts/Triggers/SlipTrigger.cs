@@ -9,9 +9,7 @@ namespace Triggers
     {
         protected override void OnCharacterEnter(HorseController controller)
         {
-            // trigger something in controller
             controller.OnHitManure();
-            Debug.Log("Manure Enter");
         }
     }
 }
