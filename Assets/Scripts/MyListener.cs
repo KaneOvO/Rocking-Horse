@@ -1,28 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class MyListener : MonoBehaviour
 {
-    public static MyListener instance;
-
     public SensorData sensorData;
     public bool isConnected;
-    private bool isSentConnected = false;
-    public static System.Action<SensorData> OnEquipmentConnected;
-    public static System.Action<SensorData> OnSensorDataUpdated;
-
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    public bool isSentConnected = false;
+    public System.Action<SensorData> OnEquipmentConnected;
+    public System.Action<SensorData> OnSensorDataUpdated;
 
     void OnMessageArrived(string msg)
     {
@@ -62,13 +48,3 @@ public class MyListener : MonoBehaviour
     }
 }
 
-public struct SensorData
-{
-    public float gyroscopeX;
-    public float gyroscopeY;
-    public float gyroscopeZ;
-    public int isBoosted;
-    public int isJumped;
-    public int isChangedLeft;
-    public int isChangedRight;
-}

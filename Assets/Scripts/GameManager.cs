@@ -36,11 +36,11 @@ public class GameManager : MonoBehaviour
         }
 
         IsStarted = !RequiredAltController;
-        MyListener.OnEquipmentConnected += OnControllerConnected;
+        //MyListener.OnEquipmentConnected += OnControllerConnected;
     }
     private void nDestroy()
     {
-        MyListener.OnEquipmentConnected -= OnControllerConnected;
+       // MyListener.OnEquipmentConnected -= OnControllerConnected;
     }
     private void OnControllerConnected(SensorData data)
     {
@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (!IsStarted)
+        {
+            CheckAllConnected();
+        }
+
         if (IsStarted && TimeBeforeStart > 0)
         {
             TimeBeforeStart -= Time.deltaTime;
@@ -62,6 +67,25 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload current scene
     }
     
+    void CheckAllConnected()
+    {
+        bool allConnected = true;
+        for (int i = 0; i < Players.Count; i++)
+        {
+            if (Players[i] != null)
+            {
+                if (!Players[i].GetComponent<HardwareController>().myListener.isConnected)
+                {
+                    allConnected = false;
+                    break;
+                }
+            }
+        }
+        if (allConnected)
+        {
+            IsStarted = true;
+        }
+    }
 
     
 }

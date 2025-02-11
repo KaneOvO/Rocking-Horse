@@ -13,6 +13,7 @@ namespace GameSystem.Input
         }
 
         public bool DebugMode = false;
+        public MyListener myListener;
         private int Direction = 0;
         private int LastBoosterStatus = 0;
         private int LastJumpStatus = 0;
@@ -28,12 +29,12 @@ namespace GameSystem.Input
         {
             if (!Enabled) return;
             CID = InputLayer.RegisterConatroller(false);
-            MyListener.OnSensorDataUpdated += OnMessageUpdate;
+            myListener.OnSensorDataUpdated += OnMessageUpdate;
         }
         private void OnDestroy()
         {
             if (!Enabled) return;
-            MyListener.OnSensorDataUpdated -= OnMessageUpdate;
+            myListener.OnSensorDataUpdated -= OnMessageUpdate;
         }
 
         private void OnMessageUpdate(SensorData data)
