@@ -14,16 +14,22 @@ public class MyListener : MonoBehaviour
     {
         //Debug.Log("Received Msg: " + msg);
         string[] msgSplit = msg.Split(',');
+        
+        if(msgSplit.Length < 3) return;
         sensorData.gyroscopeX = float.Parse(msgSplit[0]);
         sensorData.gyroscopeY = float.Parse(msgSplit[1]);
         sensorData.gyroscopeZ = float.Parse(msgSplit[2]);
-        sensorData.isBoosted = int.Parse(msgSplit[3]);
-        if (msgSplit.Length > 4)
-            sensorData.isJumped = int.Parse(msgSplit[4]);
-        if (msgSplit.Length > 5)
-            sensorData.isChangedLeft = int.Parse(msgSplit[5]);
+
+        if(msgSplit.Length < 6) return;
+        sensorData.rotationX = float.Parse(msgSplit[3]);
+        sensorData.rotationY = float.Parse(msgSplit[4]);
+        sensorData.rotationZ = float.Parse(msgSplit[5]);
+
         if (msgSplit.Length > 6)
-            sensorData.isChangedRight = int.Parse(msgSplit[6]);
+        sensorData.isBoosted = int.Parse(msgSplit[6]);
+
+        if (msgSplit.Length > 7)
+            sensorData.isJumped = int.Parse(msgSplit[7]);
 
         OnSensorDataUpdated?.Invoke(sensorData);
     }
