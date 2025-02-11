@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using GameSystem.Input;
 using Cinemachine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Character
 {
@@ -31,6 +32,7 @@ namespace Character
         private float CurrentAcceleration = 0;
         private float VVelocity;
         private float TargetX;
+        private float RotationSpeed;
         private Vector2 Direction;
         private Vector2 HVelocity;
         private Rigidbody Rigidbody;
@@ -92,11 +94,7 @@ namespace Character
         private void OnRotate(float value)
         {
             if (!GameManager.IsGameBegin) return;
-            if (!IsOnGround) value *= 0.1f;
-            float angle = Mathf.Atan2(Direction.y, Direction.x) - value / 180 * Mathf.PI * Time.deltaTime;
-            Direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-
-            this.transform.localEulerAngles = new Vector3(0, -angle / Mathf.PI * 180 + 90, 0);
+            RotationSpeed = value;
         }
         private void OnChangeLane(Vector2 direction)
         {
@@ -143,6 +141,13 @@ namespace Character
             {
                 VVelocity -= Gravity * Time.deltaTime;
             }
+
+            float frameRotation = RotationSpeed * Time.deltaTime;
+            if (!IsOnGround) frameRotation *= 0.1f;
+            float angle = Mathf.Atan2(Direction.y, Direction.x) - frameRotation / 180 * Mathf.PI * Time.deltaTime;
+            Direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+
+            this.transform.localEulerAngles = new Vector3(0, -angle / Mathf.PI * 180 + 90, 0);
 
             float acceleration = IsOnGround ? CurrentAcceleration : (CurrentAcceleration * 0.15f);
             float maxSpeed = MaxSpeed;
