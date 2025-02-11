@@ -28,6 +28,7 @@ namespace Character
 
         private int CurrentTrack;
         private float StunTime = 0;
+        private float SlowedTime = 0;
         private float CurrentBoostTime = 0;
         private float CurrentAcceleration = 0;
         private float VVelocity;
@@ -238,11 +239,29 @@ namespace Character
                 VVelocity = 0;
             }
 
+            if (SlowedTime > 0)
+            {
+                SlowedTime -= Time.deltaTime;
+            }
+
             //HVelocity = Direction * HVelocity.magnitude;
 
             Vector3 velocity = new Vector3(HVelocity.x, VVelocity, HVelocity.y);
 
-            Rigidbody.velocity = StunTime > 0 ? Vector3.zero : velocity;
+            //Rigidbody.velocity = StunTime > 0 ? Vector3.zero : velocity;
+
+            if (StunTime > 0)
+            {
+                Rigidbody.velocity = Vector3.zero;
+            }
+            else if (SlowedTime > 0)
+            {
+                Rigidbody.velocity = velocity * 0.3f;
+            }
+            else
+            {
+                Rigidbody.velocity = velocity;
+            }
 
             if(VirtualCamera != null) VirtualCamera.fieldOfView = 40 + 
                     Mathf.Clamp(HVelocity.magnitude * HVelocity.magnitude, 0, 400f) / 20f;
@@ -259,6 +278,23 @@ namespace Character
         public void OnHitBarrier()
         {
             StunTime = 1;
+        }
+
+        public void OnHitManure()
+        {
+            SlowedTime += 3;
+        }
+
+        public void OnLassoHitTarget()
+        {
+            Debug.Log(gameObject.name + " use Lasso");
+        }
+        
+        public void OnHitByLasso()
+        {
+            SlowedTime += 2;
+            
+            Debug.Log(gameObject.name + " hit by lasso");
         }
     }
 
