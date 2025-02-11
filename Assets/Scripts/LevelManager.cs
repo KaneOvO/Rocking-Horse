@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameSystem.Input;
 using GameUI;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class LevelManager: MonoBehaviour
     public static LevelManager Instance { get; private set; }
     public GameObject[] SpawnPoints;
     public List<GameObject> UI = new List<GameObject>();
+    public List<MyListener> Listeners = new List<MyListener>();
 
     void Awake()
     {
@@ -42,6 +44,7 @@ public class LevelManager: MonoBehaviour
             player.transform.rotation = SpawnPoints[i].transform.rotation;
             GameManager.Instance.Players.Add(player);
             player.GetComponent<GameSystem.Input.KeyBoardController>().UpdateController();
+            player.GetComponent<HardwareController>().myListener = Listeners[i];
             //todo: Load the corresponding model according to the player's choice
         }
 
