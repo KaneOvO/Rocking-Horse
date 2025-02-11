@@ -142,12 +142,12 @@ namespace Character
                 VVelocity -= Gravity * Time.deltaTime;
             }
 
-            float frameRotation = RotationSpeed * Time.deltaTime;
+            float frameRotation = RotationSpeed;
             if (!IsOnGround) frameRotation *= 0.1f;
-            float angle = Mathf.Atan2(Direction.y, Direction.x) - frameRotation / 180 * Mathf.PI * Time.deltaTime;
-            Direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            float frameAngle = Mathf.Atan2(Direction.y, Direction.x) - frameRotation / 180 * Mathf.PI * Time.deltaTime;
+            Direction = new Vector2(Mathf.Cos(frameAngle), Mathf.Sin(frameAngle));
 
-            this.transform.localEulerAngles = new Vector3(0, -angle / Mathf.PI * 180 + 90, 0);
+            this.transform.localEulerAngles = new Vector3(0, -frameAngle / Mathf.PI * 180 + 90, 0);
 
             float acceleration = IsOnGround ? CurrentAcceleration : (CurrentAcceleration * 0.15f);
             float maxSpeed = MaxSpeed;
