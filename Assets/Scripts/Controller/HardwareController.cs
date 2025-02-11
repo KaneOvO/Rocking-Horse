@@ -17,8 +17,6 @@ namespace GameSystem.Input
         private int Direction = 0;
         private int LastBoosterStatus = 0;
         private int LastJumpStatus = 0;
-        private int LastChangeLeftStatus = 0;
-        private int LastChangeRightStatus = 0;
         private float MinGyroscopeZ = 0;
         private float MaxGyroscopeZ = 0;
 
@@ -102,17 +100,19 @@ namespace GameSystem.Input
             }
             LastJumpStatus = data.isJumped;
 
-            if (data.isChangedLeft == 1 && LastChangeLeftStatus == 0)
-            {
-                InputLayer.ChangeLane(CID, Vector2.left);
-            }
-            LastChangeLeftStatus = data.isChangedLeft;
+            InputLayer.UpdateRotation(CID, data.rotationZ);
 
-            if (data.isChangedRight == 1 && LastChangeRightStatus == 0)
-            {
-                InputLayer.ChangeLane(CID, Vector2.right);
-            }
-            LastChangeRightStatus = data.isChangedRight;
+            //if (data.isChangedLeft == 1 && LastChangeLeftStatus == 0)
+            //{
+            //    InputLayer.ChangeLane(CID, Vector2.left);
+            //}
+            //LastChangeLeftStatus = data.isChangedLeft;
+
+            //if (data.isChangedRight == 1 && LastChangeRightStatus == 0)
+            //{
+            //    InputLayer.ChangeLane(CID, Vector2.right);
+            //}
+            //LastChangeRightStatus = data.isChangedRight;
         }
     }
 
