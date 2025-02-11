@@ -21,6 +21,7 @@ namespace GameSystem.Input
         private float MaxGyroscopeZ = 0;
 
         private const float MistakeRange = 3;
+        private const float RotationDeadRange = 5f;
         private List<RockRecord> RockRecords = new List<RockRecord>();
 
         private void Awake()
@@ -74,7 +75,7 @@ namespace GameSystem.Input
 
             if (DebugMode)
             {
-                Debug.Log($"Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
+                Debug.Log($"Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ} - Rotation:{data.rotationZ}");
             }
 
             float acceleration = 0;
@@ -103,8 +104,15 @@ namespace GameSystem.Input
             }
             LastJumpStatus = data.isJumped;
 
-            Debug.Log(data.rotationZ);
-            InputLayer.UpdateRotation(CID, data.rotationZ);
+            if (Mathf.Abs(data.rotationZ) < RotationDeadRange)
+            {
+                InputLayer.UpdateRotation(CID, 0);
+            }
+            else
+            {
+                InputLayer.UpdateRotation(CID, data.rotationZ);
+            }
+            
             
 
             //if (data.isChangedLeft == 1 && LastChangeLeftStatus == 0)
