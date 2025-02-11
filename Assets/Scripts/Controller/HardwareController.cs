@@ -27,6 +27,9 @@ namespace GameSystem.Input
         {
             if (!Enabled) return;
             CID = InputLayer.RegisterConatroller(false);
+        }
+        private void Start()
+        {
             myListener.OnSensorDataUpdated += OnMessageUpdate;
         }
         private void OnDestroy()
@@ -100,7 +103,9 @@ namespace GameSystem.Input
             }
             LastJumpStatus = data.isJumped;
 
+            Debug.Log(data.rotationZ);
             InputLayer.UpdateRotation(CID, data.rotationZ);
+            
 
             //if (data.isChangedLeft == 1 && LastChangeLeftStatus == 0)
             //{
