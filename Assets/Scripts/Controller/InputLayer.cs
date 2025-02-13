@@ -13,12 +13,14 @@ namespace GameSystem.Input
         public delegate void JumpEvent(float value);
         public delegate void ChangeLaneEvent(Vector2 direction);
         public delegate void BoosterEvent();
+        public delegate void DriftEvent();
 
         private static Dictionary<int, AccelerateEvent> AccelerateEventDict = new Dictionary<int, AccelerateEvent>();
         private static Dictionary<int, RotateEvent> RotateEventDict = new Dictionary<int, RotateEvent>();
         private static Dictionary<int, JumpEvent> JumpEventDict = new Dictionary<int, JumpEvent>();
         private static Dictionary<int, ChangeLaneEvent> ChangeLaneEventDict = new Dictionary<int, ChangeLaneEvent>();
         private static Dictionary<int, BoosterEvent> BoosterEventDict = new Dictionary<int, BoosterEvent>();
+        private static Dictionary<int, DriftEvent> DriftEventDict = new Dictionary<int, DriftEvent>();
 
         public static int RegisterConatroller(bool debug = false)
         {
@@ -29,6 +31,7 @@ namespace GameSystem.Input
             JumpEventDict.Add(ControllerID, new JumpEvent((float value) => { if (debug && value != 0) Debug.Log($"{ControllerID} - jump:{value}"); }));
             ChangeLaneEventDict.Add(ControllerID, new ChangeLaneEvent((Vector2 direction) => { if (debug && direction.magnitude != 0) Debug.Log($"{ControllerID} - change lane:{direction}"); }));
             BoosterEventDict.Add(ControllerID, new BoosterEvent(() => { if (debug) Debug.Log($"{ControllerID} - booster"); }));
+            DriftEventDict.Add(ControllerID, new DriftEvent(() => { if (debug) Debug.Log($"{ControllerID} - drift."); }));
 
             return ControllerID;
         }
@@ -39,6 +42,7 @@ namespace GameSystem.Input
             if (JumpEventDict.ContainsKey(cid)) JumpEventDict.Remove(cid);
             if (ChangeLaneEventDict.ContainsKey(cid)) ChangeLaneEventDict.Remove(cid);
             if (BoosterEventDict.ContainsKey(cid)) BoosterEventDict.Remove(cid);
+            if (DriftEventDict.ContainsKey(cid)) DriftEventDict.Remove(cid);
         }
         public static void UpdateAccelerate(int cid, float value)
         {
@@ -55,6 +59,10 @@ namespace GameSystem.Input
         public static void ChangeLane(int cid, Vector2 direction)
         {
             if (ChangeLaneEventDict.ContainsKey(cid)) ChangeLaneEventDict[cid].Invoke(direction);
+        }
+        public static void Drift(int cid)
+        {
+            if (DriftEventDict.ContainsKey(cid)) DriftEventDict[cid].Invoke();
         }
         public static void UseBooster(int cid)
         {
@@ -79,6 +87,14 @@ namespace GameSystem.Input
         public static void AddBoosterEventListener(int cid, BoosterEvent evt)
         {
             if (BoosterEventDict.ContainsKey(cid)) BoosterEventDict[cid] += evt;
+        }
+        public static void AddDriftEventListener(int cid, DriftEvent evt)
+        {
+            if (DriftEventDict.ContainsKey(cid)) DriftEventDict[cid] += evt;
+        }
+        public static void RemoveDriftEventListener(int cid, DriftEvent evt)
+        {
+            if (DriftEventDict.ContainsKey(cid)) DriftEventDict[cid] -= evt;
         }
         public static void RemoveAccelerateEventListener(int cid, AccelerateEvent evt)
         {

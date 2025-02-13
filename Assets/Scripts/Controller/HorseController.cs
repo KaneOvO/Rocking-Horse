@@ -19,6 +19,7 @@ namespace Character
         public float MaxEnergy = 100f;
         [Space(5)]
         public float RotationRevision = 30f;
+        public float BaseDriftTime = 0.6f;
         public float JumpSpeed = 10f;
 
         public float Gravity = 9.8f;
@@ -27,6 +28,8 @@ namespace Character
         public Animator HorseAnimator;
 
         private int CurrentTrack;
+        private float DriftRotation = 0;
+        private float DriftTime = 0;
         private float StunTime = 0;
         private float SlowedTime = 0;
         private float CurrentBoostTime = 0;
@@ -51,9 +54,9 @@ namespace Character
             HVelocity = Vector2.zero;
             Rigidbody = this.GetComponent<Rigidbody>();
 
-            foreach(Controller controller in this.GetComponents<Controller>())
+            foreach (Controller controller in this.GetComponents<Controller>())
             {
-                if(controller.Enabled)
+                if (controller.Enabled)
                 {
                     Controller = controller;
                     break;
@@ -65,8 +68,9 @@ namespace Character
             InputLayer.AddBoosterEventListener(Controller.CID, OnUseBooster);
             InputLayer.AddRotateEventListener(Controller.CID, OnRotate);
             //InputLayer.AddChangeLaneEventListener(Controller.CID, OnChangeLane);
+            InputLayer.AddDriftEventListener(Controller.CID, OnDrift);
 
-            if(TrackManager.Instance == null)
+            if (TrackManager.Instance == null)
             {
                 TargetX = this.transform.position.x;
             }
@@ -75,6 +79,14 @@ namespace Character
                 CurrentTrack = TrackManager.Instance.GetCurrentTrackIndex(this.transform.position);
                 TargetX = TrackManager.Instance.GetCoordinate(CurrentTrack);
             }
+        }
+        private void OnDrift()
+        {
+            if (!GameManager.IsGameBegin || !IsOnGround) return;
+            if (Mathf.Abs(RotationSpeed) < 25f || HVelocity.magnitude < MaxSpeed * 0.75f) return;
+            
+            DriftTime = BaseDriftTime;
+            DriftRotation = RotationSpeed > 0 ? 180f : -180f;
         }
         private void OnJump(float value)
         {
@@ -95,6 +107,8 @@ namespace Character
         private void OnRotate(float value)
         {
             if (!GameManager.IsGameBegin) return;
+            if (value == 0 && DriftTime > 0) return;
+
             RotationSpeed = value;
         }
         private void OnChangeLane(Vector2 direction)
@@ -144,6 +158,13 @@ namespace Character
             }
 
             float frameRotation = RotationSpeed;
+            if(DriftTime > 0)
+            {
+                DriftTime -= Time.deltaTime;
+                frameRotation = DriftRotation + RotationSpeed;
+                DriftRotation *= 1 - 0.9f * Time.deltaTime;
+            }
+
             if (!IsOnGround) frameRotation *= 0.1f;
             float frameAngle = Mathf.Atan2(Direction.y, Direction.x) - frameRotation / 180 * Mathf.PI * Time.deltaTime;
             Direction = new Vector2(Mathf.Cos(frameAngle), Mathf.Sin(frameAngle));
@@ -190,6 +211,7 @@ namespace Character
                 Vector2 dir = Direction.normalized;
 
                 float k = (vDir - dir).magnitude * 2;
+                if (DriftTime > 0) k *= 0;
 
                 HVelocity *= (1 - k * Time.deltaTime);
 
@@ -200,7 +222,13 @@ namespace Character
                 while (angleDiff > 180) angleDiff -= 360f;
                 while (angleDiff < -180) angleDiff += 360f;
 
-                float deltaAngle = RotationRevision * Time.deltaTime;
+                float rotationRevision = DriftTime > 0 ? RotationRevision * 2f : RotationRevision;
+                float deltaAngle = rotationRevision * Time.deltaTime;
+
+                if (DriftTime > 0)
+                {
+                    DriftTime += Mathf.Clamp(Mathf.Abs(angleDiff), 0, 60) / 60f * Time.deltaTime * 0.6f;
+                }
 
                 if (Mathf.Abs(angleDiff) < deltaAngle)
                 {

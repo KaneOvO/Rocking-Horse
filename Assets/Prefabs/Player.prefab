@@ -172,6 +172,7 @@ MonoBehaviour:
   BoosterTime: 2.5
   MaxEnergy: 100
   RotationRevision: 15
+  BaseDriftTime: 0.6
   JumpSpeed: 10
   Gravity: 9.8
   VirtualCamera: {fileID: 7080085774637398288}
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9ad4b3eff6e5b42a91f2762cdc27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 0
+  Enabled: 1
   DebugMode: 0
   PrintEvent: 0
   MoveKey: 119
@@ -198,6 +199,7 @@ MonoBehaviour:
   ChangeRightKey: 101
   JumpKey: 32
   BoosterKey: 304
+  DriftKey: 306
 --- !u!114 &7810340765541148708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c98f90a04c8a5478ee4b243b5a0d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 1
+  Enabled: 0
   DebugMode: 1
   myListener: {fileID: 0}
 --- !u!1 &5055019549003723788
