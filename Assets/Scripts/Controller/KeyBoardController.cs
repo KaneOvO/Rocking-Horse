@@ -31,6 +31,8 @@ namespace GameSystem.Input
         private KeyCode JumpKey = KeyCode.Space;
         [SerializeField]
         private KeyCode BoosterKey = KeyCode.LeftShift;
+        [SerializeField]
+        private KeyCode DriftKey = KeyCode.LeftControl;
 
         private List<KeyRecord> Direction = new List<KeyRecord>();
         private List<KeyRecord> MoveRecord = new List<KeyRecord>();
@@ -126,6 +128,10 @@ namespace GameSystem.Input
             {
                 InputLayer.UseBooster(CID);
             }
+            if (UnityEngine.Input.GetKeyDown(DriftKey))
+            {
+                InputLayer.Drift(CID);
+            }
         }
 
         public void UpdateController()
@@ -141,6 +147,7 @@ namespace GameSystem.Input
                 ChangeRightKey = KeyCode.Alpha2;
                 JumpKey = KeyCode.KeypadEnter;
                 BoosterKey = KeyCode.KeypadPlus;
+                DriftKey = KeyCode.KeypadMinus;
                 return;
             }
 
@@ -153,6 +160,7 @@ namespace GameSystem.Input
                 ChangeRightKey = KeyCode.O;
                 JumpKey = KeyCode.K;
                 BoosterKey = KeyCode.P;
+                DriftKey = KeyCode.RightControl;
                 return;
             }
 
@@ -165,6 +173,7 @@ namespace GameSystem.Input
                 ChangeRightKey = KeyCode.J;
                 JumpKey = KeyCode.Y;
                 BoosterKey = KeyCode.U;
+                DriftKey = KeyCode.M;
                 return;
             }
             
