@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.52
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 153ab4bc3f5fd7e4d9ba30a7fdaa721c, type: 2}
@@ -4053,7 +4053,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -4076,7 +4076,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 48.4
+  field of view: 53.1
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -4102,13 +4102,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605978406}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.06992643, z: -0, w: 0.99755216}
-  m_LocalPosition: {x: 38.344, y: 1.7779794, z: 42.667576}
+  m_LocalRotation: {x: -0.048248757, y: -0.21337561, z: -0.0036089742, w: 0.9757714}
+  m_LocalPosition: {x: 39.95, y: 1.2, z: 42.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -8.02, z: 0}
+  m_LocalEulerAnglesHint: {x: -5.492, y: -24.707, z: 0.78}
 --- !u!1001 &623392361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7507,7 +7507,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
