@@ -44,7 +44,19 @@ namespace Character
 
         private bool IsOnGround = true;
 
+        public static List<HorseController> Horses = new List<HorseController>();
+
         public float CurrentEnergy { get; private set; } = 0;
+        public float CurrentSpeed => HVelocity.magnitude;
+
+        private void Awake()
+        {
+            Horses.Add(this);
+        }
+        private void OnDestroy()
+        {
+            Horses.Remove(this);
+        }
 
         private void Start()
         {
