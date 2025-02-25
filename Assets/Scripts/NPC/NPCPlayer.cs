@@ -19,9 +19,13 @@ namespace NPC
         private float ReachRange;
         private float Rotation;
 
-        [SerializeField]
         private HorseController Horse;
 
+        private void Awake()
+        {
+            if (!Enabled) return;
+            CID = InputLayer.RegisterConatroller(false);
+        }
         private void Start()
         {
             Horse = GetComponent<HorseController>();
@@ -29,7 +33,8 @@ namespace NPC
         }
         private void SetTarget(PathPoint target)
         {
-            TargetPos = new Vector2(target.transform.position.x, target.transform.position.z);
+            ReachRange = target.ReachRadius;
+            TargetPos = new Vector2(target.transform.position.z, target.transform.position.x);
 
             TargetSpeed = Horse.MaxSpeed * target.TargetSpeed;
 
@@ -40,38 +45,65 @@ namespace NPC
         }
         private void Update()
         {
-            Vector2 thisPos = new Vector2(this.transform.position.x, this.transform.position.z);
+            Vector2 thisPos = new Vector2(this.transform.position.z, this.transform.position.x);
             Vector2 diff = TargetPos - thisPos;
 
             // SpeedUp
-            if(AccelerationInterval < 0)
+            AccelerationInterval -= Time.deltaTime;
+            if (AccelerationInterval < 0)
             {
                 if(Mathf.Abs(Horse.CurrentSpeed - TargetSpeed) < 1f)
                 {
-                    RandomAcceleration = (-0.5f + Random.value) * Horse.Acceleration;
+                    RandomAcceleration = (0.35f + 0.65f * Random.value);
                 }
                 else if (Horse.CurrentSpeed < TargetSpeed)
                 {
-                    RandomAcceleration = (-0.25f + Random.value * 1.25f) * Horse.Acceleration;
+                    RandomAcceleration = (0.45f + 0.55f * Random.value);
                 }
                 else
                 {
-                    RandomAcceleration = (0.25f - Random.value) * Horse.Acceleration;
+                    RandomAcceleration = (0.25f + 0.6f * Random.value);
                 }
-                AccelerationInterval = 0.65f;
+                AccelerationInterval = 0.35f;
             }
+            InputLayer.UpdateAccelerate(CID, RandomAcceleration);
 
             // Rotation
-            float thisArc = this.transform.localEulerAngles.y / 180 * Mathf.PI;
-            float targetArc = Mathf.Atan2(diff.y, diff.x);
+            float thisArc = (this.transform.localEulerAngles.y) / 180 * Mathf.PI;
+            Vector2 thisDir = new Vector2(Mathf.Cos(thisArc), Mathf.Sin(thisArc));
 
-            float angleRotation = (targetArc - thisArc) / Mathf.PI * 180;
-            angleRotation = Mathf.Clamp(angleRotation, -90, 90);
+            float angleRotation = Vector2.SignedAngle(thisDir.normalized, diff.normalized);
 
-            InputLayer.UpdateRotation(CID, angleRotation);
+            //while(angleRotation < -180)
+            //{
+            //    angleRotation += 360f;
+            //}
+            //while(angleRotation > 180)
+            //{
+            //    angleRotation -= 360f;
+            //}
+
+            //Debug.Log($"{thisPos}, {TargetPos}, {diff}");
+            //Debug.Log($"{diff.magnitude} - {angleRotation} - {thisDir.normalized} - {diff.normalized}");
+
+            angleRotation = Mathf.Clamp(angleRotation, -120, 120);
+            if(Mathf.Abs(angleRotation) < 5)
+            {
+                angleRotation = 0;
+            }
+            else if(angleRotation < -5 && angleRotation > -15)
+            {
+                angleRotation = -15;
+            }
+            else if (angleRotation > 5 && angleRotation < 15)
+            {
+                angleRotation = 15;
+            }
+
+                InputLayer.UpdateRotation(CID, angleRotation);
 
             // Use Booster
-            if(Horse.CurrentEnergy > 100f)
+            if (Horse.CurrentEnergy > 100f)
             {
                 InputLayer.UseBooster(CID);
             }
@@ -79,6 +111,7 @@ namespace NPC
             // Set Target
             if(diff.magnitude < ReachRange)
             {
+                //Debug.Log("Reach");
                 SetTarget(NPCMap.GetNext(ref Index));
             }
         }

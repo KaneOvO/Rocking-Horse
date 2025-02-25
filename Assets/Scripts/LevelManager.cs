@@ -69,7 +69,7 @@ public class LevelManager: MonoBehaviour
             UI[i].GetComponent<Canvas>().worldCamera = camera;
 
             GameObject miniMap = Instantiate(MiniMapPrefab);
-            miniMap.transform.parent = UI[i].transform;
+            miniMap.transform.SetParent(UI[i].transform);
 
             RectTransform rect = miniMap.transform as RectTransform;
             rect.localScale = Vector3.one;
