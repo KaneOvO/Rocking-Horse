@@ -96,7 +96,7 @@ namespace Character
         {
             if (!GameManager.IsGameBegin || !IsOnGround) return;
             if (Mathf.Abs(RotationSpeed) < 25f || HVelocity.magnitude < MaxSpeed * 0.75f) return;
-            
+
             DriftTime = BaseDriftTime;
             DriftRotation = RotationSpeed > 0 ? 180f : -180f;
         }
@@ -158,7 +158,9 @@ namespace Character
                 Rigidbody.velocity = Vector3.zero;
                 return;
             }
-            IsOnGround = Physics.Raycast(this.transform.position, Vector3.down, 0.65f, LayerMask.GetMask("Ground"));
+
+            RaycastHit hit;
+            IsOnGround = Physics.Raycast(this.transform.position, Vector3.down, out hit, 0.65f, LayerMask.GetMask("Ground"));
 
             if (IsOnGround && VVelocity < 0)
             {
@@ -170,7 +172,7 @@ namespace Character
             }
 
             float frameRotation = RotationSpeed;
-            if(DriftTime > 0)
+            if (DriftTime > 0)
             {
                 DriftTime -= Time.deltaTime;
                 frameRotation = DriftRotation + RotationSpeed;
@@ -181,7 +183,17 @@ namespace Character
             float frameAngle = Mathf.Atan2(Direction.y, Direction.x) - frameRotation / 180 * Mathf.PI * Time.deltaTime;
             Direction = new Vector2(Mathf.Cos(frameAngle), Mathf.Sin(frameAngle));
 
-            this.transform.localEulerAngles = new Vector3(0, -frameAngle / Mathf.PI * 180 + 90, 0);
+            //this.transform.localEulerAngles = new Vector3(0, -frameAngle / Mathf.PI * 180 + 90, 0);
+
+            if (IsOnGround && hit.collider != null)
+            {
+                Quaternion groundRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                Quaternion forwardRotation = Quaternion.Euler(0, -frameAngle / Mathf.PI * 180 + 90, 0);
+                Quaternion targetRotation = groundRotation * forwardRotation;
+
+                float rotationSpeed = 2f;
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            }
 
             float acceleration = IsOnGround ? CurrentAcceleration : (CurrentAcceleration * 0.15f);
             float maxSpeed = MaxSpeed;
@@ -217,7 +229,7 @@ namespace Character
                 acceleration += BoosterAcceleration;
             }
 
-            if(HVelocity.magnitude > 0.1f && Direction.magnitude > 0.1f)
+            if (HVelocity.magnitude > 0.1f && Direction.magnitude > 0.1f)
             {
                 Vector2 vDir = HVelocity.normalized;
                 Vector2 dir = Direction.normalized;
@@ -246,7 +258,7 @@ namespace Character
                 {
                     vAngle = angle;
                 }
-                else if(angleDiff > 0)
+                else if (angleDiff > 0)
                 {
                     vAngle -= deltaAngle;
                 }
@@ -264,13 +276,13 @@ namespace Character
             if (frameAccelerate > 0)
             {
                 HVelocity += Direction * frameAccelerate;
-                if(HVelocity.magnitude > 0) HVelocity = HVelocity.magnitude > maxSpeed ? HVelocity * maxSpeed / HVelocity.magnitude : HVelocity;
+                if (HVelocity.magnitude > 0) HVelocity = HVelocity.magnitude > maxSpeed ? HVelocity * maxSpeed / HVelocity.magnitude : HVelocity;
             }
             else
             {
                 frameAccelerate = Mathf.Abs(frameAccelerate);
                 if (HVelocity.magnitude < frameAccelerate) HVelocity = Vector2.zero;
-                else if(HVelocity.magnitude > 0) HVelocity = HVelocity * (HVelocity.magnitude - frameAccelerate) / HVelocity.magnitude;
+                else if (HVelocity.magnitude > 0) HVelocity = HVelocity * (HVelocity.magnitude - frameAccelerate) / HVelocity.magnitude;
             }
 
             if (StunTime > 0)
@@ -303,7 +315,7 @@ namespace Character
                 Rigidbody.velocity = velocity;
             }
 
-            if(VirtualCamera != null) VirtualCamera.fieldOfView = 40 + 
+            if (VirtualCamera != null) VirtualCamera.fieldOfView = 40 +
                     Mathf.Clamp(HVelocity.magnitude * HVelocity.magnitude, 0, 400f) / 20f;
 
             HorseAnimator.SetFloat("Velocity", StunTime > 0 ? 0 : HVelocity.magnitude);
@@ -329,11 +341,11 @@ namespace Character
         {
             Debug.Log(gameObject.name + " use Lasso");
         }
-        
+
         public void OnHitByLasso()
         {
             SlowedTime += 2;
-            
+
             Debug.Log(gameObject.name + " hit by lasso");
         }
     }
