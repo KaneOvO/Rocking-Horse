@@ -17,11 +17,11 @@ namespace GameSystem.Input
         private int Direction = 0;
         private int LastBoosterStatus = 0;
         private int LastJumpStatus = 0;
-        private float MinGyroscopeZ = 0;
-        private float MaxGyroscopeZ = 0;
+        private float MinGyroscopeX = 0;
+        private float MaxGyroscopeX = 0;
 
-        private const float MistakeRange = 3;
-        private const float RotationDeadRange = 5f;
+        private const float MistakeRange = 0.5f;
+        private const float RotationDeadRange = 12.5f;
         private List<RockRecord> RockRecords = new List<RockRecord>();
 
         private void Awake()
@@ -43,39 +43,39 @@ namespace GameSystem.Input
         {
             if (!Enabled) return;
 
-            MinGyroscopeZ = Mathf.Min(MinGyroscopeZ, data.gyroscopeZ);
-            MaxGyroscopeZ = Mathf.Max(MaxGyroscopeZ, data.gyroscopeZ);
+            MinGyroscopeX = Mathf.Min(MinGyroscopeX, data.gyroscopeZ);
+            MaxGyroscopeX = Mathf.Max(MaxGyroscopeX, data.gyroscopeZ);
 
-            if (Direction == 0 && data.gyroscopeZ < MaxGyroscopeZ - MistakeRange)
+            if (Direction == 0 && data.gyroscopeZ < MaxGyroscopeX - MistakeRange)
             {
-                //Debug.Log($"Reach Max# Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
+                //Debug.Log($"Reach Max# Min:{MinGyroscopeX} - Max:{MaxGyroscopeX} - Current:{data.gyroscopeZ}");
 
-                float strength = Mathf.Abs(MaxGyroscopeZ - MinGyroscopeZ) / 40f;
+                float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
                 RockRecord record = new RockRecord();
-                record.Strength = strength*2;
+                record.Strength = strength*8;
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
-                MinGyroscopeZ = MaxGyroscopeZ;
+                MinGyroscopeX = MaxGyroscopeX;
                 Direction = 1;
             }
-            else if (Direction == 1 && data.gyroscopeZ > MinGyroscopeZ + MistakeRange)
+            else if (Direction == 1 && data.gyroscopeZ > MinGyroscopeX + MistakeRange)
             {
-                //Debug.Log($"Reach Min# Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ}");
+                //Debug.Log($"Reach Min# Min:{MinGyroscopeX} - Max:{MaxGyroscopeX} - Current:{data.gyroscopeZ}");
 
-                float strength = Mathf.Abs(MaxGyroscopeZ - MinGyroscopeZ) / 40f;
+                float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
                 RockRecord record = new RockRecord();
-                record.Strength = strength*2;
+                record.Strength = strength*8;
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
-                MaxGyroscopeZ = MistakeRange;
+                MaxGyroscopeX = MistakeRange;
                 Direction = 0;
             }
 
             if (DebugMode)
             {
-                Debug.Log($"Min:{MinGyroscopeZ} - Max:{MaxGyroscopeZ} - Current:{data.gyroscopeZ} - Rotation:{data.rotationZ}");
+                Debug.Log($"Min:{MinGyroscopeX} - Max:{MaxGyroscopeX} - Current:{data.gyroscopeZ} - Rotation:{data.rotationZ}");
             }
 
             float acceleration = 0;
