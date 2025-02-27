@@ -77,7 +77,7 @@ namespace Character
 
             InputLayer.AddAccelerateEventListener(Controller.CID, OnAccelerateUpdate);
             InputLayer.AddJumpEventListener(Controller.CID, OnJump);
-            InputLayer.AddBoosterEventListener(Controller.CID, OnUseBooster);
+            InputLayer.AddBoosterEventListener(Controller.CID, OnUseItem);
             InputLayer.AddRotateEventListener(Controller.CID, OnRotate);
             //InputLayer.AddChangeLaneEventListener(Controller.CID, OnChangeLane);
             InputLayer.AddDriftEventListener(Controller.CID, OnDrift);
@@ -116,6 +116,12 @@ namespace Character
             CurrentEnergy -= 100f;
             HorseAnimator.SetTrigger("Booster");
         }
+
+        private void OnUseItem()
+        {
+            GetComponent<Lasso>().UseLasso();
+        }
+        
         private void OnRotate(float value)
         {
             if (!GameManager.IsGameBegin) return;
@@ -191,7 +197,7 @@ namespace Character
                 Quaternion forwardRotation = Quaternion.Euler(0, -frameAngle / Mathf.PI * 180 + 90, 0);
                 Quaternion targetRotation = groundRotation * forwardRotation;
 
-                float rotationSpeed = 2f;
+                float rotationSpeed = 3f;
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
 

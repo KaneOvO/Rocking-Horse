@@ -10,15 +10,16 @@ using Random = UnityEngine.Random;
 public class Lasso : MonoBehaviour
 {
     public List<GameObject> TargetPlayers;
+    public bool lassoReady;
     
     private float LassoDuration;
     private GameObject LassoOther;
 
     public void Start()
-    {
-        foreach (var Player in GameManager.Instance.Players.Where(Player => Player != gameObject))
+    { 
+        foreach (var horse in HorseController.Horses.Where(Horse => Horse.gameObject != gameObject))
         {
-            TargetPlayers.Add(Player);
+            TargetPlayers.Add(horse.gameObject);
         }
     }
 
@@ -35,6 +36,8 @@ public class Lasso : MonoBehaviour
 
     public void UseLasso()
     {
+        if (!lassoReady) return;
+        
         GameObject bestTarget = null;
 
         foreach (var target in TargetPlayers)
@@ -60,6 +63,8 @@ public class Lasso : MonoBehaviour
         {
             OnLassoHitTarget(bestTarget);
             bestTarget.GetComponent<Lasso>().OnHitByLasso(gameObject);
+            
+            lassoReady = false;
         }
         else Debug.Log("no target");
     }
