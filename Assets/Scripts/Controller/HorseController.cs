@@ -60,7 +60,7 @@ namespace Character
 
             InputLayer.AddAccelerateEventListener(Controller.CID, OnAccelerateUpdate);
             InputLayer.AddJumpEventListener(Controller.CID, OnJump);
-            InputLayer.AddBoosterEventListener(Controller.CID, OnUseBooster);
+            InputLayer.AddBoosterEventListener(Controller.CID, OnUseItem);
             InputLayer.AddRotateEventListener(Controller.CID, OnRotate);
             //InputLayer.AddChangeLaneEventListener(Controller.CID, OnChangeLane);
 
@@ -90,6 +90,12 @@ namespace Character
             CurrentEnergy -= 100f;
             HorseAnimator.SetTrigger("Booster");
         }
+
+        private void OnUseItem()
+        {
+            GetComponent<Lasso>().UseLasso();
+        }
+        
         private void OnRotate(float value)
         {
             if (!GameManager.IsGameBegin) return;

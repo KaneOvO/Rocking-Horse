@@ -116,8 +116,6 @@ namespace GameSystem.Input
             if (UnityEngine.Input.GetKeyDown(ChangeLeftKey))
             {
                 InputLayer.ChangeLane(CID, Vector2.left);
-                
-                GetComponent<Lasso>().UseLasso();
             }
             if (UnityEngine.Input.GetKeyDown(ChangeRightKey))
             {
