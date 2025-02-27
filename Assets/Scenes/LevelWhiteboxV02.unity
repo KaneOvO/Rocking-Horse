@@ -1330,6 +1330,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 310242483577952872, guid: f0051900bdcc031489219700da88061c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5399947953020822715, guid: f0051900bdcc031489219700da88061c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1850,6 +1855,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: PlayerCount
@@ -2607,7 +2617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &845076702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10231,7 +10241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1595489222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15926,7 +15936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2128652856
 MonoBehaviour:
   m_ObjectHideFlags: 0
