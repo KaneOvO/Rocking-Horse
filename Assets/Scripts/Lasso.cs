@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 public class Lasso : MonoBehaviour
 {
     public List<GameObject> TargetPlayers;
+    public bool lassoReady;
     
     private float LassoDuration;
     private GameObject LassoOther;
@@ -35,6 +36,8 @@ public class Lasso : MonoBehaviour
 
     public void UseLasso()
     {
+        if (!lassoReady) return;
+        
         GameObject bestTarget = null;
 
         foreach (var target in TargetPlayers)
@@ -60,6 +63,8 @@ public class Lasso : MonoBehaviour
         {
             OnLassoHitTarget(bestTarget);
             bestTarget.GetComponent<Lasso>().OnHitByLasso(gameObject);
+            
+            lassoReady = false;
         }
         else Debug.Log("no target");
     }
