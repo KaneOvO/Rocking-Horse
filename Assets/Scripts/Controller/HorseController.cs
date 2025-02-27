@@ -191,7 +191,7 @@ namespace Character
                 Quaternion forwardRotation = Quaternion.Euler(0, -frameAngle / Mathf.PI * 180 + 90, 0);
                 Quaternion targetRotation = groundRotation * forwardRotation;
 
-                float rotationSpeed = 2f;
+                float rotationSpeed = 3f;
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
 
