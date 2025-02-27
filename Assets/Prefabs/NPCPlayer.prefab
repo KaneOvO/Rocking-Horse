@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6538405079255414122}
   - component: {fileID: 7790533119498257688}
   - component: {fileID: 4107099223300172350}
+  - component: {fileID: -8589823537029809985}
   m_Layer: 0
   m_Name: NPCPlayer
   m_TagString: Player
@@ -187,6 +188,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enabled: 1
+--- !u!114 &-8589823537029809985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10541b95984c7e34f8ef111bfd0a6e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetPlayers: []
+  lassoReady: 0
 --- !u!1 &7471624816180624863
 GameObject:
   m_ObjectHideFlags: 0

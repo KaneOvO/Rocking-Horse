@@ -16,10 +16,10 @@ public class Lasso : MonoBehaviour
     private GameObject LassoOther;
 
     public void Start()
-    {
-        foreach (var Player in GameManager.Instance.Players.Where(Player => Player != gameObject))
+    { 
+        foreach (var horse in HorseController.Horses.Where(Horse => Horse.gameObject != gameObject))
         {
-            TargetPlayers.Add(Player);
+            TargetPlayers.Add(horse.gameObject);
         }
     }
 
