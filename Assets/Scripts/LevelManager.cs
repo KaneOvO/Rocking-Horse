@@ -14,6 +14,9 @@ public class LevelManager: MonoBehaviour
 
     public GameObject MiniMapPrefab;
 
+    [SerializeField]
+    private bool skipCameraIntro;
+
     void Awake()
     {
         if (Instance == null)
@@ -25,7 +28,10 @@ public class LevelManager: MonoBehaviour
             Destroy(gameObject);
         }
 
-        SpawnPlayer();
+        if (skipCameraIntro)
+        {
+            SpawnPlayer();
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -39,7 +45,7 @@ public class LevelManager: MonoBehaviour
 
     }
 
-    void SpawnPlayer()
+    public void SpawnPlayer()
     {
         for (int i = 0; i < GameManager.Instance.PlayerCount; i++)
         {
