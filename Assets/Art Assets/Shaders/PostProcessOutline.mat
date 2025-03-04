@@ -57,13 +57,13 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _CastShadows: 1
-    - _ColorStrength: 1.42
-    - _ColorThickness: 0.83
-    - _ColorThreshold: 0.25
+    - _ColorStrength: 0
+    - _ColorThickness: 0
+    - _ColorThreshold: 0
     - _Cull: 0
-    - _DepthStrength: 0.23
-    - _DepthThickness: 0.38
-    - _DepthThreshold: 0.09
+    - _DepthStrength: 1.68
+    - _DepthThickness: 1.17
+    - _DepthThreshold: 0.01
     - _DstBlend: 0
     - _Fullscreen_AlphaBlendOperation: 0
     - _Fullscreen_BlendMode: 3
@@ -78,7 +78,7 @@ Material:
     - _QueueOffset: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Thickness: 0.0001
+    - _Thickness: 0.001
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
