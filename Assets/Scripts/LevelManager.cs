@@ -15,7 +15,7 @@ public class LevelManager: MonoBehaviour
     public GameObject MiniMapPrefab;
 
     [SerializeField]
-    private bool skipCameraIntro;
+    public bool skipCameraIntro;
 
     void Awake()
     {

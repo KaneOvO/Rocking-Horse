@@ -42,7 +42,10 @@ public class CinemachineDeactivate : MonoBehaviour
 
         cVCamera.enabled = false;
 
-        FindObjectOfType<LevelManager>().SpawnPlayer();
+        if (!FindObjectOfType<LevelManager>().skipCameraIntro)
+        {
+            FindObjectOfType<LevelManager>().SpawnPlayer();
+        }
     }
 
     private IEnumerator delayedTurnOff()
