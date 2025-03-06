@@ -80,6 +80,8 @@ public class LevelManager: MonoBehaviour
             RectTransform rect = miniMap.transform as RectTransform;
             rect.localScale = Vector3.one;
             rect.localPosition = Vector3.zero;
+            rect.rotation = Quaternion.identity;
+            //rect.localEulerAngles = Vector3.zero;
             
             sharedUIs.Add(rect);
 
