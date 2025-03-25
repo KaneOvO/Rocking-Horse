@@ -6534,6 +6534,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: leglesshorse (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 508219c643bec604c8d772e5655c3c69,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544704446333503076, guid: 508219c643bec604c8d772e5655c3c69,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3544704446333503076, guid: 508219c643bec604c8d772e5655c3c69,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6552,6 +6562,11 @@ PrefabInstance:
     - target: {fileID: 3544704446333503076, guid: 508219c643bec604c8d772e5655c3c69,
         type: 3}
       propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b1513bc56e2f7d4b9995d38b5385c7a, type: 2}
+    - target: {fileID: 3544704446333503076, guid: 508219c643bec604c8d772e5655c3c69,
+        type: 3}
+      propertyPath: m_Materials.Array.data[4]
       value: 
       objectReference: {fileID: 2100000, guid: 2b1513bc56e2f7d4b9995d38b5385c7a, type: 2}
     m_RemovedComponents: []
@@ -12856,6 +12871,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Horse_No_Legs
       objectReference: {fileID: 0}
+    - target: {fileID: 2587969424406614612, guid: 175f3adee5a6c2c4f98d8fad1bef9f25,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2927762890685696238, guid: 175f3adee5a6c2c4f98d8fad1bef9f25,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12905,6 +12925,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7486858282502381664, guid: 175f3adee5a6c2c4f98d8fad1bef9f25,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

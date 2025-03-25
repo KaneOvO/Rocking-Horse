@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PostProcessOutline
+  m_Name: pp_Outline
   m_Shader: {fileID: -6465566751694194690, guid: 67f04c31ead49ad4db05c6d9b2f2d66f,
     type: 3}
   m_Parent: {fileID: 0}
@@ -62,8 +62,8 @@ Material:
     - _ColorThreshold: 0
     - _Cull: 0
     - _DepthStrength: 1.68
-    - _DepthThickness: 1.17
-    - _DepthThreshold: 0.01
+    - _DepthThickness: 0.5
+    - _DepthThreshold: 0.05
     - _DstBlend: 0
     - _Fullscreen_AlphaBlendOperation: 0
     - _Fullscreen_BlendMode: 3
