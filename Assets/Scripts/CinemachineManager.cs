@@ -6,16 +6,18 @@ using UnityEngine;
 public class CinemachineManager : MonoBehaviour
 {
 
-    [SerializeField]
-    private CinemachineVirtualCamera[] cCameras;
+    [System.Serializable]
+    private struct CineMachinePairing { public CinemachineVirtualCamera camera; public CinemachineDollyCart dolly; }
+
+
+    [Header("Components")]
 
     [SerializeField]
-    private CinemachineDollyCart[] dollyCarts;
-
-    [SerializeField]
-    private float[] dollyDistances;
+    private CineMachinePairing[] pairings;
 
     private bool bIntroInProgress;
+
+    [Header("Debug")]
 
     [SerializeField]
     private bool bSkipIntro;
@@ -25,14 +27,11 @@ public class CinemachineManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (var cam in cCameras)
-        {
-            cam.enabled = false;
-        }
 
-        foreach (var dolly in dollyCarts)
+        foreach (var pairing in pairings)
         {
-            dolly.enabled = false;
+            pairing.camera.enabled = false;
+            pairing.dolly.enabled = false;
         }
 
         if(bSkipIntro)
@@ -50,14 +49,14 @@ public class CinemachineManager : MonoBehaviour
     {
         if(bIntroInProgress)
         {
-            if(dollyCarts[currentCamera].m_Position >= dollyDistances[currentCamera])
+            if(pairings[currentCamera].dolly.m_Position >= pairings[currentCamera].dolly.m_Path.PathLength)
             {
 
-                cCameras[currentCamera].enabled = false;
+                pairings[currentCamera].camera.enabled = false;
 
                 currentCamera++;
 
-                if (currentCamera >= cCameras.Length)
+                if (currentCamera >= pairings.Length)
                 {
 
                     IntroComplete();
@@ -67,9 +66,9 @@ public class CinemachineManager : MonoBehaviour
                     StartCamera(currentCamera);
                 }
             }
-            else if (dollyCarts[currentCamera].m_Position == dollyDistances[currentCamera] - 4)
+            else if (pairings[currentCamera].dolly.m_Position == pairings[currentCamera].dolly.m_Path.PathLength - 4)
             {
-                cCameras[currentCamera].GetComponent<Animator>().SetBool(01, true);
+                pairings[currentCamera].camera.GetComponent<Animator>().SetBool(01, true);
             }
         }
     }
@@ -86,11 +85,11 @@ public class CinemachineManager : MonoBehaviour
 
     private void StartCamera(int index)
     {
-        cCameras[currentCamera].enabled = true;
+        pairings[currentCamera].camera.enabled = true;
 
-        dollyCarts[currentCamera].enabled =true;
+        pairings[currentCamera].dolly.enabled =true;
 
-        cCameras[currentCamera].GetComponent<Animator>().enabled = true;
+        pairings[currentCamera].camera.GetComponent<Animator>().enabled = true;
     }
 
     private void IntroComplete()
