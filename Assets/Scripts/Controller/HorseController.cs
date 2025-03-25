@@ -62,7 +62,8 @@ namespace Character
         {
             CurrentEnergy = MaxEnergy;
 
-            Direction = Vector2.up;
+            float arc = transform.eulerAngles.y / 180 * Mathf.PI;
+            Direction = new Vector2(Mathf.Sin(arc), Mathf.Cos(arc));
             HVelocity = Vector2.zero;
             Rigidbody = this.GetComponent<Rigidbody>();
 
@@ -117,11 +118,18 @@ namespace Character
             HorseAnimator.SetTrigger("Booster");
         }
 
+        public void UseBooster()
+        {
+            if (!GameManager.IsGameBegin) return;
+            CurrentBoostTime += BoosterTime;
+            HorseAnimator.SetTrigger("Booster");
+        }
+
         private void OnUseItem()
         {
             GetComponent<Lasso>().UseLasso();
         }
-        
+
         private void OnRotate(float value)
         {
             if (!GameManager.IsGameBegin) return;
