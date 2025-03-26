@@ -15,6 +15,9 @@ public class CinemachineManager : MonoBehaviour
     [SerializeField]
     private CineMachinePairing[] pairings;
 
+    [SerializeField]
+    private Canvas uiCanvas;
+
     private bool bIntroInProgress;
 
     [Header("Debug")]
@@ -95,6 +98,8 @@ public class CinemachineManager : MonoBehaviour
     private void IntroComplete()
     {
         bIntroInProgress = false;
+
+        uiCanvas.enabled = false;
 
         FindObjectOfType<LevelManager>().SpawnPlayer();
     }
