@@ -12,6 +12,7 @@ public class MultiSerialManager : MonoBehaviour
     void Start()
     {
         string[] ports = SerialPort.GetPortNames();
+        int i = 0;
         foreach (string port in ports)
         {
             SerialPort sp = new SerialPort(port, baudRate);
@@ -21,44 +22,18 @@ public class MultiSerialManager : MonoBehaviour
             if (sp.IsOpen)
             {
                 string data = sp.ReadLine();
-                if (data == "0")
+                string[] dataParts = data.Split(',');
+                bool isArduino = dataParts.Length >= 6 && float.TryParse(dataParts[0], out float f) && float.TryParse(dataParts[1], out f) && float.TryParse(dataParts[2], out f) && float.TryParse(dataParts[3], out f) && float.TryParse(dataParts[4], out f) && float.TryParse(dataParts[5], out f);
+                if (isArduino)
                 {
                     sp.Close();
                     GameObject serialController = Instantiate(serialControllerPrefab);
-                    if(serialController.TryGetComponent<SerialController>(out var controller))
+                    if (serialController.TryGetComponent<SerialController>(out var controller))
                     {
                         controller.portName = port;
-                        controller.messageListener = listeners[0];
-                    }
-                }
-                else if(data == "1")
-                {
-                    sp.Close();
-                    GameObject serialController = Instantiate(serialControllerPrefab);
-                    if(serialController.TryGetComponent<SerialController>(out var controller))
-                    {
-                        controller.portName = port;
-                        controller.messageListener = listeners[1];
-                    }
-                }
-                else if(data == "2")
-                {
-                    sp.Close();
-                    GameObject serialController = Instantiate(serialControllerPrefab);
-                    if(serialController.TryGetComponent<SerialController>(out var controller))
-                    {
-                        controller.portName = port;
-                        controller.messageListener = listeners[2];
-                    }
-                }
-                else if(data == "3")
-                {
-                    sp.Close();
-                    GameObject serialController = Instantiate(serialControllerPrefab);
-                    if(serialController.TryGetComponent<SerialController>(out var controller))
-                    {
-                        controller.portName = port;
-                        controller.messageListener = listeners[3];
+                        controller.messageListener = listeners[i];
+                        controller.baudRate = baudRate;
+                        i++;
                     }
                 }
             }
