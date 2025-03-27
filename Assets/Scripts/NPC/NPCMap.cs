@@ -17,16 +17,12 @@ namespace NPC
 
         public static PathPoint GetAt(int index)
         {
-            if(Instance.Path.Count == 0)
+            if(Instance.Path.Count <= 2)
             {
                 return null;
             }
 
-            while(index > Instance.Path.Count)
-            {
-                index -= Instance.Path.Count;
-            }
-            return Instance.Path[index];
+            return Instance.Path[index % Instance.Path.Count];
         }
         public static PathPoint GetNext(ref int index)
         {

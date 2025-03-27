@@ -9,7 +9,7 @@ namespace GameUI
     public class Ranking : MonoBehaviour
     {
         public TextMeshProUGUI RankingText;
-        public HorseController TargetController;
+        public int HorseIndex;
 
         private static float LastUpdateTime = 0;
         private const float UPDATE_INTERVAL = 0.1f;
@@ -17,14 +17,20 @@ namespace GameUI
 
         public void Update()
         {
+            if(HorseController.Horses.Count < HorseIndex)
+            {
+                return;
+            }
+
             if(LastUpdateTime <= Time.realtimeSinceStartup - UPDATE_INTERVAL)
             {
                 LastUpdateTime = Time.realtimeSinceStartup;
                 RankingList = new(HorseController.Horses);
                 RankingList.Sort(SortHorse);
+                RankingList.Reverse();
             }
 
-            int index = RankingList.IndexOf(TargetController);
+            int index = RankingList.IndexOf(HorseController.Horses[HorseIndex]);
             RankingText.text = (index + 1).ToString();
         }
 

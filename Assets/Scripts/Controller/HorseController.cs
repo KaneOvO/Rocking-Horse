@@ -196,7 +196,8 @@ namespace Character
             Vector3 toCurrent = currentPoint.transform.position - this.transform.position;
             Vector3 toNext = nextPoint.transform.position - this.transform.position;
 
-            NextCheckPointDistance = (toNext - toCurrent * 2).magnitude;
+            NextCheckPointDistance = -(toNext - toCurrent * 2).magnitude;
+
             if (NextCheckPointDistance > SmallestDistance)
             {
                 SmallestDistance = NextCheckPointDistance;
@@ -211,12 +212,13 @@ namespace Character
                 WrongWayNote.SetActive(false);
             }
 
-            if (toCurrent.sqrMagnitude < toNext.sqrMagnitude)
+            if (toCurrent.magnitude * 2 < toNext.magnitude)
             {
                 CheckPointIndex++;
                 ResetIndex = CheckPointIndex;
                 ResetPoint = this.transform.position;
                 SmallestDistance = -9999;
+                //Debug.Log($"NewIndex:{CheckPointIndex}");
             }
 
             RaycastHit hit;
