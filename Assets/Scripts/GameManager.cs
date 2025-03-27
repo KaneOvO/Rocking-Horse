@@ -36,14 +36,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        IsStarted = !RequiredAltController;
-        //MyListener.OnEquipmentConnected += OnControllerConnected;
+        //IsStarted = !RequiredAltController;
     }
-    private void nDestroy()
-    {
-       // MyListener.OnEquipmentConnected -= OnControllerConnected;
-    }
-    private void OnControllerConnected(SensorData data)
+
+    public void StartGame()
     {
         IsStarted = true;
     }
@@ -58,7 +54,7 @@ public class GameManager : MonoBehaviour
         if (IsStarted && TimeBeforeStart > 0)
         {
             TimeBeforeStart -= Time.deltaTime;
-            if(TimeBeforeStart <= 0) GameStartEvent?.Invoke();
+            if(TimeBeforeStart < 0) GameStartEvent?.Invoke();
         }
     }
     public void RestartGame()
