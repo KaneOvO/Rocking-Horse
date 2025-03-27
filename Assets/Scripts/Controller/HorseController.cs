@@ -29,6 +29,12 @@ namespace Character
         public Camera VirtualCamera;
         public Animator HorseAnimator;
         public GameObject WrongWayNote;
+        public Collider Collider;
+
+        [HideInInspector]
+        public Vector2 HVelocity;
+        [HideInInspector]
+        public Vector2 Direction;
 
         private int CurrentTrack;
         private float DriftRotation = 0;
@@ -40,13 +46,14 @@ namespace Character
         private float VVelocity;
         private float TargetX;
         private float RotationSpeed;
-        private Vector2 Direction;
-        private Vector2 HVelocity;
         private Rigidbody Rigidbody;
         private Controller Controller;
 
+        [HideInInspector]
         public float NextCheckPointDistance;
+        [HideInInspector]
         public float SmallestDistance;
+        [HideInInspector]
         public int CheckPointIndex;
 
         private int ResetIndex;
@@ -58,6 +65,7 @@ namespace Character
 
         public float CurrentEnergy { get; private set; } = 0;
         public float CurrentSpeed => HVelocity.magnitude;
+        public PathPoint NextTargtet => NPCMap.GetAt(CheckPointIndex + 1);
 
         public void ResetPos()
         {
@@ -196,7 +204,8 @@ namespace Character
             Vector3 toCurrent = currentPoint.transform.position - this.transform.position;
             Vector3 toNext = nextPoint.transform.position - this.transform.position;
 
-            NextCheckPointDistance = (toNext - toCurrent * 2).magnitude;
+            NextCheckPointDistance = -(toNext - toCurrent * 2).magnitude;
+
             if (NextCheckPointDistance > SmallestDistance)
             {
                 SmallestDistance = NextCheckPointDistance;
@@ -211,12 +220,13 @@ namespace Character
                 WrongWayNote.SetActive(false);
             }
 
-            if (toCurrent.sqrMagnitude < toNext.sqrMagnitude)
+            if (toCurrent.magnitude * 2 < toNext.magnitude)
             {
                 CheckPointIndex++;
                 ResetIndex = CheckPointIndex;
                 ResetPoint = this.transform.position;
                 SmallestDistance = -9999;
+                //Debug.Log($"NewIndex:{CheckPointIndex}");
             }
 
             RaycastHit hit;

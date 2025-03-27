@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3185488733716318825}
   - component: {fileID: 7810340765541148708}
   - component: {fileID: 7905966017867016951}
+  - component: {fileID: 6792112596344398806}
   m_Layer: 0
   m_Name: PlayerNew
   m_TagString: Player
@@ -114,7 +115,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!114 &7323816280407700464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +181,9 @@ MonoBehaviour:
   VirtualCamera: {fileID: 7080085774637398288}
   HorseAnimator: {fileID: 7330305258655589361}
   WrongWayNote: {fileID: 372909241162976964}
+  Collider: {fileID: 0}
+  HVelocity: {x: 0, y: 0}
+  Direction: {x: 0, y: 0}
   NextCheckPointDistance: 0
   SmallestDistance: 0
   CheckPointIndex: 0
@@ -235,6 +239,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetPlayers: []
   lassoReady: 0
+--- !u!114 &6792112596344398806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a92c53c3d766af42bf379a3620af123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 7790533119498257688}
+  LastTime: 5
+  Speed: 20
 --- !u!1 &372909241162976964
 GameObject:
   m_ObjectHideFlags: 0
