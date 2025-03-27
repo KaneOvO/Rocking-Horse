@@ -26,6 +26,9 @@ namespace NPC
             {
                 index -= Instance.Path.Count;
             }
+
+            Debug.Log(index);
+
             return Instance.Path[index];
         }
         public static PathPoint GetNext(ref int index)
