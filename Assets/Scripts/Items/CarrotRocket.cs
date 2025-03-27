@@ -44,7 +44,7 @@ namespace Items
         {
             Vector3 target = NPCMap.GetAt(Index).transform.position;
 
-            if(Vector3.Distance(target, this.transform.position) < 1)
+            if(Vector3.Distance(target, this.transform.position) < 2)
             {
                 Index++;
             }
@@ -53,6 +53,7 @@ namespace Items
             Vector2 direction = new Vector2(diff.x, diff.z);
 
             Controller.HVelocity = direction * Speed;
+            Controller.Direction = direction;
         }
     }
 
