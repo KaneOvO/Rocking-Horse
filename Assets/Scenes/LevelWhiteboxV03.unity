@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: be5a1c13c017c414fbfe1fa60061a295, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -5186,22 +5186,22 @@ PrefabInstance:
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.08
+      value: 33.58
       objectReference: {fileID: 0}
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -46.02
+      value: -45.78
       objectReference: {fileID: 0}
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.915985
+      value: 0.9080296
       objectReference: {fileID: 0}
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
@@ -5211,7 +5211,7 @@ PrefabInstance:
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.40121263
+      value: -0.41890606
       objectReference: {fileID: 0}
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
@@ -5226,7 +5226,7 @@ PrefabInstance:
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -47.308
+      value: -49.531
       objectReference: {fileID: 0}
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
@@ -7070,7 +7070,7 @@ PrefabInstance:
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -148.45999
+      value: -152.26
       objectReference: {fileID: 0}
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
@@ -7080,7 +7080,7 @@ PrefabInstance:
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -54.01
+      value: -59.55
       objectReference: {fileID: 0}
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
@@ -11330,6 +11330,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6198885999847729594, guid: eb77b43483e94bb449a379308b56fa3f,
         type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000,
+        type: 0}
+    - target: {fileID: 6198885999847729594, guid: eb77b43483e94bb449a379308b56fa3f,
+        type: 3}
       propertyPath: m_Name
       value: PathPoint (46)
       objectReference: {fileID: 0}
@@ -11494,7 +11500,7 @@ PrefabInstance:
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -130.15999
+      value: -132.23
       objectReference: {fileID: 0}
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
@@ -11504,7 +11510,7 @@ PrefabInstance:
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -27.11
+      value: -32.12
       objectReference: {fileID: 0}
     - target: {fileID: 428134201402353961, guid: feba0ef875173fd42b763be0fae94b6d,
         type: 3}
