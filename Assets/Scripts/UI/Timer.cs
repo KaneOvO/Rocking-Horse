@@ -10,11 +10,7 @@ namespace GameUI
         public TextMeshProUGUI Text;
         public void Update()
         {
-            if (!GameManager.IsStarted)
-            {
-                Text.text = "...";
-            }
-            else if(GameManager.TimeBeforeStart > 0)
+            if(GameManager.TimeBeforeStart > 0)
             {
                 Text.text = Mathf.CeilToInt(GameManager.TimeBeforeStart).ToString();
             }
