@@ -5,6 +5,8 @@ using UnityEngine;
 using GameSystem.Input;
 using Cinemachine;
 using static UnityEngine.Rendering.DebugUI;
+using NPC;
+using UnityEngine.UIElements;
 
 namespace Character
 {
@@ -26,6 +28,7 @@ namespace Character
 
         public Camera VirtualCamera;
         public Animator HorseAnimator;
+        public GameObject WrongWayNote;
 
         private int CurrentTrack;
         private float DriftRotation = 0;
@@ -42,12 +45,25 @@ namespace Character
         private Rigidbody Rigidbody;
         private Controller Controller;
 
+        public float NextCheckPointDistance;
+        public float SmallestDistance;
+        public int CheckPointIndex;
+
+        private int ResetIndex;
+        private Vector3 ResetPoint;
+
         private bool IsOnGround = true;
 
         public static List<HorseController> Horses = new List<HorseController>();
 
         public float CurrentEnergy { get; private set; } = 0;
         public float CurrentSpeed => HVelocity.magnitude;
+
+        public void ResetPos()
+        {
+            CheckPointIndex = ResetIndex;
+            Rigidbody.position = ResetPoint;
+        }
 
         private void Awake()
         {
@@ -171,6 +187,36 @@ namespace Character
             {
                 Rigidbody.velocity = Vector3.zero;
                 return;
+            }
+
+            // Check Point Update
+            PathPoint nextPoint = NPCMap.GetAt(CheckPointIndex + 1);
+            PathPoint currentPoint = NPCMap.GetAt(CheckPointIndex);
+
+            Vector3 toCurrent = currentPoint.transform.position - this.transform.position;
+            Vector3 toNext = nextPoint.transform.position - this.transform.position;
+
+            NextCheckPointDistance = (toNext - toCurrent * 2).magnitude;
+            if (NextCheckPointDistance > SmallestDistance)
+            {
+                SmallestDistance = NextCheckPointDistance;
+            }
+            else if(NextCheckPointDistance < SmallestDistance - 10)
+            {
+                WrongWayNote.SetActive(true);
+            }
+
+            if(WrongWayNote.activeSelf && NextCheckPointDistance >= SmallestDistance - 5)
+            {
+                WrongWayNote.SetActive(false);
+            }
+
+            if (toCurrent.sqrMagnitude < toNext.sqrMagnitude)
+            {
+                CheckPointIndex++;
+                ResetIndex = CheckPointIndex;
+                ResetPoint = this.transform.position;
+                SmallestDistance = -9999;
             }
 
             RaycastHit hit;
