@@ -2,6 +2,7 @@ using Character;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameUI
 {
@@ -10,6 +11,9 @@ namespace GameUI
         public float MapScale;
         public GameObject PlayerMark;
 
+        private int Index = 0;
+        [SerializeField]
+        private List<Sprite> Sprites = new List<Sprite>();
         private List<RectTransform> Marks = new List<RectTransform>();
 
         private void Update()
@@ -17,7 +21,14 @@ namespace GameUI
             while(Marks.Count < HorseController.Horses.Count)
             {
                 GameObject newMark = GameObject.Instantiate(PlayerMark, this.transform);
-                
+                Image renderer = newMark.GetComponent<Image>();
+                renderer.sprite = Sprites[Index];
+
+                if (Index < Sprites.Count - 1)
+                {
+                    Index++;
+                }
+
                 newMark.SetActive(true);
                 Marks.Add(newMark.transform as RectTransform);
             }

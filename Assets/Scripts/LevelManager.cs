@@ -14,6 +14,9 @@ public class LevelManager: MonoBehaviour
 
     public GameObject MiniMapPrefab;
 
+    [SerializeField]
+    public bool skipCameraIntro;
+
     void Awake()
     {
         if (Instance == null)
@@ -25,7 +28,12 @@ public class LevelManager: MonoBehaviour
             Destroy(gameObject);
         }
 
-        SpawnPlayer();
+        if (skipCameraIntro)
+        {
+            SpawnPlayer();
+
+            GameManager.Instance.StartGame();
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -39,7 +47,7 @@ public class LevelManager: MonoBehaviour
 
     }
 
-    void SpawnPlayer()
+    public void SpawnPlayer()
     {
         for (int i = 0; i < GameManager.Instance.PlayerCount; i++)
         {
@@ -74,6 +82,8 @@ public class LevelManager: MonoBehaviour
             RectTransform rect = miniMap.transform as RectTransform;
             rect.localScale = Vector3.one;
             rect.localPosition = Vector3.zero;
+            rect.rotation = Quaternion.identity;
+            //rect.localEulerAngles = Vector3.zero;
             
             sharedUIs.Add(rect);
 

@@ -15,13 +15,13 @@ MonoBehaviour:
   active: 1
   type:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.258
+    m_Value: 0.243
   response:
     m_OverrideState: 1
-    m_Value: 0.827
+    m_Value: 0.735
   texture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -39,20 +39,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: -1145042716598407339}
-  - {fileID: 1006727801496186630}
---- !u!114 &1006727801496186630
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
-  m_Name: ChromaticAberration
-  m_EditorClassIdentifier: 
-  active: 0
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0

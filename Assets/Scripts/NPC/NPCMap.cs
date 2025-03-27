@@ -15,6 +15,19 @@ namespace NPC
             Instance = this;
         }
 
+        public static PathPoint GetAt(int index)
+        {
+            if(Instance.Path.Count == 0)
+            {
+                return null;
+            }
+
+            while(index > Instance.Path.Count)
+            {
+                index -= Instance.Path.Count;
+            }
+            return Instance.Path[index];
+        }
         public static PathPoint GetNext(ref int index)
         {
             if(index >= Instance.Path.Count)

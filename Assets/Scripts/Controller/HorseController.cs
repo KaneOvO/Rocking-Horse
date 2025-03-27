@@ -5,6 +5,8 @@ using UnityEngine;
 using GameSystem.Input;
 using Cinemachine;
 using static UnityEngine.Rendering.DebugUI;
+using NPC;
+using UnityEngine.UIElements;
 
 namespace Character
 {
@@ -26,6 +28,7 @@ namespace Character
 
         public Camera VirtualCamera;
         public Animator HorseAnimator;
+        public GameObject WrongWayNote;
 
         private int CurrentTrack;
         private float DriftRotation = 0;
@@ -42,12 +45,25 @@ namespace Character
         private Rigidbody Rigidbody;
         private Controller Controller;
 
+        public float NextCheckPointDistance;
+        public float SmallestDistance;
+        public int CheckPointIndex;
+
+        private int ResetIndex;
+        private Vector3 ResetPoint;
+
         private bool IsOnGround = true;
 
         public static List<HorseController> Horses = new List<HorseController>();
 
         public float CurrentEnergy { get; private set; } = 0;
         public float CurrentSpeed => HVelocity.magnitude;
+
+        public void ResetPos()
+        {
+            CheckPointIndex = ResetIndex;
+            Rigidbody.position = ResetPoint;
+        }
 
         private void Awake()
         {
@@ -62,7 +78,8 @@ namespace Character
         {
             CurrentEnergy = MaxEnergy;
 
-            Direction = Vector2.up;
+            float arc = transform.eulerAngles.y / 180 * Mathf.PI;
+            Direction = new Vector2(Mathf.Sin(arc), Mathf.Cos(arc));
             HVelocity = Vector2.zero;
             Rigidbody = this.GetComponent<Rigidbody>();
 
@@ -77,7 +94,7 @@ namespace Character
 
             InputLayer.AddAccelerateEventListener(Controller.CID, OnAccelerateUpdate);
             InputLayer.AddJumpEventListener(Controller.CID, OnJump);
-            InputLayer.AddBoosterEventListener(Controller.CID, OnUseBooster);
+            InputLayer.AddBoosterEventListener(Controller.CID, OnUseItem);
             InputLayer.AddRotateEventListener(Controller.CID, OnRotate);
             //InputLayer.AddChangeLaneEventListener(Controller.CID, OnChangeLane);
             InputLayer.AddDriftEventListener(Controller.CID, OnDrift);
@@ -116,6 +133,19 @@ namespace Character
             CurrentEnergy -= 100f;
             HorseAnimator.SetTrigger("Booster");
         }
+
+        public void UseBooster()
+        {
+            if (!GameManager.IsGameBegin) return;
+            CurrentBoostTime += BoosterTime;
+            HorseAnimator.SetTrigger("Booster");
+        }
+
+        private void OnUseItem()
+        {
+            GetComponent<Lasso>().UseLasso();
+        }
+
         private void OnRotate(float value)
         {
             if (!GameManager.IsGameBegin) return;
@@ -159,6 +189,36 @@ namespace Character
                 return;
             }
 
+            // Check Point Update
+            PathPoint nextPoint = NPCMap.GetAt(CheckPointIndex + 1);
+            PathPoint currentPoint = NPCMap.GetAt(CheckPointIndex);
+
+            Vector3 toCurrent = currentPoint.transform.position - this.transform.position;
+            Vector3 toNext = nextPoint.transform.position - this.transform.position;
+
+            NextCheckPointDistance = (toNext - toCurrent * 2).magnitude;
+            if (NextCheckPointDistance > SmallestDistance)
+            {
+                SmallestDistance = NextCheckPointDistance;
+            }
+            else if(NextCheckPointDistance < SmallestDistance - 10)
+            {
+                WrongWayNote.SetActive(true);
+            }
+
+            if(WrongWayNote.activeSelf && NextCheckPointDistance >= SmallestDistance - 5)
+            {
+                WrongWayNote.SetActive(false);
+            }
+
+            if (toCurrent.sqrMagnitude < toNext.sqrMagnitude)
+            {
+                CheckPointIndex++;
+                ResetIndex = CheckPointIndex;
+                ResetPoint = this.transform.position;
+                SmallestDistance = -9999;
+            }
+
             RaycastHit hit;
             IsOnGround = Physics.Raycast(this.transform.position, Vector3.down, out hit, 0.65f, LayerMask.GetMask("Ground"));
 
@@ -191,7 +251,7 @@ namespace Character
                 Quaternion forwardRotation = Quaternion.Euler(0, -frameAngle / Mathf.PI * 180 + 90, 0);
                 Quaternion targetRotation = groundRotation * forwardRotation;
 
-                float rotationSpeed = 2f;
+                float rotationSpeed = 3f;
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
 
