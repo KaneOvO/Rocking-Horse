@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetPlayers: []
-  lassoReady: 0
+  lassoReady: 1
 --- !u!114 &6792112596344398806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
   Controller: {fileID: 7790533119498257688}
   LastTime: 5
   Speed: 20
+  Index: -1
 --- !u!1 &372909241162976964
 GameObject:
   m_ObjectHideFlags: 0

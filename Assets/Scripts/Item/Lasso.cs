@@ -7,7 +7,7 @@ using Character;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class Lasso : MonoBehaviour
+public class Lasso : GameItem
 {
     public List<GameObject> TargetPlayers;
     public bool lassoReady;
