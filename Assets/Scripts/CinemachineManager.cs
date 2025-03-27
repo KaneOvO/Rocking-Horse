@@ -102,6 +102,8 @@ public class CinemachineManager : MonoBehaviour
         uiCanvas.enabled = false;
 
         FindObjectOfType<LevelManager>().SpawnPlayer();
+
+        GameManager.Instance.StartGame();
     }
     
 }

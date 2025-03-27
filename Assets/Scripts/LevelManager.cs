@@ -31,6 +31,8 @@ public class LevelManager: MonoBehaviour
         if (skipCameraIntro)
         {
             SpawnPlayer();
+
+            GameManager.Instance.StartGame();
         }
     }
     // Start is called before the first frame update
