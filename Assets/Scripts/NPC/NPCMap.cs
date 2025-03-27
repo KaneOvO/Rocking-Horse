@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 namespace NPC
 {
     public class NPCMap : MonoBehaviour
     {
         public static NPCMap Instance { get; private set; }
+        public static SplineContainer Spline => Instance.m_Spline;
 
         public List<PathPoint> Path = new List<PathPoint> ();
+        public SplineContainer m_Spline;
 
         private void Awake()
         {

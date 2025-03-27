@@ -4105,7 +4105,7 @@ MonoBehaviour:
   - camera: {fileID: 1037630655}
     dolly: {fileID: 1468503441}
   uiCanvas: {fileID: 642703012}
-  bSkipIntro: 0
+  bSkipIntro: 1
 --- !u!4 &412844494
 Transform:
   m_ObjectHideFlags: 0
@@ -10163,6 +10163,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6267003439071800469, guid: a9fe7aaa1c60d69439e3397d691fe9eb,
         type: 3}
+      propertyPath: m_Spline
+      value: 
+      objectReference: {fileID: 300582824}
+    - target: {fileID: 6267003439071800469, guid: a9fe7aaa1c60d69439e3397d691fe9eb,
+        type: 3}
       propertyPath: Path.Array.size
       value: 56
       objectReference: {fileID: 0}
@@ -11263,7 +11268,7 @@ PrefabInstance:
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: PlayerCount
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}

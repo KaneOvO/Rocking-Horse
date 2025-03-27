@@ -29,6 +29,12 @@ namespace Character
         public Camera VirtualCamera;
         public Animator HorseAnimator;
         public GameObject WrongWayNote;
+        public Collider Collider;
+
+        [HideInInspector]
+        public Vector2 HVelocity;
+        [HideInInspector]
+        public Vector2 Direction;
 
         private int CurrentTrack;
         private float DriftRotation = 0;
@@ -40,13 +46,14 @@ namespace Character
         private float VVelocity;
         private float TargetX;
         private float RotationSpeed;
-        private Vector2 Direction;
-        private Vector2 HVelocity;
         private Rigidbody Rigidbody;
         private Controller Controller;
 
+        [HideInInspector]
         public float NextCheckPointDistance;
+        [HideInInspector]
         public float SmallestDistance;
+        [HideInInspector]
         public int CheckPointIndex;
 
         private int ResetIndex;
@@ -58,6 +65,7 @@ namespace Character
 
         public float CurrentEnergy { get; private set; } = 0;
         public float CurrentSpeed => HVelocity.magnitude;
+        public PathPoint NextTargtet => NPCMap.GetAt(CheckPointIndex + 1);
 
         public void ResetPos()
         {
