@@ -11,6 +11,8 @@ namespace Triggers
         protected override void OnCharacterEnter(HorseController controller)
         {
             Debug.Log("pick up item");
+            
+            
         }
     }
 }
