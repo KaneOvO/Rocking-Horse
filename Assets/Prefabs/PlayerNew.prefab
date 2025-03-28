@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 7810340765541148708}
   - component: {fileID: 7905966017867016951}
   - component: {fileID: 6792112596344398806}
+  - component: {fileID: 6910730887584847136}
+  - component: {fileID: 4017024926271695899}
   m_Layer: 0
   m_Name: PlayerNew
   m_TagString: Player
@@ -255,6 +257,33 @@ MonoBehaviour:
   LastTime: 5
   Speed: 20
   Index: -1
+--- !u!114 &6910730887584847136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb2ff106bf34674aede3aa2b81ed1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currItem: {fileID: 0}
+--- !u!114 &4017024926271695899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7cb70742d8d44a1eb70b07138df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlackHolePrefab: {fileID: 2675523993348586612, guid: d737cdb928eb2234fa0cf8f85c2aa378,
+    type: 3}
 --- !u!1 &372909241162976964
 GameObject:
   m_ObjectHideFlags: 0

@@ -67,6 +67,8 @@ namespace Character
         public float CurrentSpeed => HVelocity.magnitude;
         public PathPoint NextTargtet => NPCMap.GetAt(CheckPointIndex + 1);
 
+        private PlayerItem playerItem;
+        
         public void ResetPos()
         {
             CheckPointIndex = ResetIndex;
@@ -116,6 +118,8 @@ namespace Character
                 CurrentTrack = TrackManager.Instance.GetCurrentTrackIndex(this.transform.position);
                 TargetX = TrackManager.Instance.GetCoordinate(CurrentTrack);
             }
+            
+            playerItem = GetComponent<PlayerItem>();
         }
         private void OnDrift()
         {
@@ -151,7 +155,7 @@ namespace Character
 
         private void OnUseItem()
         {
-            GetComponent<Lasso>().UseLasso();
+            playerItem.UseCurrItem();
         }
 
         private void OnRotate(float value)

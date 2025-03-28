@@ -6,8 +6,18 @@ public class BlackHoleDropper : GameItem
 {
     public GameObject BlackHolePrefab;
 
-    public override void UseItem()
+    public override void OnReceiveItem()
     {
-        Instantiate(BlackHolePrefab);
+        UpdateItemDisplayUI();
+
+        IsItemReady = true;
+    }
+    
+    public override void OnUseItem()
+    {
+        var blackHole = Instantiate(BlackHolePrefab, transform.position, Quaternion.identity);
+        blackHole.GetComponent<BlackHole>().Dropper = gameObject;
+        
+        IsItemReady = false;
     }
 }

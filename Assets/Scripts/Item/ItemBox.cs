@@ -26,6 +26,6 @@ public class ItemBox : MonoBehaviour
         GetItemTrigger.Enabled = false;
         ItemBoxRenderer.enabled = false;
         
-        
+        controller.transform.GetComponent<PlayerItem>().GetItem<BlackHoleDropper>();
     }
 }

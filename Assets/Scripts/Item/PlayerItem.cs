@@ -7,21 +7,28 @@ public class PlayerItem : MonoBehaviour
 {
     public GameItem currItem;
 
-    public void ReceiveItem(GameItem item)
+    public void GetItem<T>() where T : GameItem
     {
-        if (currItem != null)
-            return;
-        
-        // got assigned based on current standing
+        var item = GetComponent<T>();
 
+        if (item == null)
+            return;
+
+        if (currItem != null)
+            currItem.enabled = false;
+        
         currItem = item;
+        currItem.OnReceiveItem();
+
     }
 
-    public void UseItem()
+    public void UseCurrItem()
     {
         if (currItem == null)
             return;
-        
-        currItem.UseItem();
+
+        currItem.OnUseItem();
+        currItem = null;
     }
+    
 }
