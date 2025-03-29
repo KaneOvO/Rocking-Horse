@@ -8,7 +8,7 @@ using System.Threading;
 public class SerialController : MonoBehaviour
 {
     [Tooltip("Port name assigned to the ESP32 Bluetooth (e.g., COM5)")]
-    public string portName = "COM8";  // Change this to your Bluetooth COM Port
+    public string portName = "COM13";  // Change this to your Bluetooth COM Port
 
     [Tooltip("Baud rate that the ESP32 is using.")]
     public int baudRate = 9600;  // Match the ESP32 baud rate
