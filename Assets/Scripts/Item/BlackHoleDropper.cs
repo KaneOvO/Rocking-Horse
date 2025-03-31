@@ -8,16 +8,16 @@ public class BlackHoleDropper : GameItem
 
     public override void OnReceiveItem()
     {
+        base.OnReceiveItem();
+        
         UpdateItemDisplayUI();
-
-        IsItemReady = true;
     }
     
     public override void OnUseItem()
     {
+        base.OnUseItem();
+        
         var blackHole = Instantiate(BlackHolePrefab, transform.position, Quaternion.identity);
         blackHole.GetComponent<BlackHole>().Dropper = gameObject;
-        
-        IsItemReady = false;
     }
 }

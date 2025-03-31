@@ -19,7 +19,6 @@ public class PlayerItem : MonoBehaviour
         
         currItem = item;
         currItem.OnReceiveItem();
-
     }
 
     public void UseCurrItem()
