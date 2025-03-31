@@ -10,8 +10,11 @@ using Random = UnityEngine.Random;
 public class Lasso : GameItem
 {
     public List<GameObject> TargetPlayers;
-    public bool lassoReady;
-    
+
+    [SerializeField] private float LassoEffectTime;
+    [SerializeField] private float LassoRangeAngle;
+    [SerializeField] private float LassoRangeDistance;
+
     private float LassoDuration;
     private GameObject LassoOther;
 
@@ -34,10 +37,20 @@ public class Lasso : GameItem
         }
     }
 
+    public override void OnReceiveItem()
+    {
+        base.OnReceiveItem();
+        
+        UpdateItemDisplayUI();
+    }
+
+    public override void OnUseItem()
+    {
+        UseLasso();
+    }
+
     public void UseLasso()
     {
-        if (!lassoReady) return;
-        
         GameObject bestTarget = null;
 
         foreach (var target in TargetPlayers)
@@ -46,7 +59,8 @@ public class Lasso : GameItem
             var direction = (targetPos - transform.position).normalized;
             var angle = Vector3.Angle(transform.forward, direction);
 
-            if ((!(angle < 45f)) || (Vector3.Distance(transform.position, targetPos) > 20f)) continue;
+            if ((!(angle < LassoRangeAngle)) || (Vector3.Distance(transform.position, targetPos) > LassoRangeDistance))
+                continue;
             
             if (bestTarget == null) bestTarget = target;
             else
@@ -64,22 +78,22 @@ public class Lasso : GameItem
             OnLassoHitTarget(bestTarget);
             bestTarget.GetComponent<Lasso>().OnHitByLasso(gameObject);
             
-            lassoReady = false;
+            IsItemReady = false;
         }
         else Debug.Log("no target");
     }
 
-    private void OnLassoHitTarget(GameObject lassoTaget)
+    private void OnLassoHitTarget(GameObject lassoTarget)
     {
-        LassoDuration = 2f;
-        LassoOther = lassoTaget;
+        LassoDuration += LassoEffectTime;
+        LassoOther = lassoTarget;
         
         GetComponent<HorseController>().OnLassoHitTarget();
     }
 
     public void OnHitByLasso(GameObject lassoSource)
     {
-        LassoDuration = 2f;
+        LassoDuration += LassoEffectTime;
         LassoOther = lassoSource;
         
         GetComponent<HorseController>().OnHitByLasso();

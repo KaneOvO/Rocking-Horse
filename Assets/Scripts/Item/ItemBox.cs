@@ -7,6 +7,16 @@ using UnityEngine;
 
 public class ItemBox : MonoBehaviour
 {
+    public enum ItemType
+    {
+        Lasso,
+        BlackHoleDropper,
+        CarrotRocket,
+        Chicken
+    }
+
+    public ItemType ReceivedItemType;
+    
     public Trigger GetItemTrigger;
     
     public MeshRenderer ItemBoxRenderer;
@@ -26,6 +36,26 @@ public class ItemBox : MonoBehaviour
         GetItemTrigger.Enabled = false;
         ItemBoxRenderer.enabled = false;
         
-        controller.transform.GetComponent<PlayerItem>().GetItem<BlackHoleDropper>();
+        GetItem(controller);
     }
+
+    private void GetItem(HorseController controller)
+    {
+        switch (ReceivedItemType)
+        {
+            case (ItemType.Lasso):
+                controller.transform.GetComponent<PlayerItem>().GetItem<Lasso>();
+                Debug.Log("Received Lasso");
+                break;
+            case (ItemType.BlackHoleDropper):
+                controller.transform.GetComponent<PlayerItem>().GetItem<BlackHoleDropper>();
+                Debug.Log("Received Black Hole Dropper");
+                break;
+            case (ItemType.CarrotRocket):
+                break;
+            case (ItemType.Chicken):
+                break;
+        }
+    }
+    
 }

@@ -14,6 +14,9 @@ public class GameItem : MonoBehaviour
     
     public virtual void OnUseItem()
     {
+        if (!IsItemReady)
+            return;
+        
         IsItemReady = false;
     }
 
