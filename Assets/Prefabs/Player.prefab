@@ -180,6 +180,9 @@ MonoBehaviour:
   VirtualCamera: {fileID: 7080085774637398288}
   HorseAnimator: {fileID: 148314387278709131}
   WrongWayNote: {fileID: 0}
+  Collider: {fileID: 0}
+  HVelocity: {x: 0, y: 0}
+  Direction: {x: 0, y: 0}
   NextCheckPointDistance: 0
   SmallestDistance: 0
   CheckPointIndex: 0
@@ -195,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9ad4b3eff6e5b42a91f2762cdc27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 1
+  Enabled: 0
   DebugMode: 0
   PrintEvent: 0
   MoveKey: 119
