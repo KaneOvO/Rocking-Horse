@@ -2,22 +2,25 @@ using Character;
 using NPC;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Splines;
 
 namespace Items
 {
     public class CarrotRocket : MonoBehaviour
     {
         public HorseController Controller;
-        public float LastTime = 5;
+        public float LastTime = 7;
 
         public float Speed = 20;
-        public int Index = -1;
+
+        private int Index = -1;
+        private Vector2 Direction;
+        private const float ORIENTATION = 200;
 
         public void Start()
         {
+            Controller = GetComponent<HorseController>();
+
             //Controller.Collider.enabled = true;
 
             float cloestDistance = 99999999;
@@ -31,13 +34,29 @@ namespace Items
                     Index = i;
                 }
             }
-            
+
+            Vector2 currentPos = new Vector2(this.transform.position.x, this.transform.position.z);
+            Vector3 cpPos3 = NPCMap.GetAt(Index).transform.position;
+            Vector3 npPos3 = NPCMap.GetAt(Index + 1).transform.position;
+
+            Vector2 cpPos = new Vector2(cpPos3.x, cpPos3.z);
+            Vector2 npPos = new Vector2(npPos3.x, npPos3.z);
+
+            if(Vector2.Angle(cpPos - currentPos, npPos - currentPos) > 90)
+            {
+                Index++;
+                Direction = (npPos - currentPos).normalized;
+            }
+            else
+            {
+                Direction = (cpPos - currentPos).normalized;
+            }
+
             GameObject.Destroy(this, LastTime);
         }
 
         public void OnDestroy()
         {
-            //Controller.Collider.enabled= false;
         }
 
         public void LateUpdate()
@@ -50,10 +69,41 @@ namespace Items
             }
 
             Vector3 diff = (target - this.transform.position).normalized;
-            Vector2 direction = new Vector2(diff.x, diff.z);
 
-            Controller.HVelocity = direction * Speed;
-            Controller.Direction = direction;
+            Vector2 direction = new Vector2(diff.x, diff.z);
+            float targetAngle = Mathf.Atan2(direction.y, direction.x) / Mathf.PI * 180;
+            float currentAngle = Mathf.Atan2(Direction.y, Direction.x) / Mathf.PI * 180;
+
+            float angleDiff = targetAngle - currentAngle;
+            while(angleDiff > 180)
+            {
+                angleDiff -= 360;
+            }
+            while(angleDiff < -180)
+            {
+                angleDiff += 360;
+            }
+
+            float deltaAngle = ORIENTATION * Time.deltaTime;
+            if (Mathf.Abs(angleDiff) < deltaAngle)
+            {
+                currentAngle = targetAngle;
+            }
+            else if (angleDiff > 0)
+            {
+                currentAngle += deltaAngle;
+            }
+            else
+            {
+                currentAngle -= deltaAngle;
+            }
+
+
+            float currentArc = currentAngle / 180 * Mathf.PI;
+            Direction = new Vector2(Mathf.Cos(currentArc), Mathf.Sin(currentArc));
+
+            Controller.HVelocity = Direction * Speed;
+            Controller.Direction = Direction;
         }
     }
 

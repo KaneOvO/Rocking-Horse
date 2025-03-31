@@ -35,6 +35,8 @@ namespace Character
         public Vector2 HVelocity;
         [HideInInspector]
         public Vector2 Direction;
+        [HideInInspector]
+        public float VVelocity;
 
         private int CurrentTrack;
         private float DriftRotation = 0;
@@ -43,7 +45,6 @@ namespace Character
         private float SlowedTime = 0;
         private float CurrentBoostTime = 0;
         private float CurrentAcceleration = 0;
-        private float VVelocity;
         private float TargetX;
         private float RotationSpeed;
         private Rigidbody Rigidbody;
@@ -234,7 +235,7 @@ namespace Character
 
             if (IsOnGround && VVelocity < 0)
             {
-                VVelocity = Mathf.Min(Rigidbody.velocity.y, -1f);
+                VVelocity = Mathf.Min(Rigidbody.velocity.y, -0.5f);
             }
             else
             {
@@ -399,7 +400,7 @@ namespace Character
         }
         public void OnHitBarrier()
         {
-            StunTime = 1;
+            StunTime = 2;
         }
 
         public void OnHitManure()
