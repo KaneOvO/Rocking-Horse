@@ -53,7 +53,7 @@ namespace GameSystem.Input
                 float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
                 RockRecord record = new RockRecord();
-                record.Strength = strength*8;
+                record.Strength = strength*4;
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
                 MinGyroscopeX = MaxGyroscopeX;
@@ -66,7 +66,7 @@ namespace GameSystem.Input
                 float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
                 RockRecord record = new RockRecord();
-                record.Strength = strength*8;
+                record.Strength = strength*4;
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
                 MaxGyroscopeX = MistakeRange;

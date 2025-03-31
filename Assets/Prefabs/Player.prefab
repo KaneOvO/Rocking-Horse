@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7790533119498257688}
   - component: {fileID: 3185488733716318825}
   - component: {fileID: 7810340765541148708}
-  - component: {fileID: 7905966017867016951}
+  - component: {fileID: -3622138254273014127}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -179,6 +179,13 @@ MonoBehaviour:
   Gravity: 9.8
   VirtualCamera: {fileID: 7080085774637398288}
   HorseAnimator: {fileID: 148314387278709131}
+  WrongWayNote: {fileID: 0}
+  Collider: {fileID: 0}
+  HVelocity: {x: 0, y: 0}
+  Direction: {x: 0, y: 0}
+  NextCheckPointDistance: 0
+  SmallestDistance: 0
+  CheckPointIndex: 0
 --- !u!114 &3185488733716318825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9ad4b3eff6e5b42a91f2762cdc27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 1
+  Enabled: 0
   DebugMode: 0
   PrintEvent: 0
   MoveKey: 119
@@ -217,7 +224,7 @@ MonoBehaviour:
   Enabled: 1
   DebugMode: 1
   myListener: {fileID: 0}
---- !u!114 &7905966017867016951
+--- !u!114 &-3622138254273014127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,11 +233,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 310242483577952872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10541b95984c7e34f8ef111bfd0a6e2e, type: 3}
+  m_Script: {fileID: 11500000, guid: cbb2ff106bf34674aede3aa2b81ed1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetPlayers: []
-  lassoReady: 0
+  currItem: {fileID: 0}
 --- !u!1 &372909241162976964
 GameObject:
   m_ObjectHideFlags: 0

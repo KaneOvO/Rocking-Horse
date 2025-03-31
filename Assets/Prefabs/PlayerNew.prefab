@@ -17,7 +17,10 @@ GameObject:
   - component: {fileID: 7790533119498257688}
   - component: {fileID: 3185488733716318825}
   - component: {fileID: 7810340765541148708}
+  - component: {fileID: 6910730887584847136}
   - component: {fileID: 7905966017867016951}
+  - component: {fileID: 4017024926271695899}
+  - component: {fileID: 6792112596344398806}
   m_Layer: 0
   m_Name: PlayerNew
   m_TagString: Player
@@ -114,7 +117,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!114 &7323816280407700464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +183,9 @@ MonoBehaviour:
   VirtualCamera: {fileID: 7080085774637398288}
   HorseAnimator: {fileID: 7330305258655589361}
   WrongWayNote: {fileID: 372909241162976964}
+  Collider: {fileID: 0}
+  HVelocity: {x: 0, y: 0}
+  Direction: {x: 0, y: 0}
   NextCheckPointDistance: 0
   SmallestDistance: 0
   CheckPointIndex: 0
@@ -195,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9ad4b3eff6e5b42a91f2762cdc27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 1
+  Enabled: 0
   DebugMode: 0
   PrintEvent: 0
   MoveKey: 119
@@ -218,9 +224,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c98f90a04c8a5478ee4b243b5a0d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 0
+  Enabled: 1
   DebugMode: 1
   myListener: {fileID: 0}
+--- !u!114 &6910730887584847136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb2ff106bf34674aede3aa2b81ed1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currItem: {fileID: 0}
 --- !u!114 &7905966017867016951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,8 +252,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10541b95984c7e34f8ef111bfd0a6e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsItemReady: 0
   TargetPlayers: []
-  lassoReady: 0
+  LassoEffectTime: 2
+  LassoRangeAngle: 45
+  LassoRangeDistance: 20
+--- !u!114 &4017024926271695899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7cb70742d8d44a1eb70b07138df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsItemReady: 0
+  BlackHolePrefab: {fileID: 2675523993348586612, guid: d737cdb928eb2234fa0cf8f85c2aa378,
+    type: 3}
+--- !u!114 &6792112596344398806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a92c53c3d766af42bf379a3620af123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 7790533119498257688}
+  LastTime: 5
+  Speed: 20
+  Index: -1
 --- !u!1 &372909241162976964
 GameObject:
   m_ObjectHideFlags: 0
