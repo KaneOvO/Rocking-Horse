@@ -43,10 +43,10 @@ namespace GameSystem.Input
         {
             if (!Enabled) return;
 
-            MinGyroscopeX = Mathf.Min(MinGyroscopeX, data.gyroscopeZ);
-            MaxGyroscopeX = Mathf.Max(MaxGyroscopeX, data.gyroscopeZ);
+            MinGyroscopeX = Mathf.Min(MinGyroscopeX, data.gyroscopeX);
+            MaxGyroscopeX = Mathf.Max(MaxGyroscopeX, data.gyroscopeX);
 
-            if (Direction == 0 && data.gyroscopeZ < MaxGyroscopeX - MistakeRange)
+            if (Direction == 0 && data.gyroscopeX < MaxGyroscopeX - MistakeRange)
             {
                 //Debug.Log($"Reach Max# Min:{MinGyroscopeX} - Max:{MaxGyroscopeX} - Current:{data.gyroscopeZ}");
 
@@ -59,7 +59,7 @@ namespace GameSystem.Input
                 MinGyroscopeX = MaxGyroscopeX;
                 Direction = 1;
             }
-            else if (Direction == 1 && data.gyroscopeZ > MinGyroscopeX + MistakeRange)
+            else if (Direction == 1 && data.gyroscopeX > MinGyroscopeX + MistakeRange)
             {
                 //Debug.Log($"Reach Min# Min:{MinGyroscopeX} - Max:{MaxGyroscopeX} - Current:{data.gyroscopeZ}");
 
