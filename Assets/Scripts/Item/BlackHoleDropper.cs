@@ -9,8 +9,6 @@ public class BlackHoleDropper : GameItem
     public override void OnReceiveItem()
     {
         base.OnReceiveItem();
-        
-        UpdateItemDisplayUI();
     }
     
     public override void OnUseItem()

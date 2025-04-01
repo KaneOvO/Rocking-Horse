@@ -70,6 +70,7 @@ namespace Character
         public PathPoint NextTargtet => NPCMap.GetAt(CheckPointIndex + 1);
 
         private PlayerItem playerItem;
+        public GameObject horseUI;
 
 
         private static float LastRankingUpdateTime = 0;

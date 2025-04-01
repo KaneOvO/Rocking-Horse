@@ -87,7 +87,8 @@ public class LevelManager: MonoBehaviour
             
             sharedUIs.Add(rect);
 
-            UI[i].GetComponentInChildren<RocketBooster>().Controller = GameManager.Instance.Players[i].GetComponent<Character.HorseController>();
+            //UI[i].GetComponentInChildren<RocketBooster>().Controller = GameManager.Instance.Players[i].GetComponent<Character.HorseController>();
+            GameManager.Instance.Players[i].GetComponent<Character.HorseController>().horseUI = UI[i];
         }
 
         switch (GameManager.Instance.PlayerCount)

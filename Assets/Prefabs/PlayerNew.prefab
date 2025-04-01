@@ -191,6 +191,7 @@ MonoBehaviour:
   NextCheckPointDistance: 0
   SmallestDistance: 0
   CheckPointIndex: 0
+  horseUI: {fileID: 0}
 --- !u!114 &3185488733716318825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsItemReady: 0
+  itemImage: {fileID: 21300000, guid: c120d03422212df488e7c31f5c04b8f5, type: 3}
   TargetPlayers: []
   LassoEffectTime: 2
   LassoRangeAngle: 45
@@ -272,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsItemReady: 0
+  itemImage: {fileID: 21300000, guid: 25089229cd1116846b73a09b1503e726, type: 3}
   BlackHolePrefab: {fileID: 2675523993348586612, guid: d737cdb928eb2234fa0cf8f85c2aa378,
     type: 3}
 --- !u!114 &6792112596344398806
@@ -287,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsItemReady: 0
+  itemImage: {fileID: 21300000, guid: 25089229cd1116846b73a09b1503e726, type: 3}
   Controller: {fileID: 7790533119498257688}
   LastTime: 5
   Speed: 20
@@ -303,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsItemReady: 0
+  itemImage: {fileID: 21300000, guid: ceada7fa0bc79cd41975277a865304fe, type: 3}
   ChickenPrefab: {fileID: 6598937823072709369, guid: a565bcac7d394274bb157480b2660d3d,
     type: 3}
 --- !u!1 &372909241162976964

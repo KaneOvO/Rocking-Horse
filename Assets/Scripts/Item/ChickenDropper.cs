@@ -11,8 +11,6 @@ public class ChickenDropper : GameItem
     public override void OnReceiveItem()
     {
         base.OnReceiveItem();
-        
-        UpdateItemDisplayUI();
     }
 
     public override void OnUseItem()
