@@ -98,19 +98,20 @@ namespace GameSystem.Input
             }
             LastBoosterStatus = data.isBoosted;
 
-            if (data.isJumped == 1 && LastJumpStatus == 0)
-            {
-                InputLayer.Jump(CID, 0.5f);
-            }
-            LastJumpStatus = data.isJumped;
+            //if (data.isJumped == 1 && LastJumpStatus == 0)
+            //{
+            //    InputLayer.Jump(CID, 0.5f);
+            //}
+            //LastJumpStatus = data.isJumped;
 
-            if (Mathf.Abs(data.rotationZ) < RotationDeadRange)
+            float rotation = data.rotationZ * 4;
+            if (Mathf.Abs(rotation) < RotationDeadRange)
             {
                 InputLayer.UpdateRotation(CID, 0);
             }
             else
             {
-                InputLayer.UpdateRotation(CID, data.rotationZ);
+                InputLayer.UpdateRotation(CID, rotation);
             }
             
             

@@ -18,7 +18,7 @@ namespace GameUI
                 return;
             }
 
-            RankingText.text = HorseController.Horses[HorseIndex].Ranking.ToString();
+            RankingText.text = (HorseController.Horses[HorseIndex].Ranking + 1).ToString();
         }
     }
 

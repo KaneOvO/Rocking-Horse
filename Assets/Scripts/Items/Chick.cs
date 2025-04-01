@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Items
 {
@@ -23,6 +24,24 @@ namespace Items
         private int Index = -1;
 
         private const float ORIENTATION = 260;
+
+        private float CurrentTime;
+
+        [SerializeField]
+        private VisualEffect Chicken;
+
+        [SerializeField]
+        private VisualEffect Start01;
+        [SerializeField]
+        private VisualEffect Start02;
+
+        [SerializeField]
+        private VisualEffect End01;
+        [SerializeField]
+        private VisualEffect End02;
+
+        [SerializeField]
+        private VisualEffect Impact;
 
         private void Start()
         {
@@ -55,12 +74,39 @@ namespace Items
                 Direction = (cpPos - currentPos).normalized;
             }
 
-            GameObject.Destroy(this.gameObject, LastTime);
+            Start01.transform.SetParent(null);
+            Start02.transform.SetParent(null);
+
+            Start01.enabled = true;
+            Start02.enabled = true;
+
+            GameObject.Destroy(Start01.gameObject, 8);
+            GameObject.Destroy(Start02.gameObject, 8);
+
+            CurrentTime = 0;
         }
 
         private void Update()
         {
-            if(Target == null)
+            CurrentTime += Time.deltaTime;
+            if(CurrentTime > LastTime)
+            {
+                Chicken.enabled = false;
+
+                End01.transform.SetParent(null);
+                End02.transform.SetParent(null);
+
+                End01.enabled = true;
+                End02.enabled = true;
+
+                GameObject.Destroy(End01.gameObject, 8);
+                GameObject.Destroy(End02.gameObject, 8);
+
+                GameObject.Destroy(this.gameObject);
+                return;
+            }
+
+            if (Target == null)
             {
                 foreach(HorseController controller in HorseController.Horses)
                 {
@@ -88,7 +134,13 @@ namespace Items
             if(Target != null && Vector3.Distance(target, this.transform.position) < 1)
             {
                 Target.OnHitBarrier();
-                GameObject.Destroy(this.gameObject);
+                CurrentTime = LastTime + 1;
+
+                Impact.transform.SetParent(null);
+
+                Impact.enabled = true;
+
+                GameObject.Destroy(Impact.gameObject, 8);
                 return;
             }
 
@@ -122,6 +174,7 @@ namespace Items
                 currentAngle -= deltaAngle;
             }
 
+            this.transform.localEulerAngles = new Vector3(0, -currentAngle + 90, 0);
 
             float currentArc = currentAngle / 180 * Mathf.PI;
             Direction = new Vector2(Mathf.Cos(currentArc), Mathf.Sin(currentArc));

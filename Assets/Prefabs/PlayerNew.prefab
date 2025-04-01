@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135479d8064efec4a8732218746b5e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 14
-  Acceleration: 14
+  MaxSpeed: 8
+  Acceleration: 8
   BoosterSpeed: 6
   BoosterAcceleration: 6
   BoosterTime: 2.5
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9ad4b3eff6e5b42a91f2762cdc27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 1
+  Enabled: 0
   DebugMode: 0
   PrintEvent: 0
   MoveKey: 119
