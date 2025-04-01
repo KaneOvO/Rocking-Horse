@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public static float TimeBeforeStart = 3;
     public int PlayerCount = 1;
     public GameObject PlayerPrefab;
+    public GameObject NPCPrefab;
     public List<GameObject> Players = new List<GameObject>();
 
     public static bool IsGameBegin

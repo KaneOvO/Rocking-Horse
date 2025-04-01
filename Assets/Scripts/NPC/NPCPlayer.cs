@@ -102,12 +102,6 @@ namespace NPC
 
                 InputLayer.UpdateRotation(CID, angleRotation);
 
-            // Use Booster
-            if (Horse.CurrentEnergy >= 100f)
-            {
-                InputLayer.UseBooster(CID);
-            }
-
             // Set Target
             if(diff.magnitude < ReachRange)
             {

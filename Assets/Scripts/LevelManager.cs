@@ -5,13 +5,12 @@ using GameUI;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
-public class LevelManager: MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
     public GameObject[] SpawnPoints;
     public List<GameObject> UI = new List<GameObject>();
     public List<MyListener> Listeners = new List<MyListener>();
-
     public GameObject MiniMapPrefab;
 
     [SerializeField]
@@ -38,7 +37,7 @@ public class LevelManager: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -61,6 +60,15 @@ public class LevelManager: MonoBehaviour
             //todo: Load the corresponding model according to the player's choice
         }
 
+        for (int i = GameManager.Instance.PlayerCount; i < 4; i++)
+        {
+            GameObject NPC = Instantiate(GameManager.Instance.NPCPrefab);
+            NPC.name = "NPC" + (i + 1);
+            NPC.transform.position = SpawnPoints[i].transform.position;
+            NPC.transform.rotation = SpawnPoints[i].transform.rotation;
+        }
+
+
         CameraManager.Instance.SetCamera();
         SetUI();
     }
@@ -68,7 +76,7 @@ public class LevelManager: MonoBehaviour
     void SetUI()
     {
         List<RectTransform> sharedUIs = new List<RectTransform>();
-        for(int i = 0; i < GameManager.Instance.PlayerCount; i++)
+        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)
         {
             UI[i].SetActive(true);
 
@@ -84,7 +92,7 @@ public class LevelManager: MonoBehaviour
             rect.localPosition = Vector3.zero;
             //rect.rotation = Quaternion.identity;
             rect.localEulerAngles = Vector3.zero;
-            
+
             sharedUIs.Add(rect);
 
             //UI[i].GetComponentInChildren<RocketBooster>().Controller = GameManager.Instance.Players[i].GetComponent<Character.HorseController>();
@@ -135,5 +143,5 @@ public class LevelManager: MonoBehaviour
                 break;
         }
     }
-    
+
 }
