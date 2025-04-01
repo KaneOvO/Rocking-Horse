@@ -6,21 +6,25 @@ using UnityEngine;
 
 namespace Items
 {
-    public class CarrotRocket : MonoBehaviour
+    public class CarrotRocket : GameItem
     {
         public HorseController Controller;
         public float LastTime = 7;
 
         public float Speed = 20;
 
+        private float CurrentTime = 999;
         private int Index = -1;
         private Vector2 Direction;
         private const float ORIENTATION = 200;
 
-        public void Start()
+        private void Start()
         {
             Controller = GetComponent<HorseController>();
+        }
 
+        public override void OnUseItem()
+        {
             //Controller.Collider.enabled = true;
 
             float cloestDistance = 99999999;
@@ -52,15 +56,17 @@ namespace Items
                 Direction = (cpPos - currentPos).normalized;
             }
 
-            GameObject.Destroy(this, LastTime);
-        }
-
-        public void OnDestroy()
-        {
+            CurrentTime = 0;
         }
 
         public void LateUpdate()
         {
+            CurrentTime += Time.deltaTime;
+            if(CurrentTime > LastTime)
+            {
+                return;
+            }
+
             Vector3 target = NPCMap.GetAt(Index).transform.position;
 
             if(Vector3.Distance(target, this.transform.position) < 2)
