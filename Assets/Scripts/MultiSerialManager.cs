@@ -21,29 +21,41 @@ public class MultiSerialManager : MonoBehaviour
 
             if (sp.IsOpen)
             {
-                string data = sp.ReadLine();
-                string[] dataParts = data.Split(',');
-                //the data needs to match the arduino data format
-                //currently it is set to 3 floats, but this may change in the future
-                bool isArduino = dataParts.Length >= 3 && float.TryParse(dataParts[0], out float f) && float.TryParse(dataParts[1], out f) && float.TryParse(dataParts[2], out f);
-                
-                if (isArduino && i >= listeners.Length)
+                if (sp.BytesToRead > 0)
                 {
-                    Debug.LogWarning("Not enough listeners for the number of Arduino devices connected.");
-                    break;
-                }
+                    string data = sp.ReadLine();
+                    string[] dataParts = data.Split(',');
+                    //the data needs to match the arduino data format
+                    //currently it is set to 3 floats, but this may change in the future
+                    bool isArduino = dataParts.Length >= 3 && float.TryParse(dataParts[0], out float f) && float.TryParse(dataParts[1], out f) && float.TryParse(dataParts[2], out f);
 
-                if (isArduino)
+                    if (isArduino && i >= listeners.Length)
+                    {
+                        sp.Close();
+                        Debug.LogWarning("Not enough listeners for the number of Arduino devices connected.");
+                        break;
+                    }
+
+                    if (isArduino)
+                    {
+                        sp.Close();
+                        GameObject serialController = Instantiate(serialControllerPrefab);
+                        if (serialController.TryGetComponent<SerialController>(out var controller))
+                        {
+                            controller.portName = port;
+                            controller.messageListener = listeners[i];
+                            controller.baudRate = baudRate;
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        sp.Close();
+                    }
+                }
+                else
                 {
                     sp.Close();
-                    GameObject serialController = Instantiate(serialControllerPrefab);
-                    if (serialController.TryGetComponent<SerialController>(out var controller))
-                    {
-                        controller.portName = port;
-                        controller.messageListener = listeners[i];
-                        controller.baudRate = baudRate;
-                        i++;
-                    }
                 }
             }
         }
