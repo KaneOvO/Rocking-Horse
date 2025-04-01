@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 7905966017867016951}
   - component: {fileID: 4017024926271695899}
   - component: {fileID: 6792112596344398806}
+  - component: {fileID: -7994336712872225385}
   m_Layer: 0
   m_Name: PlayerNew
   m_TagString: Player
@@ -285,9 +286,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a92c53c3d766af42bf379a3620af123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsItemReady: 0
   Controller: {fileID: 7790533119498257688}
   LastTime: 5
   Speed: 20
+--- !u!114 &-7994336712872225385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adef2002b21c1fa40a583b6e61a50e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsItemReady: 0
+  ChickenPrefab: {fileID: 6598937823072709369, guid: a565bcac7d394274bb157480b2660d3d,
+    type: 3}
 --- !u!1 &372909241162976964
 GameObject:
   m_ObjectHideFlags: 0

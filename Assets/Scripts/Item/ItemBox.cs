@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Character;
+using Items;
 using Triggers;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,6 +22,43 @@ public class ItemBox : MonoBehaviour
     
     public MeshRenderer ItemBoxRenderer;
 
+    private Dictionary<int, List<(ItemType type, float weight)>> ItemWeights = new()
+    {
+        {
+            0, new List<(ItemType, float)>
+            {
+                (ItemType.BlackHoleDropper, 100f)
+            }
+        },
+        {
+            1, new List<(ItemType, float)>
+            {
+                (ItemType.Lasso, 40f),
+                (ItemType.CarrotRocket, 10f),
+                (ItemType.BlackHoleDropper, 10f),
+                (ItemType.Chicken, 40f),
+            }
+        },
+        {
+            2, new List<(ItemType, float)>
+            {
+                (ItemType.Lasso, 20f),
+                (ItemType.CarrotRocket, 40f),
+                (ItemType.BlackHoleDropper, 5f),
+                (ItemType.Chicken, 35f),
+            }
+        },
+        {
+            3, new List<(ItemType, float)>
+            {
+                (ItemType.Lasso, 20f),
+                (ItemType.CarrotRocket, 70f),
+                (ItemType.BlackHoleDropper, 0f),
+                (ItemType.Chicken, 10f),
+            }
+        }
+    };
+
     private void Awake()
     {
         GetItemTrigger.OnEnter += OnTriggered;
@@ -36,7 +74,23 @@ public class ItemBox : MonoBehaviour
         GetItemTrigger.Enabled = false;
         ItemBoxRenderer.enabled = false;
         
+        DetermineItem(controller);
         GetItem(controller);
+    }
+
+    private void DetermineItem(HorseController controller)
+    {
+        var items = ItemWeights[controller.Ranking];
+        
+        var random = Random.Range(0f, 1f);
+        var cumulativeWeight = 0f;
+
+        foreach (var item in  items)
+        {
+            cumulativeWeight += item.weight;
+            if (random <= cumulativeWeight)
+                ReceivedItemType = item.type;
+        }
     }
 
     private void GetItem(HorseController controller)
@@ -52,8 +106,12 @@ public class ItemBox : MonoBehaviour
                 Debug.Log("Received Black Hole Dropper");
                 break;
             case (ItemType.CarrotRocket):
+                controller.transform.GetComponent<PlayerItem>().GetItem<CarrotRocket>();
+                Debug.Log("Received Carrot Rocket");
                 break;
             case (ItemType.Chicken):
+                controller.transform.GetComponent<PlayerItem>().GetItem<ChickenDropper>();
+                Debug.Log("Received Chicken");
                 break;
         }
     }
