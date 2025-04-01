@@ -23,7 +23,16 @@ public class MultiSerialManager : MonoBehaviour
             {
                 string data = sp.ReadLine();
                 string[] dataParts = data.Split(',');
-                bool isArduino = dataParts.Length >= 6 && float.TryParse(dataParts[0], out float f) && float.TryParse(dataParts[1], out f) && float.TryParse(dataParts[2], out f) && float.TryParse(dataParts[3], out f) && float.TryParse(dataParts[4], out f) && float.TryParse(dataParts[5], out f);
+                //the data needs to match the arduino data format
+                //currently it is set to 3 floats, but this may change in the future
+                bool isArduino = dataParts.Length >= 3 && float.TryParse(dataParts[0], out float f) && float.TryParse(dataParts[1], out f) && float.TryParse(dataParts[2], out f);
+                
+                if (isArduino && i >= listeners.Length)
+                {
+                    Debug.LogWarning("Not enough listeners for the number of Arduino devices connected.");
+                    break;
+                }
+
                 if (isArduino)
                 {
                     sp.Close();
@@ -37,7 +46,6 @@ public class MultiSerialManager : MonoBehaviour
                     }
                 }
             }
-
         }
     }
 }
