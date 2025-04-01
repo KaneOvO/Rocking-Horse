@@ -65,11 +65,16 @@ namespace Character
         public static List<HorseController> Horses = new List<HorseController>();
 
         public float CurrentEnergy { get; private set; } = 0;
+        public int Ranking { get; private set; } = 0;
         public float CurrentSpeed => HVelocity.magnitude;
         public PathPoint NextTargtet => NPCMap.GetAt(CheckPointIndex + 1);
 
         private PlayerItem playerItem;
-        
+
+
+        private static float LastRankingUpdateTime = 0;
+        private const float RANKING_UPDATE_INTERVAL = 0.1f;
+
         public void ResetPos()
         {
             CheckPointIndex = ResetIndex;
@@ -194,8 +199,34 @@ namespace Character
             CurrentAcceleration = value * Acceleration;
         }
 
+        private static void UpdateRanking()
+        {
+            List<HorseController> ranking = new(Horses);
+            if (LastRankingUpdateTime <= Time.realtimeSinceStartup - RANKING_UPDATE_INTERVAL)
+            {
+                LastRankingUpdateTime = Time.realtimeSinceStartup;
+                ranking.Sort(SortHorse);
+                ranking.Reverse();
+            }
+
+            for (int i = 0; i < ranking.Count; i++)
+            {
+                ranking[i].Ranking = i;
+            }
+        }
+        private static int SortHorse(HorseController a, HorseController b)
+        {
+            if (a.CheckPointIndex == b.CheckPointIndex)
+            {
+                return a.NextCheckPointDistance.CompareTo(b.NextCheckPointDistance);
+            }
+            return a.CheckPointIndex.CompareTo(b.CheckPointIndex);
+        }
+
         private void Update()
         {
+            UpdateRanking();
+
             if (!GameManager.IsGameBegin)
             {
                 Rigidbody.velocity = Vector3.zero;
