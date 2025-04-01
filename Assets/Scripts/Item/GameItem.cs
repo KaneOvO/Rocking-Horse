@@ -16,7 +16,7 @@ public class GameItem : MonoBehaviour
     public virtual void OnReceiveItem()
     {
         IsItemReady = true;
-        UpdateItemDisplayUI();
+        UpdateItemDisplayUI(itemImage);
     }
 
     public virtual void OnUseItem()
@@ -25,9 +25,33 @@ public class GameItem : MonoBehaviour
             return;
 
         IsItemReady = false;
+        UpdateItemDisplayUI();
     }
 
     protected void UpdateItemDisplayUI()
+    {
+        if (!gameObject.TryGetComponent(out HorseController controller))
+        {
+            return;
+        }
+
+        Transform itemTransform = controller.horseUI.transform.Find("ItemImage");
+
+        if (itemTransform == null)
+        {
+            return;
+        }
+
+        GameObject itemUI = itemTransform.gameObject;
+        if (!itemUI.TryGetComponent(out UnityEngine.UI.Image image))
+        {
+            return;
+        }
+        
+        image.sprite = null;
+    }
+
+    protected void UpdateItemDisplayUI(Sprite itemImage)
     {
         if (itemImage == null)
         {
