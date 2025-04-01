@@ -256,13 +256,13 @@ namespace Character
                 WrongWayNote.SetActive(false);
             }
 
-            if (toCurrent.magnitude * 2 < toNext.magnitude)
+            if (toCurrent.magnitude * 1.35f < toNext.magnitude)
             {
                 CheckPointIndex++;
                 ResetIndex = CheckPointIndex;
                 ResetPoint = this.transform.position;
                 SmallestDistance = -9999;
-                //Debug.Log($"NewIndex:{CheckPointIndex}");
+                Debug.Log($"NewIndex:{CheckPointIndex}");
             }
 
             RaycastHit hit;
