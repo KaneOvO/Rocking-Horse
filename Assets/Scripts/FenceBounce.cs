@@ -10,14 +10,20 @@ public class FenceBounce : MonoBehaviour
 
     private List <GameObject> collided;
 
+    public void Start()
+    {
+        collided = new List<GameObject>();
+    }
+
     public void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player") && !collided.Contains(collision.gameObject))
         {
 
             Vector3 forceDirection = collision.transform.forward *-1;
+            forceDirection.y = 0.25f;
 
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(forceDirection * forceAmount);
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(forceDirection * forceAmount, ForceMode.Acceleration);
 
             StartCoroutine(ClearPlayer(collision.gameObject));
         }
