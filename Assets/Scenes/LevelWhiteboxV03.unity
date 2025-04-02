@@ -6462,7 +6462,7 @@ MonoBehaviour:
   - camera: {fileID: 1037630655}
     dolly: {fileID: 1468503441}
   uiCanvas: {fileID: 642703012}
-  bSkipIntro: 1
+  bSkipIntro: 0
 --- !u!4 &412844494
 Transform:
   m_ObjectHideFlags: 0
@@ -17373,7 +17373,7 @@ PrefabInstance:
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: PlayerCount
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
