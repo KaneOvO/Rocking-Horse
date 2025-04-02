@@ -53,7 +53,7 @@ namespace GameSystem.Input
                 float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
                 RockRecord record = new RockRecord();
-                record.Strength = strength*4;
+                record.Strength = strength*10;
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
                 MinGyroscopeX = MaxGyroscopeX;
@@ -66,7 +66,7 @@ namespace GameSystem.Input
                 float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 40f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
                 RockRecord record = new RockRecord();
-                record.Strength = strength*4;
+                record.Strength = strength*10;
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
                 MaxGyroscopeX = MistakeRange;
@@ -104,7 +104,7 @@ namespace GameSystem.Input
             //}
             //LastJumpStatus = data.isJumped;
 
-            float rotation = data.rotationZ * 4;
+            float rotation = data.rotationZ;
             if (Mathf.Abs(rotation) < RotationDeadRange)
             {
                 InputLayer.UpdateRotation(CID, 0);
