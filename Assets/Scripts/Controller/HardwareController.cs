@@ -48,12 +48,11 @@ namespace GameSystem.Input
 
             if (Direction == 0 && data.gyroscopeX < MaxGyroscopeX - MistakeRange)
             {
-                //Debug.Log($"Reach Max# Min:{MinGyroscopeX} - Max:{MaxGyroscopeX} - Current:{data.gyroscopeZ}");
-
-                float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 40f;
+                float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 2.5f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
+
                 RockRecord record = new RockRecord();
-                record.Strength = strength*10;
+                record.Strength = strength;
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
                 MinGyroscopeX = MaxGyroscopeX;
@@ -61,12 +60,11 @@ namespace GameSystem.Input
             }
             else if (Direction == 1 && data.gyroscopeX > MinGyroscopeX + MistakeRange)
             {
-                //Debug.Log($"Reach Min# Min:{MinGyroscopeX} - Max:{MaxGyroscopeX} - Current:{data.gyroscopeZ}");
-
-                float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 40f;
+                float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 2.5f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
+
                 RockRecord record = new RockRecord();
-                record.Strength = strength*10;
+                record.Strength = strength;
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
                 MaxGyroscopeX = MistakeRange;
