@@ -102,7 +102,7 @@ namespace GameSystem.Input
             //}
             //LastJumpStatus = data.isJumped;
 
-            float rotation = data.rotationZ;
+            float rotation = Mathf.Pow(data.rotationZ, 1.5f);
             if (Mathf.Abs(rotation) < RotationDeadRange)
             {
                 InputLayer.UpdateRotation(CID, 0);
