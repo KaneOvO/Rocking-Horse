@@ -81,6 +81,7 @@ public class ItemBox : MonoBehaviour
     private void DetermineItem(HorseController controller)
     {
         var items = ItemWeights[controller.Ranking];
+        Debug.Log($"Ranking: {controller.Ranking}");
         
         var random = Random.Range(0f, 1f);
         var cumulativeWeight = 0f;
