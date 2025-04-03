@@ -17,11 +17,18 @@ public class Lasso : GameItem
 
     private float LassoDuration;
     private GameObject LassoOther;
+    
+    private LineRenderer lineRenderer;
 
     public void Start()
-    { 
+    {
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
+        
+        GetComponent<PlayerItem>().GetItem<Lasso>();
+        
         foreach (var horse in HorseController.Horses.Where(Horse => Horse.gameObject != gameObject))
-        {
+        {   
             TargetPlayers.Add(horse.gameObject);
         }
     }
@@ -34,6 +41,15 @@ public class Lasso : GameItem
             
             var direction = (LassoOther.transform.position - transform.position).normalized;
             transform.position += direction * (1f * Time.deltaTime);
+            
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, LassoOther.transform.position);
+            lineRenderer.enabled = true;
+        }
+        else
+        {
+            if (lineRenderer.enabled)
+                lineRenderer.enabled = false;
         }
     }
 
