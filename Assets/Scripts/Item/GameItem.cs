@@ -11,6 +11,7 @@ public class GameItem : MonoBehaviour
 {
     public bool IsItemReady;
     public Sprite itemImage;
+    public Sprite emptyImage;
 
 
     public virtual void OnReceiveItem()
@@ -48,7 +49,7 @@ public class GameItem : MonoBehaviour
             return;
         }
         
-        image.sprite = null;
+        image.sprite = emptyImage;
     }
 
     protected void UpdateItemDisplayUI(Sprite itemImage)
