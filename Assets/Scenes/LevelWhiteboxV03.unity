@@ -1239,6 +1239,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1895a41348a703b4498ea3b38f579b72, type: 3}
+--- !u!23 &114532971 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 798641965568511300, guid: 4d177f521c8622c4cb6828c7ee9c4942,
+    type: 3}
+  m_PrefabInstance: {fileID: 164774530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &119186985 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7012086878092236663, guid: eb77b43483e94bb449a379308b56fa3f,
@@ -1765,6 +1771,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9171754985420033347, guid: 4d177f521c8622c4cb6828c7ee9c4942,
+        type: 3}
+      propertyPath: ItemBoxRenderer
+      value: 
+      objectReference: {fileID: 114532971}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17374,7 +17385,7 @@ PrefabInstance:
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: PlayerCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}

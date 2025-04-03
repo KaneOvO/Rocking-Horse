@@ -17751,6 +17751,74 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2137798841}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5230135756286175976
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 365340658397421951, guid: d62b728f47be7654686f0b69121f5204,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -26.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 365340658397421951, guid: d62b728f47be7654686f0b69121f5204,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 145.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 365340658397421951, guid: d62b728f47be7654686f0b69121f5204,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -120.84275
+      objectReference: {fileID: 0}
+    - target: {fileID: 365340658397421951, guid: d62b728f47be7654686f0b69121f5204,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 365340658397421951, guid: d62b728f47be7654686f0b69121f5204,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365340658397421951, guid: d62b728f47be7654686f0b69121f5204,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365340658397421951, guid: d62b728f47be7654686f0b69121f5204,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365340658397421951, guid: d62b728f47be7654686f0b69121f5204,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365340658397421951, guid: d62b728f47be7654686f0b69121f5204,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365340658397421951, guid: d62b728f47be7654686f0b69121f5204,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034178407400307653, guid: d62b728f47be7654686f0b69121f5204,
+        type: 3}
+      propertyPath: m_Name
+      value: Horse_Run_No_Legs
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d62b728f47be7654686f0b69121f5204, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -17776,3 +17844,4 @@ SceneRoots:
   - {fileID: 125458712}
   - {fileID: 573678445}
   - {fileID: 1803936849}
+  - {fileID: 5230135756286175976}
