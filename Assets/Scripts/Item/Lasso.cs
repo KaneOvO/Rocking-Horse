@@ -17,15 +17,15 @@ public class Lasso : GameItem
 
     private float LassoDuration;
     private GameObject LassoOther;
-
+    
     private LineRenderer lineRenderer;
-    private float lineWidth = 0.1f;
 
     public void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
-        lineWidth = 0.1f;
+        
+        GetComponent<PlayerItem>().GetItem<Lasso>();
         
         foreach (var horse in HorseController.Horses.Where(Horse => Horse.gameObject != gameObject))
         {   
