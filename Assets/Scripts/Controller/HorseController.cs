@@ -125,7 +125,7 @@ namespace Character
                 CurrentTrack = TrackManager.Instance.GetCurrentTrackIndex(this.transform.position);
                 TargetX = TrackManager.Instance.GetCoordinate(CurrentTrack);
             }
-            
+
             playerItem = GetComponent<PlayerItem>();
         }
         private void OnDrift()
@@ -202,17 +202,17 @@ namespace Character
 
         private static void UpdateRanking()
         {
-            List<HorseController> ranking = new(Horses);
             if (LastRankingUpdateTime <= Time.realtimeSinceStartup - RANKING_UPDATE_INTERVAL)
             {
+                List<HorseController> ranking = new(Horses);
                 LastRankingUpdateTime = Time.realtimeSinceStartup;
                 ranking.Sort(SortHorse);
                 ranking.Reverse();
-            }
 
-            for (int i = 0; i < ranking.Count; i++)
-            {
-                ranking[i].Ranking = i;
+                for (int i = 0; i < ranking.Count; i++)
+                {
+                    ranking[i].Ranking = i;
+                }
             }
         }
         private static int SortHorse(HorseController a, HorseController b)
@@ -247,12 +247,12 @@ namespace Character
             {
                 SmallestDistance = NextCheckPointDistance;
             }
-            else if(NextCheckPointDistance < SmallestDistance - 10)
+            else if (NextCheckPointDistance < SmallestDistance - 10)
             {
                 WrongWayNote.SetActive(true);
             }
 
-            if(WrongWayNote.activeSelf && NextCheckPointDistance >= SmallestDistance - 5)
+            if (WrongWayNote.activeSelf && NextCheckPointDistance >= SmallestDistance - 5)
             {
                 WrongWayNote.SetActive(false);
             }

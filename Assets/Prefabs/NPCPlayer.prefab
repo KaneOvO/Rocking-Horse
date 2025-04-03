@@ -17,6 +17,10 @@ GameObject:
   - component: {fileID: 7790533119498257688}
   - component: {fileID: 4107099223300172350}
   - component: {fileID: -8589823537029809985}
+  - component: {fileID: -5492457759492641186}
+  - component: {fileID: 392815537369666095}
+  - component: {fileID: 6467232538569893130}
+  - component: {fileID: -6862593953710090908}
   m_Layer: 0
   m_Name: NPCPlayer
   m_TagString: Player
@@ -212,10 +216,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsItemReady: 0
   itemImage: {fileID: 0}
+  emptyImage: {fileID: 0}
   TargetPlayers: []
   LassoEffectTime: 0
   LassoRangeAngle: 0
   LassoRangeDistance: 0
+--- !u!114 &-5492457759492641186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb2ff106bf34674aede3aa2b81ed1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currItem: {fileID: 0}
+--- !u!114 &392815537369666095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49e7cb70742d8d44a1eb70b07138df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsItemReady: 0
+  itemImage: {fileID: 0}
+  emptyImage: {fileID: 0}
+  BlackHolePrefab: {fileID: 2675523993348586612, guid: d737cdb928eb2234fa0cf8f85c2aa378,
+    type: 3}
+--- !u!114 &6467232538569893130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adef2002b21c1fa40a583b6e61a50e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsItemReady: 0
+  itemImage: {fileID: 0}
+  emptyImage: {fileID: 0}
+  ChickenPrefab: {fileID: 0}
+--- !u!114 &-6862593953710090908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a92c53c3d766af42bf379a3620af123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsItemReady: 0
+  itemImage: {fileID: 0}
+  emptyImage: {fileID: 0}
+  Controller: {fileID: 0}
+  LastTime: 7
+  Speed: 20
 --- !u!1 &5084109578722912469
 GameObject:
   m_ObjectHideFlags: 0
