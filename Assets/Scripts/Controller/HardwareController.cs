@@ -48,7 +48,7 @@ namespace GameSystem.Input
 
             if (Direction == 0 && data.gyroscopeX < MaxGyroscopeX - MistakeRange)
             {
-                float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 2.5f;
+                float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 3.5f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
 
                 RockRecord record = new RockRecord();
@@ -60,7 +60,7 @@ namespace GameSystem.Input
             }
             else if (Direction == 1 && data.gyroscopeX > MinGyroscopeX + MistakeRange)
             {
-                float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 2.5f;
+                float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 3.5f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
 
                 RockRecord record = new RockRecord();
@@ -81,7 +81,7 @@ namespace GameSystem.Input
             {
                 acceleration += RockRecords[i].Strength;
 
-                if (Time.realtimeSinceStartup - RockRecords[i].Time >= 0.5f)
+                if (Time.realtimeSinceStartup - RockRecords[i].Time >= 0.3f)
                 {
                     RockRecords.RemoveAt(i);
                 }
@@ -102,7 +102,7 @@ namespace GameSystem.Input
             //}
             //LastJumpStatus = data.isJumped;
 
-            float rotation = Mathf.Pow(data.rotationZ, 1.5f);
+            float rotation = (data.rotationZ < 0 ? -1 : 1) * Mathf.Pow(Mathf.Abs(data.rotationZ), 1.5f);
             if (Mathf.Abs(rotation) < RotationDeadRange)
             {
                 InputLayer.UpdateRotation(CID, 0);
