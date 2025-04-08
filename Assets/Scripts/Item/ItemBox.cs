@@ -22,6 +22,8 @@ public class ItemBox : MonoBehaviour
     
     public MeshRenderer ItemBoxRenderer;
 
+    public float ItemBoxResponseTime;
+
     private Dictionary<int, List<(ItemType type, float weight)>> ItemWeights = new()
     {
         {
@@ -71,11 +73,21 @@ public class ItemBox : MonoBehaviour
 
     private void OnTriggered(HorseController controller)
     {
+        DetermineItem(controller);
+        GetItem(controller);
+
+        StartCoroutine(ItemBoxRespawn());
+    }
+
+    private IEnumerator ItemBoxRespawn()
+    {
         GetItemTrigger.Enabled = false;
         ItemBoxRenderer.enabled = false;
         
-        DetermineItem(controller);
-        GetItem(controller);
+        yield return new WaitForSeconds(ItemBoxResponseTime);
+        
+        GetItemTrigger.Enabled = true;
+        ItemBoxRenderer.enabled = true;
     }
 
     private void DetermineItem(HorseController controller)
