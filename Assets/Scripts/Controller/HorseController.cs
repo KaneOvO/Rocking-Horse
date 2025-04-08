@@ -73,8 +73,9 @@ namespace Character
         public GameObject horseUI;
 
 
-        private static float LastRankingUpdateTime = 0;
+        private static float Last_Ranking_UpdateTime = 0;
         private const float RANKING_UPDATE_INTERVAL = 0.1f;
+        private const float Bounding_K = 0.65f;
 
         public void ResetPos()
         {
@@ -89,6 +90,21 @@ namespace Character
         private void OnDestroy()
         {
             Horses.Remove(this);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Wall"))
+            {
+                Vector3 normal = collision.GetContact(0).normal;
+                Vector2 normal2D = new Vector2(normal.x, normal.z);
+
+                Vector2 newDir = Vector2.Reflect(HVelocity.normalized, normal2D).normalized;
+                Direction = newDir;
+                HVelocity = newDir * HVelocity.magnitude * Bounding_K;
+
+                //Debug.Log($"new Dir:{HVelocity}");
+            }
         }
 
         private void Start()
@@ -202,10 +218,10 @@ namespace Character
 
         private static void UpdateRanking()
         {
-            if (LastRankingUpdateTime <= Time.realtimeSinceStartup - RANKING_UPDATE_INTERVAL)
+            if (Last_Ranking_UpdateTime <= Time.realtimeSinceStartup - RANKING_UPDATE_INTERVAL)
             {
                 List<HorseController> ranking = new(Horses);
-                LastRankingUpdateTime = Time.realtimeSinceStartup;
+                Last_Ranking_UpdateTime = Time.realtimeSinceStartup;
                 ranking.Sort(SortHorse);
                 ranking.Reverse();
 
@@ -263,7 +279,6 @@ namespace Character
                 ResetIndex = CheckPointIndex;
                 ResetPoint = this.transform.position;
                 SmallestDistance = -9999;
-                Debug.Log($"NewIndex:{CheckPointIndex}");
             }
 
             RaycastHit hit;
