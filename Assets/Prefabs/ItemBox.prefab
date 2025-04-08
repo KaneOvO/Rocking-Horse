@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 713790874230854496}
   - component: {fileID: 5702220262717825447}
   - component: {fileID: 5036367411826077130}
+  - component: {fileID: 418031433504260166}
   m_Layer: 0
   m_Name: ItemBox
   m_TagString: Untagged
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReceivedItemType: 0
-  GetItemTrigger: {fileID: 5182064213331381412}
+  GetItemTrigger: {fileID: 418031433504260166}
   ItemBoxRenderer: {fileID: 798641965568511300}
 --- !u!135 &5036367411826077130
 SphereCollider:
@@ -173,6 +174,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &418031433504260166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5219314991186960067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b424373efccd94284465323264624f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enabled: 1
 --- !u!1 &6820997508394467563
 GameObject:
   m_ObjectHideFlags: 0
