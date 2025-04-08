@@ -875,6 +875,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OutsideFenceCollider
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e62ff4a8543e07040ab77e0d89679f39,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6564,10 +6569,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6174588707670147315, guid: eb76212013ab1f343a9b63fe5f43841a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: eb76212013ab1f343a9b63fe5f43841a,
         type: 3}
       propertyPath: m_Name
       value: OutsideBridgeCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb76212013ab1f343a9b63fe5f43841a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 8386360425137683438, guid: eb76212013ab1f343a9b63fe5f43841a,
         type: 3}
@@ -10291,6 +10306,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: InsideBridgeCollider
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77c9314935a1aeb42b81fe7a36c3a75e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640543260083119996, guid: 77c9314935a1aeb42b81fe7a36c3a75e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11768,7 +11793,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5e060c04928807043845e972f29019f3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5e060c04928807043845e972f29019f3,
         type: 3}
@@ -11824,6 +11849,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InsideFenceCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5e060c04928807043845e972f29019f3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
