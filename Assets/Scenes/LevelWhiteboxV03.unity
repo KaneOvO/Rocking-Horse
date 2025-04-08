@@ -6399,7 +6399,7 @@ MonoBehaviour:
   - camera: {fileID: 1037630655}
     dolly: {fileID: 1468503441}
   uiCanvas: {fileID: 642703012}
-  bSkipIntro: 0
+  bSkipIntro: 1
 --- !u!4 &412844494
 Transform:
   m_ObjectHideFlags: 0
@@ -11099,6 +11099,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIs
       objectReference: {fileID: 0}
+    - target: {fileID: 1282038017426602623, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2444465254471627771, guid: f3da5a4fd9636f7489846ce828941999,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11154,11 +11159,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3761560495219984346, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4831586577680418476, guid: f3da5a4fd9636f7489846ce828941999,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1767465122}
+    - target: {fileID: 5255130888780764056, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17516,7 +17531,7 @@ PrefabInstance:
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: PlayerCount
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
