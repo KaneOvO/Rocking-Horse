@@ -57,6 +57,10 @@ public class GameManager : MonoBehaviour
             TimeBeforeStart -= Time.deltaTime;
             if(TimeBeforeStart < 0) GameStartEvent?.Invoke();
         }
+
+        //Debug.Log(IsStarted);
+
+        //Debug.Log(TimeBeforeStart);
     }
     public void RestartGame()
     {
@@ -81,7 +85,7 @@ public class GameManager : MonoBehaviour
         }
         if (allConnected)
         {
-            IsStarted = true;
+            //IsStarted = true;
         }
     }
 
