@@ -268,7 +268,7 @@ namespace Character
                 WrongWayNote.SetActive(true);
             }
 
-            if (WrongWayNote.activeSelf && NextCheckPointDistance >= SmallestDistance - 5)
+            if (WrongWayNote.activeSelf && NextCheckPointDistance >= SmallestDistance - 2f)
             {
                 WrongWayNote.SetActive(false);
             }
