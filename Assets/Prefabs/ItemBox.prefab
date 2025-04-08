@@ -77,6 +77,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7437284115596001444}
   - component: {fileID: 6262914510071915178}
+  - component: {fileID: 713790874230854496}
   m_Layer: 0
   m_Name: ItemBox
   m_TagString: Untagged
@@ -121,6 +122,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &713790874230854496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5219314991186960067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8730bed1cc5794b95968ea368250b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxOffset: 2
 --- !u!1 &6820997508394467563
 GameObject:
   m_ObjectHideFlags: 0
