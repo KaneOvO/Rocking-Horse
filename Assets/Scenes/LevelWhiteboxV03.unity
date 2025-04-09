@@ -6715,6 +6715,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8804319320368026147, guid: eb76212013ab1f343a9b63fe5f43841a, type: 3}
+--- !u!1 &431099775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8000362340004639467, guid: d1ba21a6183596346ab523971b5d59e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1483044532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &473626616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12570,6 +12576,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2083731529716943966, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2083731529726435512, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: portName
@@ -12625,6 +12636,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6802407666107548372, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: listeners.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802407666107548372, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: listeners.Array.data[1]
+      value: 
+      objectReference: {fileID: 431099775}
+    - target: {fileID: 6802407666107548372, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: listeners.Array.data[2]
+      value: 
+      objectReference: {fileID: 1769936088}
+    - target: {fileID: 6802407666107548372, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: listeners.Array.data[3]
+      value: 
+      objectReference: {fileID: 1907198218}
     - target: {fileID: 7430693121335859155, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: m_Name
@@ -12681,6 +12712,11 @@ PrefabInstance:
       propertyPath: SpawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 909925598}
+    - target: {fileID: 9094229663030308453, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14722,6 +14758,12 @@ Transform:
   - {fileID: 1037630652}
   m_Father: {fileID: 412844494}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1769936088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6459028907336242981, guid: d1ba21a6183596346ab523971b5d59e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1483044532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1779234945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16000,6 +16042,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5171741202567271193, guid: eb77b43483e94bb449a379308b56fa3f,
     type: 3}
   m_PrefabInstance: {fileID: 1902837633}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1907198218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919382866297802609, guid: d1ba21a6183596346ab523971b5d59e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1483044532}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1907690425
 GameObject:
@@ -17644,7 +17692,7 @@ PrefabInstance:
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: PlayerCount
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
