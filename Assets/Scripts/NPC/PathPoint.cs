@@ -10,6 +10,8 @@ namespace NPC
         public float RandomRange = 2f;
 
         public float ReachRadius = 2f;
+
+        public bool isLastPoint;
     }
 
 }
