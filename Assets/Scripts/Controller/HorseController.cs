@@ -75,7 +75,7 @@ namespace Character
 
         private static float Last_Ranking_UpdateTime = 0;
         private const float RANKING_UPDATE_INTERVAL = 0.1f;
-        private const float Bounding_K = 0.4f;
+        private const float Bounding_K = 0.1f;
 
         public void ResetPos()
         {

@@ -57,7 +57,7 @@ public class MultiSerialManager : MonoBehaviour
 
                     if (isArduino)
                     {
-                        if (i >= listeners.Length)
+                        if (i > listeners.Length)
                         {
                             UnityEngine.Debug.LogWarning("Not enough listeners for connected devices.");
                             sp.Close();
