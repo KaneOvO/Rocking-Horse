@@ -54,6 +54,7 @@ public class LevelManager : MonoBehaviour
             player.name = "Player" + (i + 1);
             player.transform.position = SpawnPoints[i].transform.position;
             player.transform.rotation = SpawnPoints[i].transform.rotation;
+            player.GetComponentInChildren<BandanaColor>().SetColor(i);
             GameManager.Instance.Players.Add(player);
             player.GetComponent<GameSystem.Input.KeyBoardController>().UpdateController();
             player.GetComponent<HardwareController>().myListener = Listeners[i];
