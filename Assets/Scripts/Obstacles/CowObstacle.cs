@@ -25,6 +25,8 @@ public class CowObstacle : MonoBehaviour
 
         Debug.Log("Collision started");
 
+        Debug.Log(collision.gameObject.tag);
+
         //Check to see if a player is what collided with the obstacle
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -44,7 +46,7 @@ public class CowObstacle : MonoBehaviour
                 knockbackDirection.y = 0.25f;
                 knockbackDirection *= knockbackMagnitude;  
                 
-                newPlayer.GetComponent<Rigidbody>().AddForce(knockbackDirection, ForceMode.Impulse);
+                newPlayer.GetComponent<Rigidbody>().AddForce(knockbackDirection, ForceMode.Acceleration);
 
                 StartCoroutine(PlayerValidAgain(newPlayer));
             }

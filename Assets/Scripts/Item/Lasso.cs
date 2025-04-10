@@ -25,7 +25,7 @@ public class Lasso : GameItem
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
         
-        GetComponent<PlayerItem>().GetItem<Lasso>();
+        //GetComponent<PlayerItem>().GetItem<Lasso>();
         
         foreach (var horse in HorseController.Horses.Where(Horse => Horse.gameObject != gameObject))
         {   

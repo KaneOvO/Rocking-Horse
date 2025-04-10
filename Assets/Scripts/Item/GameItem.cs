@@ -54,6 +54,8 @@ public class GameItem : MonoBehaviour
 
     protected void UpdateItemDisplayUI(Sprite itemImage)
     {
+        //Debug.Log("UpdateItemDisplayUI");
+
         if (itemImage == null)
         {
             return;
