@@ -266,6 +266,7 @@ namespace Character
             else if (NextCheckPointDistance < SmallestDistance - 10)
             {
                 WrongWayNote.SetActive(true);
+                SmallestDistance = NextCheckPointDistance + 10;
             }
 
             if (WrongWayNote.activeSelf && NextCheckPointDistance >= SmallestDistance - 7.5f)

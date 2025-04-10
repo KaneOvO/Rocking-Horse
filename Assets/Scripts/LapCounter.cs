@@ -32,6 +32,7 @@ public class LapCounter : MonoBehaviour
             isInsideFinishTrigger = true;
 
             lapFinished++;
+            Debug.Log("Lap Finished: " + lapFinished);
 
             if (lapFinished >= GameManager.Instance.lapCount)
             {
