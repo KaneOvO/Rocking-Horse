@@ -14,13 +14,14 @@ namespace GameSystem.Input
 
         public bool DebugMode = false;
         public MyListener myListener;
-        private int Direction = 0;
+        //private int Direction = 0;
         private int LastBoosterStatus = 0;
-        private int LastJumpStatus = 0;
-        private float MinGyroscopeX = 0;
-        private float MaxGyroscopeX = 0;
+        //private int LastJumpStatus = 0;
+        //private float MinGyroscopeX = 0;
+        //private float MaxGyroscopeX = 0;
+        private float LastGyroscopeX = 0;
 
-        private const float MistakeRange = 0.5f;
+        private const float MistakeRange = 0.25f;
         private const float RotationDeadRange = 12.5f;
         private List<RockRecord> RockRecords = new List<RockRecord>();
 
@@ -43,10 +44,10 @@ namespace GameSystem.Input
         {
             if (!Enabled) return;
 
-            MinGyroscopeX = Mathf.Min(MinGyroscopeX, data.gyroscopeX);
-            MaxGyroscopeX = Mathf.Max(MaxGyroscopeX, data.gyroscopeX);
+            //MinGyroscopeX = Mathf.Min(MinGyroscopeX, data.gyroscopeX);
+            //MaxGyroscopeX = Mathf.Max(MaxGyroscopeX, data.gyroscopeX);
 
-            if (Direction == 0 && data.gyroscopeX < MaxGyroscopeX - MistakeRange)
+            /*if (Direction == 0 && data.gyroscopeX < MaxGyroscopeX - MistakeRange)
             {
                 float strength = Mathf.Abs(MaxGyroscopeX - MinGyroscopeX) / 3.5f;
                 strength = Mathf.Clamp(strength, 0.0f, 1.0f);
@@ -67,21 +68,33 @@ namespace GameSystem.Input
                 record.Strength = strength;
                 record.Time = Time.realtimeSinceStartup;
                 RockRecords.Add(record);
-                MaxGyroscopeX = MistakeRange;
+                MaxGyroscopeX = MinGyroscopeX;
                 Direction = 0;
+            }*/
+            
+            if(Mathf.Abs(LastGyroscopeX - data.gyroscopeX) > MistakeRange)
+            {
+                float strength = Mathf.Abs(LastGyroscopeX - data.gyroscopeX) / 3.5f;
+                strength = Mathf.Clamp(strength, 0.0f, 1.0f);
+
+                RockRecord record = new RockRecord();
+                record.Strength = strength;
+                record.Time = Time.realtimeSinceStartup;
+                RockRecords.Add(record);
+                LastGyroscopeX = data.gyroscopeX;
             }
 
-            if (DebugMode)
-            {
-                Debug.Log($"Min:{MinGyroscopeX} - Max:{MaxGyroscopeX} - Current:{data.gyroscopeZ} - Rotation:{data.rotationZ}");
-            }
+            //if (DebugMode)
+            //{
+            //    Debug.Log($"Min:{MinGyroscopeX} - Max:{MaxGyroscopeX} - Current:{data.gyroscopeZ} - Rotation:{data.rotationZ}");
+            //}
 
             float acceleration = 0;
             for (int i = RockRecords.Count - 1; i >= 0; i--)
             {
                 acceleration += RockRecords[i].Strength;
 
-                if (Time.realtimeSinceStartup - RockRecords[i].Time >= 0.3f)
+                if (Time.realtimeSinceStartup - RockRecords[i].Time >= 0.1f)
                 {
                     RockRecords.RemoveAt(i);
                 }
@@ -112,8 +125,6 @@ namespace GameSystem.Input
             {
                 InputLayer.UpdateRotation(CID, rotation);
             }
-            
-            
 
             //if (data.isChangedLeft == 1 && LastChangeLeftStatus == 0)
             //{
