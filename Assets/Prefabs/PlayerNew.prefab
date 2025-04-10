@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 6792112596344398806}
   - component: {fileID: -7994336712872225385}
   - component: {fileID: -3648031871308165968}
+  - component: {fileID: -5964476354140437819}
   m_Layer: 0
   m_Name: PlayerNew
   m_TagString: Player
@@ -172,8 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135479d8064efec4a8732218746b5e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 12
-  Acceleration: 12
+  MaxSpeed: 15
+  Acceleration: 15
   BoosterSpeed: 6
   BoosterAcceleration: 6
   BoosterTime: 2.5
@@ -205,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9ad4b3eff6e5b42a91f2762cdc27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 1
+  Enabled: 0
   DebugMode: 0
   PrintEvent: 0
   MoveKey: 119
@@ -420,6 +421,18 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-5964476354140437819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310242483577952872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99cf349dc4fb34e4cb67ed7218874c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &372909241162976964
 GameObject:
   m_ObjectHideFlags: 0

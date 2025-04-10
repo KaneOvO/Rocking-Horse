@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using GameSystem.Input;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerPrefab;
     public GameObject NPCPrefab;
     public List<GameObject> Players = new List<GameObject>();
-
+    
     public static bool IsGameBegin
     {
         get => TimeBeforeStart <= 0;
@@ -25,6 +26,10 @@ public class GameManager : MonoBehaviour
     public static bool IsStarted { get; private set; } = false;
 
     public static Action GameStartEvent;
+
+    public int lapCount;
+    public List<(float, HorseController)> finalRanking = new();
+    
     private void Awake()
     {
         if (Instance == null)
@@ -43,6 +48,8 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         IsStarted = true;
+        
+        finalRanking.Clear();
     }
 
     private void Update()

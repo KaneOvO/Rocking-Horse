@@ -18,6 +18,11 @@ namespace NPC
             Instance = this;
         }
 
+        private void Start()
+        {
+            Path[-1].isLastPoint = true;
+        }
+
         public static PathPoint GetAt(int index)
         {
             if(Instance.Path.Count <= 2)
