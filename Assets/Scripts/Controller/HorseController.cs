@@ -99,9 +99,10 @@ namespace Character
                 Vector3 normal = collision.GetContact(0).normal;
                 Vector2 normal2D = new Vector2(normal.x, normal.z);
 
-                Vector2 newDir = Vector2.Reflect(HVelocity.normalized, normal2D).normalized;
-                Direction = newDir;
-                HVelocity = newDir * HVelocity.magnitude * Bounding_K;
+                Vector2 newDir = Vector2.Reflect(HVelocity.normalized, normal2D);
+                newDir += HVelocity.normalized * 0.5f;
+                Direction = newDir.normalized;
+                HVelocity = newDir.normalized * HVelocity.magnitude * 0.3f;
 
                 //Debug.Log($"new Dir:{HVelocity}");
             }
