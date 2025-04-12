@@ -59,11 +59,11 @@ public class GameManager : MonoBehaviour
             CheckAllConnected();
         }
 
-        if (IsStarted && TimeBeforeStart > 0)
-        {
-            TimeBeforeStart -= Time.deltaTime;
-            if(TimeBeforeStart < 0) GameStartEvent?.Invoke();
-        }
+        //if (IsStarted && TimeBeforeStart > 0)
+        //{
+        //    TimeBeforeStart -= Time.deltaTime;
+        //    if(TimeBeforeStart < 0) GameStartEvent?.Invoke();
+        //}
 
         //Debug.Log(IsStarted);
 
