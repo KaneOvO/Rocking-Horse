@@ -6055,6 +6055,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257a1d4923c1aac43a5cde1f55340de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  introAudioClip: {fileID: 0}
+  introAudioPitch: 1
+  endSFX: {fileID: 0}
+  sfxSource: {fileID: 0}
   pairings:
   - camera: {fileID: 695480392}
     dolly: {fileID: 713376414}
@@ -15436,7 +15441,7 @@ PrefabInstance:
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: PlayerCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6862698040805236551, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
