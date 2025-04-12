@@ -97,7 +97,7 @@ public class CinemachineManager : MonoBehaviour
             audioSource.clip = introAudioClip;
             audioSource.Play();
 
-            StartCoroutine(PlayEndSFXAfterDelay(audioSource.clip.length / audioSource.pitch));
+            StartCoroutine(PlayEndSFXAfterDelay(audioSource.clip.length / audioSource.pitch - 0.5f));
         }
     }
 
