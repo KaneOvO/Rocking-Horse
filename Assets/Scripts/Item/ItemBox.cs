@@ -114,7 +114,7 @@ public class ItemBox : MonoBehaviour
         }
 
         // Wait until 1 second is left in the Scroll animation
-        yield return new WaitForSeconds(UIAnimationDuration - 1.0f);
+        yield return new WaitForSeconds(UIAnimationDuration - 3.0f);
 
         // Trigger the Horseshoe animation
         if (horseshoeAnimator != null)
@@ -125,7 +125,7 @@ public class ItemBox : MonoBehaviour
         }
 
         // Wait the final second
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.7f);
 
         // Hide scroll object
         if (scrollObject != null)
