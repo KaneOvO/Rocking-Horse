@@ -17,12 +17,16 @@ public class ItemBox : MonoBehaviour
     }
 
     public ItemType ReceivedItemType;
-    
+
     public Trigger GetItemTrigger;
-    
+
     public MeshRenderer ItemBoxRenderer;
 
     public float ItemBoxResponseTime;
+
+    public GameObject itemScrollObject;
+    public Animator itemUIAnimator;
+    public float UIAnimationDuration = 3f;
 
     private Dictionary<int, List<(ItemType type, float weight)>> ItemWeights = new()
     {
@@ -73,19 +77,43 @@ public class ItemBox : MonoBehaviour
 
     private void OnTriggered(HorseController controller)
     {
+        //StartCoroutine(GiveItemAfterScrollAnimation(controller));
         DetermineItem(controller);
         GetItem(controller);
 
         StartCoroutine(ItemBoxRespawn());
     }
 
+    private IEnumerator GiveItemAfterScrollAnimation(HorseController controller)
+    {
+        if (itemScrollObject != null)
+            itemScrollObject.SetActive(true);
+
+        yield return null;
+
+        if (itemUIAnimator == null && controller.horseUI != null)
+            itemUIAnimator = controller.horseUI.GetComponentInChildren<Animator>();
+
+        if (itemUIAnimator != null)
+        {
+            itemUIAnimator.Rebind();     
+            itemUIAnimator.Update(0f);   
+            itemUIAnimator.SetTrigger("Scroll");
+        }
+
+        yield return new WaitForSeconds(UIAnimationDuration);
+
+        if (itemScrollObject != null)
+            itemScrollObject.SetActive(false);
+    }
+
     private IEnumerator ItemBoxRespawn()
     {
         GetItemTrigger.Enabled = false;
         ItemBoxRenderer.enabled = false;
-        
+
         yield return new WaitForSeconds(ItemBoxResponseTime);
-        
+
         GetItemTrigger.Enabled = true;
         ItemBoxRenderer.enabled = true;
     }
@@ -94,11 +122,11 @@ public class ItemBox : MonoBehaviour
     {
         var items = ItemWeights[controller.Ranking];
         Debug.Log($"Ranking: {controller.Ranking}");
-        
+
         var random = Random.Range(0f, 1f);
         var cumulativeWeight = 0f;
 
-        foreach (var item in  items)
+        foreach (var item in items)
         {
             cumulativeWeight += item.weight;
             if (random <= cumulativeWeight)
@@ -128,5 +156,5 @@ public class ItemBox : MonoBehaviour
                 break;
         }
     }
-    
+
 }

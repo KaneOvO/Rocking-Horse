@@ -48,7 +48,7 @@ public class GameItem : MonoBehaviour
         {
             return;
         }
-        
+
         image.sprite = emptyImage;
     }
 
@@ -78,7 +78,7 @@ public class GameItem : MonoBehaviour
         {
             return;
         }
-        
+
         image.sprite = itemImage;
     }
 
