@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using UnityEngine.Video;
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,6 +11,10 @@ public class MenuManager : MonoBehaviour
     public GameObject tutorialPanel;
     public GameObject settingsPanel;
     public GameObject creditsPanel;
+    public GameObject countdownObject;           
+    public VideoPlayer countdownVideoPlayer;
+    public AudioSource menuMusic;
+    private bool hasPlayedCountdown = false; 
 
     private void Start()
     {
@@ -29,14 +35,47 @@ public class MenuManager : MonoBehaviour
 
     public void StartRace()
     {
-        SceneManager.LoadScene("RaceScene"); // Replace "RaceScene" with your actual scene name
+        SceneManager.LoadScene("MainScene");
     }
 
     public void OpenTutorial()
     {
         joinPanel.SetActive(false);
         tutorialPanel.SetActive(true);
+
+        if (!hasPlayedCountdown && countdownObject != null && countdownVideoPlayer != null)
+        {
+            countdownObject.SetActive(true);            
+            countdownVideoPlayer.Play();                
+            StartCoroutine(HandleCountdown());
+            hasPlayedCountdown = true;                  
+        }
     }
+    private IEnumerator HandleCountdown()
+    {
+        // Mute music
+        if (menuMusic != null)
+            menuMusic.volume = 0f;
+
+        // Show countdown and play video
+        if (countdownObject != null)
+            countdownObject.SetActive(true);
+
+        if (countdownVideoPlayer != null)
+            countdownVideoPlayer.Play();
+
+        yield return new WaitForSeconds(6f);
+
+        // Unmute music
+        if (menuMusic != null)
+            menuMusic.volume = 1f;
+
+        // Destroy countdown
+        if (countdownObject != null)
+            Destroy(countdownObject);
+    }
+
+
 
     public void BackToJoin()
     {
