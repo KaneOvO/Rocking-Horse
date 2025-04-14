@@ -10785,6 +10785,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2083731529716943966, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6552169432772599416, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10880,6 +10885,11 @@ PrefabInstance:
       propertyPath: SpawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 909925598}
+    - target: {fileID: 9094229663030308453, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15443,6 +15453,12 @@ PrefabInstance:
       propertyPath: PlayerCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
+        type: 3}
+      propertyPath: PlayerPrefab
+      value: 
+      objectReference: {fileID: 310242483577952872, guid: 52aa02f131f5f3842a562fa618216ae7,
+        type: 3}
     - target: {fileID: 6862698040805236551, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: m_Name

@@ -133,7 +133,10 @@ namespace Items
 
             if(Target != null && Vector3.Distance(target, this.transform.position) < 1)
             {
-                Target.OnHitBarrier();
+                //Target.OnHitBarrier();
+                Target.OnHitChick();
+                //TODO: animation on hit
+                
                 CurrentTime = LastTime + 1;
 
                 Impact.transform.SetParent(null);

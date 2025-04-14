@@ -29,6 +29,8 @@ public class BlackHole : MonoBehaviour
             Vector3 direction = (transform.position - other.transform.position).normalized;
             
             other.transform.position += direction * (PullStrength * Time.deltaTime);
+            //todo: animation on being pulled
+            
         }
     }
 }

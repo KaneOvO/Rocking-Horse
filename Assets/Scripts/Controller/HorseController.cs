@@ -188,6 +188,7 @@ namespace Character
             if (value == 0 && DriftTime > 0) return;
 
             RotationSpeed = value;
+
         }
         private void OnChangeLane(Vector2 direction)
         {
@@ -250,6 +251,12 @@ namespace Character
                 Rigidbody.velocity = Vector3.zero;
                 return;
             }
+
+            // //Just for test
+            // if (Input.GetKeyDown(KeyCode.T))
+            // {
+            //     OnHitChick();
+            // }
 
             // Check Point Update
             PathPoint nextPoint = NPCMap.GetAt(CheckPointIndex + 1);
@@ -444,6 +451,8 @@ namespace Character
 
             HorseAnimator.SetFloat("Velocity", StunTime > 0 ? 0 : HVelocity.magnitude);
             HorseAnimator.SetFloat("BoosterTime", CurrentBoostTime);
+            HorseAnimator.SetFloat("StunTime", StunTime);
+            HorseAnimator.SetFloat("Direction", RotationSpeed);
         }
 
         public void OnCrossingBarrier(float energyAddValue)
@@ -454,6 +463,12 @@ namespace Character
         public void OnHitBarrier()
         {
             StunTime = 2;
+        }
+
+        public void OnHitChick()
+        {
+            HorseAnimator.SetTrigger("HitChick");
+            StunTime = 1f;
         }
 
         public void OnHitManure()
