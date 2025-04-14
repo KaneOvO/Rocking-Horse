@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using UnityEngine.Video;
+using UnityEngine.UI;
+using System.Collections;
 
 public class MenuManager : MonoBehaviour
 {
@@ -11,20 +12,49 @@ public class MenuManager : MonoBehaviour
     public GameObject tutorialPanel;
     public GameObject settingsPanel;
     public GameObject creditsPanel;
-    public GameObject countdownObject;           
+
+    [Header("Video Countdown")]
+    public GameObject countdownObject;
     public VideoPlayer countdownVideoPlayer;
+
+    [Header("Audio")]
     public AudioSource menuMusic;
-    private bool hasPlayedCountdown = false; 
+    public Slider volumeSlider;
+
+    [Header("Settings")]
+    public Toggle tutorialToggle;
+
+    private bool hasPlayedCountdown = false;
+    private bool SkipTutorial = false;
 
     private void Start()
     {
-        // Only show the main menu at the start
+
+        // TEMP: Reset all preferences every time the game starts (for testing)
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+
+        // Show only main menu at launch
         mainMenuPanel.SetActive(true);
         joinPanel.SetActive(false);
         tutorialPanel.SetActive(false);
         settingsPanel.SetActive(false);
         creditsPanel.SetActive(false);
+
+        // Load and apply saved volume
+        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
+        volumeSlider.value = savedVolume;
+        if (menuMusic != null)
+            menuMusic.volume = savedVolume;
+
+        // Only apply saved tutorial toggle if it's been saved before
+        if (PlayerPrefs.HasKey("SkipTutorial"))
+        {
+            bool savedSkipTutorial = PlayerPrefs.GetInt("SkipTutorial") == 1;
+            tutorialToggle.isOn = savedSkipTutorial;
+        }
     }
+
 
     public void OpenJoin()
     {
@@ -35,29 +65,43 @@ public class MenuManager : MonoBehaviour
 
     public void StartRace()
     {
-        SceneManager.LoadScene("MainScene");
+        bool skipTutorial = PlayerPrefs.GetInt("SkipTutorial", 0) == 1;
+
+        if (skipTutorial)
+        {
+            SceneManager.LoadScene("MainScene");
+        }
+        else
+        {
+            OpenTutorial(); // Only plays once
+        }
     }
 
     public void OpenTutorial()
     {
         joinPanel.SetActive(false);
-        tutorialPanel.SetActive(true);
-
-        if (!hasPlayedCountdown && countdownObject != null && countdownVideoPlayer != null)
+        if(SkipTutorial == false)
         {
-            countdownObject.SetActive(true);            
-            countdownVideoPlayer.Play();                
-            StartCoroutine(HandleCountdown());
-            hasPlayedCountdown = true;                  
+            tutorialPanel.SetActive(true);
+            if (!hasPlayedCountdown && countdownObject != null && countdownVideoPlayer != null)
+            {
+                countdownObject.SetActive(true);
+                countdownVideoPlayer.Play();
+                StartCoroutine(HandleCountdown());
+                hasPlayedCountdown = true;
+            }
+        } else
+        {
+            Debug.Log("MainScene");
+            SceneManager.LoadScene("MainScene");
         }
     }
+
     private IEnumerator HandleCountdown()
     {
-        // Mute music
         if (menuMusic != null)
             menuMusic.volume = 0f;
 
-        // Show countdown and play video
         if (countdownObject != null)
             countdownObject.SetActive(true);
 
@@ -66,16 +110,28 @@ public class MenuManager : MonoBehaviour
 
         yield return new WaitForSeconds(6f);
 
-        // Unmute music
         if (menuMusic != null)
             menuMusic.volume = 1f;
 
-        // Destroy countdown
         if (countdownObject != null)
             Destroy(countdownObject);
     }
 
+    public void OnVolumeChanged(float value)
+    {
+        if (menuMusic != null)
+            menuMusic.volume = value;
 
+        PlayerPrefs.SetFloat("MasterVolume", value);
+        PlayerPrefs.Save(); // optional but good to be safe
+    }
+
+
+    public void OnTutorialToggleChanged(bool isOn)
+    {
+        PlayerPrefs.SetInt("SkipTutorial", isOn ? 1 : 0);
+        SkipTutorial = true;
+    }
 
     public void BackToJoin()
     {
@@ -95,12 +151,6 @@ public class MenuManager : MonoBehaviour
         creditsPanel.SetActive(true);
     }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-        Debug.Log("Game Quit");
-    }
-
     public void BackToMenu()
     {
         joinPanel.SetActive(false);
@@ -108,5 +158,11 @@ public class MenuManager : MonoBehaviour
         tutorialPanel.SetActive(false);
         creditsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game Quit");
     }
 }
