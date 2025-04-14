@@ -77,12 +77,16 @@ public class ItemBox : MonoBehaviour
 
     private void OnTriggered(HorseController controller)
     {
-        StartCoroutine(GiveItemAfterScrollAnimation(controller));
-        //DetermineItem(controller);
-        //GetItem(controller);
+        // Only proceed if this controller has a UI (skip NPCs or unassigned players)
+        if (controller.horseUI == null)
+        {
+            //Debug.LogWarning($"{controller.name} does not have a horseUI assigned. Skipping animation.");
+            return;
+        }
 
-        //StartCoroutine(ItemBoxRespawn());
+        StartCoroutine(GiveItemAfterScrollAnimation(controller));
     }
+
 
     private IEnumerator GiveItemAfterScrollAnimation(HorseController controller)
     {
