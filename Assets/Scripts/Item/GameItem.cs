@@ -27,7 +27,28 @@ public class GameItem : MonoBehaviour
 
         IsItemReady = false;
         UpdateItemDisplayUI();
+
+        // Find and reverse the horseshoe spin animation directly
+        if (TryGetComponent(out HorseController controller) && controller.horseUI != null)
+        {
+            Transform horseshoeTransform = controller.horseUI.transform.Find("ItemBackground/Horseshoe");
+
+            if (horseshoeTransform != null)
+            {
+                Animator horseshoeAnimator = horseshoeTransform.GetComponent<Animator>();
+
+                if (horseshoeAnimator != null)
+                {
+                    horseshoeAnimator.Rebind();
+                    horseshoeAnimator.Update(0f);
+                    horseshoeAnimator.Play("Spin", 0, 1.0f); // Start from the end
+                    horseshoeAnimator.speed = -1f;           // Reverse playback
+                }
+            }
+        }
     }
+
+
 
     protected void UpdateItemDisplayUI()
     {
@@ -36,7 +57,7 @@ public class GameItem : MonoBehaviour
             return;
         }
 
-        Transform itemTransform = controller.horseUI.transform.Find("ItemImage");
+        Transform itemTransform = controller.horseUI.transform.Find("ItemBackground/ItemImage");
 
         if (itemTransform == null)
         {
@@ -66,7 +87,7 @@ public class GameItem : MonoBehaviour
             return;
         }
 
-        Transform itemTransform = controller.horseUI.transform.Find("ItemImage");
+        Transform itemTransform = controller.horseUI.transform.Find("ItemBackground/ItemImage");
 
         if (itemTransform == null)
         {

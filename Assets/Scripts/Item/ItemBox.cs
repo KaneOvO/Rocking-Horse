@@ -24,9 +24,9 @@ public class ItemBox : MonoBehaviour
 
     public float ItemBoxResponseTime;
 
-    public GameObject itemScrollObject;
-    public Animator itemUIAnimator;
-    public float UIAnimationDuration = 3f;
+    public float UIAnimationDuration = 2.5f;
+
+    public Animator horseshoeAnimator;
 
     private Dictionary<int, List<(ItemType type, float weight)>> ItemWeights = new()
     {
@@ -77,34 +77,61 @@ public class ItemBox : MonoBehaviour
 
     private void OnTriggered(HorseController controller)
     {
-        //StartCoroutine(GiveItemAfterScrollAnimation(controller));
-        DetermineItem(controller);
-        GetItem(controller);
+        StartCoroutine(GiveItemAfterScrollAnimation(controller));
+        //DetermineItem(controller);
+        //GetItem(controller);
 
-        StartCoroutine(ItemBoxRespawn());
+        //StartCoroutine(ItemBoxRespawn());
     }
 
     private IEnumerator GiveItemAfterScrollAnimation(HorseController controller)
     {
-        if (itemScrollObject != null)
-            itemScrollObject.SetActive(true);
+        // Scroll animation object
+        GameObject scrollObject = controller.horseUI.transform.Find("ItemBackground/ItemImage/ItemScrollHorizontal")?.gameObject;
+        Animator scrollAnimator = scrollObject?.GetComponent<Animator>();
+
+        // Horseshoe animation object
+        GameObject horseshoeObject = controller.horseUI.transform.Find("ItemBackground/Horseshoe")?.gameObject;
+        Animator horseshoeAnimator = horseshoeObject?.GetComponent<Animator>();
+
+        if (scrollObject != null)
+            scrollObject.SetActive(true);
+
+        if (horseshoeObject != null)
+            horseshoeObject.SetActive(true);
 
         yield return null;
 
-        if (itemUIAnimator == null && controller.horseUI != null)
-            itemUIAnimator = controller.horseUI.GetComponentInChildren<Animator>();
-
-        if (itemUIAnimator != null)
+        if (scrollAnimator != null)
         {
-            itemUIAnimator.Rebind();     
-            itemUIAnimator.Update(0f);   
-            itemUIAnimator.SetTrigger("Scroll");
+            scrollAnimator.Rebind();
+            scrollAnimator.Update(0f);
+            scrollAnimator.SetTrigger("Scroll");
         }
 
-        yield return new WaitForSeconds(UIAnimationDuration);
+        // Wait until 1 second is left in the Scroll animation
+        yield return new WaitForSeconds(UIAnimationDuration - 1.0f);
 
-        if (itemScrollObject != null)
-            itemScrollObject.SetActive(false);
+        // Trigger the Horseshoe animation
+        if (horseshoeAnimator != null)
+        {
+            horseshoeAnimator.Rebind();
+            horseshoeAnimator.Update(0f);
+            horseshoeAnimator.SetTrigger("Spin");
+        }
+
+        // Wait the final second
+        yield return new WaitForSeconds(1.5f);
+
+        // Hide scroll object
+        if (scrollObject != null)
+            scrollObject.SetActive(false);
+
+
+        DetermineItem(controller);
+        GetItem(controller);
+
+        StartCoroutine(ItemBoxRespawn());
     }
 
     private IEnumerator ItemBoxRespawn()
