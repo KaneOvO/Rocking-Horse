@@ -86,7 +86,18 @@ public class ToNextCamera : MonoBehaviour
 
     [Header("Scene 7")]
     [SerializeField]
+    private GameObject[] Horses7;
+
+    [SerializeField]
+    private GameObject CarrotRocket;
+
+    [SerializeField]
     private CinemachineVirtualCamera camera7;
+
+
+    [Header("Scene 8")]
+    [SerializeField]
+    private CinemachineVirtualCamera camera8;
 
     [SerializeField]
     private CinemachineDollyCart dolly7;
@@ -95,7 +106,10 @@ public class ToNextCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        foreach(GameObject horse in Horses7)
+        {
+            horse.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -129,6 +143,10 @@ public class ToNextCamera : MonoBehaviour
         {
             Scene7();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            Scene8();
+        }
 
         if (spawnedChicken !=null)
         {
@@ -146,7 +164,7 @@ public class ToNextCamera : MonoBehaviour
                 spawnedChicken.GetComponent<TrailerChicken>().Detonation();
 
                 Horses4[0].GetComponent<SplineAnimate>().enabled = false;
-                Horses4[0].GetComponentInChildren<Animator>().Play("Idle");
+                Horses4[0].GetComponentInChildren<Animator>().Play("Stun");
             }
         }
         else
@@ -167,14 +185,14 @@ public class ToNextCamera : MonoBehaviour
         currentCamera.Priority = 99;
     }
 
-    public void Scene1()
+    public void Scene2()
     {
         SwitchCamera(camera1);
 
         dolly1.enabled = true;
     }
 
-    public void Scene2()
+    public void Scene3()
     {
         SwitchCamera(camera2);
 
@@ -205,7 +223,7 @@ public class ToNextCamera : MonoBehaviour
 
     }
 
-    public void Scene3()
+    public void Scene4()
     {
         SwitchCamera(camera3);
         foreach (var horse in Horses3)
@@ -216,7 +234,7 @@ public class ToNextCamera : MonoBehaviour
         }
     }
 
-    public void Scene4()
+    public void Scene5()
     {
         SwitchCamera(camera4);
         foreach (var horse in Horses4)
@@ -253,7 +271,7 @@ public class ToNextCamera : MonoBehaviour
 
     }
 
-    public void Scene5()
+    public void Scene6()
     {
         SwitchCamera(camera5);
 
@@ -278,7 +296,7 @@ public class ToNextCamera : MonoBehaviour
         SwitchCamera(camera5_2);
     }
 
-    public void Scene6()
+    public void Scene1()
     {
         SwitchCamera(camera6);
 
@@ -287,7 +305,37 @@ public class ToNextCamera : MonoBehaviour
 
     public void Scene7()
     {
-        SwitchCamera(camera7);
+
+        SwitchCamera (camera7);
+
+        foreach (GameObject horse in Horses7)
+        {
+            horse.SetActive(true);
+            horse.GetComponent<SplineAnimate>().Restart(true);
+            horse.GetComponentInChildren<Animator>().Play("Run");
+        }
+
+        StartCoroutine(CarrotRocketDelay(2));
+    }
+
+    private IEnumerator CarrotRocketDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Horses7[3].GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+
+        Horses7[3].GetComponent<SplineAnimate>().Duration = 4;
+
+        Horses7[3].GetComponent<SplineAnimate>().StartOffset = 0.1f;
+
+        Horses7[3].GetComponent<SplineAnimate>().Restart(true);
+
+        CarrotRocket.SetActive(true);
+    }
+
+    public void Scene8()
+    {
+        SwitchCamera(camera8);
 
         dolly7.enabled = true;
     }
