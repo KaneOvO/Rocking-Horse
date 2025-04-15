@@ -30,7 +30,7 @@ public class LapCounter : MonoBehaviour
                 return;
             
             isInsideFinishTrigger = true;
-
+            
             lapFinished++;
             Debug.Log("Lap Finished: " + lapFinished);
 

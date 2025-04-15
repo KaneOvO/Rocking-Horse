@@ -276,6 +276,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 289f7d83e28113b488b6b6e4a58145ce,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4093,6 +4098,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257a1d4923c1aac43a5cde1f55340de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  introAudioClip: {fileID: 0}
+  introAudioPitch: 1
+  endSFX: {fileID: 0}
+  sfxSource: {fileID: 0}
   pairings:
   - camera: {fileID: 695480392}
     dolly: {fileID: 713376414}
@@ -11916,6 +11926,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1655275736057299857, guid: 3271a819dae009241833e9725a0b2d52,
         type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.1835
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655275736057299857, guid: 3271a819dae009241833e9725a0b2d52,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.4
       objectReference: {fileID: 0}
@@ -11968,6 +11983,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FinishLine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586409469072265428, guid: 3271a819dae009241833e9725a0b2d52,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
