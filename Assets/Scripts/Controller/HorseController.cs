@@ -255,7 +255,7 @@ namespace Character
             // //Just for test
             // if (Input.GetKeyDown(KeyCode.T))
             // {
-            //     OnHitChick();
+            //     OnHitBlackHole();
             // }
 
             // Check Point Update
@@ -469,6 +469,13 @@ namespace Character
         {
             HorseAnimator.SetTrigger("HitChick");
             StunTime = 1f;
+        }
+
+        public void OnHitBlackHole()
+        {
+            HorseAnimator.SetTrigger("HitBlackHole");
+            StunTime = 2.5f;
+            
         }
 
         public void OnHitManure()

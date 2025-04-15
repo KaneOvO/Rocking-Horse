@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using UnityEngine;
 
 public class BlackHole : MonoBehaviour
@@ -42,18 +43,17 @@ public class BlackHole : MonoBehaviour
                 hasTriggered = true;
                 
                 //todo: freeze movement
-                
-                PlayerAnimation();
+                if(other.TryGetComponent(out HorseController controller))
+                {
+                    controller.OnHitBlackHole();
+                }
 
                 StartCoroutine(SelfDestroy());
             }
         }
     }
 
-    public void PlayerAnimation()
-    {
-        //todo: animation on being pulled
-    }
+    
 
     private IEnumerator SelfDestroy()
     {
