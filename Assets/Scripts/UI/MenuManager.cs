@@ -25,7 +25,6 @@ public class MenuManager : MonoBehaviour
     public Toggle tutorialToggle;
 
     private bool hasPlayedCountdown = false;
-    private bool SkipTutorial = false;
 
     private void Start()
     {
@@ -65,35 +64,27 @@ public class MenuManager : MonoBehaviour
 
     public void StartRace()
     {
-        bool skipTutorial = PlayerPrefs.GetInt("SkipTutorial", 0) == 1;
-
-        if (skipTutorial)
-        {
-            SceneManager.LoadScene("MainScene");
-        }
-        else
-        {
-            OpenTutorial(); // Only plays once
-        }
+        SceneManager.LoadScene("MainGameScene");
     }
 
     public void OpenTutorial()
     {
+        bool skipTutorial = PlayerPrefs.GetInt("SkipTutorial", 0) == 1;
+
+        if (skipTutorial)
+        {
+            StartRace();
+            return;
+        }
+
         joinPanel.SetActive(false);
-        if(SkipTutorial == false)
+        tutorialPanel.SetActive(true);
+        if (!hasPlayedCountdown && countdownObject != null && countdownVideoPlayer != null)
         {
-            tutorialPanel.SetActive(true);
-            if (!hasPlayedCountdown && countdownObject != null && countdownVideoPlayer != null)
-            {
-                countdownObject.SetActive(true);
-                countdownVideoPlayer.Play();
-                StartCoroutine(HandleCountdown());
-                hasPlayedCountdown = true;
-            }
-        } else
-        {
-            Debug.Log("MainScene");
-            SceneManager.LoadScene("MainScene");
+            countdownObject.SetActive(true);
+            countdownVideoPlayer.Play();
+            StartCoroutine(HandleCountdown());
+            hasPlayedCountdown = true;
         }
     }
 
@@ -130,7 +121,6 @@ public class MenuManager : MonoBehaviour
     public void OnTutorialToggleChanged(bool isOn)
     {
         PlayerPrefs.SetInt("SkipTutorial", isOn ? 1 : 0);
-        SkipTutorial = true;
     }
 
     public void BackToJoin()
