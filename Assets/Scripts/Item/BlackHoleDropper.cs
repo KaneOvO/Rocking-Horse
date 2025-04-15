@@ -14,8 +14,13 @@ public class BlackHoleDropper : GameItem
     public override void OnUseItem()
     {
         base.OnUseItem();
-        
-        var blackHole = Instantiate(BlackHolePrefab, transform.position, Quaternion.identity);
-        blackHole.GetComponent<BlackHole>().Dropper = gameObject;
+
+        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 10f))
+        {
+            Vector3 spawnPosition = hit.point + Vector3.up * 0.05f;
+            Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, hit.normal); // Y轴对齐法线
+
+            GameObject blackHole = Instantiate(BlackHolePrefab, spawnPosition, spawnRotation);
+        }
     }
 }

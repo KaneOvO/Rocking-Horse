@@ -6,8 +6,12 @@ using UnityEngine;
 public class BlackHole : MonoBehaviour
 {
     public GameObject Dropper;
+    public GameObject Target;
     public float Duration;
     public float PullStrength;
+    public float TriggeredDuration;
+    
+    private bool hasTriggered = false;
     
     public void Update()
     {
@@ -26,11 +30,35 @@ public class BlackHole : MonoBehaviour
             if (other.gameObject == Dropper)
                 return;
             
-            Vector3 direction = (transform.position - other.transform.position).normalized;
+            if (!Target)
+                Target = other.gameObject;
             
-            other.transform.position += direction * (PullStrength * Time.deltaTime);
-            //todo: animation on being pulled
+            Vector3 direction = (transform.position - Target.transform.position).normalized;
             
+            Target.transform.position += direction * (PullStrength * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, Target.transform.position) < 1f && hasTriggered == false)
+            {
+                hasTriggered = true;
+                
+                //todo: freeze movement
+                
+                PlayerAnimation();
+
+                StartCoroutine(SelfDestroy());
+            }
         }
+    }
+
+    public void PlayerAnimation()
+    {
+        //todo: animation on being pulled
+    }
+
+    private IEnumerator SelfDestroy()
+    {
+        yield return new WaitForSeconds(TriggeredDuration);
+        
+        Destroy(gameObject);
     }
 }
