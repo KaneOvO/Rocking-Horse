@@ -164,7 +164,7 @@ public class ToNextCamera : MonoBehaviour
                 spawnedChicken.GetComponent<TrailerChicken>().Detonation();
 
                 Horses4[0].GetComponent<SplineAnimate>().enabled = false;
-                Horses4[0].GetComponentInChildren<Animator>().Play("Stun");
+                Horses4[0].GetComponentInChildren<Animator>().Play("Splat");
             }
         }
         else
