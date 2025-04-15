@@ -1,9 +1,12 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Splines;
+using UnityEngine.VFX;
 
 public class ToNextCamera : MonoBehaviour
 {
@@ -64,6 +67,30 @@ public class ToNextCamera : MonoBehaviour
     [SerializeField]
     private GameObject chickenSpawn;
 
+    [Header("Scene 5")]
+    [SerializeField]
+    private GameObject[] Horses5;
+
+    [SerializeField]
+    private CinemachineVirtualCamera camera5;
+
+    [SerializeField]
+    private CinemachineVirtualCamera camera5_2;
+
+    [Header("Scene 6")]
+    [SerializeField]
+    private CinemachineVirtualCamera camera6;
+
+    [SerializeField]
+    private CinemachineDollyCart dolly6;
+
+    [Header("Scene 7")]
+    [SerializeField]
+    private CinemachineVirtualCamera camera7;
+
+    [SerializeField]
+    private CinemachineDollyCart dolly7;
+
 
     // Start is called before the first frame update
     void Start()
@@ -90,8 +117,20 @@ public class ToNextCamera : MonoBehaviour
         {
             Scene4();
         }
-       
-        if(spawnedChicken !=null)
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Scene5();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            Scene6();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            Scene7();
+        }
+
+        if (spawnedChicken !=null)
         {
 
             gameLerp += Time.deltaTime * lerp;
@@ -101,6 +140,14 @@ public class ToNextCamera : MonoBehaviour
             spawnedChicken.transform.rotation = Quaternion.Slerp(spawnedChicken.transform.rotation, Horses4[0].transform.rotation, 1);
 
             spawnedChicken.transform.position = tmep;
+
+            if(gameLerp > 1)
+            {
+                spawnedChicken.GetComponent<TrailerChicken>().Detonation();
+
+                Horses4[0].GetComponent<SplineAnimate>().enabled = false;
+                Horses4[0].GetComponentInChildren<Animator>().Play("Idle");
+            }
         }
         else
         {
@@ -131,14 +178,23 @@ public class ToNextCamera : MonoBehaviour
     {
         SwitchCamera(camera2);
 
+        StartCoroutine(Scene2Start(1f));
+        
+    }
+
+    private IEnumerator Scene2Start(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
         foreach (var horse in Horses1)
         {
             horse.GetComponent<SplineAnimate>().Restart(true);
 
             horse.GetComponentInChildren<Animator>().Play("Run");
-
-            StartCoroutine(Scene2Switch(1f));
         }
+
+        StartCoroutine(Scene2Switch(1f));
+
     }
 
     private IEnumerator Scene2Switch(float delay)
@@ -196,5 +252,45 @@ public class ToNextCamera : MonoBehaviour
         camera4.Follow = spawnedChicken.transform;
 
     }
+
+    public void Scene5()
+    {
+        SwitchCamera(camera5);
+
+        foreach (var horse in Horses5)
+        {
+            horse.SetActive(true);
+
+            horse.GetComponent<SplineAnimate>().Restart(true);
+            horse.GetComponentInChildren<Animator>().Play("Run");
+
+            horse.GetComponentInChildren<Animator>().speed = 0.5f;
+        }
+
+        StartCoroutine(Scene5Switch(1f));
+
+    }
+
+    private IEnumerator Scene5Switch(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        SwitchCamera(camera5_2);
+    }
+
+    public void Scene6()
+    {
+        SwitchCamera(camera6);
+
+        dolly6.enabled = true;
+    }
+
+    public void Scene7()
+    {
+        SwitchCamera(camera7);
+
+        dolly7.enabled = true;
+    }
+
 
 }
