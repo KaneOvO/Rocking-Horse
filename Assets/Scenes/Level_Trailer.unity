@@ -1189,8 +1189,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119274355}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.028327841, y: 0.5820099, z: -0.020218685, w: 0.8124366}
-  m_LocalPosition: {x: 4.8255234, y: -13.029999, z: 30.032013}
+  m_LocalRotation: {x: 0, y: 0.628642, z: 0, w: 0.7776949}
+  m_LocalPosition: {x: 0.5704956, y: -9.320007, z: 35.39216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4357,7 +4357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  m_NoiseProfile: {fileID: 11400000, guid: b241f91b9ccf8ff489abf204b30d3112, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
   m_AmplitudeGain: 1
   m_FrequencyGain: 1

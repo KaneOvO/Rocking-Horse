@@ -305,6 +305,9 @@ public class ToNextCamera : MonoBehaviour
 
     public void Scene7()
     {
+        CarrotRocket.SetActive(false);
+        Horses7[3].GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        Horses7[3].GetComponent<SplineAnimate>().Duration = 18;
 
         SwitchCamera (camera7);
 
@@ -326,7 +329,7 @@ public class ToNextCamera : MonoBehaviour
 
         Horses7[3].GetComponent<SplineAnimate>().Duration = 4;
 
-        Horses7[3].GetComponent<SplineAnimate>().StartOffset = 0.1f;
+        Horses7[3].GetComponent<SplineAnimate>().StartOffset = 0.125f;
 
         Horses7[3].GetComponent<SplineAnimate>().Restart(true);
 
