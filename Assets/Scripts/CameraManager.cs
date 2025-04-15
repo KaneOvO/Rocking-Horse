@@ -7,6 +7,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance { get; private set; }
+    public GameObject mainCamera;
 
     public List<GameObject> MainCameras = new List<GameObject>();
     public List<GameObject> UICameras = new List<GameObject>();
@@ -51,6 +52,10 @@ public class CameraManager : MonoBehaviour
     {
         MainCameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
         UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
+
+        // if(mainCamera != null)
+        //     mainCamera.GetComponent<Camera>().enabled = false;
+        
     }
 
     void TwoPlayerMode()
@@ -60,6 +65,22 @@ public class CameraManager : MonoBehaviour
 
         UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 1, 0.5f);
         UICameras[1].GetComponent<Camera>().rect = new Rect(0, 0, 1, 0.5f);
+
+        // if(mainCamera != null)
+        //     mainCamera.GetComponent<Camera>().enabled = false;
+    }
+
+    void ThreePlayerMode()
+    {
+        MainCameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+        MainCameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+        MainCameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
+
+        UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+        UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+        UICameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
+
+        mainCamera.GetComponent<Camera>().rect = new Rect(0, 0, 0, 0);
     }
 
     void FourPlayerMode()
@@ -73,6 +94,9 @@ public class CameraManager : MonoBehaviour
         UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
         UICameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
         UICameras[3].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+
+        // if(mainCamera != null)
+        //     mainCamera.GetComponent<Camera>().enabled = false;
     }
 
     public void SetCamera()
@@ -85,6 +109,9 @@ public class CameraManager : MonoBehaviour
                 break;
             case 2:
                 TwoPlayerMode();
+                break;
+            case 3:
+                ThreePlayerMode();
                 break;
             case 4:
                 FourPlayerMode();

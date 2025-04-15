@@ -6613,7 +6613,7 @@ MonoBehaviour:
   - camera: {fileID: 1037630655}
     dolly: {fileID: 1468503441}
   uiCanvas: {fileID: 642703012}
-  bSkipIntro: 0
+  bSkipIntro: 1
 --- !u!4 &412844494
 Transform:
   m_ObjectHideFlags: 0
@@ -13647,6 +13647,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219259290196205810, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 119274355}
     - target: {fileID: 4013500243370052203, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: baudRate
@@ -19661,7 +19666,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PlayerPrefab
       value: 
-      objectReference: {fileID: 310242483577952872, guid: cbb2c26f476314d42a72cf71ab0b23f0,
+      objectReference: {fileID: 310242483577952872, guid: 52aa02f131f5f3842a562fa618216ae7,
         type: 3}
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}

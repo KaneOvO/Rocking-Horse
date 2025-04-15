@@ -120,6 +120,23 @@ public class LevelManager : MonoBehaviour
                 sharedUIs[1].anchorMax = new Vector2(0.5f, 1);
                 sharedUIs[1].anchoredPosition = Vector2.zero;
                 break;
+            case 3:
+                sharedUIs[0].sizeDelta = Vector2.one * 1024;
+                sharedUIs[1].sizeDelta = Vector2.one * 1024;
+                sharedUIs[2].sizeDelta = Vector2.one * 1024;
+
+                sharedUIs[0].anchorMin = Vector2.right;
+                sharedUIs[0].anchorMax = Vector2.right;
+                sharedUIs[0].anchoredPosition = Vector2.zero;
+
+                sharedUIs[1].anchorMin = Vector2.zero;
+                sharedUIs[1].anchorMax = Vector2.zero;
+                sharedUIs[1].anchoredPosition = Vector2.zero;
+
+                sharedUIs[2].anchorMin = Vector2.one;
+                sharedUIs[2].anchorMax = Vector2.one;
+                sharedUIs[2].anchoredPosition = Vector2.zero;
+                break;
             case 4:
                 sharedUIs[0].sizeDelta = Vector2.one * 1024;
                 sharedUIs[1].sizeDelta = Vector2.one * 1024;
