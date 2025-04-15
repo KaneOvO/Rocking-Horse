@@ -20,7 +20,7 @@ namespace NPC
 
         private void Start()
         {
-            Path[Path.Count - 1].isLastPoint = true;
+            Path[^1].isLastPoint = true;
         }
 
         public static PathPoint GetAt(int index)
