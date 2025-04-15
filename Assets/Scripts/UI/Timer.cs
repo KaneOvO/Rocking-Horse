@@ -17,7 +17,7 @@ namespace GameUI
         [SerializeField] private AudioSource musicSource;
         [SerializeField] private AudioClip mainTrack;
 
-        private void Start()
+        public void BeginCountdown()
         {
             HideAllCountdowns();
             StartCoroutine(CountdownRoutine());
@@ -25,7 +25,7 @@ namespace GameUI
 
         private IEnumerator CountdownRoutine()
         {
-            yield return new WaitForSeconds(2.5f); // Initial delay
+            yield return new WaitForSeconds(0.5f); // Short delay after intro
 
             if (audioSource != null && countdownStartSFX != null)
             {

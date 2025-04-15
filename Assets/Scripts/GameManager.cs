@@ -68,7 +68,18 @@ public class GameManager : MonoBehaviour
         //Debug.Log(IsStarted);
 
         //Debug.Log(TimeBeforeStart);
+
+        if (finalRanking.Count >= PlayerCount)
+        {
+            
+        }
     }
+
+    public void ShowPlayerPlacement()
+    {
+        
+    }
+    
     public void RestartGame()
     {
         TimeBeforeStart = 3;
