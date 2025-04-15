@@ -16,6 +16,7 @@ public class MultiSerialManager : MonoBehaviour
         string[] ports = SerialPort.GetPortNames();
         int i = 0;
 
+
         foreach (string port in ports)
         {
             SerialPort sp = new SerialPort(port, baudRate);
@@ -47,23 +48,18 @@ public class MultiSerialManager : MonoBehaviour
 
                 if (receivedData != null)
                 {
+                    int index = 0;
                     string[] dataParts = receivedData.Split(',');
-                    bool isArduino = dataParts.Length >= 3 &&
+                    bool isArduino = dataParts.Length >= 4 &&
                                      float.TryParse(dataParts[0], out _) &&
                                      float.TryParse(dataParts[1], out _) &&
-                                     float.TryParse(dataParts[2], out _);
+                                     float.TryParse(dataParts[2], out _) &&
+                                     int.TryParse(dataParts[3], out index);
 
                     UnityEngine.Debug.Log($"[{port}] Format valid: {isArduino}");
 
-                    if (isArduino)
+                    if (isArduino && index >= 0 && index < listeners.Length)
                     {
-                        if (i > listeners.Length)
-                        {
-                            UnityEngine.Debug.LogWarning("Not enough listeners for connected devices.");
-                            sp.Close();
-                            break;
-                        }
-
                         sp.Close();
 
                         GameObject serialController = Instantiate(serialControllerPrefab);
@@ -71,16 +67,16 @@ public class MultiSerialManager : MonoBehaviour
                         {
                             controller.portName = port;
                             controller.baudRate = baudRate;
-                            controller.messageListener = listeners[i];
+                            controller.messageListener = listeners[index];
                             i++;
                             serialController.SetActive(true);
                             controller.enabled = true;
-                            UnityEngine.Debug.Log($"[{port}] Controller assigned to listener {i - 1}");
+                            UnityEngine.Debug.Log($"[{port}] Controller assigned to listener {index}");
                         }
                     }
                 }
 
-                
+
             }
             catch (Exception ex)
             {
