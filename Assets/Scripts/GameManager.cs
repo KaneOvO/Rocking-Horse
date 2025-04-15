@@ -71,13 +71,17 @@ public class GameManager : MonoBehaviour
 
         if (finalRanking.Count >= PlayerCount)
         {
-            
+            ShowPlayerPlacement();
         }
     }
 
-    public void ShowPlayerPlacement()
+    private void ShowPlayerPlacement()
     {
-        
+        for (int i = 0; i < Players.Count; i++)
+        {
+            int rank = i + 1;
+            string timeUsed = $"{TimeSpan.FromSeconds(finalRanking[i].Item1):mm\\:ss\\.ff}";
+        }
     }
     
     public void RestartGame()

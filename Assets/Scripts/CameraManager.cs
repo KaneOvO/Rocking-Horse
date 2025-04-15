@@ -74,13 +74,13 @@ public class CameraManager : MonoBehaviour
     {
         MainCameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
         MainCameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-        MainCameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
+        MainCameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
 
         UICameras[0].GetComponent<Camera>().rect = new Rect(0, 0.5f, 0.5f, 0.5f);
         UICameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-        UICameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 0.5f);
+        UICameras[2].GetComponent<Camera>().rect = new Rect(0, 0, 1f, 0.5f);
 
-        mainCamera.GetComponent<Camera>().rect = new Rect(0, 0, 0, 0);
+        //mainCamera.GetComponent<Camera>().rect = new Rect(0, 0, 0, 0);
     }
 
     void FourPlayerMode()
