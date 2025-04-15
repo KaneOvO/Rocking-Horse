@@ -119,7 +119,7 @@ public class CinemachineManager : MonoBehaviour
 
         FindObjectOfType<LevelManager>().SpawnPlayer();
 
-        GameManager.Instance.StartGame();
+        FindObjectOfType<GameUI.Timer>()?.BeginCountdown();
     }
 
     private IEnumerator PlayEndSFXAfterDelay(float delay)
