@@ -1,43 +1,25 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace GameUI
 {
     public class Timer : MonoBehaviour
     {
-        private List<TextMeshProUGUI> startTimeTexts = new List<TextMeshProUGUI>();
+        [Header("Countdown Assets")]
+        [SerializeField] private GameObject countdown3;
+        [SerializeField] private GameObject countdown2;
+        [SerializeField] private GameObject countdown1;
+        [SerializeField] private GameObject giddyUp;
 
         [Header("Audio")]
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip countdownStartSFX;
-        [SerializeField] private AudioSource musicSource;       
+        [SerializeField] private AudioSource musicSource;
         [SerializeField] private AudioClip mainTrack;
 
         private void Start()
         {
-            GameObject uis = GameObject.Find("UIs");
-            if (uis == null) return;
-
-            for (int i = 1; i <= 4; i++)
-            {
-                Transform ui = uis.transform.Find("UI" + i);
-                if (ui != null)
-                {
-                    Transform startTime = ui.Find("StartTime");
-                    if (startTime != null)
-                    {
-                        TextMeshProUGUI text = startTime.GetComponent<TextMeshProUGUI>();
-                        if (text != null)
-                        {
-                            text.enabled = false;
-                            startTimeTexts.Add(text);
-                        }
-                    }
-                }
-            }
-
+            HideAllCountdowns();
             StartCoroutine(CountdownRoutine());
         }
 
@@ -51,47 +33,43 @@ namespace GameUI
             }
 
             GameManager.TimeBeforeStart = 3;
-            ShowTextOnAll("3");
+            countdown3.SetActive(true);
             yield return new WaitForSeconds(1f);
 
+            countdown3.SetActive(false);
             GameManager.TimeBeforeStart = 2;
-            ShowTextOnAll("2");
+            countdown2.SetActive(true);
             yield return new WaitForSeconds(1f);
 
+            countdown2.SetActive(false);
             GameManager.TimeBeforeStart = 1;
-            ShowTextOnAll("1");
+            countdown1.SetActive(true);
             yield return new WaitForSeconds(1f);
 
+            countdown1.SetActive(false);
             GameManager.TimeBeforeStart = 0;
-            ShowTextOnAll("GO!");
+            giddyUp.SetActive(true);
+
             if (musicSource != null && mainTrack != null)
             {
                 musicSource.clip = mainTrack;
                 musicSource.loop = true;
                 musicSource.Play();
             }
+
             GameManager.Instance.StartGame();
             GameManager.GameStartEvent?.Invoke();
+
             yield return new WaitForSeconds(0.5f);
-
-            HideAllText();
+            giddyUp.SetActive(false);
         }
 
-        private void ShowTextOnAll(string content)
+        private void HideAllCountdowns()
         {
-            foreach (var text in startTimeTexts)
-            {
-                text.text = content;
-                text.enabled = true;
-            }
-        }
-
-        private void HideAllText()
-        {
-            foreach (var text in startTimeTexts)
-            {
-                text.enabled = false;
-            }
+            countdown3.SetActive(false);
+            countdown2.SetActive(false);
+            countdown1.SetActive(false);
+            giddyUp.SetActive(false);
         }
     }
 }
