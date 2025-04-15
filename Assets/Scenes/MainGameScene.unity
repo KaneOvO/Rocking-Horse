@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 00dc78e00c2ddd8499d52adf9111dda2, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1414,6 +1414,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DustDevil (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887847389238690140, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5924247514274998233, guid: 57be202b80355904994936933201ed92,
         type: 3}
@@ -13473,6 +13478,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DustDevil (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5887847389238690140, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5924247514274998233, guid: 57be202b80355904994936933201ed92,
         type: 3}
       propertyPath: m_Enabled
@@ -20024,6 +20034,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DustDevil
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887847389238690140, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5924247514274998233, guid: 57be202b80355904994936933201ed92,
         type: 3}
