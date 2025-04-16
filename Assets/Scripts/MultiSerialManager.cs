@@ -90,6 +90,18 @@ public class MultiSerialManager : MonoBehaviour
                             controller.baudRate = baudRate;
                             controller.messageListener = listeners[i];
                             listeners[i].GetComponent<MyListener>().color = (PlayerColor)index;
+                            string iconObjectName = $"P{i + 1}"; // Assuming your icons are named "P1", "P2", etc.
+                            GameObject iconObject = GameObject.Find(iconObjectName);
+
+                            if (iconObject != null)
+                            {
+                                var switcher = iconObject.GetComponent<DynamicPlayerNumber>();
+                                if (switcher != null)
+                                {
+                                    switcher.SetColor((PlayerColor)index);
+                                }
+                            }
+
                             i++;
                             serialController.SetActive(true);
                             controller.enabled = true;
