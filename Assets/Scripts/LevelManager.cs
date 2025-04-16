@@ -33,11 +33,19 @@ public class LevelManager : MonoBehaviour
 
             GameManager.Instance.StartGame();
         }
+
+        if (MultiSerialManager.Instance != null)
+        {
+            for (int i = 0; i < MultiSerialManager.Instance.listeners.Length; i++)
+            {
+                Listeners.Add(MultiSerialManager.Instance.listeners[i].GetComponent<MyListener>());
+            }
+        }
     }
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame

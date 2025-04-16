@@ -7,14 +7,28 @@ using System;
 
 public class MultiSerialManager : MonoBehaviour
 {
+    public static MultiSerialManager Instance { get; private set; }
     public GameObject serialControllerPrefab;
     public GameObject[] listeners;
     public int baudRate = 9600;
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+    }
+
     void Start()
     {
         string[] ports = SerialPort.GetPortNames();
-        int i = 0;
 
 
         foreach (string port in ports)
@@ -30,7 +44,7 @@ public class MultiSerialManager : MonoBehaviour
 
                 string receivedData = null;
                 Stopwatch stopwatch = Stopwatch.StartNew();
-                while (stopwatch.ElapsedMilliseconds < 1000)
+                while (stopwatch.ElapsedMilliseconds < 500)
                 {
                     try
                     {
@@ -68,10 +82,10 @@ public class MultiSerialManager : MonoBehaviour
                             controller.portName = port;
                             controller.baudRate = baudRate;
                             controller.messageListener = listeners[index];
-                            i++;
                             serialController.SetActive(true);
                             controller.enabled = true;
                             UnityEngine.Debug.Log($"[{port}] Controller assigned to listener {index}");
+                            GameManager.Instance.PlayerCount++;
                         }
                     }
                 }

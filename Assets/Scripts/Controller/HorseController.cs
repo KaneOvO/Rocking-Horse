@@ -475,7 +475,7 @@ namespace Character
         {
             HorseAnimator.SetTrigger("HitBlackHole");
             StunTime = 2.5f;
-            
+
         }
 
         public void OnHitManure()

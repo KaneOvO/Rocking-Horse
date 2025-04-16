@@ -34,6 +34,7 @@ public class SerialController : MonoBehaviour
         serialThread = new SerialThreadLines(portName, baudRate, reconnectionDelay, maxUnreadMessages);
         thread = new Thread(new ThreadStart(serialThread.RunForever));
         thread.Start();
+        DontDestroyOnLoad(this);
     }
 
     void OnDisable()
