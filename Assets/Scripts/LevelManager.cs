@@ -13,6 +13,10 @@ public class LevelManager : MonoBehaviour
     public List<MyListener> Listeners = new List<MyListener>();
     public GameObject MiniMapPrefab;
 
+    public GameObject Podium;
+    public Transform EndGameCameraPos;
+    public Transform[] EndGameHorsePos;
+
     [SerializeField]
     public bool skipCameraIntro;
 
