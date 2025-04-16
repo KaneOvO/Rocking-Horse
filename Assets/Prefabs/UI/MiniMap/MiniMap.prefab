@@ -89,8 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed91c536b77724847b9cda1e42e7751b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapScale: 5
+  MapScale: 3
   PlayerMark: {fileID: 3964631569611463970}
+  Offset: {x: -45, y: -45}
   Sprites:
   - {fileID: 21300000, guid: c49aeb29def9f6a49bca03b3ddbd8ccc, type: 3}
   - {fileID: 21300000, guid: 0d9f0bf0060cc4141858f1f6842001c6, type: 3}
