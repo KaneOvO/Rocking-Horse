@@ -13,6 +13,7 @@ namespace GameUI
 
         public GameObject[] HorsePreview = new GameObject[0];
         public GameObject[] ReadyUpObject = new GameObject[0];
+        public GameObject[] PlayerIcon = new GameObject[0];
 
         private uint ReadyAmount = 0;
 
@@ -25,14 +26,17 @@ namespace GameUI
             {
                 var listener = Controllers[i];
                 var horse = HorsePreview[i];
+                var playericon = PlayerIcon[i];
                 if (!listener.IsConnected)
                 {
                     ReadyAmount++;
                     horse.SetActive(false);
+                    playericon.SetActive(false);
                 }
                 else
                 {
                     horse.SetActive(true);
+                    playericon.SetActive(true);
                 }
             }
             foreach(GameObject readyup in ReadyUpObject)

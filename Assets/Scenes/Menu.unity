@@ -1134,7 +1134,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3db35d4fa7468724e847ad22bbcd08da, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 50fb94f7fc38d3b428ed169477822cd6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -1492,7 +1492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &293476871
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1562,10 +1562,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646504ba13aa0c94b8b1bafd558a29cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redIcon: {fileID: 21300000, guid: c298641f82da524459146d7ef7b22de5, type: 3}
-  blueIcon: {fileID: 21300000, guid: 051e0b041a9b29940a2df43778542e65, type: 3}
-  greenIcon: {fileID: 21300000, guid: 6c29e192231614e4fbc79d5ec80a6a6c, type: 3}
-  yellowIcon: {fileID: 21300000, guid: d38ee4bf3ce5eda4fa80782d1c8c6eab, type: 3}
+  redIcon: {fileID: 21300000, guid: d347147797f94ff4b98793048143d403, type: 3}
+  blueIcon: {fileID: 21300000, guid: 0fe211528c1dd814bb7bf11749198901, type: 3}
+  greenIcon: {fileID: 21300000, guid: 0fc1be4ffdcc4f34782f1739394487b9, type: 3}
+  yellowIcon: {fileID: 21300000, guid: e50ae02bab3a92a4bbae735cb7027111, type: 3}
   iconImage: {fileID: 293476872}
 --- !u!1 &299842496
 GameObject:
@@ -3616,7 +3616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &759630064
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3686,10 +3686,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646504ba13aa0c94b8b1bafd558a29cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redIcon: {fileID: 21300000, guid: af6aa4dd46c5bf047a98241031aed9f4, type: 3}
-  blueIcon: {fileID: 21300000, guid: ddf84008d1038414b8516ac394477e68, type: 3}
-  greenIcon: {fileID: 21300000, guid: 9c46083cd6b4d2248bb57cc8b72dd009, type: 3}
-  yellowIcon: {fileID: 21300000, guid: 887428a8cfb59144392f3499326dc0e7, type: 3}
+  redIcon: {fileID: 21300000, guid: e693e0ebd49aa08498bb5cc50507fb08, type: 3}
+  blueIcon: {fileID: 21300000, guid: eb5e8d8af5d342f4fa4b46330477a628, type: 3}
+  greenIcon: {fileID: 21300000, guid: 25f606255040a3f4c96f0bc280e7539e, type: 3}
+  yellowIcon: {fileID: 21300000, guid: 0e314aa939505ad48b60adc0bba78390, type: 3}
   iconImage: {fileID: 759630065}
 --- !u!1 &798838161
 GameObject:
@@ -4602,7 +4602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &981180562
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4634,10 +4634,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646504ba13aa0c94b8b1bafd558a29cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redIcon: {fileID: 21300000, guid: aa8651c144f289a4c98dfc4139544cf8, type: 3}
-  blueIcon: {fileID: 21300000, guid: 258b33fa03563f54597dba22f6193b7c, type: 3}
-  greenIcon: {fileID: 21300000, guid: bb23d4171ad7a7a43a6c6e61d3d86ebd, type: 3}
-  yellowIcon: {fileID: 21300000, guid: 0cc21eccf6d742341ab979ee165f6112, type: 3}
+  redIcon: {fileID: 21300000, guid: f373de20f80d0554983608ad81aaf3cd, type: 3}
+  blueIcon: {fileID: 21300000, guid: 5b3ac92f6f5295b4c91ee60cf744cd8d, type: 3}
+  greenIcon: {fileID: 21300000, guid: d99503036282a07478f10175e75eeaea, type: 3}
+  yellowIcon: {fileID: 21300000, guid: 88eeb83c62596ed44a8331062951845a, type: 3}
   iconImage: {fileID: 981180564}
 --- !u!114 &981180564
 MonoBehaviour:
@@ -6381,6 +6381,11 @@ MonoBehaviour:
   - {fileID: 465875029}
   - {fileID: 1053134075}
   - {fileID: 1579044578}
+  PlayerIcon:
+  - {fileID: 293476870}
+  - {fileID: 759630063}
+  - {fileID: 981180561}
+  - {fileID: 1423939400}
   OnAllReadyUp:
     m_PersistentCalls:
       m_Calls:
@@ -6866,7 +6871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1423939401
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6936,10 +6941,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646504ba13aa0c94b8b1bafd558a29cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redIcon: {fileID: 21300000, guid: 4401c8c9d4d11a941be1724acd97905b, type: 3}
-  blueIcon: {fileID: 21300000, guid: 2466910284b9f0e4eace608dc7f107e4, type: 3}
-  greenIcon: {fileID: 21300000, guid: 30e0c0152093d294390e16827c91b9ca, type: 3}
-  yellowIcon: {fileID: 21300000, guid: ecca84b2c5c371b4b8b15fafc7f1b9df, type: 3}
+  redIcon: {fileID: 21300000, guid: 6cd0a823263554741a28c46b64798bd5, type: 3}
+  blueIcon: {fileID: 21300000, guid: a4501dab410d85c4ea61dbf6710e091c, type: 3}
+  greenIcon: {fileID: 21300000, guid: 794a16c507937ce48a75f253a93b6d8c, type: 3}
+  yellowIcon: {fileID: 21300000, guid: 94530ba59afe9da4b933864a8d55b9b3, type: 3}
   iconImage: {fileID: 1423939402}
 --- !u!1 &1497770639
 GameObject:
