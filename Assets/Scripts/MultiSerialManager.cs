@@ -10,6 +10,7 @@ public class MultiSerialManager : MonoBehaviour
     public static MultiSerialManager Instance { get; private set; }
     public GameObject serialControllerPrefab;
     public GameObject[] listeners;
+    public GameObject[] playerIcons;
     public int baudRate = 9600;
 
     void Awake()
@@ -90,8 +91,7 @@ public class MultiSerialManager : MonoBehaviour
                             controller.baudRate = baudRate;
                             controller.messageListener = listeners[i];
                             listeners[i].GetComponent<MyListener>().color = (PlayerColor)index;
-                            string iconObjectName = $"P{i + 1}"; // Assuming your icons are named "P1", "P2", etc.
-                            GameObject iconObject = GameObject.Find(iconObjectName);
+                            GameObject iconObject = playerIcons[i];
 
                             if (iconObject != null)
                             {
@@ -99,6 +99,7 @@ public class MultiSerialManager : MonoBehaviour
                                 if (switcher != null)
                                 {
                                     switcher.SetColor((PlayerColor)index);
+                                    UnityEngine.Debug.Log($"[{port}] Icon object found and color set for player {index}.");
                                 }
                             }
 

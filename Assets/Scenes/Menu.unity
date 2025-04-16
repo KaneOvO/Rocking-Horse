@@ -4237,6 +4237,31 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6802407666107548372, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: playerIcons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802407666107548372, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: playerIcons.Array.data[0]
+      value: 
+      objectReference: {fileID: 293476870}
+    - target: {fileID: 6802407666107548372, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: playerIcons.Array.data[1]
+      value: 
+      objectReference: {fileID: 759630063}
+    - target: {fileID: 6802407666107548372, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: playerIcons.Array.data[2]
+      value: 
+      objectReference: {fileID: 981180561}
+    - target: {fileID: 6802407666107548372, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: playerIcons.Array.data[3]
+      value: 
+      objectReference: {fileID: 1423939400}
     - target: {fileID: 7430693121335859155, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: m_Name
@@ -4609,10 +4634,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646504ba13aa0c94b8b1bafd558a29cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redIcon: {fileID: 21300000, guid: af6aa4dd46c5bf047a98241031aed9f4, type: 3}
-  blueIcon: {fileID: 21300000, guid: ddf84008d1038414b8516ac394477e68, type: 3}
-  greenIcon: {fileID: 21300000, guid: 9c46083cd6b4d2248bb57cc8b72dd009, type: 3}
-  yellowIcon: {fileID: 21300000, guid: 887428a8cfb59144392f3499326dc0e7, type: 3}
+  redIcon: {fileID: 21300000, guid: aa8651c144f289a4c98dfc4139544cf8, type: 3}
+  blueIcon: {fileID: 21300000, guid: 258b33fa03563f54597dba22f6193b7c, type: 3}
+  greenIcon: {fileID: 21300000, guid: bb23d4171ad7a7a43a6c6e61d3d86ebd, type: 3}
+  yellowIcon: {fileID: 21300000, guid: 0cc21eccf6d742341ab979ee165f6112, type: 3}
   iconImage: {fileID: 981180564}
 --- !u!114 &981180564
 MonoBehaviour:

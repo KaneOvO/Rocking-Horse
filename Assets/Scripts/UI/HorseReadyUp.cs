@@ -53,9 +53,18 @@ namespace GameUI
 
             if (ReadyAmount >= ReadyUpObject.Length)
             {
-                OnAllReadyUp?.Invoke();
+                StartCoroutine(WaitForSeconds());
+                
             }
         }
+
+        private IEnumerator WaitForSeconds()
+        {
+            yield return new WaitForSeconds(1f);
+            OnAllReadyUp?.Invoke();
+        }
+
+        
     }
 
 }
