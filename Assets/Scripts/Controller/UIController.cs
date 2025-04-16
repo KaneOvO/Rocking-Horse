@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Windows;
 
 
 namespace GameSystem.Input
@@ -13,6 +14,9 @@ namespace GameSystem.Input
         public UnityEvent OnHitButton;
         public UnityEvent OnHoldButton;
 
+        public bool KeyboardDebug = false;
+        public KeyCode DebugKey = KeyCode.Space;
+
         private float HoldTime = 0;
         private bool IsTriggered = false;
         private bool IsPressed = false;
@@ -20,7 +24,7 @@ namespace GameSystem.Input
         private float WaitTime = 0;
 
         public bool IsHolding {  get; private set; }
-        public bool IsConnected => Listener.isConnected;
+        public bool IsConnected => Listener.isConnected || KeyboardDebug;
         public int Direction {  get; private set; }
 
         private const float WAIT_SWITCH_TIME = 0.75f;
@@ -39,6 +43,17 @@ namespace GameSystem.Input
         private void OnDestroy()
         {
             Listener.OnSensorDataUpdated -= OnMessageUpdate;
+        }
+        private void Update()
+        {
+            if (KeyboardDebug)
+            {
+                SensorData data = new()
+                {
+                    isBoosted = UnityEngine.Input.GetKey(DebugKey) ? 1 : 0
+                };
+                OnMessageUpdate(data);
+            }
         }
         private void OnMessageUpdate(SensorData data)
         {
