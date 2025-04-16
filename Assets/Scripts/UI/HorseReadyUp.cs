@@ -42,6 +42,11 @@ namespace GameUI
 
         public void Ready(int index)
         {
+            if (ReadyUpObject[index].activeSelf)
+            {
+                return;
+            }
+
             ReadyUpObject[index].SetActive(true);
             ReadyAmount++;
 
