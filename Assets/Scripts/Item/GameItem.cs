@@ -1,18 +1,13 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using Character;
-using GameSystem.Input;
 using UnityEngine;
 using UnityEngine.UI;
+using Character;
 
 public class GameItem : MonoBehaviour
 {
     public bool IsItemReady;
     public Sprite itemImage;
     public Sprite emptyImage;
-
 
     public virtual void OnReceiveItem()
     {
@@ -27,59 +22,60 @@ public class GameItem : MonoBehaviour
 
         IsItemReady = false;
         UpdateItemDisplayUI();
+
+        if (TryGetComponent(out HorseController controller) && controller.horseUI != null)
+        {
+            Transform horseshoeTransform = controller.horseUI.transform.Find("ItemBackground/Horseshoe");
+
+            if (horseshoeTransform != null)
+            {
+                Animator horseshoeAnimator = horseshoeTransform.GetComponent<Animator>();
+
+                if (horseshoeAnimator != null)
+                {
+                    horseshoeAnimator.SetTrigger("ReverseSpin"); // This should match the transition trigger name
+                }
+            }
+        }
     }
+
 
     protected void UpdateItemDisplayUI()
     {
-        if (!gameObject.TryGetComponent(out HorseController controller))
-        {
+        if (!TryGetComponent(out HorseController controller))
             return;
-        }
 
-        Transform itemTransform = controller.horseUI.transform.Find("ItemImage");
+        if (controller.horseUI == null)
+            return;
 
+        Transform itemTransform = controller.horseUI.transform.Find("ItemBackground/ItemImage");
         if (itemTransform == null)
-        {
             return;
-        }
 
-        GameObject itemUI = itemTransform.gameObject;
-        if (!itemUI.TryGetComponent(out UnityEngine.UI.Image image))
-        {
+        if (!itemTransform.TryGetComponent(out Image image))
             return;
-        }
-        
+
         image.sprite = emptyImage;
     }
 
     protected void UpdateItemDisplayUI(Sprite itemImage)
     {
-        //Debug.Log("UpdateItemDisplayUI");
-
         if (itemImage == null)
-        {
             return;
-        }
 
-        if (!gameObject.TryGetComponent(out HorseController controller))
-        {
+        if (!TryGetComponent(out HorseController controller))
             return;
-        }
 
-        Transform itemTransform = controller.horseUI.transform.Find("ItemImage");
+        if (controller.horseUI == null)
+            return;
 
+        Transform itemTransform = controller.horseUI.transform.Find("ItemBackground/ItemImage");
         if (itemTransform == null)
-        {
             return;
-        }
 
-        GameObject itemUI = itemTransform.gameObject;
-        if (!itemUI.TryGetComponent(out UnityEngine.UI.Image image))
-        {
+        if (!itemTransform.TryGetComponent(out Image image))
             return;
-        }
-        
+
         image.sprite = itemImage;
     }
-
 }

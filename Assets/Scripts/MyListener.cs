@@ -9,6 +9,7 @@ public class MyListener : MonoBehaviour
     public bool isSentConnected = false;
     public System.Action<SensorData> OnEquipmentConnected;
     public System.Action<SensorData> OnSensorDataUpdated;
+    public PlayerColor color;
 
     void OnMessageArrived(string msg)
     {

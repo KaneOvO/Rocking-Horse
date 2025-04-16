@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class CinemachineManager : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip introAudioClip;
+    [SerializeField] private float introAudioPitch = 1.0f;
+    [SerializeField] private AudioClip endSFX;
+    [SerializeField] private AudioSource sfxSource;
+    private bool hasPlayedEndSFX = false;
 
     [System.Serializable]
     private struct CineMachinePairing { public CinemachineVirtualCamera camera; public CinemachineDollyCart dolly; }
@@ -79,12 +86,21 @@ public class CinemachineManager : MonoBehaviour
     private void StartIntro()
     {
         currentCamera = 0;
-        
+
         StartCamera(currentCamera);
 
         bIntroInProgress = true;
 
+        if (audioSource != null && introAudioClip != null)
+        {
+            audioSource.pitch = introAudioPitch;
+            audioSource.clip = introAudioClip;
+            audioSource.Play();
+
+            StartCoroutine(PlayEndSFXAfterDelay(audioSource.clip.length / audioSource.pitch - 0.5f));
+        }
     }
+
 
     private void StartCamera(int index)
     {
@@ -103,7 +119,17 @@ public class CinemachineManager : MonoBehaviour
 
         FindObjectOfType<LevelManager>().SpawnPlayer();
 
-        GameManager.Instance.StartGame();
+        FindObjectOfType<GameUI.Timer>()?.BeginCountdown();
     }
-    
+
+    private IEnumerator PlayEndSFXAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (sfxSource != null && endSFX != null)
+        {
+            sfxSource.PlayOneShot(endSFX);
+        }
+    }
+
 }

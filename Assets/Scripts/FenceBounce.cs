@@ -20,7 +20,7 @@ public class FenceBounce : MonoBehaviour
         if(collision.gameObject.CompareTag("Player") && !collided.Contains(collision.gameObject))
         {
 
-            Vector3 forceDirection = collision.transform.forward *-1;
+            Vector3 forceDirection = collision.transform.forward * 0.5f;
             forceDirection.y = 0.25f;
 
             collision.gameObject.GetComponent<Rigidbody>().AddForce(forceDirection * forceAmount, ForceMode.Acceleration);

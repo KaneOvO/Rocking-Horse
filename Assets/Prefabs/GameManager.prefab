@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7013337410362192651}
   - component: {fileID: 6669616615152160008}
+  - component: {fileID: 5254141651954686034}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,8 +47,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RequiredAltController: 0
   PlayerCount: 4
-  PlayerPrefab: {fileID: 310242483577952872, guid: cbb2c26f476314d42a72cf71ab0b23f0,
+  PlayerPrefab: {fileID: 310242483577952872, guid: 52aa02f131f5f3842a562fa618216ae7,
     type: 3}
   NPCPrefab: {fileID: 310242483577952872, guid: f0051900bdcc031489219700da88061c,
     type: 3}
   Players: []
+  lapCount: 0
+--- !u!114 &5254141651954686034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6862698040805236551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e930a6886a358ce4993a1a90125ece44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0

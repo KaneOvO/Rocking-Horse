@@ -1,4 +1,5 @@
 using Character;
+using GameSystem.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace GameUI
         public float MapScale;
         public GameObject PlayerMark;
 
+        public Vector2 Offset;
+
         private int Index = 0;
         [SerializeField]
         private List<Sprite> Sprites = new List<Sprite>();
@@ -22,7 +25,9 @@ namespace GameUI
             {
                 GameObject newMark = GameObject.Instantiate(PlayerMark, this.transform);
                 Image renderer = newMark.GetComponent<Image>();
-                renderer.sprite = Sprites[Index];
+
+                int colorIndex = (int)GameManager.Instance.Players[Index].GetComponent<HardwareController>().myListener.GetComponent<MyListener>().color;
+                renderer.sprite = Sprites[Index * 4 + colorIndex];
 
                 if (Index < Sprites.Count - 1)
                 {
@@ -34,7 +39,7 @@ namespace GameUI
             }
             for(int i = 0; i < Marks.Count; i++)
             {
-                Vector2 pos = new Vector2(HorseController.Horses[i].transform.position.x, HorseController.Horses[i].transform.position.z);
+                Vector2 pos = new Vector2(HorseController.Horses[i].transform.position.x, HorseController.Horses[i].transform.position.z) + Offset;
                 Marks[i].anchoredPosition = pos * MapScale;
             }
         }

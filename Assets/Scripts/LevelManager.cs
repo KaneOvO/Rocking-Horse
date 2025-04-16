@@ -33,11 +33,19 @@ public class LevelManager : MonoBehaviour
 
             GameManager.Instance.StartGame();
         }
+
+        if (MultiSerialManager.Instance != null)
+        {
+            for (int i = 0; i < MultiSerialManager.Instance.listeners.Length; i++)
+            {
+                Listeners.Add(MultiSerialManager.Instance.listeners[i].GetComponent<MyListener>());
+            }
+        }
     }
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -54,10 +62,10 @@ public class LevelManager : MonoBehaviour
             player.name = "Player" + (i + 1);
             player.transform.position = SpawnPoints[i].transform.position;
             player.transform.rotation = SpawnPoints[i].transform.rotation;
-            player.GetComponentInChildren<BandanaColor>().SetColor(i);
             GameManager.Instance.Players.Add(player);
             player.GetComponent<GameSystem.Input.KeyBoardController>().UpdateController();
             player.GetComponent<HardwareController>().myListener = Listeners[i];
+            player.GetComponentInChildren<BandanaColor>().SetColor((int)Listeners[i].GetComponent<MyListener>().color);
             //todo: Load the corresponding model according to the player's choice
         }
 
@@ -119,6 +127,23 @@ public class LevelManager : MonoBehaviour
                 sharedUIs[1].anchorMin = new Vector2(0.5f, 1);
                 sharedUIs[1].anchorMax = new Vector2(0.5f, 1);
                 sharedUIs[1].anchoredPosition = Vector2.zero;
+                break;
+            case 3:
+                sharedUIs[0].sizeDelta = Vector2.one * 1024;
+                sharedUIs[1].sizeDelta = Vector2.one * 1024;
+                sharedUIs[2].sizeDelta = Vector2.one * 512;
+
+                sharedUIs[0].anchorMin = Vector2.right;
+                sharedUIs[0].anchorMax = Vector2.right;
+                sharedUIs[0].anchoredPosition = Vector2.zero;
+
+                sharedUIs[1].anchorMin = Vector2.zero;
+                sharedUIs[1].anchorMax = Vector2.zero;
+                sharedUIs[1].anchoredPosition = Vector2.zero;
+
+                sharedUIs[2].anchorMin = new Vector2(0.5f, 1);
+                sharedUIs[2].anchorMax = new Vector2(0.5f, 1);
+                sharedUIs[2].anchoredPosition = Vector2.zero;
                 break;
             case 4:
                 sharedUIs[0].sizeDelta = Vector2.one * 1024;

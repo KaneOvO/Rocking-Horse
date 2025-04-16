@@ -7,14 +7,31 @@ using System;
 
 public class MultiSerialManager : MonoBehaviour
 {
+    public static MultiSerialManager Instance { get; private set; }
     public GameObject serialControllerPrefab;
     public GameObject[] listeners;
+    public GameObject[] playerIcons;
     public int baudRate = 9600;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+    }
 
     void Start()
     {
         string[] ports = SerialPort.GetPortNames();
         int i = 0;
+        int index = 999;
 
         foreach (string port in ports)
         {
@@ -25,7 +42,7 @@ public class MultiSerialManager : MonoBehaviour
             try
             {
                 sp.Open();
-                UnityEngine.Debug.Log($"Trying port: {port}");
+                //UnityEngine.Debug.Log($"Trying port: {port}");
 
                 string receivedData = null;
                 Stopwatch stopwatch = Stopwatch.StartNew();
@@ -36,7 +53,7 @@ public class MultiSerialManager : MonoBehaviour
                         receivedData = sp.ReadLine();
                         if (!string.IsNullOrEmpty(receivedData))
                         {
-                            UnityEngine.Debug.Log($"[{port}] Received: {receivedData}");
+                            //UnityEngine.Debug.Log($"[{port}] Received: {receivedData}");
                             break;
                         }
                     }
@@ -48,16 +65,17 @@ public class MultiSerialManager : MonoBehaviour
                 if (receivedData != null)
                 {
                     string[] dataParts = receivedData.Split(',');
-                    bool isArduino = dataParts.Length >= 3 &&
+                    bool isArduino = dataParts.Length >= 4 &&
                                      float.TryParse(dataParts[0], out _) &&
                                      float.TryParse(dataParts[1], out _) &&
-                                     float.TryParse(dataParts[2], out _);
+                                     float.TryParse(dataParts[2], out _) &&
+                                     int.TryParse(dataParts[3], out index);
 
                     UnityEngine.Debug.Log($"[{port}] Format valid: {isArduino}");
 
                     if (isArduino)
                     {
-                        if (i > listeners.Length)
+                        if (i >= listeners.Length)
                         {
                             UnityEngine.Debug.LogWarning("Not enough listeners for connected devices.");
                             sp.Close();
@@ -72,15 +90,29 @@ public class MultiSerialManager : MonoBehaviour
                             controller.portName = port;
                             controller.baudRate = baudRate;
                             controller.messageListener = listeners[i];
+                            listeners[i].GetComponent<MyListener>().color = (PlayerColor)index;
+                            GameObject iconObject = playerIcons[i];
+
+                            if (iconObject != null)
+                            {
+                                var switcher = iconObject.GetComponent<DynamicPlayerNumber>();
+                                if (switcher != null)
+                                {
+                                    switcher.SetColor((PlayerColor)index);
+                                    UnityEngine.Debug.Log($"[{port}] Icon object found and color set for player {index}.");
+                                }
+                            }
+
                             i++;
                             serialController.SetActive(true);
                             controller.enabled = true;
-                            UnityEngine.Debug.Log($"[{port}] Controller assigned to listener {i - 1}");
+                            GameManager.Instance.PlayerCount++;
+                            //UnityEngine.Debug.Log($"[{port}] Controller assigned to listener {i - 1}");
                         }
                     }
                 }
 
-                
+
             }
             catch (Exception ex)
             {

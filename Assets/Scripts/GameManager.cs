@@ -7,6 +7,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum PlayerColor
+{
+    Red,
+    yellow,
+    blue,
+    green
+}
+
 [DefaultExecutionOrder(-3)]
 public class GameManager : MonoBehaviour
 {
@@ -59,16 +67,31 @@ public class GameManager : MonoBehaviour
             CheckAllConnected();
         }
 
-        if (IsStarted && TimeBeforeStart > 0)
-        {
-            TimeBeforeStart -= Time.deltaTime;
-            if(TimeBeforeStart < 0) GameStartEvent?.Invoke();
-        }
+        //if (IsStarted && TimeBeforeStart > 0)
+        //{
+        //    TimeBeforeStart -= Time.deltaTime;
+        //    if(TimeBeforeStart < 0) GameStartEvent?.Invoke();
+        //}
 
         //Debug.Log(IsStarted);
 
         //Debug.Log(TimeBeforeStart);
+
+        if (finalRanking.Count >= PlayerCount)
+        {
+            ShowPlayerPlacement();
+        }
     }
+
+    private void ShowPlayerPlacement()
+    {
+        for (int i = 0; i < Players.Count; i++)
+        {
+            int rank = i + 1;
+            string timeUsed = $"{TimeSpan.FromSeconds(finalRanking[i].Item1):mm\\:ss\\.ff}";
+        }
+    }
+    
     public void RestartGame()
     {
         TimeBeforeStart = 3;

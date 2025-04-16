@@ -24,13 +24,12 @@ public class LapCounter : MonoBehaviour
     {
         if (other.CompareTag("FinishLine") && !isInsideFinishTrigger)
         {
-            var pathPoint = NPCMap.GetAt(controller.CheckPointIndex);
-
-            if (!pathPoint.isLastPoint)
+            Debug.Log("Touched the Finish Line " + controller.CheckPointIndex);
+            if (controller.CheckPointIndex % 56 != 2)
                 return;
             
             isInsideFinishTrigger = true;
-
+            
             lapFinished++;
             Debug.Log("Lap Finished: " + lapFinished);
 
