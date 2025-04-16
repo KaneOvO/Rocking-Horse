@@ -1,3 +1,4 @@
+using GameSystem.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace GameUI
 {
     public class HorseReadyUp : MonoBehaviour
     {
-        public MyListener[] Listeners = new MyListener[0];
+        public UIController[] Controllers = new UIController[0];
 
         public GameObject[] HorsePreview = new GameObject[0];
         public GameObject[] ReadyUpObject = new GameObject[0];
@@ -20,11 +21,11 @@ namespace GameUI
         private void OnEnable()
         {
             ReadyAmount = 0;
-            for(int i = 0; i < Listeners.Length; i++)
+            for(int i = 0; i < Controllers.Length; i++)
             {
-                var listener = Listeners[i];
+                var listener = Controllers[i];
                 var horse = HorsePreview[i];
-                if (!listener.isConnected)
+                if (!listener.IsConnected)
                 {
                     ReadyAmount++;
                     horse.SetActive(false);

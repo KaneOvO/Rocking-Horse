@@ -349,6 +349,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  KeyboardDebug: 0
+  DebugKey: 122
 --- !u!114 &57187184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,6 +1265,8 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  KeyboardDebug: 0
+  DebugKey: 32
 --- !u!114 &286623105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,6 +1286,8 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  KeyboardDebug: 0
+  DebugKey: 32
 --- !u!114 &286623106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1301,6 +1307,8 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  KeyboardDebug: 0
+  DebugKey: 32
 --- !u!114 &286623107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1320,6 +1328,8 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  KeyboardDebug: 0
+  DebugKey: 32
 --- !u!114 &286623108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2628,6 +2638,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  KeyboardDebug: 0
+  DebugKey: 122
 --- !u!1 &547357640
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,6 +2900,8 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  KeyboardDebug: 0
+  DebugKey: 118
 --- !u!1 &587600577
 GameObject:
   m_ObjectHideFlags: 0
@@ -5316,6 +5330,8 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  KeyboardDebug: 0
+  DebugKey: 99
 --- !u!1 &1128040977
 GameObject:
   m_ObjectHideFlags: 0
@@ -5455,6 +5471,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  KeyboardDebug: 0
+  DebugKey: 32
 --- !u!1 &1152763083
 GameObject:
   m_ObjectHideFlags: 0
@@ -6083,11 +6101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b034a2ff37a9834d91a8581de45410d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Listeners:
-  - {fileID: 909963151}
-  - {fileID: 909963154}
-  - {fileID: 909963153}
-  - {fileID: 909963152}
+  Controllers:
+  - {fileID: 513919030}
+  - {fileID: 1675342948}
+  - {fileID: 1127846995}
+  - {fileID: 564200705}
   HorsePreview:
   - {fileID: 927614584}
   - {fileID: 1548429815}
@@ -6332,6 +6350,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  KeyboardDebug: 0
+  DebugKey: 32
 --- !u!1 &1383896138
 GameObject:
   m_ObjectHideFlags: 0
@@ -7319,6 +7339,8 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  KeyboardDebug: 0
+  DebugKey: 120
 --- !u!1 &1679395028
 GameObject:
   m_ObjectHideFlags: 0
