@@ -11,6 +11,8 @@ namespace GameUI
         public float MapScale;
         public GameObject PlayerMark;
 
+        public Vector2 Offset;
+
         private int Index = 0;
         [SerializeField]
         private List<Sprite> Sprites = new List<Sprite>();
@@ -34,7 +36,7 @@ namespace GameUI
             }
             for(int i = 0; i < Marks.Count; i++)
             {
-                Vector2 pos = new Vector2(HorseController.Horses[i].transform.position.x, HorseController.Horses[i].transform.position.z);
+                Vector2 pos = new Vector2(HorseController.Horses[i].transform.position.x, HorseController.Horses[i].transform.position.z) + Offset;
                 Marks[i].anchoredPosition = pos * MapScale;
             }
         }

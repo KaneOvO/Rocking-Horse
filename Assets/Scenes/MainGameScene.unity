@@ -12515,7 +12515,7 @@ MonoBehaviour:
   - camera: {fileID: 1319074372}
     dolly: {fileID: 2133824735}
   uiCanvas: {fileID: 1928275824}
-  bSkipIntro: 0
+  bSkipIntro: 1
 --- !u!4 &1230104191
 Transform:
   m_ObjectHideFlags: 0
@@ -15449,6 +15449,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -950
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893107040067345074, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      propertyPath: MapScale
+      value: 4.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893107040067345074, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      propertyPath: Offset.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893107040067345074, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      propertyPath: Offset.y
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 9110003183972912335, guid: f3da5a4fd9636f7489846ce828941999,
         type: 3}
