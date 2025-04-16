@@ -1,4 +1,5 @@
 using Character;
+using GameSystem.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,9 @@ namespace GameUI
             {
                 GameObject newMark = GameObject.Instantiate(PlayerMark, this.transform);
                 Image renderer = newMark.GetComponent<Image>();
-                renderer.sprite = Sprites[Index];
+
+                int colorIndex = (int)GameManager.Instance.Players[Index].GetComponent<HardwareController>().myListener.GetComponent<MyListener>().color;
+                renderer.sprite = Sprites[Index * 4 + colorIndex];
 
                 if (Index < Sprites.Count - 1)
                 {
