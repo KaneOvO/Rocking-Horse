@@ -21,7 +21,7 @@ namespace GameSystem.Input
         //private float MaxGyroscopeX = 0;
         private float LastGyroscopeX = 0;
 
-        private const float MistakeRange = 0.15f;
+        private const float MistakeRange = 0.1f;
         private const float RotationDeadRange = 12.5f;
         private List<RockRecord> RockRecords = new List<RockRecord>();
 

@@ -17,19 +17,20 @@ public class MultiSerialManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            
+
         }
         else
         {
             Destroy(gameObject);
         }
-        
+
     }
 
     void Start()
     {
         string[] ports = SerialPort.GetPortNames();
-
+        int i = 0;
+        int index = 999;
 
         foreach (string port in ports)
         {
@@ -40,18 +41,18 @@ public class MultiSerialManager : MonoBehaviour
             try
             {
                 sp.Open();
-                UnityEngine.Debug.Log($"Trying port: {port}");
+                //UnityEngine.Debug.Log($"Trying port: {port}");
 
                 string receivedData = null;
                 Stopwatch stopwatch = Stopwatch.StartNew();
-                while (stopwatch.ElapsedMilliseconds < 500)
+                while (stopwatch.ElapsedMilliseconds < 1000)
                 {
                     try
                     {
                         receivedData = sp.ReadLine();
                         if (!string.IsNullOrEmpty(receivedData))
                         {
-                            UnityEngine.Debug.Log($"[{port}] Received: {receivedData}");
+                            //UnityEngine.Debug.Log($"[{port}] Received: {receivedData}");
                             break;
                         }
                     }
@@ -62,7 +63,6 @@ public class MultiSerialManager : MonoBehaviour
 
                 if (receivedData != null)
                 {
-                    int index = 0;
                     string[] dataParts = receivedData.Split(',');
                     bool isArduino = dataParts.Length >= 4 &&
                                      float.TryParse(dataParts[0], out _) &&
@@ -72,8 +72,15 @@ public class MultiSerialManager : MonoBehaviour
 
                     UnityEngine.Debug.Log($"[{port}] Format valid: {isArduino}");
 
-                    if (isArduino && index >= 0 && index < listeners.Length)
+                    if (isArduino)
                     {
+                        if (i >= listeners.Length)
+                        {
+                            UnityEngine.Debug.LogWarning("Not enough listeners for connected devices.");
+                            sp.Close();
+                            break;
+                        }
+
                         sp.Close();
 
                         GameObject serialController = Instantiate(serialControllerPrefab);
@@ -81,11 +88,13 @@ public class MultiSerialManager : MonoBehaviour
                         {
                             controller.portName = port;
                             controller.baudRate = baudRate;
-                            controller.messageListener = listeners[index];
+                            controller.messageListener = listeners[i];
+                            listeners[i].GetComponent<MyListener>().color = (PlayerColor)index;
+                            i++;
                             serialController.SetActive(true);
                             controller.enabled = true;
-                            UnityEngine.Debug.Log($"[{port}] Controller assigned to listener {index}");
                             GameManager.Instance.PlayerCount++;
+                            //UnityEngine.Debug.Log($"[{port}] Controller assigned to listener {i - 1}");
                         }
                     }
                 }

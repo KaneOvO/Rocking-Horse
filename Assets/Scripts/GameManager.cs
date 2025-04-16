@@ -7,6 +7,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum PlayerColor
+{
+    Red,
+    yellow,
+    blue,
+    green
+}
+
 [DefaultExecutionOrder(-3)]
 public class GameManager : MonoBehaviour
 {
