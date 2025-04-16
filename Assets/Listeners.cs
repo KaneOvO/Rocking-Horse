@@ -26,10 +26,10 @@ public class Listeners : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            //重启页面
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-        }
+        // //for debug the singletons Listeners can be destroyed by pressing T
+        // if(Input.GetKeyDown(KeyCode.T))
+        // {
+        //     UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        // }
     }
 }
