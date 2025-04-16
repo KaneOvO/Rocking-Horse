@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Listener: {fileID: 909963151}
+  Listener: {fileID: 909963153}
   OnHitButton:
     m_PersistentCalls:
       m_Calls:
@@ -2997,7 +2997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Listener: {fileID: 909963151}
+  Listener: {fileID: 909963152}
   OnHitButton:
     m_PersistentCalls:
       m_Calls:
@@ -6111,7 +6111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1346312366
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6192,17 +6192,17 @@ MonoBehaviour:
   Controllers:
   - {fileID: 513919030}
   - {fileID: 1675342948}
-  - {fileID: 0}
+  - {fileID: 28022261}
   - {fileID: 564200705}
   HorsePreview:
   - {fileID: 927614584}
   - {fileID: 1548429815}
-  - {fileID: 0}
+  - {fileID: 1591599936}
   - {fileID: 440019065}
   ReadyUpObject:
   - {fileID: 1168275813}
   - {fileID: 465875029}
-  - {fileID: 0}
+  - {fileID: 1053134075}
   - {fileID: 1579044578}
   OnAllReadyUp:
     m_PersistentCalls:
@@ -7498,7 +7498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Listener: {fileID: 909963151}
+  Listener: {fileID: 909963154}
   OnHitButton:
     m_PersistentCalls:
       m_Calls:
