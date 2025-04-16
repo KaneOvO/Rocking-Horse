@@ -18,6 +18,13 @@ namespace Items
         private Vector2 Direction;
         private const float ORIENTATION = 200;
 
+        [Header("Models")]
+        [SerializeField]
+        private GameObject horseObject;
+
+        [SerializeField]
+        private GameObject carrotObject;
+
         private void Start()
         {
             Controller = GetComponent<HorseController>();
@@ -28,6 +35,9 @@ namespace Items
             //Controller.Collider.enabled = true;
 
             float cloestDistance = 99999999;
+
+            horseObject.SetActive(false);
+            carrotObject.SetActive(true);
 
             for(int i = 0; i < NPCMap.Instance.Path.Count; i++)
             {
@@ -64,6 +74,9 @@ namespace Items
             CurrentTime += Time.deltaTime;
             if(CurrentTime > LastTime)
             {
+                horseObject.SetActive(true);
+                carrotObject.SetActive(false);
+
                 return;
             }
 

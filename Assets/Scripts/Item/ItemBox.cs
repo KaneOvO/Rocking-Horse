@@ -34,15 +34,20 @@ public class ItemBox : MonoBehaviour
             0, new List<(ItemType, float)>
             {
                 (ItemType.BlackHoleDropper, 100f)
+                //(ItemType.CarrotRocket, 100f)
             }
         },
         {
             1, new List<(ItemType, float)>
             {
+                
                 (ItemType.Lasso, 40f),
                 (ItemType.CarrotRocket, 10f),
                 (ItemType.BlackHoleDropper, 10f),
                 (ItemType.Chicken, 40f),
+                
+
+                //(ItemType.Chicken, 100f)
             }
         },
         {
@@ -52,6 +57,8 @@ public class ItemBox : MonoBehaviour
                 (ItemType.CarrotRocket, 40f),
                 (ItemType.BlackHoleDropper, 5f),
                 (ItemType.Chicken, 35f),
+
+                //(ItemType.Lasso, 100f)
             }
         },
         {
@@ -61,6 +68,8 @@ public class ItemBox : MonoBehaviour
                 (ItemType.CarrotRocket, 70f),
                 (ItemType.BlackHoleDropper, 0f),
                 (ItemType.Chicken, 10f),
+
+                //(ItemType.CarrotRocket, 100f)
             }
         }
     };
