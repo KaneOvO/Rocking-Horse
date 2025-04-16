@@ -11,9 +11,17 @@ public class BlackHole : MonoBehaviour
     public float Duration;
     public float PullStrength;
     public float TriggeredDuration;
+
+    [SerializeField]
+    private float armingTime;
     
     private bool hasTriggered = false;
-    
+
+    public void Start()
+    {
+        StartCoroutine(StartArming(armingTime));
+    }
+
     public void Update()
     {
         Duration -= Time.deltaTime;
@@ -51,6 +59,19 @@ public class BlackHole : MonoBehaviour
                 StartCoroutine(SelfDestroy());
             }
         }
+    }
+
+    private IEnumerator StartArming(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        ArmTrap();
+
+    }
+
+    private void ArmTrap()
+    {
+        GetComponent<SphereCollider>().enabled = true;
     }
 
     
