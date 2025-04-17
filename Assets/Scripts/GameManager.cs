@@ -78,34 +78,34 @@ public class GameManager : MonoBehaviour
 
         //Debug.Log(TimeBeforeStart);
 
-        if (finalRanking.Count >= PlayerCount)
-        {
-            GameEnd();
-        }
+        //if (finalRanking.Count >= PlayerCount)
+        //{
+        //    GameEnd();
+        //}
     }
     
-    private void GameEnd()
-    {
-        ShowPlayerPlacement();
-    }
+    //private void GameEnd()
+    //{
+    //    ShowPlayerPlacement();
+    //}
 
-    private void ShowPlayerPlacement()
-    {
-        // move camera
+    //private void ShowPlayerPlacement()
+    //{
+    //    // move camera
         
-        LevelManager.Instance.Podium.SetActive(true);
+    //    LevelManager.Instance.Podium.SetActive(true);
 
-        for (var i = 0; i < finalRanking.Count; i++)
-        {
-            var rank = i + 1;
-            var (time, controller) = finalRanking[i];
+    //    for (var i = 0; i < finalRanking.Count; i++)
+    //    {
+    //        var rank = i + 1;
+    //        var (time, controller) = finalRanking[i];
             
-            string nameDisplay = $"{controller.gameObject.name}" + "\n";
-            string timeDisplay = $"{TimeSpan.FromSeconds(time):mm\\:ss\\.ff}";
+    //        string nameDisplay = $"{controller.gameObject.name}" + "\n";
+    //        string timeDisplay = $"{TimeSpan.FromSeconds(time):mm\\:ss\\.ff}";
             
-            controller.gameObject.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = nameDisplay + timeDisplay;
-        }
-    }
+    //        controller.gameObject.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = nameDisplay + timeDisplay;
+    //    }
+    //}
     
     public void RestartGame()
     {
