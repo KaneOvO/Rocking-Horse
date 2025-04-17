@@ -162,7 +162,14 @@ public class ItemBox : MonoBehaviour
         var items = ItemWeights[controller.Ranking];
         Debug.Log($"Ranking: {controller.Ranking}");
 
-        var random = Random.Range(0f, 1f);
+        float totalRange = 0;
+
+        foreach(var item in items)
+        {
+            totalRange += item.weight;
+        }
+
+        var random = Random.Range(0f, totalRange);
         var cumulativeWeight = 0f;
 
         foreach (var item in items)
