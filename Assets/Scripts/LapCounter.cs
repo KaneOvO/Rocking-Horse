@@ -7,12 +7,10 @@ using UnityEngine;
 
 public class LapCounter : MonoBehaviour
 {
-    private int lapFinished = 0;
+    private int lapFinished = -1;
 
     private bool isInsideFinishTrigger = false;
 
-    public event Action OnRaceFinished;
-    
     private HorseController controller;
 
     private void Start()
@@ -33,11 +31,19 @@ public class LapCounter : MonoBehaviour
             lapFinished++;
             Debug.Log("Lap Finished: " + lapFinished);
 
-            if (lapFinished >= GameManager.Instance.lapCount)
+            if (lapFinished == GameManager.Instance.lapCount)
             {
-                GameManager.Instance.finalRanking.Add((RaceTimer.Instance.timer, GetComponent<HorseController>()));
+                OnPlayerFinishGame();
             }
         }
+    }
+
+    private void OnPlayerFinishGame()
+    {
+        GameManager.Instance.finalRanking.Add((RaceTimer.Instance.timer, GetComponent<HorseController>()));
+        
+        // freeze player control
+        // show a finish visual
     }
 
     private void OnTriggerExit(Collider other)

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Character;
 using Items;
 using Triggers;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemBox : MonoBehaviour

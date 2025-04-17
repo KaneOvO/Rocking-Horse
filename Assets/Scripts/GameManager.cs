@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Character;
 using GameSystem.Input;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     public static Action GameStartEvent;
 
-    public int lapCount;
+    public int lapCount = 2;
     public List<(float, HorseController)> finalRanking = new();
     
     private void Awake()
@@ -79,16 +80,30 @@ public class GameManager : MonoBehaviour
 
         if (finalRanking.Count >= PlayerCount)
         {
-            ShowPlayerPlacement();
+            GameEnd();
         }
+    }
+    
+    private void GameEnd()
+    {
+        ShowPlayerPlacement();
     }
 
     private void ShowPlayerPlacement()
     {
-        for (int i = 0; i < Players.Count; i++)
+        // move camera
+        
+        LevelManager.Instance.Podium.SetActive(true);
+
+        for (var i = 0; i < finalRanking.Count; i++)
         {
-            int rank = i + 1;
-            string timeUsed = $"{TimeSpan.FromSeconds(finalRanking[i].Item1):mm\\:ss\\.ff}";
+            var rank = i + 1;
+            var (time, controller) = finalRanking[i];
+            
+            string nameDisplay = $"{controller.gameObject.name}" + "\n";
+            string timeDisplay = $"{TimeSpan.FromSeconds(time):mm\\:ss\\.ff}";
+            
+            controller.gameObject.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = nameDisplay + timeDisplay;
         }
     }
     
