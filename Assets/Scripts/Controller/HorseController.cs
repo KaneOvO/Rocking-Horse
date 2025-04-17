@@ -12,6 +12,9 @@ namespace Character
 {
     public class HorseController : MonoBehaviour
     {
+        public SkinnedMeshRenderer smr;
+        public Material legsMaterial;
+        public Material noLegsMaterial;
         public float MaxSpeed = 10f;
         public float Acceleration = 10f;
         [Space(5)]
@@ -449,10 +452,23 @@ namespace Character
             if (VirtualCamera != null) VirtualCamera.fieldOfView = 40 +
                     Mathf.Clamp(HVelocity.magnitude * HVelocity.magnitude, 0, 400f) / 20f;
 
-            HorseAnimator.SetFloat("Velocity", StunTime > 0 ? 0 : HVelocity.magnitude);
+            float currentVelocity = StunTime > 0 ? 0 : HVelocity.magnitude;
+
+            HorseAnimator.SetFloat("Velocity", currentVelocity);
             HorseAnimator.SetFloat("BoosterTime", CurrentBoostTime);
             HorseAnimator.SetFloat("StunTime", StunTime);
             HorseAnimator.SetFloat("Direction", RotationSpeed);
+
+
+
+            if(currentVelocity < 12)
+            {
+                SwitchMaterial(legsMaterial);
+            }
+            else
+            {
+                SwitchMaterial(noLegsMaterial);
+            }
         }
 
         public void OnCrossingBarrier(float energyAddValue)
@@ -493,6 +509,13 @@ namespace Character
             SlowedTime += 2;
 
             Debug.Log(gameObject.name + " hit by lasso");
+        }
+
+        public void SwitchMaterial(Material legMat)
+        {
+            var mats = smr.materials;
+            mats[1] = legMat;
+            smr.materials = mats;
         }
     }
 
