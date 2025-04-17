@@ -15,6 +15,7 @@ namespace Character
         public SkinnedMeshRenderer smr;
         public Material legsMaterial;
         public Material noLegsMaterial;
+        public GameObject runSmear;
         public float MaxSpeed = 10f;
         public float Acceleration = 10f;
         [Space(5)]
@@ -464,10 +465,12 @@ namespace Character
             if(currentVelocity < 12)
             {
                 SwitchMaterial(legsMaterial);
+                runSmear.SetActive(false);
             }
             else
             {
                 SwitchMaterial(noLegsMaterial);
+                runSmear.SetActive(true);
             }
         }
 
