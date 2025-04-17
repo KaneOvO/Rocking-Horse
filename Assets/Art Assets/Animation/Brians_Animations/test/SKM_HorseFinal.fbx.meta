@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: D_Brown
+    second: {fileID: 2100000, guid: 87e24a2b4f3b03344af5e44db2595663, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: standardSurface2
-    second: {fileID: 2100000, guid: a99015df42f3bcd46ba0a73a2ade7f3a, type: 2}
+    second: {fileID: 2100000, guid: 87e24a2b4f3b03344af5e44db2595663, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
