@@ -73,13 +73,13 @@ public class LevelManager : MonoBehaviour
             //todo: Load the corresponding model according to the player's choice
         }
 
-        for (int i = GameManager.Instance.PlayerCount; i < 4; i++)
-        {
-            GameObject NPC = Instantiate(GameManager.Instance.NPCPrefab);
-            NPC.name = "NPC" + (i + 1);
-            NPC.transform.position = SpawnPoints[i].transform.position;
-            NPC.transform.rotation = SpawnPoints[i].transform.rotation;
-        }
+        // for (int i = GameManager.Instance.PlayerCount; i < 4; i++)
+        // {
+        //     GameObject NPC = Instantiate(GameManager.Instance.NPCPrefab);
+        //     NPC.name = "NPC" + (i + 1);
+        //     NPC.transform.position = SpawnPoints[i].transform.position;
+        //     NPC.transform.rotation = SpawnPoints[i].transform.rotation;
+        // }
 
 
         CameraManager.Instance.SetCamera();
