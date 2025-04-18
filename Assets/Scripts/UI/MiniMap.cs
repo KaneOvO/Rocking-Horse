@@ -49,6 +49,7 @@ namespace GameUI
                         {
                             renderer.sprite = Sprites[Index * 4 + (int)color];
                             PlayerColors[color] = true;
+                            HorseController.Horses[Index].GetComponentInChildren<BandanaColor>().SetColor((int)color);
                             break;
                         }
                     }
