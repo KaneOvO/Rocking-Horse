@@ -117,6 +117,11 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.Save(); // optional but good to be safe
     }
 
+    public void OnVolumeSliderPlayerCountChanged(int value)
+    {
+        GameManager.Instance.PlayerCount = value;
+    }
+
 
     public void OnTutorialToggleChanged(bool isOn)
     {
