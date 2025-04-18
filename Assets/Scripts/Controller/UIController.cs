@@ -14,6 +14,8 @@ namespace GameSystem.Input
         public UnityEvent OnHitButton;
         public UnityEvent OnHoldButton;
 
+        public float HoldTriggerTime = 1.25f;
+
         public bool KeyboardDebug = false;
         public KeyCode DebugKey = KeyCode.Space;
 
@@ -28,7 +30,6 @@ namespace GameSystem.Input
         public int Direction {  get; private set; }
 
         private const float WAIT_SWITCH_TIME = 0.75f;
-        private const float HOLD_TRIGGER_TIME = 1.25f;
 
         private void Awake()
         {
@@ -91,7 +92,7 @@ namespace GameSystem.Input
 
             if (IsPressed && !IsTriggered)
             {
-                if (Time.realtimeSinceStartup > HoldTime + HOLD_TRIGGER_TIME)
+                if (Time.realtimeSinceStartup > HoldTime + HoldTriggerTime)
                 {   
                     IsPressed = false;
                     IsTriggered = true;

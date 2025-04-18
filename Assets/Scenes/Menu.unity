@@ -269,6 +269,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 99
 --- !u!114 &28022262
@@ -460,6 +461,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 122
 --- !u!114 &57187184
@@ -1110,6 +1112,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 32
 --- !u!114 &286623105
@@ -1131,6 +1134,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 32
 --- !u!114 &286623106
@@ -1152,6 +1156,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 32
 --- !u!114 &286623107
@@ -1173,8 +1178,9 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
-  DebugKey: 32
+  DebugKey: 122
 --- !u!114 &286623108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2594,6 +2600,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 122
 --- !u!1 &547357640
@@ -2856,6 +2863,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 118
 --- !u!1 &587600577
@@ -5430,6 +5438,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 32
 --- !u!1 &1150423476
@@ -6738,6 +6747,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 32
 --- !u!1 &1383896138
@@ -8065,6 +8075,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 120
 --- !u!1 &1679395028
