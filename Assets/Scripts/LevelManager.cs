@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Character;
 using GameSystem.Input;
 using GameUI;
 using UnityEngine;
@@ -69,6 +70,7 @@ public class LevelManager : MonoBehaviour
             GameManager.Instance.Players.Add(player);
             player.GetComponent<GameSystem.Input.KeyBoardController>().UpdateController();
             player.GetComponent<HardwareController>().myListener = Listeners[i];
+            player.GetComponent<HorseController>().isPlayerHorse = true;
             player.GetComponentInChildren<BandanaColor>().SetColor((int)Listeners[i].GetComponent<MyListener>().color);
             //todo: Load the corresponding model according to the player's choice
         }
