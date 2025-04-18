@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class MenuManager : MonoBehaviour
 
     [Header("Player Count")]
     public Slider playerCountSlider;
-    public Text playerCountText;
+    public TextMeshPro playerCountText;
 
     [Header("Settings")]
     public Toggle tutorialToggle;
@@ -51,7 +52,7 @@ public class MenuManager : MonoBehaviour
             menuMusic.volume = savedVolume;
         
         playerCountSlider.value = GameManager.Instance.PlayerCount;
-        //playerCountText.text = GameManager.Instance.PlayerCount.ToString();
+        playerCountText.text = GameManager.Instance.PlayerCount.ToString();
 
         // Only apply saved tutorial toggle if it's been saved before
         if (PlayerPrefs.HasKey("SkipTutorial"))
@@ -124,7 +125,7 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.Save(); // optional but good to be safe
     }
 
-    public void OnVolumeSliderPlayerCountChanged(float value)
+    public void OnPlayerSliderPlayerCountChanged(float value)
     {
         GameManager.Instance.PlayerCount = (int)value;
     }
