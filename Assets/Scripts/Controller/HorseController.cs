@@ -7,6 +7,8 @@ using Cinemachine;
 using static UnityEngine.Rendering.DebugUI;
 using NPC;
 using UnityEngine.UIElements;
+using UnityEngine.VFX;
+using Autodesk.Fbx;
 
 namespace Character
 {
@@ -16,6 +18,7 @@ namespace Character
         public Material legsMaterial;
         public Material noLegsMaterial;
         public GameObject runSmear;
+        public VisualEffect runDustVFX;
         public float MaxSpeed = 10f;
         public float Acceleration = 10f;
         [Space(5)]
@@ -81,6 +84,9 @@ namespace Character
         private const float RANKING_UPDATE_INTERVAL = 0.1f;
         private const float Bounding_K = 0.1f;
 
+        [SerializeField]
+        private GameObject BoostTrailPrefab;
+
         public void ResetPos()
         {
             CheckPointIndex = ResetIndex;
@@ -90,6 +96,7 @@ namespace Character
         private void Awake()
         {
             Horses.Add(this);
+            runDustVFX.gameObject.SetActive(false);
         }
         private void OnDestroy()
         {
@@ -179,6 +186,8 @@ namespace Character
             if (!GameManager.IsGameBegin) return;
             CurrentBoostTime += BoosterTime;
             HorseAnimator.SetTrigger("Booster");
+            //BoostTrailInstance = Instantiate(BoostTrailPrefab, this.gameObject.transform, false);
+            BoostTrailPrefab.SetActive(true);
         }
 
         private void OnUseItem()
@@ -362,6 +371,10 @@ namespace Character
                 maxSpeed += BoosterSpeed;
                 acceleration = Mathf.Max(0, acceleration);
                 acceleration += BoosterAcceleration;
+                if (CurrentBoostTime <= 0)
+                {
+                    BoostTrailPrefab.SetActive(false);
+                }
             }
 
             if (HVelocity.magnitude > 0.1f && Direction.magnitude > 0.1f)
@@ -466,12 +479,16 @@ namespace Character
             {
                 SwitchMaterial(legsMaterial);
                 runSmear.SetActive(false);
+                runDustVFX.gameObject.SetActive(false);
             }
             else
             {
                 SwitchMaterial(noLegsMaterial);
                 runSmear.SetActive(true);
+                runDustVFX.gameObject.SetActive(true);
             }
+
+            
         }
 
         public void OnCrossingBarrier(float energyAddValue)
