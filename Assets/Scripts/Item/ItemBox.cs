@@ -19,8 +19,6 @@ public class ItemBox : MonoBehaviour
 
     public Trigger GetItemTrigger;
 
-    public MeshRenderer ItemBoxRenderer;
-
     public float ItemBoxResponseTime;
 
     public float UIAnimationDuration = 2.5f;
@@ -33,7 +31,6 @@ public class ItemBox : MonoBehaviour
             0, new List<(ItemType, float)>
             {
                 (ItemType.BlackHoleDropper, 100f)
-                //(ItemType.CarrotRocket, 100f)
             }
         },
         {
@@ -43,10 +40,7 @@ public class ItemBox : MonoBehaviour
                 (ItemType.Lasso, 40f),
                 (ItemType.CarrotRocket, 10f),
                 (ItemType.BlackHoleDropper, 10f),
-                (ItemType.Chicken, 40f),
-                
-
-                //(ItemType.Chicken, 100f)
+                (ItemType.Chicken, 40f)
             }
         },
         {
@@ -55,9 +49,7 @@ public class ItemBox : MonoBehaviour
                 (ItemType.Lasso, 20f),
                 (ItemType.CarrotRocket, 40f),
                 (ItemType.BlackHoleDropper, 5f),
-                (ItemType.Chicken, 35f),
-
-                //(ItemType.Lasso, 100f)
+                (ItemType.Chicken, 35f)
             }
         },
         {
@@ -66,9 +58,7 @@ public class ItemBox : MonoBehaviour
                 (ItemType.Lasso, 20f),
                 (ItemType.CarrotRocket, 70f),
                 (ItemType.BlackHoleDropper, 0f),
-                (ItemType.Chicken, 10f),
-
-                //(ItemType.CarrotRocket, 100f)
+                (ItemType.Chicken, 10f)
             }
         }
     };
@@ -91,7 +81,8 @@ public class ItemBox : MonoBehaviour
             //Debug.LogWarning($"{controller.name} does not have a horseUI assigned. Skipping animation.");
             return;
         }
-
+        
+        StartCoroutine(ItemBoxRespawn());
         StartCoroutine(GiveItemAfterScrollAnimation(controller));
     }
 
@@ -142,25 +133,20 @@ public class ItemBox : MonoBehaviour
 
         DetermineItem(controller);
         GetItem(controller);
-
-        StartCoroutine(ItemBoxRespawn());
     }
 
     private IEnumerator ItemBoxRespawn()
     {
-        GetItemTrigger.Enabled = false;
-        ItemBoxRenderer.enabled = false;
-
+        transform.GetChild(0).gameObject.SetActive(false);
+        
         yield return new WaitForSeconds(ItemBoxResponseTime);
-
-        GetItemTrigger.Enabled = true;
-        ItemBoxRenderer.enabled = true;
+        
+        transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private void DetermineItem(HorseController controller)
     {
         var items = ItemWeights[controller.Ranking];
-        Debug.Log($"Ranking: {controller.Ranking}");
 
         float totalRange = 0;
 
@@ -176,7 +162,10 @@ public class ItemBox : MonoBehaviour
         {
             cumulativeWeight += item.weight;
             if (random <= cumulativeWeight)
+            {
                 ReceivedItemType = item.type;
+                break;
+            }
         }
     }
 
