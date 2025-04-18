@@ -24,7 +24,7 @@ public class MenuManager : MonoBehaviour
 
     [Header("Player Count")]
     public Slider playerCountSlider;
-    public TextMeshPro playerCountText;
+    public TextMeshProUGUI playerCountText;
 
     [Header("Settings")]
     public Toggle tutorialToggle;
