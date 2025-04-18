@@ -31,20 +31,18 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (skipCameraIntro)
-        {
-            SpawnPlayer();
-
-            GameManager.Instance.StartGame();
-        }
-
         if (MultiSerialManager.Instance != null)
         {
             for (int i = 0; i < MultiSerialManager.Instance.listeners.Length; i++)
             {
                 Listeners.Add(MultiSerialManager.Instance.listeners[i].GetComponent<MyListener>());
             }
+        }
+        if (skipCameraIntro)
+        {
+            SpawnPlayer();
+
+            GameManager.Instance.StartGame();
         }
     }
     // Start is called before the first frame update

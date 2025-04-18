@@ -37,7 +37,7 @@ namespace GameUI
                 {
                     int colorIndex = (int)GameManager.Instance.Players[Index].GetComponent<HardwareController>().myListener.GetComponent<MyListener>().color;
                     renderer.sprite = Sprites[Index * 4 + colorIndex];
-                    
+
                     PlayerColors[(PlayerColor)colorIndex] = true;
                 }
                 else
