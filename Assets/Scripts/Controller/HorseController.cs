@@ -8,6 +8,7 @@ using static UnityEngine.Rendering.DebugUI;
 using NPC;
 using UnityEngine.UIElements;
 using UnityEngine.VFX;
+using Autodesk.Fbx;
 
 namespace Character
 {
@@ -82,6 +83,9 @@ namespace Character
         private static float Last_Ranking_UpdateTime = 0;
         private const float RANKING_UPDATE_INTERVAL = 0.1f;
         private const float Bounding_K = 0.1f;
+
+        [SerializeField]
+        private GameObject BoostTrailPrefab;
 
         public void ResetPos()
         {
@@ -182,6 +186,8 @@ namespace Character
             if (!GameManager.IsGameBegin) return;
             CurrentBoostTime += BoosterTime;
             HorseAnimator.SetTrigger("Booster");
+            //BoostTrailInstance = Instantiate(BoostTrailPrefab, this.gameObject.transform, false);
+            BoostTrailPrefab.SetActive(true);
         }
 
         private void OnUseItem()
@@ -365,6 +371,10 @@ namespace Character
                 maxSpeed += BoosterSpeed;
                 acceleration = Mathf.Max(0, acceleration);
                 acceleration += BoosterAcceleration;
+                if (CurrentBoostTime <= 0)
+                {
+                    BoostTrailPrefab.SetActive(false);
+                }
             }
 
             if (HVelocity.magnitude > 0.1f && Direction.magnitude > 0.1f)
