@@ -24,6 +24,7 @@ namespace GameUI
 
             RankingText.text = rank.ToString() + GetSuffix(rank);
             RankingText.color = GetColorByRank(rank);
+
         }
 
         private string GetSuffix(int number)
