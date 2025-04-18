@@ -2190,6 +2190,42 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 251968667}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &251968671 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6018732967679611343, guid: d1ba21a6183596346ab523971b5d59e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 251968667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251968668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8db23b1e8273e4ca54334e6fa52a9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &251968672 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 497521278513219995, guid: d1ba21a6183596346ab523971b5d59e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 251968667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251968669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8db23b1e8273e4ca54334e6fa52a9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &251968673 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3477455452497292373, guid: d1ba21a6183596346ab523971b5d59e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 251968667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251968670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8db23b1e8273e4ca54334e6fa52a9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &268613033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14625,6 +14661,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1469138101}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1471194476 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5984603611057420689, guid: d1ba21a6183596346ab523971b5d59e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 251968667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8db23b1e8273e4ca54334e6fa52a9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1485632484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21338,7 +21386,11 @@ MonoBehaviour:
   - {fileID: 1538766208}
   - {fileID: 1538766207}
   - {fileID: 1538766204}
-  Listeners: []
+  Listeners:
+  - {fileID: 1471194476}
+  - {fileID: 251968673}
+  - {fileID: 251968672}
+  - {fileID: 251968671}
   MiniMapPrefab: {fileID: 3247274627955784049, guid: db40f2863ce72e940a450a6631dea4e7,
     type: 3}
   Podium: {fileID: 1570671446}
