@@ -33,6 +33,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.CleanPlayers();
 
         // TEMP: Reset all preferences every time the game starts (for testing)
         PlayerPrefs.DeleteAll();
