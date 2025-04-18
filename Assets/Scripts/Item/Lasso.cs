@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 
 public class Lasso : GameItem
 {
+    public GameObject LassoVisual;
     public List<GameObject> TargetPlayers;
 
     [SerializeField] private float LassoEffectTime;
@@ -107,9 +108,20 @@ public class Lasso : GameItem
 
     public void OnHitByLasso(GameObject lassoSource)
     {
+        StartCoroutine(ShowLassoVisual());
+        
         LassoDuration += LassoEffectTime;
         LassoOther = lassoSource;
         
         GetComponent<HorseController>().OnHitByLasso();
+    }
+
+    private IEnumerator ShowLassoVisual()
+    {
+        LassoVisual.SetActive(true);
+        
+        yield return new WaitForSeconds(LassoEffectTime);
+        
+        LassoVisual.SetActive(false);
     }
 }
