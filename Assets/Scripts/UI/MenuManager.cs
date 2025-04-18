@@ -21,6 +21,10 @@ public class MenuManager : MonoBehaviour
     public AudioSource menuMusic;
     public Slider volumeSlider;
 
+    [Header("Player Count")]
+    public Slider playerCountSlider;
+    public Text playerCountText;
+
     [Header("Settings")]
     public Toggle tutorialToggle;
 
@@ -45,6 +49,9 @@ public class MenuManager : MonoBehaviour
         volumeSlider.value = savedVolume;
         if (menuMusic != null)
             menuMusic.volume = savedVolume;
+        
+        playerCountSlider.value = GameManager.Instance.PlayerCount;
+        //playerCountText.text = GameManager.Instance.PlayerCount.ToString();
 
         // Only apply saved tutorial toggle if it's been saved before
         if (PlayerPrefs.HasKey("SkipTutorial"))
@@ -117,9 +124,9 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.Save(); // optional but good to be safe
     }
 
-    public void OnVolumeSliderPlayerCountChanged(int value)
+    public void OnVolumeSliderPlayerCountChanged(float value)
     {
-        GameManager.Instance.PlayerCount = value;
+        GameManager.Instance.PlayerCount = (int)value;
     }
 
 
