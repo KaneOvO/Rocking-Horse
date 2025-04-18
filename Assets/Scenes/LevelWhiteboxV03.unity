@@ -7815,6 +7815,11 @@ PrefabInstance:
       propertyPath: UIAnimationDuration
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6820997508394467563, guid: 4d177f521c8622c4cb6828c7ee9c4942,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7437284115596001444, guid: 4d177f521c8622c4cb6828c7ee9c4942,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -19660,7 +19665,7 @@ PrefabInstance:
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: PlayerCount
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
@@ -20015,16 +20020,41 @@ PrefabInstance:
       propertyPath: ReceivedItemType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 798641965568511300, guid: 4d177f521c8622c4cb6828c7ee9c4942,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670580801873501688, guid: 4d177f521c8622c4cb6828c7ee9c4942,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5219314991186960067, guid: 4d177f521c8622c4cb6828c7ee9c4942,
         type: 3}
       propertyPath: m_Name
       value: ItemBox (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219314991186960067, guid: 4d177f521c8622c4cb6828c7ee9c4942,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5702220262717825447, guid: 4d177f521c8622c4cb6828c7ee9c4942,
         type: 3}
       propertyPath: itemScrollObject
       value: 
       objectReference: {fileID: 263220719}
+    - target: {fileID: 6820997508394467563, guid: 4d177f521c8622c4cb6828c7ee9c4942,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879043715143244855, guid: 4d177f521c8622c4cb6828c7ee9c4942,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7437284115596001444, guid: 4d177f521c8622c4cb6828c7ee9c4942,
         type: 3}
       propertyPath: m_LocalScale.x
