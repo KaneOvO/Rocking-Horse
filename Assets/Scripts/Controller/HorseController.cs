@@ -7,6 +7,7 @@ using Cinemachine;
 using static UnityEngine.Rendering.DebugUI;
 using NPC;
 using UnityEngine.UIElements;
+using UnityEngine.VFX;
 
 namespace Character
 {
@@ -16,6 +17,7 @@ namespace Character
         public Material legsMaterial;
         public Material noLegsMaterial;
         public GameObject runSmear;
+        public VisualEffect runDustVFX;
         public float MaxSpeed = 10f;
         public float Acceleration = 10f;
         [Space(5)]
@@ -90,6 +92,7 @@ namespace Character
         private void Awake()
         {
             Horses.Add(this);
+            runDustVFX.gameObject.SetActive(false);
         }
         private void OnDestroy()
         {
@@ -466,12 +469,16 @@ namespace Character
             {
                 SwitchMaterial(legsMaterial);
                 runSmear.SetActive(false);
+                runDustVFX.gameObject.SetActive(false);
             }
             else
             {
                 SwitchMaterial(noLegsMaterial);
                 runSmear.SetActive(true);
+                runDustVFX.gameObject.SetActive(true);
             }
+
+            
         }
 
         public void OnCrossingBarrier(float energyAddValue)
