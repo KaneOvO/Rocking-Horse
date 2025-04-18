@@ -1215,6 +1215,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 32
 --- !u!114 &178440430
@@ -1236,6 +1237,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 32
 --- !u!114 &178440431
@@ -1257,6 +1259,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 32
 --- !u!114 &178440432
@@ -1278,6 +1281,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 32
 --- !u!114 &178440433
@@ -3340,6 +3344,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 32
 --- !u!114 &351649254
@@ -3990,7 +3995,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d9d89ae7d314b9845b2a63a1fbf6fe6b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3e248621d72096643a1fdf883c40cd43, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5430,6 +5435,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 32
 --- !u!114 &527083374
@@ -10480,6 +10486,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 118
 --- !u!114 &1351186623
@@ -12197,6 +12204,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 122
 --- !u!1001 &1610703703
@@ -15519,6 +15527,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 122
 --- !u!114 &1897394584
@@ -16024,6 +16033,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 99
 --- !u!4 &2028604893 stripped
@@ -16700,6 +16710,7 @@ MonoBehaviour:
   OnHoldButton:
     m_PersistentCalls:
       m_Calls: []
+  HoldTriggerTime: 1.25
   KeyboardDebug: 0
   DebugKey: 120
 --- !u!1 &2125313371
