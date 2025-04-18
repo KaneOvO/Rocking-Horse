@@ -18,6 +18,7 @@ namespace Character
         public Material noLegsMaterial;
         public GameObject runSmear;
         public VisualEffect runDustVFX;
+        public bool isPlayerHorse = false;
         public float MaxSpeed = 10f;
         public float Acceleration = 10f;
         [Space(5)]
