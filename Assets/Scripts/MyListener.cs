@@ -47,5 +47,11 @@ public class MyListener : MonoBehaviour
 
         Debug.Log(success ? "Device connected" : "Device disconnected");
     }
+
+    public void Reset()
+    {
+        isConnected = false;
+        isSentConnected = false;
+    }
 }
 

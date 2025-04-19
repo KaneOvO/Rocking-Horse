@@ -136,6 +136,11 @@ public class MultiSerialManager : MonoBehaviour
             Destroy(controller);
         }
 
+        foreach (var listener in listeners)
+        {
+            listener.GetComponent<MyListener>().Reset();
+        }
+
         serialControllers.Clear();
         GameManager.Instance.PlayerCount = 0;
         SearchDevice();
