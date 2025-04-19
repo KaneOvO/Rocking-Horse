@@ -120,5 +120,17 @@ public class CameraManager : MonoBehaviour
                 break;
         }
     }
-    
+
+    public void DisableAllPlayerCamera()
+    {
+        foreach (var cam in MainCameras)
+        {
+            cam.GetComponent<Camera>().enabled = false;
+        }
+
+        foreach (var cam in UICameras)
+        {
+            cam.GetComponent<Camera>().enabled = false;
+        }
+    }
 }

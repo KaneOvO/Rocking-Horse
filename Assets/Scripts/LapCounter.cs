@@ -7,7 +7,9 @@ using UnityEngine;
 
 public class LapCounter : MonoBehaviour
 {
-    private int lapFinished = -1;
+    public GameObject ScoreBoard;
+    
+    public int lapFinished = -1;
 
     private bool isInsideFinishTrigger = false;
 
@@ -22,14 +24,12 @@ public class LapCounter : MonoBehaviour
     {
         if (other.CompareTag("FinishLine") && !isInsideFinishTrigger)
         {
-            Debug.Log("Touched the Finish Line " + controller.CheckPointIndex);
             if (controller.CheckPointIndex % 56 != 2)
                 return;
             
             isInsideFinishTrigger = true;
             
             lapFinished++;
-            Debug.Log("Lap Finished: " + lapFinished);
 
             if (lapFinished == GameManager.Instance.lapCount)
             {
@@ -40,10 +40,9 @@ public class LapCounter : MonoBehaviour
 
     private void OnPlayerFinishGame()
     {
-        GameManager.Instance.finalRanking.Add((RaceTimer.Instance.timer, GetComponent<HorseController>()));
-        
-        // freeze player control
+        GameManager.Instance.finalRanking.Add((RaceTimer.Instance.timer, GetComponent<HorseController>())); 
         // show a finish visual
+        Debug.Log("finish game");
     }
 
     private void OnTriggerExit(Collider other)
