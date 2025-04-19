@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9ad4b3eff6e5b42a91f2762cdc27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 0
+  Enabled: 1
   DebugMode: 0
   PrintEvent: 0
   MoveKey: 119
@@ -447,6 +447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cf349dc4fb34e4cb67ed7218874c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScoreBoard: {fileID: 9105664977557992614}
+  lapFinished: -1
 --- !u!1 &372909241162976964
 GameObject:
   m_ObjectHideFlags: 0

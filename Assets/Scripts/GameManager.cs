@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerPrefab;
     public GameObject NPCPrefab;
     public List<GameObject> Players = new List<GameObject>();
+
+    public Camera endGameCamera;
+
+    private float endGameTimer;
+    private bool endGameTimerStarted;
+    private bool isGameEnd;
     
     public static bool IsGameBegin
     {
@@ -36,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public static Action GameStartEvent;
 
-    public int lapCount = 2;
+    public int lapCount;
     public List<(float, HorseController)> finalRanking = new();
     
     private void Awake()
@@ -63,6 +69,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (isGameEnd)
+            return;
+        
         if (!IsStarted)
         {
             CheckAllConnected();
@@ -78,23 +87,42 @@ public class GameManager : MonoBehaviour
 
         //Debug.Log(TimeBeforeStart);
 
-        if (finalRanking.Count >= PlayerCount)
+        if (finalRanking.Count > 0)
         {
-            //GameEnd();
-            Debug.Log("All players finished the game");
+            endGameTimerStarted = true;
+        }
+
+        if (endGameTimerStarted)
+        {
+            endGameTimer += Time.deltaTime;
+
+            if (endGameTimer >= 60)
+            {
+                isGameEnd = true;
+                GameEnd();
+            }
+        }
+        
+        if (finalRanking.Count >= 4)
+        {
+            isGameEnd = true;
+            GameEnd();
         }
     }
     
     private void GameEnd()
     {
         ShowPlayerPlacement();
+        
+        // Add method to restart game
     }
 
     private void ShowPlayerPlacement()
     {
         LevelManager.Instance.Podium.SetActive(true);
         
-        // move camera
+        endGameCamera.enabled = true;
+        CameraManager.Instance.DisableAllPlayerCamera();
 
         for (var i = 0; i < finalRanking.Count; i++)
         {
@@ -102,12 +130,16 @@ public class GameManager : MonoBehaviour
             var (time, controller) = finalRanking[i];
             
             string nameDisplay = $"{controller.gameObject.name}" + "\n";
-            string timeDisplay = $"{TimeSpan.FromSeconds(time):mm\\:ss\\.ff}";
+            string timeDisplay = $"{TimeSpan.FromSeconds(time):mm\\:ss\\:ff}";
             
-            controller.gameObject.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = nameDisplay + timeDisplay;
+            var playerScoreBoard = controller.gameObject.GetComponent<LapCounter>().ScoreBoard;
+            playerScoreBoard.transform.GetChild(0).GetComponent<TMP_Text>().text = nameDisplay + timeDisplay;
+            playerScoreBoard.SetActive(true);
+            
+            //var playerTransform = LevelManager.Instance.EndGameHorsePos[i];
+            //controller.gameObject.transform.SetPositionAndRotation(playerTransform.position, playerTransform.rotation);
         }
         
-        // RestartGame();
     }
     
     public void RestartGame()

@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RequiredAltController: 0
-  PlayerCount: 4
+  PlayerCount: 1
   PlayerPrefab: {fileID: 310242483577952872, guid: 52aa02f131f5f3842a562fa618216ae7,
     type: 3}
-  NPCPrefab: {fileID: 310242483577952872, guid: f0051900bdcc031489219700da88061c,
+  NPCPrefab: {fileID: 310242483577952872, guid: 600f797c9494900468c5e64632a85069,
     type: 3}
   Players: []
-  lapCount: 0
+  lapCount: 2
 --- !u!114 &5254141651954686034
 MonoBehaviour:
   m_ObjectHideFlags: 0
