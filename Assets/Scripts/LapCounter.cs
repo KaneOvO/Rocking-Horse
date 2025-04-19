@@ -22,6 +22,9 @@ public class LapCounter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (gameObject.TryGetComponent(out NPCPlayer _))
+            return;
+        
         if (other.CompareTag("FinishLine") && !isInsideFinishTrigger)
         {
             if (controller.CheckPointIndex % 56 != 2)
@@ -30,6 +33,7 @@ public class LapCounter : MonoBehaviour
             isInsideFinishTrigger = true;
             
             lapFinished++;
+            Debug.Log(lapFinished);
 
             if (lapFinished == GameManager.Instance.lapCount)
             {

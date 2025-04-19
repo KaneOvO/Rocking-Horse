@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        if (finalRanking.Count >= 4)
+        if (finalRanking.Count >= PlayerCount)
         {
             isGameEnd = true;
             GameEnd();

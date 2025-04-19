@@ -4573,6 +4573,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3271a819dae009241833e9725a0b2d52, type: 3}
+--- !u!4 &380846003 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1655275736057299857, guid: 3271a819dae009241833e9725a0b2d52,
+    type: 3}
+  m_PrefabInstance: {fileID: 380846002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &387720591
 GameObject:
   m_ObjectHideFlags: 0
@@ -8757,7 +8763,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 679dd5a86c9b95c4e8617ec16be52c33,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13291,6 +13297,31 @@ PrefabInstance:
       propertyPath: SpawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 909925598}
+    - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: EndGameHorsePos.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: EndGameHorsePos.Array.data[0]
+      value: 
+      objectReference: {fileID: 380846003}
+    - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: EndGameHorsePos.Array.data[1]
+      value: 
+      objectReference: {fileID: 380846003}
+    - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: EndGameHorsePos.Array.data[2]
+      value: 
+      objectReference: {fileID: 380846003}
+    - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
+      propertyPath: EndGameHorsePos.Array.data[3]
+      value: 
+      objectReference: {fileID: 380846003}
     - target: {fileID: 9094229663030308453, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: m_IsActive
