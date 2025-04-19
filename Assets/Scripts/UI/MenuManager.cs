@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class MenuManager : MonoBehaviour
     public AudioSource menuMusic;
     public Slider volumeSlider;
 
+    [Header("Player Count")]
+    public Slider playerCountSlider;
+    public TextMeshProUGUI playerCountText;
+
     [Header("Settings")]
     public Toggle tutorialToggle;
 
@@ -28,6 +33,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.CleanPlayers();
 
         // TEMP: Reset all preferences every time the game starts (for testing)
         PlayerPrefs.DeleteAll();
@@ -45,6 +51,9 @@ public class MenuManager : MonoBehaviour
         volumeSlider.value = savedVolume;
         if (menuMusic != null)
             menuMusic.volume = savedVolume;
+        
+        playerCountSlider.value = GameManager.Instance.PlayerCount;
+        playerCountText.text = GameManager.Instance.PlayerCount.ToString();
 
         // Only apply saved tutorial toggle if it's been saved before
         if (PlayerPrefs.HasKey("SkipTutorial"))
@@ -54,6 +63,13 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            StartRace();
+        }
+    }
 
     public void OpenJoin()
     {
@@ -117,9 +133,10 @@ public class MenuManager : MonoBehaviour
         PlayerPrefs.Save(); // optional but good to be safe
     }
 
-    public void OnVolumeSliderPlayerCountChanged(int value)
+    public void OnPlayerSliderPlayerCountChanged(float value)
     {
-        GameManager.Instance.PlayerCount = value;
+        playerCountText.text = value.ToString("0");
+        GameManager.Instance.PlayerCount = (int)value;
     }
 
 
@@ -160,4 +177,5 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
         Debug.Log("Game Quit");
     }
+
 }

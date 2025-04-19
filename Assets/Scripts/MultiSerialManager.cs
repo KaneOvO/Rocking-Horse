@@ -11,6 +11,7 @@ public class MultiSerialManager : MonoBehaviour
     public GameObject serialControllerPrefab;
     public GameObject[] listeners;
     public GameObject[] playerIcons;
+    public List<GameObject> serialControllers = new List<GameObject>();
     public int baudRate = 9600;
 
     void Awake()
@@ -28,6 +29,11 @@ public class MultiSerialManager : MonoBehaviour
     }
 
     void Start()
+    {
+        SearchDevice();
+    }
+
+    void SearchDevice()
     {
         string[] ports = SerialPort.GetPortNames();
         int i = 0;
@@ -85,6 +91,7 @@ public class MultiSerialManager : MonoBehaviour
                         sp.Close();
 
                         GameObject serialController = Instantiate(serialControllerPrefab);
+                        serialControllers.Add(serialController);
                         if (serialController.TryGetComponent<SerialController>(out var controller))
                         {
                             controller.portName = port;
@@ -120,5 +127,17 @@ public class MultiSerialManager : MonoBehaviour
                 if (sp.IsOpen) sp.Close();
             }
         }
+    }
+
+    public void ResearchDevice()
+    {
+        foreach (var controller in serialControllers)
+        {
+            Destroy(controller);
+        }
+
+        serialControllers.Clear();
+        GameManager.Instance.PlayerCount = 0;
+        SearchDevice();
     }
 }

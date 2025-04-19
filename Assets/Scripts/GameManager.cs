@@ -5,6 +5,7 @@ using Character;
 using GameSystem.Input;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -108,6 +109,17 @@ public class GameManager : MonoBehaviour
             isGameEnd = true;
             GameEnd();
         }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            MultiSerialManager.Instance.ResearchDevice();
+            Debug.Log("Reseach!");
+        }
     }
     
     private void GameEnd()
@@ -147,6 +159,11 @@ public class GameManager : MonoBehaviour
         TimeBeforeStart = 3;
         Time.timeScale = 1f; // Unfreeze time
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload current scene
+    }
+
+    public void CleanPlayers()
+    {
+        Players.Clear();
     }
     
     void CheckAllConnected()
