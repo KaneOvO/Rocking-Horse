@@ -148,8 +148,10 @@ public class GameManager : MonoBehaviour
             playerScoreBoard.transform.GetChild(0).GetComponent<TMP_Text>().text = nameDisplay + timeDisplay;
             playerScoreBoard.SetActive(true);
             
-            //var playerTransform = LevelManager.Instance.EndGameHorsePos[i];
-            //controller.gameObject.transform.SetPositionAndRotation(playerTransform.position, playerTransform.rotation);
+            var playerTransform = LevelManager.Instance.EndGameHorsePos[i];
+            controller.gameObject.transform.SetPositionAndRotation(playerTransform.position, playerTransform.rotation);
+
+            controller.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
         }
         
     }

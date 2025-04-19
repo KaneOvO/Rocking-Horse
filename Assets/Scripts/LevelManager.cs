@@ -15,7 +15,6 @@ public class LevelManager : MonoBehaviour
     public GameObject MiniMapPrefab;
 
     public GameObject Podium;
-    public Transform EndGameCameraPos;
     public Transform[] EndGameHorsePos;
 
     [SerializeField]
