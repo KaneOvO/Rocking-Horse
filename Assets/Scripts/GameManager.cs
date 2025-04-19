@@ -90,9 +90,10 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             MultiSerialManager.Instance.ResearchDevice();
+            Debug.Log("Reseach!");
         }
     }
     

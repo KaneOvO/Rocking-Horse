@@ -63,6 +63,13 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            StartRace();
+        }
+    }
 
     public void OpenJoin()
     {
@@ -170,4 +177,5 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
         Debug.Log("Game Quit");
     }
+
 }
