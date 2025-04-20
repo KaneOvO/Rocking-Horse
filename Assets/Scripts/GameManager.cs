@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour
     private float endGameTimer;
     private bool endGameTimerStarted;
     private bool isGameEnd;
-    
+
+    [SerializeField] private GameObject EndGameCanvas;
+
     public static bool IsGameBegin
     {
         get => TimeBeforeStart <= 0;
@@ -123,8 +125,10 @@ public class GameManager : MonoBehaviour
     private void GameEnd()
     {
         ShowPlayerPlacement();
-        
+
         // Add method to restart game
+        EndGameCanvas.SetActive(true);
+
     }
 
     private void ShowPlayerPlacement()
@@ -186,5 +190,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+    public void GoToMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("TitleScreenScene");
+    }
+
+
 }
