@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
     public GameObject NPCPrefab;
     public List<GameObject> Players = new List<GameObject>();
 
-    public Camera endGameCamera;
-
     private float endGameTimer;
     private bool endGameTimerStarted;
     private bool isGameEnd;
@@ -132,8 +130,8 @@ public class GameManager : MonoBehaviour
     private void ShowPlayerPlacement()
     {
         LevelManager.Instance.Podium.SetActive(true);
+        LevelManager.Instance.EndGameCamera.enabled = true;
         
-        endGameCamera.enabled = true;
         CameraManager.Instance.DisableAllPlayerCamera();
 
         for (var i = 0; i < finalRanking.Count; i++)

@@ -81,7 +81,11 @@ public class ItemBox : MonoBehaviour
             //Debug.LogWarning($"{controller.name} does not have a horseUI assigned. Skipping animation.");
             return;
         }
-        
+
+        if (controller.ItemPickUpCooldown >= 0)
+            return;
+
+        controller.ItemPickUpCooldown += 5;
         StartCoroutine(ItemBoxRespawn());
         StartCoroutine(GiveItemAfterScrollAnimation(controller));
     }

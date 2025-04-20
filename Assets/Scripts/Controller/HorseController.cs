@@ -88,6 +88,8 @@ namespace Character
         [SerializeField]
         private GameObject BoostTrailPrefab;
 
+        public float ItemPickUpCooldown;
+
         public void ResetPos()
         {
             CheckPointIndex = ResetIndex;
@@ -489,7 +491,10 @@ namespace Character
                 runDustVFX.gameObject.SetActive(true);
             }
 
-            
+            if (ItemPickUpCooldown >= 0)
+            {
+                ItemPickUpCooldown -= Time.deltaTime;
+            }
         }
 
         public void OnCrossingBarrier(float energyAddValue)
