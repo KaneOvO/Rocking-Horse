@@ -1865,6 +1865,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
+      propertyPath: lapCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
+        type: 3}
       propertyPath: PlayerCount
       value: 1
       objectReference: {fileID: 0}
@@ -1878,6 +1883,11 @@ PrefabInstance:
       propertyPath: endGameCamera
       value: 
       objectReference: {fileID: 1596906468}
+    - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
+        type: 3}
+      propertyPath: Players.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6862698040805236551, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: m_Name
@@ -2094,7 +2104,7 @@ PrefabInstance:
     - target: {fileID: 7430693121335859155, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
@@ -2981,7 +2991,7 @@ Transform:
   m_GameObject: {fileID: 312935723}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.11, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18049,7 +18059,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2004146989}
-  m_LocalEulerAnglesHint: {x: 0, y: 51.414, z: 0}
+  m_LocalEulerAnglesHint: {x: 34.309, y: 0, z: 0}
 --- !u!114 &1694654863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21766,6 +21776,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 2004146989}
   - {fileID: 8044903357283938879}
   - {fileID: 199731582}
   - {fileID: 1538766203}
@@ -21775,7 +21786,6 @@ SceneRoots:
   - {fileID: 1170846150}
   - {fileID: 2128289493}
   - {fileID: 172515282}
-  - {fileID: 2004146989}
   - {fileID: 1938587843}
   - {fileID: 1971620416}
   - {fileID: 1928275827}
@@ -21784,6 +21794,7 @@ SceneRoots:
   - {fileID: 732433037}
   - {fileID: 378835838}
   - {fileID: 1109215512}
+  - {fileID: 392612479}
   - {fileID: 1504199694}
   - {fileID: 2110222136}
   - {fileID: 1570671445}
@@ -21793,4 +21804,3 @@ SceneRoots:
   - {fileID: 1809376319}
   - {fileID: 1596906469}
   - {fileID: 222466027}
-  - {fileID: 392612479}
