@@ -97,9 +97,10 @@ public class GameManager : MonoBehaviour
         {
             endGameTimer += Time.deltaTime;
 
-            if (endGameTimer >= 60)
+            if (endGameTimer >= 90)
             {
                 isGameEnd = true;
+                StartCoroutine(WaitFiveSeconds());
                 GameEnd();
             }
         }
@@ -107,6 +108,7 @@ public class GameManager : MonoBehaviour
         if (finalRanking.Count >= PlayerCount)
         {
             isGameEnd = true;
+            StartCoroutine(WaitFiveSeconds());
             GameEnd();
         }
 
@@ -127,6 +129,8 @@ public class GameManager : MonoBehaviour
         ShowPlayerPlacement();
 
         // Add method to restart game
+        StartCoroutine(WaitTenSeconds());
+
         EndGameCanvas.SetActive(true);
 
     }
@@ -196,5 +200,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("TitleScreenScene");
     }
 
+    private IEnumerator WaitTenSeconds()
+    {
+        yield return new WaitForSeconds(10f);
 
+    }
+
+    private IEnumerator WaitFiveSeconds()
+    {
+        yield return new WaitForSeconds(5f);
+
+    }
 }
