@@ -307,6 +307,7 @@ namespace Character
             }
 
             RaycastHit hit;
+
             IsOnGround = Physics.Raycast(this.transform.position, Vector3.down, out hit, 0.65f, LayerMask.GetMask("Ground"));
 
             if (IsOnGround && VVelocity < 0)
@@ -449,7 +450,16 @@ namespace Character
 
             //HVelocity = Direction * HVelocity.magnitude;
 
-            Vector3 velocity = new Vector3(HVelocity.x, VVelocity, HVelocity.y);
+            Vector3 hv = new Vector3(HVelocity.x, 0, HVelocity.y);
+            Vector3 vv = new Vector3(0, VVelocity, 0);
+
+            if (IsOnGround)
+            {
+                Quaternion groundRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                hv = groundRotation * hv;
+            }
+
+            Vector3 velocity = hv + vv;
 
             //Rigidbody.velocity = StunTime > 0 ? Vector3.zero : velocity;
 
@@ -475,8 +485,6 @@ namespace Character
             HorseAnimator.SetFloat("BoosterTime", CurrentBoostTime);
             HorseAnimator.SetFloat("StunTime", StunTime);
             HorseAnimator.SetFloat("Direction", RotationSpeed);
-
-
 
             if(currentVelocity < 12)
             {
