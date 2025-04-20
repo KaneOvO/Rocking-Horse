@@ -63,6 +63,11 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void OnEnable()
+    {
+        UpdatePlayerCount();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
@@ -177,5 +182,13 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
         Debug.Log("Game Quit");
     }
+
+    public void UpdatePlayerCount()
+    {
+        playerCountSlider.value = GameManager.Instance.PlayerCount;
+        playerCountText.text = GameManager.Instance.PlayerCount.ToString();
+
+    }
+
 
 }
