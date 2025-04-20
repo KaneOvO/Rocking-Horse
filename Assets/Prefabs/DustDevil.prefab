@@ -354,6 +354,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackMagnitude: 7500
   knockbackCooldown: 2
+  dustDevilVFX: {fileID: 4701010997373200951}
+  lifeTime: 20
 --- !u!54 &8945880573582012316
 Rigidbody:
   m_ObjectHideFlags: 0

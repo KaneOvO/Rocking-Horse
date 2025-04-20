@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class CowObstacle : MonoBehaviour
 {
@@ -15,9 +17,18 @@ public class CowObstacle : MonoBehaviour
     //Variable that will hold the players that have recently collided with the obstacle to prevent multiple repeat overlaps.
     private List<GameObject> collidedPlayers;
 
+    [Header("Visual")]
+    [SerializeField]
+    private VisualEffect dustDevilVFX;
+
+    [SerializeField]
+    private float lifeTime;
+
     public void Start()
     {
         collidedPlayers = new List<GameObject>();
+
+        StartCoroutine(DustDevilRestart(lifeTime));
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -63,5 +74,14 @@ public class CowObstacle : MonoBehaviour
         {
             collidedPlayers.Remove(player);
         }
+    }
+
+    private IEnumerator DustDevilRestart(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        dustDevilVFX.Play();
+
+        StartCoroutine(DustDevilRestart(delay));
     }
 }
