@@ -32,6 +32,8 @@ namespace Items
 
         public override void OnUseItem()
         {
+            base.OnUseItem();
+            
             //Controller.Collider.enabled = true;
 
             float cloestDistance = 99999999;

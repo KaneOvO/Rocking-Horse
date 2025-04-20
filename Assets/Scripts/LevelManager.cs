@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
 
     public GameObject Podium;
     public Transform[] EndGameHorsePos;
+    public Camera EndGameCamera;
 
     [SerializeField]
     public bool skipCameraIntro;

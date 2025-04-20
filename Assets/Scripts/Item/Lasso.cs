@@ -61,6 +61,8 @@ public class Lasso : GameItem
 
     public override void OnUseItem()
     {
+        base.OnUseItem();
+        
         UseLasso();
     }
 
