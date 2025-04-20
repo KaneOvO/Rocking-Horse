@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         {
             endGameTimer += Time.deltaTime;
 
-            if (endGameTimer >= 90)
+            if (endGameTimer >= 60)
             {
                 isGameEnd = true;
                 StartCoroutine(WaitFiveSeconds());
