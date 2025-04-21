@@ -127,6 +127,7 @@ public class GameManager : MonoBehaviour
     private void GameEnd()
     {
         StartCoroutine(HandleGameEndSequence());
+        MusicManager.Instance?.PlayPostRaceTrack();
         OnGameEnded?.Invoke();
     }
 

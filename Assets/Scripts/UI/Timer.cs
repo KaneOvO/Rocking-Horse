@@ -50,12 +50,7 @@ namespace GameUI
             GameManager.TimeBeforeStart = 0;
             giddyUp.SetActive(true);
 
-            if (musicSource != null && mainTrack != null)
-            {
-                musicSource.clip = mainTrack;
-                musicSource.loop = true;
-                musicSource.Play();
-            }
+            MusicManager.Instance?.PlayMainTrack();
 
             GameManager.Instance.StartGame();
             GameManager.GameStartEvent?.Invoke();
