@@ -195,6 +195,7 @@ namespace Character
             HorseAnimator.SetTrigger("Booster");
             //BoostTrailInstance = Instantiate(BoostTrailPrefab, this.gameObject.transform, false);
             BoostTrailPrefab.SetActive(true);
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.boostAudio);
         }
 
         private void OnUseItem()
