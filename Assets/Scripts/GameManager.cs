@@ -12,8 +12,8 @@ using UnityEngine.SceneManagement;
 public enum PlayerColor
 {
     Red,
-    yellow,
     blue,
+    yellow,
     green
 }
 
