@@ -82,6 +82,7 @@ public class LevelManager : MonoBehaviour
             NPC.transform.position = SpawnPoints[i].transform.position;
             NPC.transform.rotation = SpawnPoints[i].transform.rotation;
             NPC.GetComponent<HorseController>().playerIndex = i + 1;
+            NPC.GetComponent<HorseController>().SetCullingLayer(i+1);
         }
 
 
