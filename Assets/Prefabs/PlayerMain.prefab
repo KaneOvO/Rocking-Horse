@@ -204,6 +204,7 @@ MonoBehaviour:
   NextCheckPointDistance: 0
   SmallestDistance: 0
   CheckPointIndex: 0
+  AdditionalForce: {x: 0, y: 0}
   horseUI: {fileID: 0}
   BoostTrailPrefab: {fileID: 7325553372538779921}
   ItemPickUpCooldown: 0
@@ -699,7 +700,7 @@ Transform:
   m_GameObject: {fileID: 5055019549003723788}
   serializedVersion: 2
   m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
-  m_LocalPosition: {x: 0, y: 7.44, z: -12}
+  m_LocalPosition: {x: 0, y: 3.96, z: -7.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -11,6 +11,10 @@ public class MusicManager : MonoBehaviour
     public AudioClip mainTrack;
     public AudioClip finalLapTrack;
     public AudioClip postRaceTrack;
+    public AudioClip lap1Audio;
+    public AudioClip lap2Audio;
+    public AudioClip pickItemAudio;
+    public AudioClip boostAudio;
 
     private bool hasSwitched = false;
 

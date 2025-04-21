@@ -13,6 +13,7 @@ public class GameItem : MonoBehaviour
     {
         IsItemReady = true;
         UpdateItemDisplayUI(itemImage);
+        MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.pickItemAudio);
     }
 
     public virtual void OnUseItem()
