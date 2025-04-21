@@ -93,6 +93,40 @@ namespace Character
 
         public float ItemPickUpCooldown;
 
+        [Header("Camera Culling")]
+        [SerializeField]
+        private GameObject speedLines;
+
+        [SerializeField]
+        private GameObject wrongWayIndicator;
+
+        public void SetCullingLayer(int index)
+        {
+            speedLines.layer = index + 12;
+            wrongWayIndicator.layer = index + 12;
+            switch(index)
+            { 
+                case 0:
+                    VirtualCamera.cullingMask = LayerMask.GetMask("Default", "Water", "Ground", "P1");
+                    break;
+                case 1:
+                    VirtualCamera.cullingMask = LayerMask.GetMask("Default", "Water", "Ground", "P2");
+                    break;
+                case 2:
+                    VirtualCamera.cullingMask = LayerMask.GetMask("Default", "Water", "Ground", "P3");
+                    break;
+                case 3:
+                    VirtualCamera.cullingMask = LayerMask.GetMask("Default", "Water", "Ground", "P4");
+                    break;
+                default:
+                    Debug.Log("Bad index in SetCullingLayer func");
+                    break;
+
+            }
+
+        }
+
+
         public void ResetPos()
         {
             CheckPointIndex = ResetIndex;
@@ -194,7 +228,8 @@ namespace Character
             CurrentBoostTime += BoosterTime;
             HorseAnimator.SetTrigger("Booster");
             //BoostTrailInstance = Instantiate(BoostTrailPrefab, this.gameObject.transform, false);
-            BoostTrailPrefab.SetActive(true);
+            //BoostTrailPrefab.SetActive(true);
+            speedLines.SetActive(true);
             MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.boostAudio);
         }
 
@@ -390,6 +425,7 @@ namespace Character
                 if (CurrentBoostTime <= 0)
                 {
                     BoostTrailPrefab.SetActive(false);
+                    speedLines.SetActive(false);
                 }
             }
 
