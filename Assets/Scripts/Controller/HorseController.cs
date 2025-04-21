@@ -20,6 +20,7 @@ namespace Character
         public GameObject runSmear;
         public VisualEffect runDustVFX;
         public bool isPlayerHorse = false;
+        public bool canMove = true;
         public float MaxSpeed = 10f;
         public float Acceleration = 10f;
         [Space(5)]
@@ -125,8 +126,9 @@ namespace Character
         private void Start()
         {
             CurrentEnergy = MaxEnergy;
+            canMove = true;
 
-            float arc = transform.eulerAngles.y / 180 * Mathf.PI;
+        float arc = transform.eulerAngles.y / 180 * Mathf.PI;
             Direction = new Vector2(Mathf.Sin(arc), Mathf.Cos(arc));
             HVelocity = Vector2.zero;
             Rigidbody = this.GetComponent<Rigidbody>();
@@ -261,6 +263,13 @@ namespace Character
         private void Update()
         {
             UpdateRanking();
+
+            if (!canMove)
+            {
+                Rigidbody.velocity = Vector3.zero;
+                HorseAnimator.SetFloat("Velocity", 0f);
+                return;
+            }
 
             if (!GameManager.IsGameBegin)
             {
@@ -551,6 +560,20 @@ namespace Character
             mats[1] = legMat;
             smr.materials = mats;
         }
+        public void DisableMovement()
+        {
+            canMove = false;
+
+            if (TryGetComponent<Rigidbody>(out var rb))
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+            }
+
+            HorseAnimator.SetFloat("Velocity", 0f);
+        }
+
     }
 
 }

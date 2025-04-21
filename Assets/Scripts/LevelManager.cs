@@ -173,5 +173,19 @@ public class LevelManager : MonoBehaviour
                 break;
         }
     }
+    void OnEnable()
+    {
+        GameManager.OnGameEnded += HandleGameEnded;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnGameEnded -= HandleGameEnded;
+    }
+
+    void HandleGameEnded()
+    {
+        EndGameCamera.enabled = true;
+    }
 
 }
