@@ -185,6 +185,8 @@ public class MenuManager : MonoBehaviour
 
     public void UpdatePlayerCount()
     {
+        playerCountSlider.minValue = 1;
+        playerCountSlider.maxValue = GameManager.Instance.deviceCount > 0 ? GameManager.Instance.deviceCount : 1;
         playerCountSlider.value = GameManager.Instance.PlayerCount;
         playerCountText.text = GameManager.Instance.PlayerCount.ToString();
 
