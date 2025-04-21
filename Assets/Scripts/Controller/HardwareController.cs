@@ -21,7 +21,7 @@ namespace GameSystem.Input
         //private float MaxGyroscopeX = 0;
         private float LastGyroscopeX = 0;
 
-        private const float MistakeRange = 0.1f;
+        private const float MistakeRange = 1f;
         private const float RotationDeadRange = 12.5f;
         private List<RockRecord> RockRecords = new List<RockRecord>();
 
@@ -115,16 +115,31 @@ namespace GameSystem.Input
             //}
             //LastJumpStatus = data.isJumped;
 
-            float rotationSensitivity = 10f;
-            float rotation = (data.rotationZ < 0 ? -1 : 1) * Mathf.Pow(Mathf.Abs(data.rotationZ), 1.5f) * rotationSensitivity;
-            if (Mathf.Abs(rotation) < RotationDeadRange)
+            //float rotationSensitivity = 10f;
+            //float rotation = (data.rotationZ < 0 ? -1 : 1) * Mathf.Pow(Mathf.Abs(data.rotationZ), 1.5f) * rotationSensitivity;
+            //if (Mathf.Abs(rotation) < RotationDeadRange)
+            //{
+            //    InputLayer.UpdateRotation(CID, 0);
+            //}
+            //else
+            //{
+            //    InputLayer.UpdateRotation(CID, rotation);
+            //}
+
+            float minRotationSpeed = 15f; 
+            float maxRotationSpeed = 75f;  
+            float rotationSpeed = Mathf.Lerp(minRotationSpeed, maxRotationSpeed, acceleration);
+
+            if (data.rotationZ == 0)
             {
                 InputLayer.UpdateRotation(CID, 0);
             }
             else
             {
+                float rotation = data.rotationZ * rotationSpeed;
                 InputLayer.UpdateRotation(CID, rotation);
             }
+
 
             //if (data.isChangedLeft == 1 && LastChangeLeftStatus == 0)
             //{
