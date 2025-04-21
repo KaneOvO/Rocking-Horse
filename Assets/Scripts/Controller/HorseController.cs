@@ -547,18 +547,21 @@ namespace Character
         {
             HorseAnimator.SetTrigger("HitChick");
             StunTime = 1f;
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.horseHitAudio);
         }
 
         public void OnHitBlackHole()
         {
             HorseAnimator.SetTrigger("HitBlackHole");
-            StunTime = 2.5f;
+            StunTime = 3f;
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.horseFallAudio);
         }
 
         public void OnHitDustDevil()
         {
             HorseAnimator.SetTrigger("HitChick");
             StunTime = 1;
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.horseHitAudio);
         }
 
         public void OnHitManure()
