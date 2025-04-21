@@ -1,11 +1,13 @@
+using Character;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Linq;
+using Triggers;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class CowObstacle : MonoBehaviour
+public class CowObstacle : Trigger
 {
     [Header("Gameplay")]
     [SerializeField, Tooltip("The magnitude of the knockack force that the player will get when they collide with the cow")]
@@ -31,39 +33,6 @@ public class CowObstacle : MonoBehaviour
         StartCoroutine(DustDevilRestart(lifeTime));
     }
 
-    private void OnTriggerEnter(Collider collision)
-    {
-
-        Debug.Log("Collision started");
-
-        Debug.Log(collision.gameObject.tag);
-
-        //Check to see if a player is what collided with the obstacle
-        if (collision.gameObject.CompareTag("Player"))
-        {
-
-            Debug.Log("Collided with a player");
-
-            //Check to see if the player has been added to the collision array
-            if (!collidedPlayers.Contains(collision.gameObject))
-            {
-                GameObject newPlayer = collision.gameObject;
-
-                collidedPlayers.Add(newPlayer);
-
-                Debug.Log("New Player, adding to list");
-
-                Vector3 knockbackDirection = newPlayer.transform.forward * -1;
-                knockbackDirection.y = 0.25f;
-                knockbackDirection *= knockbackMagnitude;  
-                
-                newPlayer.GetComponent<Rigidbody>().AddForce(knockbackDirection, ForceMode.Acceleration);
-
-                StartCoroutine(PlayerValidAgain(newPlayer));
-            }
-        }
-    }
-
     private IEnumerator PlayerValidAgain(GameObject player)
     {
         yield return new WaitForSeconds(knockbackCooldown);
@@ -83,5 +52,26 @@ public class CowObstacle : MonoBehaviour
         dustDevilVFX.Play();
 
         StartCoroutine(DustDevilRestart(delay));
+    }
+
+    protected override void OnCharacterEnter(HorseController controller)
+    {
+        if (!collidedPlayers.Contains(controller.gameObject))
+        {
+            GameObject newPlayer = controller.gameObject;
+
+            collidedPlayers.Add(newPlayer);
+
+            Debug.Log("New Player, adding to list");
+
+            Vector3 knockbackDirection = -newPlayer.transform.forward;
+            Vector2 force = new Vector2(knockbackDirection.x, knockbackDirection.z);
+            force *= knockbackMagnitude;
+            controller.AdditionalForce += force;
+            controller.OnHitDustDevil();
+
+            StartCoroutine(PlayerValidAgain(newPlayer));
+        }
+        
     }
 }

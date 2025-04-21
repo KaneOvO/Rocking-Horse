@@ -65,6 +65,8 @@ namespace Character
         public float SmallestDistance;
         [HideInInspector]
         public int CheckPointIndex;
+        [HideInInspector]
+        public Vector2 AdditionalForce;
 
         private int ResetIndex;
         private Vector3 ResetPoint;
@@ -321,7 +323,7 @@ namespace Character
 
             if (IsOnGround && VVelocity < 0)
             {
-                VVelocity = Mathf.Min(Rigidbody.velocity.y, -0.5f);
+                VVelocity = Mathf.Min(Rigidbody.velocity.y, -0.35f);
             }
             else
             {
@@ -459,13 +461,28 @@ namespace Character
 
             //HVelocity = Direction * HVelocity.magnitude;
 
+            float afm = AdditionalForce.magnitude;
+            if (afm < frameAccelerate)
+            {
+                AdditionalForce = Vector2.zero;
+            }
+            else
+            {
+                AdditionalForce = AdditionalForce.normalized * (afm - frameAccelerate);
+            }
+
             Vector3 hv = new Vector3(HVelocity.x, 0, HVelocity.y);
             Vector3 vv = new Vector3(0, VVelocity, 0);
+            Vector3 av = new Vector3(AdditionalForce.x, 0, AdditionalForce.y);
 
             if (IsOnGround)
             {
                 Quaternion groundRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 hv = groundRotation * hv;
+                if(hv.y < 0)
+                {
+                    hv.y *= 0.35f;
+                }
             }
 
             Vector3 velocity = hv + vv;
@@ -484,6 +501,7 @@ namespace Character
             {
                 Rigidbody.velocity = velocity;
             }
+            Rigidbody.velocity += av;
 
             if (VirtualCamera != null) VirtualCamera.fieldOfView = 40 +
                     Mathf.Clamp(HVelocity.magnitude * HVelocity.magnitude, 0, 400f) / 20f;
@@ -534,7 +552,12 @@ namespace Character
         {
             HorseAnimator.SetTrigger("HitBlackHole");
             StunTime = 2.5f;
+        }
 
+        public void OnHitDustDevil()
+        {
+            HorseAnimator.SetTrigger("HitChick");
+            StunTime = 1;
         }
 
         public void OnHitManure()
