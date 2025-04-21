@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173bb18f520f1354a8e7d9022da71a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetSpeed: 0.8
-  RandomRange: 2
-  ReachRadius: 2
+  TargetSpeed: 0.85
+  RandomRange: 1
+  ReachRadius: 5
+  isLastPoint: 0
