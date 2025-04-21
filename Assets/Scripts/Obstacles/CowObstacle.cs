@@ -5,6 +5,7 @@ using System.Drawing.Text;
 using System.Linq;
 using Triggers;
 using UnityEngine;
+using UnityEngine.Splines;
 using UnityEngine.VFX;
 
 public class CowObstacle : Trigger
@@ -23,14 +24,16 @@ public class CowObstacle : Trigger
     [SerializeField]
     private VisualEffect dustDevilVFX;
 
-    [SerializeField]
     private float lifeTime;
 
     public void Start()
     {
         collidedPlayers = new List<GameObject>();
 
+        lifeTime = GetComponentInChildren<SplineAnimate>().Duration;
+
         StartCoroutine(DustDevilRestart(lifeTime));
+
     }
 
     private IEnumerator PlayerValidAgain(GameObject player)
@@ -49,7 +52,7 @@ public class CowObstacle : Trigger
     {
         yield return new WaitForSeconds(delay);
 
-        dustDevilVFX.Play();
+        dustDevilVFX.Reinit();
 
         StartCoroutine(DustDevilRestart(delay));
     }
