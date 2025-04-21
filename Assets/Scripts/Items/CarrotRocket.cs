@@ -35,6 +35,7 @@ namespace Items
             base.OnUseItem();
             
             //Controller.Collider.enabled = true;
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.carrotRocketAudio);
 
             float cloestDistance = 99999999;
 

@@ -15,6 +15,10 @@ public class MusicManager : MonoBehaviour
     public AudioClip lap2Audio;
     public AudioClip pickItemAudio;
     public AudioClip boostAudio;
+    public AudioClip horseFallAudio;
+    public AudioClip horseHitAudio;
+    public AudioClip lassoAudio;
+    public AudioClip carrotRocketAudio;
 
     private bool hasSwitched = false;
 
