@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerPrefab;
     public GameObject NPCPrefab;
     public List<GameObject> Players = new List<GameObject>();
+    public GameObject pauseMenu;
+    public GameObject endGameCanvas;
 
     private float endGameTimer;
     private bool endGameTimerStarted;
