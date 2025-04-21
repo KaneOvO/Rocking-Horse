@@ -125,6 +125,12 @@ public class GameManager : MonoBehaviour
             MultiSerialManager.Instance.ResearchDevice();
             Debug.Log("Reseach!");
         }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PauseMenu.Instance.TogglePause();
+            Debug.Log("Pause!");
+        }
     }
 
     private void GameEnd()

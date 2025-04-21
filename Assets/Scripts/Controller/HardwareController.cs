@@ -115,7 +115,7 @@ namespace GameSystem.Input
             //}
             //LastJumpStatus = data.isJumped;
 
-            float rotationSensitivity = 0.7f;
+            float rotationSensitivity = 10f;
             float rotation = (data.rotationZ < 0 ? -1 : 1) * Mathf.Pow(Mathf.Abs(data.rotationZ), 1.5f) * rotationSensitivity;
             if (Mathf.Abs(rotation) < RotationDeadRange)
             {
