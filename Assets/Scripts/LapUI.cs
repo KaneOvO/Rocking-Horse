@@ -12,6 +12,7 @@ public class LapUI : MonoBehaviour
     public GameObject finished;
 
     private bool hasFinished = false;
+    private static bool finalLapMusicStarted = false; 
 
     private void Start()
     {
@@ -26,10 +27,13 @@ public class LapUI : MonoBehaviour
         var controller = HorseController.Horses[horseIndex];
         var lapCount = controller.GetComponent<LapCounter>().lapFinished;
 
-        if (lapCount == 1)
+        if (lapCount == 1 && !finalLapMusicStarted)
         {
             lap1.SetActive(false);
             lap2.SetActive(true);
+
+            MusicManager.Instance?.SwitchToFinalLapMusic();
+            finalLapMusicStarted = true;
         }
         else if (lapCount == 2 && !hasFinished)
         {
