@@ -316,6 +316,7 @@ MonoBehaviour:
   HVelocity: {x: 0, y: 0}
   Direction: {x: 0, y: 0}
   VVelocity: 0
+  playerIndex: 0
   NextCheckPointDistance: 0
   SmallestDistance: 0
   CheckPointIndex: 0
@@ -332,12 +333,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310242483577952872}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9ad4b3eff6e5b42a91f2762cdc27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 1
+  Enabled: 0
   DebugMode: 0
   PrintEvent: 0
   MoveKey: 119
