@@ -1954,7 +1954,7 @@ PrefabInstance:
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: PlayerCount
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
@@ -1990,6 +1990,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6862698040805236551, guid: bb7da580b917ae94d97831d1b00dd751,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7013337410362192651, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
@@ -2206,7 +2211,7 @@ PrefabInstance:
     - target: {fileID: 7430693121335859155, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
