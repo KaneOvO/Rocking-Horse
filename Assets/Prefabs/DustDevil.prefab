@@ -595,7 +595,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b80dab72cd75c049bf4af9ec9c158e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackMagnitude: 7500
+  Enabled: 1
+  knockbackMagnitude: 25
   knockbackCooldown: 2
   dustDevilVFX: {fileID: 4701010997373200951}
   lifeTime: 20
@@ -800,7 +801,7 @@ GameObject:
   - component: {fileID: 4644271963994785256}
   - component: {fileID: 4270201821860044010}
   - component: {fileID: 7582347114160039948}
-  - component: {fileID: 5924247514274998233}
+  - component: {fileID: 4274013613955517931}
   m_Layer: 0
   m_Name: DustDevilBody
   m_TagString: Untagged
@@ -873,7 +874,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5924247514274998233
+--- !u!136 &4274013613955517931
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -892,7 +893,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
