@@ -330,20 +330,31 @@ namespace Character
 
             NextCheckPointDistance = -(toNext - toCurrent * 2).magnitude;
 
+            Vector3 forward = transform.TransformDirection(Vector3.forward);
+
             if (NextCheckPointDistance > SmallestDistance)
             {
                 SmallestDistance = NextCheckPointDistance;
             }
-            else if (NextCheckPointDistance < SmallestDistance - 10)
+            if (Vector3.Dot(forward, toNext) < 0)
             {
                 WrongWayNote.SetActive(true);
-                SmallestDistance = NextCheckPointDistance + 10;
             }
-
-            if (WrongWayNote.activeSelf && NextCheckPointDistance >= SmallestDistance - 7.5f)
+            else
             {
                 WrongWayNote.SetActive(false);
             }
+            //else if (NextCheckPointDistance < SmallestDistance - 10)
+            //{
+            //    WrongWayNote.SetActive(true);
+            //    SmallestDistance = NextCheckPointDistance + 10;
+            //}
+          
+
+            //if (WrongWayNote.activeSelf && NextCheckPointDistance >= SmallestDistance - 7.5f)
+            //{
+            //    WrongWayNote.SetActive(false);
+            //}
 
             if (toCurrent.magnitude * 1.35f < toNext.magnitude)
             {
