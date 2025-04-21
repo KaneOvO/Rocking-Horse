@@ -17,6 +17,7 @@ public class MusicManager : MonoBehaviour
     public AudioClip boostAudio;
     public AudioClip horseFallAudio;
     public AudioClip horseHitAudio;
+    public AudioClip lassoAudio;
 
     private bool hasSwitched = false;
 
