@@ -503,7 +503,7 @@ namespace Character
             }
             Rigidbody.velocity += av;
 
-            if (VirtualCamera != null) VirtualCamera.fieldOfView = 40 +
+            if (VirtualCamera != null) VirtualCamera.fieldOfView = 50 +
                     Mathf.Clamp(HVelocity.magnitude * HVelocity.magnitude, 0, 400f) / 20f;
 
             float currentVelocity = StunTime > 0 ? 0 : HVelocity.magnitude;
