@@ -9,7 +9,7 @@ namespace GameSystem.Input
 {
     public class UIController : MonoBehaviour
     {
-        public MyListener Listener;
+        public int ListenerIndex;
 
         public UnityEvent OnHitButton;
         public UnityEvent OnHoldButton;
@@ -19,6 +19,7 @@ namespace GameSystem.Input
         public bool KeyboardDebug = false;
         public KeyCode DebugKey = KeyCode.Space;
 
+        private MyListener Listener;
         private float HoldTime = 0;
         private bool IsTriggered = false;
         private bool IsPressed = false;
@@ -33,6 +34,7 @@ namespace GameSystem.Input
 
         private void Awake()
         {
+            Listener = MultiSerialManager.Instance.listeners[ListenerIndex].GetComponent<MyListener>();
             Listener.OnSensorDataUpdated += OnMessageUpdate;
         }
 
