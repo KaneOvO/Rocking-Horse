@@ -141,7 +141,11 @@ public class MenuManager : MonoBehaviour
     public void OnPlayerSliderPlayerCountChanged(float value)
     {
         playerCountText.text = value.ToString("0");
-        GameManager.Instance.PlayerCount = (int)value;
+        if(GameManager.Instance.PlayerCount != 0)
+        {
+            GameManager.Instance.PlayerCount = (int)value;
+        }
+        
     }
 
 
