@@ -30,13 +30,11 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Players = new List<GameObject>();
     public GameObject pauseMenu;
     public GameObject endGameCanvas;
+    public PauseAndEndGameUIController PauseAndEndGameUIController;
 
     private float endGameTimer;
     private bool endGameTimerStarted;
     private bool isGameEnd;
-
-    [SerializeField] private GameObject EndGameCanvas;
-
     public static event Action OnGameEnded;
 
     public static bool IsGameBegin
@@ -128,7 +126,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            PauseMenu.Instance.TogglePause();
+            PauseAndEndGameUIController.TogglePause();
             Debug.Log("Pause!");
         }
     }
@@ -213,7 +211,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(10f);
 
-        EndGameCanvas.SetActive(true);
+        endGameCanvas.SetActive(true);
 
     }
 }
