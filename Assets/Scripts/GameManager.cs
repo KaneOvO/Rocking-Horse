@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerPrefab;
     public GameObject NPCPrefab;
     public List<GameObject> Players = new List<GameObject>();
+    public GameObject pauseMenu;
+    public GameObject endGameCanvas;
 
     private float endGameTimer;
     private bool endGameTimerStarted;
@@ -122,6 +124,12 @@ public class GameManager : MonoBehaviour
         {
             MultiSerialManager.Instance.ResearchDevice();
             Debug.Log("Reseach!");
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PauseMenu.Instance.TogglePause();
+            Debug.Log("Pause!");
         }
     }
 
