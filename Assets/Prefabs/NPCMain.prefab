@@ -180,6 +180,7 @@ MonoBehaviour:
   runSmear: {fileID: 1237166506895824293}
   runDustVFX: {fileID: 7123979222291332138}
   isPlayerHorse: 0
+  canMove: 1
   MaxSpeed: 15
   Acceleration: 15
   BoosterSpeed: 6
@@ -200,8 +201,12 @@ MonoBehaviour:
   NextCheckPointDistance: 0
   SmallestDistance: 0
   CheckPointIndex: 0
+  AdditionalForce: {x: 0, y: 0}
   horseUI: {fileID: 0}
   BoostTrailPrefab: {fileID: 7325553372538779921}
+  ItemPickUpCooldown: 0
+  speedLines: {fileID: 372909241162976964}
+  wrongWayIndicator: {fileID: 372909241162976964}
 --- !u!114 &6910730887584847136
 MonoBehaviour:
   m_ObjectHideFlags: 0
