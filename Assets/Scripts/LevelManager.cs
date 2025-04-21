@@ -71,6 +71,7 @@ public class LevelManager : MonoBehaviour
             player.GetComponent<HorseController>().isPlayerHorse = true;
             player.GetComponentInChildren<BandanaColor>().SetColor((int)Listeners[i].GetComponent<MyListener>().color);
             player.GetComponent<HorseController>().SetCullingLayer(i);
+            player.GetComponent<HorseController>().playerIndex = i;
             //todo: Load the corresponding model according to the player's choice
         }
 
@@ -80,6 +81,7 @@ public class LevelManager : MonoBehaviour
             NPC.name = "NPC" + (i + 1);
             NPC.transform.position = SpawnPoints[i].transform.position;
             NPC.transform.rotation = SpawnPoints[i].transform.rotation;
+            NPC.GetComponent<HorseController>().playerIndex = i + 1;
         }
 
 

@@ -46,6 +46,8 @@ namespace Character
         public Vector2 Direction;
         [HideInInspector]
         public float VVelocity;
+        [HideInInspector]
+        public int playerIndex;
 
         private int CurrentTrack;
         private float DriftRotation = 0;
@@ -336,6 +338,10 @@ namespace Character
             {
                 SmallestDistance = NextCheckPointDistance;
             }
+            else if (NextCheckPointDistance < SmallestDistance - 10)
+            {
+                SmallestDistance = NextCheckPointDistance + 10;
+            }
             if (Vector3.Dot(forward, toNext) < 0)
             {
                 WrongWayNote.SetActive(true);
@@ -344,12 +350,8 @@ namespace Character
             {
                 WrongWayNote.SetActive(false);
             }
-            //else if (NextCheckPointDistance < SmallestDistance - 10)
-            //{
-            //    WrongWayNote.SetActive(true);
-            //    SmallestDistance = NextCheckPointDistance + 10;
-            //}
-          
+
+
 
             //if (WrongWayNote.activeSelf && NextCheckPointDistance >= SmallestDistance - 7.5f)
             //{
@@ -362,6 +364,10 @@ namespace Character
                 ResetIndex = CheckPointIndex;
                 ResetPoint = this.transform.position;
                 SmallestDistance = -9999;
+                if (playerIndex == 0)
+                {
+                    Debug.LogWarning(playerIndex.ToString() + ", " + nextPoint.gameObject.name);
+                }
             }
 
             RaycastHit hit;
