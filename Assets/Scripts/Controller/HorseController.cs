@@ -137,6 +137,10 @@ namespace Character
             //Debug.LogWarning(playerIndex.ToString() + ", " + index);
 
             currentNode++;
+            if(index > currentNode)
+            {
+                currentNode = index;
+            }
 
             if(playerIndex == 0)
             {
