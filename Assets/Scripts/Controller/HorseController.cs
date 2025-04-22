@@ -308,6 +308,10 @@ namespace Character
 
         private void OnUseItem()
         {
+            if (StunTime > 0)
+            {
+                return;
+            }
             playerItem.UseCurrItem();
         }
 
