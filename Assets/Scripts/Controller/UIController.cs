@@ -27,7 +27,7 @@ namespace GameSystem.Input
         private float WaitTime = 0;
 
         public bool IsHolding {  get; private set; }
-        public bool IsConnected => Listener.isConnected || KeyboardDebug;
+        public bool IsConnected => (Listener != null && Listener.isConnected) || KeyboardDebug;
         public int Direction {  get; private set; }
 
         private const float WAIT_SWITCH_TIME = 0.75f;

@@ -316,6 +316,7 @@ MonoBehaviour:
   HVelocity: {x: 0, y: 0}
   Direction: {x: 0, y: 0}
   VVelocity: 0
+  playerIndex: 0
   NextCheckPointDistance: 0
   SmallestDistance: 0
   CheckPointIndex: 0
@@ -337,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9ad4b3eff6e5b42a91f2762cdc27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 0
+  Enabled: 1
   DebugMode: 0
   PrintEvent: 0
   MoveKey: 119
@@ -2060,6 +2061,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 118.566025
       objectReference: {fileID: 0}
+    - target: {fileID: 6420252530921818530, guid: 323e474fb3853cb47b9bbd12f80efb92,
+        type: 3}
+      propertyPath: bandanaColors.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 12910d3e2df4c7b40b9c6f76813ddc63, type: 2}
+    - target: {fileID: 6420252530921818530, guid: 323e474fb3853cb47b9bbd12f80efb92,
+        type: 3}
+      propertyPath: bandanaColors.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 790e9f4e8a7c65e40a0d2cd5edaed4f7, type: 2}
     - target: {fileID: 6539951684791136208, guid: 323e474fb3853cb47b9bbd12f80efb92,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -1427,6 +1427,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1109215512}
     m_Modifications:
+    - target: {fileID: 420776299604587747, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.20232591
+      objectReference: {fileID: 0}
+    - target: {fileID: 420776299604587747, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 420776299604587747, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9793183
+      objectReference: {fileID: 0}
+    - target: {fileID: 420776299604587747, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 420776299604587747, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 156.654
+      objectReference: {fileID: 0}
     - target: {fileID: 2160905991569083901, guid: 57be202b80355904994936933201ed92,
         type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.size
@@ -2780,7 +2805,7 @@ PrefabInstance:
     - target: {fileID: 6862698040805236551, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7013337410362192651, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
@@ -2997,7 +3022,7 @@ PrefabInstance:
     - target: {fileID: 7430693121335859155, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
@@ -3113,42 +3138,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 222466027}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &222466031 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6018732967679611343, guid: d1ba21a6183596346ab523971b5d59e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 222466027}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 222466028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f8db23b1e8273e4ca54334e6fa52a9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &222466032 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 497521278513219995, guid: d1ba21a6183596346ab523971b5d59e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 222466027}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 222466029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f8db23b1e8273e4ca54334e6fa52a9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &222466033 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3477455452497292373, guid: d1ba21a6183596346ab523971b5d59e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 222466027}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 222466030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f8db23b1e8273e4ca54334e6fa52a9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &226169413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7329,6 +7318,11 @@ GameObject:
   - component: {fileID: 560587350}
   - component: {fileID: 560587352}
   - component: {fileID: 560587351}
+  - component: {fileID: 560587357}
+  - component: {fileID: 560587356}
+  - component: {fileID: 560587355}
+  - component: {fileID: 560587354}
+  - component: {fileID: 560587353}
   m_Layer: 5
   m_Name: ToMenu
   m_TagString: Untagged
@@ -7394,6 +7388,205 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560587349}
   m_CullTransparentMesh: 1
+--- !u!114 &560587353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560587349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 3
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &560587354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560587349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 2
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &560587355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560587349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 1
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &560587356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560587349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7533a8c3f20da2448551d726ed63d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 560587357}
+  UIS:
+  - {fileID: 280865964}
+--- !u!114 &560587357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560587349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 0
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
 --- !u!1001 &563248092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8555,18 +8748,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6a6ec986b7a9c245b4688819acdebbd, type: 3}
---- !u!114 &646591722 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5984603611057420689, guid: d1ba21a6183596346ab523971b5d59e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 222466027}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f8db23b1e8273e4ca54334e6fa52a9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &651697873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6aff6d82f26a61a4394413d39722a203,
@@ -21833,6 +22014,11 @@ PrefabInstance:
       propertyPath: m_MaxSpeed
       value: 4.4982457
       objectReference: {fileID: 0}
+    - target: {fileID: 8945880573582012316, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23667,6 +23853,9 @@ GameObject:
   - component: {fileID: 1450241420}
   - component: {fileID: 1450241423}
   - component: {fileID: 1450241422}
+  - component: {fileID: 1450241426}
+  - component: {fileID: 1450241425}
+  - component: {fileID: 1450241424}
   m_Layer: 5
   m_Name: PausedPopUp
   m_TagString: Untagged
@@ -23763,6 +23952,144 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListenerIndex: 0
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &1450241424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450241418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 3
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &1450241425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450241418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 2
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &1450241426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450241418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 1
   OnHitButton:
     m_PersistentCalls:
       m_Calls:
@@ -25886,6 +26213,18 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1546845724}
+    - targetCorrespondingSourceObject: {fileID: 853866205527147046, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1546845727}
+    - targetCorrespondingSourceObject: {fileID: 853866205527147046, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1546845726}
+    - targetCorrespondingSourceObject: {fileID: 853866205527147046, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1546845725}
     - targetCorrespondingSourceObject: {fileID: 9110003183972912335, guid: f3da5a4fd9636f7489846ce828941999,
         type: 3}
       insertIndex: -1
@@ -26169,6 +26508,108 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1666404200}
   endGameCanvas: {fileID: 392612475}
+--- !u!114 &1546845725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546845722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 3
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1360232697}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 3
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &1546845726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546845722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 2
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1360232697}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 3
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &1546845727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546845722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 1
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1360232697}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 3
+  KeyboardDebug: 0
+  DebugKey: 32
 --- !u!1001 &1549247692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26801,13 +27242,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596906465}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13048401, y: 0.5455744, z: -0.09322769, w: 0.8225759}
-  m_LocalPosition: {x: -6.1344757, y: -10.330002, z: 25.932014}
+  m_LocalRotation: {x: 0.07512928, y: 0.5505913, z: -0.0564986, w: 0.8294654}
+  m_LocalPosition: {x: -7.77, y: -10.74, z: 26.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2004146989}
-  m_LocalEulerAnglesHint: {x: 18.445, y: 67.001, z: -0.664}
+  m_LocalEulerAnglesHint: {x: 10.769, y: 67.091, z: -0.641}
 --- !u!1001 &1597394800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35359,6 +35800,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1810245387}
     m_Modifications:
+    - target: {fileID: 1740068279309718904, guid: eb77b43483e94bb449a379308b56fa3f,
+        type: 3}
+      propertyPath: isLastNode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5171741202567271193, guid: eb77b43483e94bb449a379308b56fa3f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36828,11 +37274,7 @@ MonoBehaviour:
   - {fileID: 1538766208}
   - {fileID: 1538766207}
   - {fileID: 1538766204}
-  Listeners:
-  - {fileID: 646591722}
-  - {fileID: 222466033}
-  - {fileID: 222466032}
-  - {fileID: 222466031}
+  Listeners: []
   MiniMapPrefab: {fileID: 3247274627955784049, guid: db40f2863ce72e940a450a6631dea4e7,
     type: 3}
   Podium: {fileID: 1570671446}

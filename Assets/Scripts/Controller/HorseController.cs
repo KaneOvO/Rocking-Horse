@@ -46,6 +46,8 @@ namespace Character
         public Vector2 Direction;
         [HideInInspector]
         public float VVelocity;
+        [HideInInspector]
+        public int playerIndex;
 
         private int CurrentTrack;
         private float DriftRotation = 0;
@@ -100,12 +102,18 @@ namespace Character
         [SerializeField]
         private GameObject wrongWayIndicator;
 
+        [HideInInspector]
+        public int currentNode;
+        public int currentLap;
+        private IEnumerator wrongWayCoroutine;
+        private LapUI playerLapUI;
+
         public void SetCullingLayer(int index)
         {
             speedLines.layer = index + 12;
             wrongWayIndicator.layer = index + 12;
-            switch(index)
-            { 
+            switch (index)
+            {
                 case 0:
                     VirtualCamera.cullingMask = LayerMask.GetMask("Default", "Water", "Ground", "P1");
                     break;
@@ -124,6 +132,58 @@ namespace Character
 
             }
 
+        }
+
+        public void PassedNode(int index)
+        {
+            //Debug.LogWarning(playerIndex.ToString() + ", " + index);
+            //If the node's index is equal to the currentNode then increment by one
+            if (index == currentNode)
+            {
+                currentNode++;
+            }
+            //Otherwise
+            else
+            {
+                //Sanity check, don't let them hit node 999 and jump from 0 to there
+                if (index > currentNode + 1 && Mathf.Abs(index - currentNode) < 20)
+                {
+                    //If index is greater than currentNode + 1
+                    //And the difference between them isn't greater than 20
+                    //Then skip the inbetween nodes
+                    currentNode = index+1;
+                    if (playerIndex == 0)
+                    {
+                        Debug.LogWarning(playerIndex.ToString("skipped " + (index - currentNode).ToString() + " node(s)"));
+                    }
+                }
+            }
+            if (playerIndex == 0)
+            {
+                Debug.LogWarning(playerIndex.ToString() + ", " + currentNode + " @ node: " + index.ToString());
+            }
+        }
+
+        public void Lapped()
+        {
+            if (currentNode > 100)
+            {
+                currentNode = 0;
+                currentLap++;
+                Debug.LogWarning("player: " + playerIndex.ToString() + " finished a lap");
+
+                playerLapUI.StartLap2();
+
+            }
+
+
+            if (currentLap > 2)
+            {
+                Debug.LogWarning("player: " + playerIndex.ToString() + " won the race");
+                GameManager.Instance.finalRanking.Add((RaceTimer.Instance.timer, GetComponent<HorseController>()));
+
+                playerLapUI.FinishedRace();
+            }
         }
 
 
@@ -164,7 +224,7 @@ namespace Character
             CurrentEnergy = MaxEnergy;
             canMove = true;
 
-        float arc = transform.eulerAngles.y / 180 * Mathf.PI;
+            float arc = transform.eulerAngles.y / 180 * Mathf.PI;
             Direction = new Vector2(Mathf.Sin(arc), Mathf.Cos(arc));
             HVelocity = Vector2.zero;
             Rigidbody = this.GetComponent<Rigidbody>();
@@ -196,6 +256,19 @@ namespace Character
             }
 
             playerItem = GetComponent<PlayerItem>();
+
+            //Carter addition
+            currentNode = 0;
+            currentLap = 1;
+            wrongWayCoroutine = WrongWayDisplay(0.8f);
+
+            foreach (LapUI ui in FindObjectsByType(typeof(LapUI), FindObjectsSortMode.None))
+            {
+                if (ui.horseIndex == playerIndex)
+                {
+                    playerLapUI = ui;
+                }
+            }
         }
         private void OnDrift()
         {
@@ -235,6 +308,10 @@ namespace Character
 
         private void OnUseItem()
         {
+            if (StunTime > 0)
+            {
+                return;
+            }
             playerItem.UseCurrItem();
         }
 
@@ -291,11 +368,16 @@ namespace Character
         }
         private static int SortHorse(HorseController a, HorseController b)
         {
-            if (a.CheckPointIndex == b.CheckPointIndex)
+            //if (a.CheckPointIndex == b.CheckPointIndex)
+            //{
+            //    return a.NextCheckPointDistance.CompareTo(b.NextCheckPointDistance);
+            //}
+            //return a.CheckPointIndex.CompareTo(b.CheckPointIndex);
+            if (a.currentLap == b.currentLap)
             {
-                return a.NextCheckPointDistance.CompareTo(b.NextCheckPointDistance);
+                return a.currentNode.CompareTo(b.currentNode);
             }
-            return a.CheckPointIndex.CompareTo(b.CheckPointIndex);
+            return a.currentLap.CompareTo(b.currentLap);
         }
 
         private void Update()
@@ -322,8 +404,11 @@ namespace Character
             // }
 
             // Check Point Update
-            PathPoint nextPoint = NPCMap.GetAt(CheckPointIndex + 1);
-            PathPoint currentPoint = NPCMap.GetAt(CheckPointIndex);
+            //PathPoint nextPoint = NPCMap.GetAt(CheckPointIndex + 1);
+            //PathPoint currentPoint = NPCMap.GetAt(CheckPointIndex);
+
+            PathPoint nextPoint = NPCMap.GetAt(currentNode + 1);
+            PathPoint currentPoint = NPCMap.GetAt(currentNode);
 
             Vector3 toCurrent = currentPoint.transform.position - this.transform.position;
             Vector3 toNext = nextPoint.transform.position - this.transform.position;
@@ -332,37 +417,43 @@ namespace Character
 
             Vector3 forward = transform.TransformDirection(Vector3.forward);
 
-            if (NextCheckPointDistance > SmallestDistance)
-            {
-                SmallestDistance = NextCheckPointDistance;
-            }
+            //if (NextCheckPointDistance > SmallestDistance)
+            //{
+            //    SmallestDistance = NextCheckPointDistance;
+            //}
+            //else if (NextCheckPointDistance < SmallestDistance - 10)
+            //{
+            //    SmallestDistance = NextCheckPointDistance + 10;
+            //}
             if (Vector3.Dot(forward, toNext) < 0)
             {
-                WrongWayNote.SetActive(true);
+                //WrongWayNote.SetActive(true);
+                StartCoroutine(wrongWayCoroutine);
             }
             else
             {
+                StopCoroutine(wrongWayCoroutine);
                 WrongWayNote.SetActive(false);
             }
-            //else if (NextCheckPointDistance < SmallestDistance - 10)
-            //{
-            //    WrongWayNote.SetActive(true);
-            //    SmallestDistance = NextCheckPointDistance + 10;
-            //}
-          
+
+
 
             //if (WrongWayNote.activeSelf && NextCheckPointDistance >= SmallestDistance - 7.5f)
             //{
             //    WrongWayNote.SetActive(false);
             //}
 
-            if (toCurrent.magnitude * 1.35f < toNext.magnitude)
-            {
-                CheckPointIndex++;
-                ResetIndex = CheckPointIndex;
-                ResetPoint = this.transform.position;
-                SmallestDistance = -9999;
-            }
+            //if (toCurrent.magnitude * 1.35f < toNext.magnitude)
+            //{
+            //    CheckPointIndex++;
+            //    ResetIndex = CheckPointIndex;
+            //    ResetPoint = this.transform.position;
+            //    SmallestDistance = -9999;
+            //    //if (playerIndex == 0)
+            //    //{
+            //    //    Debug.LogWarning(playerIndex.ToString() + ", " + nextPoint.gameObject.name);
+            //    //}
+            //}
 
             RaycastHit hit;
 
@@ -527,7 +618,7 @@ namespace Character
             {
                 Quaternion groundRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 hv = groundRotation * hv;
-                if(hv.y < 0)
+                if (hv.y < 0)
                 {
                     hv.y *= 0.35f;
                 }
@@ -561,7 +652,7 @@ namespace Character
             HorseAnimator.SetFloat("StunTime", StunTime);
             HorseAnimator.SetFloat("Direction", RotationSpeed);
 
-            if(currentVelocity < 12)
+            if (currentVelocity < 12)
             {
                 SwitchMaterial(legsMaterial);
                 runSmear.SetActive(false);
@@ -646,6 +737,13 @@ namespace Character
             }
 
             HorseAnimator.SetFloat("Velocity", 0f);
+        }
+
+        private IEnumerator WrongWayDisplay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            wrongWayIndicator.SetActive(true);
         }
 
     }

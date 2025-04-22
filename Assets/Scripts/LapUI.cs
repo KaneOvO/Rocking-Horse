@@ -59,4 +59,31 @@ public class LapUI : MonoBehaviour
             hasFinished = true;
         }
     }
+
+    public void StartLap2()
+    {
+        if(!finalLapMusicStarted)
+        {
+            MusicManager.Instance?.SwitchToFinalLapMusic();
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.lap1Audio);
+            finalLapMusicStarted = true;
+
+            lap1.SetActive(false);
+            lap2.SetActive(true);
+        }
+    }
+
+    public void FinishedRace()
+    {
+        // Show the Finish banner
+        finished.SetActive(true);
+
+        MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.lap2Audio);
+
+        // Disable player movement
+        var horseController = HorseController.Horses[horseIndex];
+        horseController.DisableMovement();
+
+        hasFinished = true;
+    }
 }
