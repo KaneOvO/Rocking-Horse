@@ -20,7 +20,7 @@ public class BlackHoleDropper : GameItem
             Vector3 spawnPosition = hit.point + Vector3.up * 0.05f;
             Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, hit.normal); // Y轴对齐法线
 
-            GameObject blackHole = Instantiate(BlackHolePrefab, spawnPosition, spawnRotation);
+            GameObject blackHole = Instantiate(BlackHolePrefab, spawnPosition, transform.rotation);
             blackHole.GetComponent<BlackHole>().Dropper = gameObject;
         }
     }
