@@ -2765,7 +2765,7 @@ PrefabInstance:
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: PlayerCount
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6669616615152160008, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
@@ -22013,6 +22013,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_MaxSpeed
       value: 4.4982457
+      objectReference: {fileID: 0}
+    - target: {fileID: 8945880573582012316, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
