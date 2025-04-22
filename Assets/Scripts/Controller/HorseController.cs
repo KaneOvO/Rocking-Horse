@@ -176,6 +176,7 @@ namespace Character
             if (currentLap > 2)
             {
                 Debug.LogWarning("player: " + playerIndex.ToString() + " won the race");
+                GameManager.Instance.finalRanking.Add((RaceTimer.Instance.timer, GetComponent<HorseController>()));
             }
         }
 
