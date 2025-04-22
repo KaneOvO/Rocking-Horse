@@ -70,6 +70,7 @@ public class LevelManager : MonoBehaviour
             player.GetComponent<HardwareController>().myListener = Listeners[i];
             player.GetComponent<HorseController>().isPlayerHorse = true;
             player.GetComponentInChildren<BandanaColor>().SetColor((int)Listeners[i].GetComponent<MyListener>().color);
+            player.GetComponent<HorseController>().SetCullingLayer(i);
             //todo: Load the corresponding model according to the player's choice
         }
 

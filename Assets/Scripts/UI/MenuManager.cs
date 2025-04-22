@@ -141,7 +141,11 @@ public class MenuManager : MonoBehaviour
     public void OnPlayerSliderPlayerCountChanged(float value)
     {
         playerCountText.text = value.ToString("0");
-        GameManager.Instance.PlayerCount = (int)value;
+        if(GameManager.Instance.PlayerCount != 0)
+        {
+            GameManager.Instance.PlayerCount = (int)value;
+        }
+        
     }
 
 
@@ -185,6 +189,8 @@ public class MenuManager : MonoBehaviour
 
     public void UpdatePlayerCount()
     {
+        playerCountSlider.minValue = 1;
+        playerCountSlider.maxValue = GameManager.Instance.deviceCount > 0 ? GameManager.Instance.deviceCount : 1;
         playerCountSlider.value = GameManager.Instance.PlayerCount;
         playerCountText.text = GameManager.Instance.PlayerCount.ToString();
 

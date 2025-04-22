@@ -113,7 +113,9 @@ public class MultiSerialManager : MonoBehaviour
                             i++;
                             serialController.SetActive(true);
                             controller.enabled = true;
+                            UnityEngine.Debug.Log("Add player and device count");
                             GameManager.Instance.PlayerCount++;
+                            GameManager.Instance.deviceCount++;
                             //UnityEngine.Debug.Log($"[{port}] Controller assigned to listener {i - 1}");
                         }
                     }
@@ -143,6 +145,7 @@ public class MultiSerialManager : MonoBehaviour
 
         serialControllers.Clear();
         GameManager.Instance.PlayerCount = 0;
+        GameManager.Instance.deviceCount = 0;
         SearchDevice();
     }
 }

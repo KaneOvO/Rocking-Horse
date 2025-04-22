@@ -64,6 +64,7 @@ public class Lasso : GameItem
         base.OnUseItem();
         
         UseLasso();
+        MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.lassoAudio);
     }
 
     public void UseLasso()

@@ -33,6 +33,7 @@ public class LapUI : MonoBehaviour
             lap2.SetActive(true);
 
             MusicManager.Instance?.SwitchToFinalLapMusic();
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.lap1Audio);
             finalLapMusicStarted = true;
         }
         else if (lapCount == 2 && !hasFinished)
@@ -48,6 +49,8 @@ public class LapUI : MonoBehaviour
 
             // Show the Finish banner
             finished.SetActive(true);
+
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.lap2Audio);
 
             // Disable player movement
             var horseController = controller.GetComponent<HorseController>();

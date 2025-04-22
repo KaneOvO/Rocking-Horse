@@ -23,10 +23,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public bool RequiredAltController = true;
     public static float TimeBeforeStart = 3;
-    public int PlayerCount = 1;
+    public int PlayerCount = 0;
+    public int deviceCount = 0;
     public GameObject PlayerPrefab;
     public GameObject NPCPrefab;
     public List<GameObject> Players = new List<GameObject>();
+    public GameObject pauseMenu;
+    public GameObject endGameCanvas;
 
     private float endGameTimer;
     private bool endGameTimerStarted;
@@ -121,6 +124,12 @@ public class GameManager : MonoBehaviour
         {
             MultiSerialManager.Instance.ResearchDevice();
             Debug.Log("Reseach!");
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PauseMenu.Instance.TogglePause();
+            Debug.Log("Pause!");
         }
     }
 

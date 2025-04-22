@@ -93,6 +93,40 @@ namespace Character
 
         public float ItemPickUpCooldown;
 
+        [Header("Camera Culling")]
+        [SerializeField]
+        private GameObject speedLines;
+
+        [SerializeField]
+        private GameObject wrongWayIndicator;
+
+        public void SetCullingLayer(int index)
+        {
+            speedLines.layer = index + 12;
+            wrongWayIndicator.layer = index + 12;
+            switch(index)
+            { 
+                case 0:
+                    VirtualCamera.cullingMask = LayerMask.GetMask("Default", "Water", "Ground", "P1");
+                    break;
+                case 1:
+                    VirtualCamera.cullingMask = LayerMask.GetMask("Default", "Water", "Ground", "P2");
+                    break;
+                case 2:
+                    VirtualCamera.cullingMask = LayerMask.GetMask("Default", "Water", "Ground", "P3");
+                    break;
+                case 3:
+                    VirtualCamera.cullingMask = LayerMask.GetMask("Default", "Water", "Ground", "P4");
+                    break;
+                default:
+                    Debug.Log("Bad index in SetCullingLayer func");
+                    break;
+
+            }
+
+        }
+
+
         public void ResetPos()
         {
             CheckPointIndex = ResetIndex;
@@ -194,7 +228,9 @@ namespace Character
             CurrentBoostTime += BoosterTime;
             HorseAnimator.SetTrigger("Booster");
             //BoostTrailInstance = Instantiate(BoostTrailPrefab, this.gameObject.transform, false);
-            BoostTrailPrefab.SetActive(true);
+            //BoostTrailPrefab.SetActive(true);
+            speedLines.SetActive(true);
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.boostAudio);
         }
 
         private void OnUseItem()
@@ -389,6 +425,7 @@ namespace Character
                 if (CurrentBoostTime <= 0)
                 {
                     BoostTrailPrefab.SetActive(false);
+                    speedLines.SetActive(false);
                 }
             }
 
@@ -503,7 +540,7 @@ namespace Character
             }
             Rigidbody.velocity += av;
 
-            if (VirtualCamera != null) VirtualCamera.fieldOfView = 40 +
+            if (VirtualCamera != null) VirtualCamera.fieldOfView = 50 +
                     Mathf.Clamp(HVelocity.magnitude * HVelocity.magnitude, 0, 400f) / 20f;
 
             float currentVelocity = StunTime > 0 ? 0 : HVelocity.magnitude;
@@ -546,18 +583,21 @@ namespace Character
         {
             HorseAnimator.SetTrigger("HitChick");
             StunTime = 1f;
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.horseHitAudio);
         }
 
         public void OnHitBlackHole()
         {
             HorseAnimator.SetTrigger("HitBlackHole");
-            StunTime = 2.5f;
+            StunTime = 3f;
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.horseFallAudio);
         }
 
         public void OnHitDustDevil()
         {
             HorseAnimator.SetTrigger("HitChick");
             StunTime = 1;
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.horseHitAudio);
         }
 
         public void OnHitManure()
