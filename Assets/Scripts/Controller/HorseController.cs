@@ -105,8 +105,10 @@ namespace Character
         [HideInInspector]
         public int currentNode;
         public int currentLap;
+        public int lastPassedNode;
         private IEnumerator wrongWayCoroutine;
         private LapUI playerLapUI;
+        private bool ww_running;
 
         public void SetCullingLayer(int index)
         {
@@ -136,6 +138,8 @@ namespace Character
 
         public void PassedNode(int index)
         {
+            lastPassedNode = index;
+
             //Debug.LogWarning(playerIndex.ToString() + ", " + index);
             //If the node's index is equal to the currentNode then increment by one
             if (index == currentNode)
@@ -151,7 +155,7 @@ namespace Character
                     //If index is greater than currentNode + 1
                     //And the difference between them isn't greater than 20
                     //Then skip the inbetween nodes
-                    currentNode = index+1;
+                    currentNode = index + 1;
                     if (playerIndex == 0)
                     {
                         Debug.LogWarning(playerIndex.ToString("skipped " + (index - currentNode).ToString() + " node(s)"));
@@ -160,7 +164,7 @@ namespace Character
             }
             if (playerIndex == 0)
             {
-                Debug.LogWarning(playerIndex.ToString() + ", " + currentNode + " @ node: " + index.ToString());
+                Debug.LogWarning(playerIndex.ToString() + ", " + currentNode + " @ node: " + lastPassedNode.ToString());
             }
         }
 
@@ -425,16 +429,68 @@ namespace Character
             //{
             //    SmallestDistance = NextCheckPointDistance + 10;
             //}
-            if (Vector3.Dot(forward, toNext) < 0)
+            if (playerIndex == 0)
             {
-                //WrongWayNote.SetActive(true);
-                StartCoroutine(wrongWayCoroutine);
+                Debug.Log("Current Node: " + currentNode.ToString() + " | Last Node: " + lastPassedNode.ToString());
+            }
+
+            if (lastPassedNode - currentNode < 0)
+            {
+
+                if (Vector3.Dot(forward, toNext) < 0)
+                {
+                    //WrongWayNote.SetActive(true);
+                    if (!ww_running)
+                    {
+                        StartCoroutine(wrongWayCoroutine);
+                    }
+                    if (playerIndex == 0)
+                    {
+                        Debug.Log("Going the wrong way");
+                    }
+                }
+                else
+                {
+                    StopCoroutine(wrongWayCoroutine);
+                    WrongWayNote.SetActive(false);
+                    ww_running = false;
+                    if (playerIndex == 0)
+                    {
+                        Debug.Log("Going the right way");
+                    }
+                }
+
+
             }
             else
             {
-                StopCoroutine(wrongWayCoroutine);
-                WrongWayNote.SetActive(false);
+                Vector3 toLast = NPCMap.GetAt(lastPassedNode+1).transform.position;
+                if (Vector3.Dot(forward, toLast) < 0)
+                {
+                    if (!ww_running)
+                    {
+                        StartCoroutine(wrongWayCoroutine);
+                    }
+                    if (playerIndex == 0)
+                    {
+                        Debug.Log("Going the wrong way, behind nodes");
+                    }
+                }
+                else
+                {
+                    if (wrongWayIndicator.activeSelf)
+                    {
+                        StopCoroutine(wrongWayCoroutine);
+                        WrongWayNote.SetActive(false);
+                        ww_running = false;
+                    }
+                    if (playerIndex == 0)
+                    {
+                        Debug.Log("Going the right way, behind nodes");
+                    }
+                }
             }
+
 
 
 
@@ -741,8 +797,9 @@ namespace Character
 
         private IEnumerator WrongWayDisplay(float delay)
         {
+            ww_running = true;
             yield return new WaitForSeconds(delay);
-
+            ww_running = false;
             wrongWayIndicator.SetActive(true);
         }
 
