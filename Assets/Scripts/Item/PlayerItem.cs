@@ -19,6 +19,7 @@ public class PlayerItem : MonoBehaviour
         
         currItem = item;
         currItem.OnReceiveItem();
+        MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.pickItemAudio);
     }
 
     public void UseCurrItem()
