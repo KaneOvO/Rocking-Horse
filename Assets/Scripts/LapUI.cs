@@ -85,5 +85,14 @@ public class LapUI : MonoBehaviour
         horseController.DisableMovement();
 
         hasFinished = true;
+
+        // Hide all children except Finish
+        foreach (Transform child in transform)
+        {
+            if (child.name != "Finish")
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
     }
 }
