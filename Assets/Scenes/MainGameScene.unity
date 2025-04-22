@@ -1427,6 +1427,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1109215512}
     m_Modifications:
+    - target: {fileID: 420776299604587747, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.20232591
+      objectReference: {fileID: 0}
+    - target: {fileID: 420776299604587747, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 420776299604587747, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9793183
+      objectReference: {fileID: 0}
+    - target: {fileID: 420776299604587747, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 420776299604587747, guid: 57be202b80355904994936933201ed92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 156.654
+      objectReference: {fileID: 0}
     - target: {fileID: 2160905991569083901, guid: 57be202b80355904994936933201ed92,
         type: 3}
       propertyPath: m_Splines.Array.data[0].m_Knots.Array.size
@@ -27212,13 +27237,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596906465}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13048401, y: 0.5455744, z: -0.09322769, w: 0.8225759}
-  m_LocalPosition: {x: -6.1344757, y: -10.330002, z: 25.932014}
+  m_LocalRotation: {x: 0.07512928, y: 0.5505913, z: -0.0564986, w: 0.8294654}
+  m_LocalPosition: {x: -7.77, y: -10.74, z: 26.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2004146989}
-  m_LocalEulerAnglesHint: {x: 18.445, y: 67.001, z: -0.664}
+  m_LocalEulerAnglesHint: {x: 10.769, y: 67.091, z: -0.641}
 --- !u!1001 &1597394800
 PrefabInstance:
   m_ObjectHideFlags: 0

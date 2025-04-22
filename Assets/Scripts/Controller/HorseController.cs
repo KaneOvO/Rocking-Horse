@@ -106,6 +106,7 @@ namespace Character
         public int currentNode;
         public int currentLap;
         private IEnumerator wrongWayCoroutine;
+        private LapUI playerLapUI;
 
         public void SetCullingLayer(int index)
         {
@@ -170,6 +171,9 @@ namespace Character
                 currentNode = 0;
                 currentLap++;
                 Debug.LogWarning("player: " + playerIndex.ToString() + " finished a lap");
+
+                playerLapUI.StartLap2();
+
             }
 
 
@@ -177,6 +181,8 @@ namespace Character
             {
                 Debug.LogWarning("player: " + playerIndex.ToString() + " won the race");
                 GameManager.Instance.finalRanking.Add((RaceTimer.Instance.timer, GetComponent<HorseController>()));
+
+                playerLapUI.FinishedRace();
             }
         }
 
@@ -254,7 +260,15 @@ namespace Character
             //Carter addition
             currentNode = 0;
             currentLap = 1;
-            wrongWayCoroutine = WrongWayDisplay(0.5f);
+            wrongWayCoroutine = WrongWayDisplay(0.8f);
+
+            foreach (LapUI ui in FindObjectsByType(typeof(LapUI), FindObjectsSortMode.None))
+            {
+                if (ui.horseIndex == playerIndex)
+                {
+                    playerLapUI = ui;
+                }
+            }
         }
         private void OnDrift()
         {
