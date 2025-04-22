@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
     {
         TimeBeforeStart = 3;
         Time.timeScale = 1f; // Unfreeze time
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex,LoadSceneMode.Single); // Reload current scene
     }
 
     public void CleanPlayers()
@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
     public void GoToMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("TitleScreenScene");
+        SceneManager.LoadScene("TitleScreenScene", LoadSceneMode.Single);
     }
 
     private IEnumerator HandleGameEndSequence()
