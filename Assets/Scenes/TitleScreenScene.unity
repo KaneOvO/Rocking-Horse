@@ -1212,7 +1212,6 @@ GameObject:
   - component: {fileID: 178440437}
   - component: {fileID: 178440436}
   - component: {fileID: 178440435}
-  - component: {fileID: 178440434}
   - component: {fileID: 178440433}
   - component: {fileID: 178440432}
   - component: {fileID: 178440431}
@@ -1237,7 +1236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ListenerIndex: 0
+  ListenerIndex: 3
   OnHitButton:
     m_PersistentCalls:
       m_Calls: []
@@ -1259,7 +1258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ListenerIndex: 0
+  ListenerIndex: 2
   OnHitButton:
     m_PersistentCalls:
       m_Calls: []
@@ -1281,7 +1280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ListenerIndex: 0
+  ListenerIndex: 1
   OnHitButton:
     m_PersistentCalls:
       m_Calls: []
@@ -1355,40 +1354,6 @@ MonoBehaviour:
   - {fileID: 2135260965}
   - {fileID: 292448581}
   - {fileID: 201580937}
---- !u!328 &178440434
-VideoPlayer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178440428}
-  m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: c3da31f2260aa89498eb43a752e08ab2, type: 3}
-  m_TargetCameraAlpha: 1
-  m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 0}
-  m_TimeReference: 0
-  m_TargetMaterialRenderer: {fileID: 0}
-  m_TargetMaterialProperty: <noninit>
-  m_RenderMode: 2
-  m_AspectRatio: 2
-  m_DataSource: 0
-  m_TimeUpdateMode: 2
-  m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
-  m_Url: 
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 1
-  m_SkipOnDrop: 1
-  m_Looping: 0
-  m_WaitForFirstFrame: 1
-  m_FrameReadyEventEnabled: 0
-  m_VideoShaders: []
 --- !u!114 &178440435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11397,7 +11362,7 @@ MonoBehaviour:
       m_Calls: []
   HoldTriggerTime: 1.25
   KeyboardDebug: 0
-  DebugKey: 118
+  DebugKey: 32
 --- !u!114 &1351186623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13392,7 +13357,7 @@ MonoBehaviour:
         m_CallState: 2
   HoldTriggerTime: 1.25
   KeyboardDebug: 0
-  DebugKey: 122
+  DebugKey: 32
 --- !u!1001 &1610703703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17129,7 +17094,7 @@ MonoBehaviour:
         m_CallState: 2
   HoldTriggerTime: 1.25
   KeyboardDebug: 0
-  DebugKey: 122
+  DebugKey: 32
 --- !u!114 &1897394584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17635,7 +17600,7 @@ MonoBehaviour:
       m_Calls: []
   HoldTriggerTime: 1.25
   KeyboardDebug: 0
-  DebugKey: 99
+  DebugKey: 32
 --- !u!4 &2028604893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c28c4cc5b345a644b93b5da9892f8944,
@@ -18300,7 +18265,7 @@ MonoBehaviour:
       m_Calls: []
   HoldTriggerTime: 1.25
   KeyboardDebug: 0
-  DebugKey: 120
+  DebugKey: 32
 --- !u!1 &2125313371
 GameObject:
   m_ObjectHideFlags: 0
