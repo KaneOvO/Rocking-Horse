@@ -8,7 +8,7 @@ using static UnityEngine.Rendering.DebugUI;
 using NPC;
 using UnityEngine.UIElements;
 using UnityEngine.VFX;
-using Autodesk.Fbx;
+//using Autodesk.Fbx;
 
 namespace Character
 {

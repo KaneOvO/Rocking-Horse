@@ -21,6 +21,8 @@ public class GameItem : MonoBehaviour
             return;
 
         IsItemReady = false;
+        GetComponent<PlayerItem>().currItem = null;
+        
         UpdateItemDisplayUI();
 
         if (TryGetComponent(out HorseController controller) && controller.horseUI != null)

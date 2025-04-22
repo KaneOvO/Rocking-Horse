@@ -896,7 +896,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -916,11 +922,11 @@ PlayerSettings:
   apiCompatibilityLevel: 3
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 594d4406-f652-4a2f-b6e7-cd22b0597baa
+  cloudProjectId: 3f1dda98-e5d5-4d77-a02f-d637dfea6954
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Rocking-Horse
-  organizationId: babypnut18
+  projectName: Rocking Horse
+  organizationId: nrhart
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

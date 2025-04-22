@@ -15,13 +15,15 @@ public class BlackHoleDropper : GameItem
     {
         base.OnUseItem();
 
-        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 10f))
+        /*if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 10f))
         {
             Vector3 spawnPosition = hit.point + Vector3.up * 0.05f;
-            Quaternion spawnRotation = Quaternion.LookRotation(Vector3.forward, hit.normal); // Y轴对齐法线
 
-            GameObject blackHole = Instantiate(BlackHolePrefab, spawnPosition, spawnRotation);
+            GameObject blackHole = Instantiate(BlackHolePrefab, spawnPosition, transform.rotation);
             blackHole.GetComponent<BlackHole>().Dropper = gameObject;
-        }
+        }*/
+        
+        var blackHole = Instantiate(BlackHolePrefab, transform.position + Vector3.down * 0.25f, transform.rotation);
+        blackHole.GetComponent<BlackHole>().Dropper = gameObject;
     }
 }

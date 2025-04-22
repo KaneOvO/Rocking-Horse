@@ -15,7 +15,7 @@ public class PlayerItem : MonoBehaviour
             return;
 
         if (currItem != null)
-            currItem.enabled = false;
+            return;
         
         currItem = item;
         currItem.OnReceiveItem();

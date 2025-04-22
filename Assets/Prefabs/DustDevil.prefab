@@ -55,10 +55,10 @@ VisualEffect:
       - m_Value: 50
         m_Name: Duration
         m_Overridden: 1
-      - m_Value: 0.5
+      - m_Value: 0.56
         m_Name: TornadoCoreDissolve
         m_Overridden: 1
-      - m_Value: 0.9255555
+      - m_Value: 0.8
         m_Name: TornadoLayer1Dissolve
         m_Overridden: 1
       - m_Value: 0.77
@@ -475,68 +475,88 @@ MonoBehaviour:
           z: 0
           w: 0.7071069
     - Position:
-        x: 10.042404
-        y: -0.44000244
-        z: 0.028411865
+        x: 5.4256134
+        y: 1.5399933
+        z: -0.0037155151
       TangentIn:
         x: -0
         y: -0
-        z: -3.7689965
+        z: -1.8255078
       TangentOut:
         x: 0
         y: 0
-        z: 4.721786
+        z: 1.9901724
       Rotation:
         value:
-          x: 0.03475354
-          y: 0.71325356
-          z: -0.03574698
-          w: 0.6991307
+          x: 0.07040676
+          y: 0.7230884
+          z: -0.07984719
+          w: 0.68250316
     - Position:
-        x: 26.02755
-        y: -0.83999634
-        z: -0.6504822
+        x: 11.154343
+        y: -1.3500061
+        z: -0.69351196
       TangentIn:
-        x: -0
-        y: -0
-        z: -5.1775727
+        x: 0.0000009536743
+        y: -0.00000011920929
+        z: -3.927825
       TangentOut:
-        x: 0
-        y: 0
-        z: 4.8915286
+        x: -0.0000009536743
+        y: 0.00000011920929
+        z: 3.927825
       Rotation:
         value:
-          x: 0.087237865
-          y: 0.71980864
-          z: 0.09730303
-          w: 0.68176043
+          x: 0.0977516
+          y: 0.7522273
+          z: -0.009202748
+          w: 0.6515474
     - Position:
-        x: 40.254112
-        y: 0.11999512
-        z: -1.5133972
+        x: 26.027557
+        y: -1.7599945
+        z: -0.65047455
       TangentIn:
         x: -0
         y: -0
-        z: -1.4285003
+        z: -4.253339
       TangentOut:
         x: 0
         y: 0
-        z: 1.4285003
+        z: 3.3044624
       Rotation:
         value:
-          x: 0.07277136
-          y: 0.7245053
-          z: 0.114260286
-          w: 0.6758262
+          x: 0.0342165
+          y: 0.71472085
+          z: 0.14913546
+          w: 0.6824675
+    - Position:
+        x: 34.414482
+        y: 1.4199982
+        z: -1.0990982
+      TangentIn:
+        x: -0.00000023841858
+        y: 0.000000052154064
+        z: -2.815051
+      TangentOut:
+        x: 0
+        y: 0.000000029802322
+        z: 2.815051
+      Rotation:
+        value:
+          x: 0.04387009
+          y: 0.72897977
+          z: 0.14141294
+          w: 0.66833097
     m_MetaData:
     - Mode: 2
       Tension: 0.5
     - Mode: 0
       Tension: 0.5
-    - Mode: 0
+    - Mode: 4
       Tension: 0.5
     - Mode: 0
       Tension: 0.5
+    - Mode: 4
+      Tension: 0
     m_Closed: 0
     m_IntData:
       m_Data: []
@@ -758,7 +778,7 @@ Transform:
   m_GameObject: {fileID: 6248617797828692062}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071067, z: 0, w: 0.7071069}
-  m_LocalPosition: {x: -0.0000047932635, y: 1.3300018, z: 0.0000032734251}
+  m_LocalPosition: {x: 0.0000051322986, y: 1.3300018, z: -0.0000022426493}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -782,8 +802,8 @@ MonoBehaviour:
   m_PlayOnAwake: 1
   m_LoopMode: 1
   m_Method: 0
-  m_Duration: 6
-  m_MaxSpeed: 6.7506976
+  m_Duration: 8
+  m_MaxSpeed: 4.4982457
   m_EasingMode: 0
   m_AlignmentMode: 1
   m_ObjectForwardAxis: 2
