@@ -7293,6 +7293,11 @@ GameObject:
   - component: {fileID: 560587350}
   - component: {fileID: 560587352}
   - component: {fileID: 560587351}
+  - component: {fileID: 560587357}
+  - component: {fileID: 560587356}
+  - component: {fileID: 560587355}
+  - component: {fileID: 560587354}
+  - component: {fileID: 560587353}
   m_Layer: 5
   m_Name: ToMenu
   m_TagString: Untagged
@@ -7358,6 +7363,205 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560587349}
   m_CullTransparentMesh: 1
+--- !u!114 &560587353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560587349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 3
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &560587354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560587349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 2
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &560587355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560587349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 1
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &560587356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560587349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7533a8c3f20da2448551d726ed63d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 560587357}
+  UIS:
+  - {fileID: 280865964}
+--- !u!114 &560587357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560587349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 0
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 560587356}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
 --- !u!1001 &563248092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23619,6 +23823,9 @@ GameObject:
   - component: {fileID: 1450241420}
   - component: {fileID: 1450241423}
   - component: {fileID: 1450241422}
+  - component: {fileID: 1450241426}
+  - component: {fileID: 1450241425}
+  - component: {fileID: 1450241424}
   m_Layer: 5
   m_Name: PausedPopUp
   m_TagString: Untagged
@@ -23715,6 +23922,144 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListenerIndex: 0
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &1450241424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450241418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 3
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &1450241425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450241418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 2
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450241422}
+        m_TargetAssemblyTypeName: GameUI.PanelController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 1.25
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &1450241426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450241418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 1
   OnHitButton:
     m_PersistentCalls:
       m_Calls:
@@ -25838,6 +26183,18 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1546845724}
+    - targetCorrespondingSourceObject: {fileID: 853866205527147046, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1546845727}
+    - targetCorrespondingSourceObject: {fileID: 853866205527147046, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1546845726}
+    - targetCorrespondingSourceObject: {fileID: 853866205527147046, guid: f3da5a4fd9636f7489846ce828941999,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1546845725}
     - targetCorrespondingSourceObject: {fileID: 9110003183972912335, guid: f3da5a4fd9636f7489846ce828941999,
         type: 3}
       insertIndex: -1
@@ -26121,6 +26478,108 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1666404200}
   endGameCanvas: {fileID: 392612475}
+--- !u!114 &1546845725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546845722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 3
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1360232697}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 3
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &1546845726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546845722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 2
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1360232697}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 3
+  KeyboardDebug: 0
+  DebugKey: 32
+--- !u!114 &1546845727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546845722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f00da8c1ff5a6241a5ccb0e34aa7682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerIndex: 1
+  OnHitButton:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoldButton:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1360232697}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoldTriggerTime: 3
+  KeyboardDebug: 0
+  DebugKey: 32
 --- !u!1001 &1549247692
 PrefabInstance:
   m_ObjectHideFlags: 0
