@@ -102,6 +102,10 @@ namespace Character
         [SerializeField]
         private GameObject wrongWayIndicator;
 
+        [HideInInspector]
+        public int currentNode;
+        public int currentLap;
+
         public void SetCullingLayer(int index)
         {
             speedLines.layer = index + 12;
@@ -126,6 +130,28 @@ namespace Character
 
             }
 
+        }
+
+        public void PassedNode(int index)
+        {
+            //Debug.LogWarning(playerIndex.ToString() + ", " + index);
+
+            currentNode++;
+
+            if(playerIndex == 0)
+            {
+                Debug.LogWarning(playerIndex.ToString() + ", " + currentNode);
+            }
+        }
+
+        public void Lapped()
+        {
+            currentNode = 0;
+            currentLap++;
+            if(currentLap > 2)
+            {
+                Debug.Log("player: " + playerIndex.ToString() + " won the race");
+            }
         }
 
 
@@ -198,6 +224,10 @@ namespace Character
             }
 
             playerItem = GetComponent<PlayerItem>();
+
+            //Carter addition
+            currentNode = 0;
+            currentLap = 1;
         }
         private void OnDrift()
         {
@@ -293,11 +323,16 @@ namespace Character
         }
         private static int SortHorse(HorseController a, HorseController b)
         {
-            if (a.CheckPointIndex == b.CheckPointIndex)
+            //if (a.CheckPointIndex == b.CheckPointIndex)
+            //{
+            //    return a.NextCheckPointDistance.CompareTo(b.NextCheckPointDistance);
+            //}
+            //return a.CheckPointIndex.CompareTo(b.CheckPointIndex);
+            if(a.currentLap > b.currentLap)
             {
-                return a.NextCheckPointDistance.CompareTo(b.NextCheckPointDistance);
+                return a.currentLap.CompareTo(b.currentLap);
             }
-            return a.CheckPointIndex.CompareTo(b.CheckPointIndex);
+            return a.currentNode.CompareTo(b.currentNode);
         }
 
         private void Update()
@@ -324,8 +359,11 @@ namespace Character
             // }
 
             // Check Point Update
-            PathPoint nextPoint = NPCMap.GetAt(CheckPointIndex + 1);
-            PathPoint currentPoint = NPCMap.GetAt(CheckPointIndex);
+            //PathPoint nextPoint = NPCMap.GetAt(CheckPointIndex + 1);
+            //PathPoint currentPoint = NPCMap.GetAt(CheckPointIndex);
+
+            PathPoint nextPoint = NPCMap.GetAt(currentNode + 1);
+            PathPoint currentPoint = NPCMap.GetAt(currentNode);
 
             Vector3 toCurrent = currentPoint.transform.position - this.transform.position;
             Vector3 toNext = nextPoint.transform.position - this.transform.position;
@@ -334,14 +372,14 @@ namespace Character
 
             Vector3 forward = transform.TransformDirection(Vector3.forward);
 
-            if (NextCheckPointDistance > SmallestDistance)
-            {
-                SmallestDistance = NextCheckPointDistance;
-            }
-            else if (NextCheckPointDistance < SmallestDistance - 10)
-            {
-                SmallestDistance = NextCheckPointDistance + 10;
-            }
+            //if (NextCheckPointDistance > SmallestDistance)
+            //{
+            //    SmallestDistance = NextCheckPointDistance;
+            //}
+            //else if (NextCheckPointDistance < SmallestDistance - 10)
+            //{
+            //    SmallestDistance = NextCheckPointDistance + 10;
+            //}
             if (Vector3.Dot(forward, toNext) < 0)
             {
                 WrongWayNote.SetActive(true);
@@ -358,17 +396,17 @@ namespace Character
             //    WrongWayNote.SetActive(false);
             //}
 
-            if (toCurrent.magnitude * 1.35f < toNext.magnitude)
-            {
-                CheckPointIndex++;
-                ResetIndex = CheckPointIndex;
-                ResetPoint = this.transform.position;
-                SmallestDistance = -9999;
-                if (playerIndex == 0)
-                {
-                    Debug.LogWarning(playerIndex.ToString() + ", " + nextPoint.gameObject.name);
-                }
-            }
+            //if (toCurrent.magnitude * 1.35f < toNext.magnitude)
+            //{
+            //    CheckPointIndex++;
+            //    ResetIndex = CheckPointIndex;
+            //    ResetPoint = this.transform.position;
+            //    SmallestDistance = -9999;
+            //    //if (playerIndex == 0)
+            //    //{
+            //    //    Debug.LogWarning(playerIndex.ToString() + ", " + nextPoint.gameObject.name);
+            //    //}
+            //}
 
             RaycastHit hit;
 
