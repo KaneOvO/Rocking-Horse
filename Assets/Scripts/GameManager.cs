@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
 
             var playerScoreBoard = podium.transform.GetChild(i).gameObject;
             playerScoreBoard.transform.GetChild(0).GetComponent<TMP_Text>().text = nameDisplay + timeDisplay;
-            playerScoreBoard.SetActive(true);
+            playerScoreBoard.transform.GetChild(0).gameObject.SetActive(true);
             
             var playerTransform = LevelManager.Instance.EndGameHorsePos[i];
             controller.gameObject.transform.SetPositionAndRotation(playerTransform.position, playerTransform.rotation);
