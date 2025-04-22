@@ -214,4 +214,12 @@ public class GameManager : MonoBehaviour
         endGameCanvas.SetActive(true);
 
     }
+    public void ReturnToMenuIfEndGameVisible()
+    {
+        if (endGameCanvas != null && endGameCanvas.activeInHierarchy)
+        {
+            GoToMenu();
+        }
+    }
+
 }
