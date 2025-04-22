@@ -137,7 +137,8 @@ namespace Character
             //Debug.LogWarning(playerIndex.ToString() + ", " + index);
 
             currentNode++;
-            if(index > currentNode)
+            //Sanity check, don't let them hit node 180 and jump from 0 to there
+            if(index > currentNode && Mathf.Abs(currentNode - index) !> 10)
             {
                 currentNode = index;
             }
@@ -332,11 +333,11 @@ namespace Character
             //    return a.NextCheckPointDistance.CompareTo(b.NextCheckPointDistance);
             //}
             //return a.CheckPointIndex.CompareTo(b.CheckPointIndex);
-            if(a.currentLap > b.currentLap)
+            if(a.currentLap == b.currentLap)
             {
-                return a.currentLap.CompareTo(b.currentLap);
+                return a.currentNode.CompareTo(b.currentNode);
             }
-            return a.currentNode.CompareTo(b.currentNode);
+            return a.currentLap.CompareTo(b.currentLap);
         }
 
         private void Update()
