@@ -140,20 +140,21 @@ public class GameManager : MonoBehaviour
 
     private void ShowPlayerPlacement()
     {
-        LevelManager.Instance.Podium.SetActive(true);
-        LevelManager.Instance.EndGameCamera.enabled = true;
+        var podium = LevelManager.Instance.Podium;
+        podium.SetActive(true);
         
+        LevelManager.Instance.EndGameCamera.enabled = true;
         CameraManager.Instance.DisableAllPlayerCamera();
 
-        for (var i = 0; i < finalRanking.Count; i++)
+        for (var i = 0; i < finalRanking.Count && i < 3; i++)
         {
             var rank = i + 1;
             var (time, controller) = finalRanking[i];
             
             string nameDisplay = $"{controller.gameObject.name}" + "\n";
             string timeDisplay = $"{TimeSpan.FromSeconds(time):mm\\:ss\\:ff}";
-            
-            var playerScoreBoard = controller.gameObject.GetComponent<LapCounter>().ScoreBoard;
+
+            var playerScoreBoard = podium.transform.GetChild(i).gameObject;
             playerScoreBoard.transform.GetChild(0).GetComponent<TMP_Text>().text = nameDisplay + timeDisplay;
             playerScoreBoard.SetActive(true);
             
