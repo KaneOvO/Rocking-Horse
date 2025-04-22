@@ -155,7 +155,7 @@ namespace Character
             currentLap++;
             if(currentLap > 2)
             {
-                Debug.Log("player: " + playerIndex.ToString() + " won the race");
+                Debug.LogWarning("player: " + playerIndex.ToString() + " won the race");
             }
         }
 
