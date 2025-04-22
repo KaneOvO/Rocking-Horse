@@ -105,13 +105,14 @@ namespace Character
         [HideInInspector]
         public int currentNode;
         public int currentLap;
+        private IEnumerator wrongWayCoroutine;
 
         public void SetCullingLayer(int index)
         {
             speedLines.layer = index + 12;
             wrongWayIndicator.layer = index + 12;
-            switch(index)
-            { 
+            switch (index)
+            {
                 case 0:
                     VirtualCamera.cullingMask = LayerMask.GetMask("Default", "Water", "Ground", "P1");
                     break;
@@ -135,25 +136,44 @@ namespace Character
         public void PassedNode(int index)
         {
             //Debug.LogWarning(playerIndex.ToString() + ", " + index);
-
-            currentNode++;
-            //Sanity check, don't let them hit node 180 and jump from 0 to there
-            if(index > currentNode && Mathf.Abs(currentNode - index) !> 10)
+            //If the node's index is equal to the currentNode then increment by one
+            if (index == currentNode)
             {
-                currentNode = index;
+                currentNode++;
             }
-
-            if(playerIndex == 0)
+            //Otherwise
+            else
             {
-                Debug.LogWarning(playerIndex.ToString() + ", " + currentNode);
+                //Sanity check, don't let them hit node 999 and jump from 0 to there
+                if (index > currentNode + 1 && Mathf.Abs(index - currentNode) < 20)
+                {
+                    //If index is greater than currentNode + 1
+                    //And the difference between them isn't greater than 20
+                    //Then skip the inbetween nodes
+                    currentNode = index+1;
+                    if (playerIndex == 0)
+                    {
+                        Debug.LogWarning(playerIndex.ToString("skipped " + (index - currentNode).ToString() + " node(s)"));
+                    }
+                }
+            }
+            if (playerIndex == 0)
+            {
+                Debug.LogWarning(playerIndex.ToString() + ", " + currentNode + " @ node: " + index.ToString());
             }
         }
 
         public void Lapped()
         {
-            currentNode = 0;
-            currentLap++;
-            if(currentLap > 2)
+            if (currentNode > 100)
+            {
+                currentNode = 0;
+                currentLap++;
+                Debug.LogWarning("player: " + playerIndex.ToString() + " finished a lap");
+            }
+
+
+            if (currentLap > 2)
             {
                 Debug.LogWarning("player: " + playerIndex.ToString() + " won the race");
             }
@@ -197,7 +217,7 @@ namespace Character
             CurrentEnergy = MaxEnergy;
             canMove = true;
 
-        float arc = transform.eulerAngles.y / 180 * Mathf.PI;
+            float arc = transform.eulerAngles.y / 180 * Mathf.PI;
             Direction = new Vector2(Mathf.Sin(arc), Mathf.Cos(arc));
             HVelocity = Vector2.zero;
             Rigidbody = this.GetComponent<Rigidbody>();
@@ -233,6 +253,7 @@ namespace Character
             //Carter addition
             currentNode = 0;
             currentLap = 1;
+            wrongWayCoroutine = WrongWayDisplay(0.5f);
         }
         private void OnDrift()
         {
@@ -333,7 +354,7 @@ namespace Character
             //    return a.NextCheckPointDistance.CompareTo(b.NextCheckPointDistance);
             //}
             //return a.CheckPointIndex.CompareTo(b.CheckPointIndex);
-            if(a.currentLap == b.currentLap)
+            if (a.currentLap == b.currentLap)
             {
                 return a.currentNode.CompareTo(b.currentNode);
             }
@@ -387,10 +408,12 @@ namespace Character
             //}
             if (Vector3.Dot(forward, toNext) < 0)
             {
-                WrongWayNote.SetActive(true);
+                //WrongWayNote.SetActive(true);
+                StartCoroutine(wrongWayCoroutine);
             }
             else
             {
+                StopCoroutine(wrongWayCoroutine);
                 WrongWayNote.SetActive(false);
             }
 
@@ -576,7 +599,7 @@ namespace Character
             {
                 Quaternion groundRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 hv = groundRotation * hv;
-                if(hv.y < 0)
+                if (hv.y < 0)
                 {
                     hv.y *= 0.35f;
                 }
@@ -610,7 +633,7 @@ namespace Character
             HorseAnimator.SetFloat("StunTime", StunTime);
             HorseAnimator.SetFloat("Direction", RotationSpeed);
 
-            if(currentVelocity < 12)
+            if (currentVelocity < 12)
             {
                 SwitchMaterial(legsMaterial);
                 runSmear.SetActive(false);
@@ -695,6 +718,13 @@ namespace Character
             }
 
             HorseAnimator.SetFloat("Velocity", 0f);
+        }
+
+        private IEnumerator WrongWayDisplay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            wrongWayIndicator.SetActive(true);
         }
 
     }
