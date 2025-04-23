@@ -34,7 +34,12 @@ public class CinemachineManager : MonoBehaviour
 
     private int currentCamera;
 
-    [SerializeField] private GameObject endGameCamera;
+    [SerializeField] 
+    private GameObject endGameCamera;
+    [SerializeField]
+    private GameObject podium;
+    [SerializeField]
+    private GameObject endCanvas;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +53,9 @@ public class CinemachineManager : MonoBehaviour
         // Disable EndGameCamera at start
         if (endGameCamera != null)
             endGameCamera.SetActive(false);
+
+        if (podium != null)
+            podium.SetActive(false);
 
         if (bSkipIntro)
         {
@@ -64,7 +72,9 @@ public class CinemachineManager : MonoBehaviour
     {
         if(bIntroInProgress)
         {
-            if(pairings[currentCamera].dolly.m_Position >= pairings[currentCamera].dolly.m_Path.PathLength)
+            podium.SetActive(false);
+            endCanvas.SetActive(false);
+            if (pairings[currentCamera].dolly.m_Position >= pairings[currentCamera].dolly.m_Path.PathLength)
             {
 
                 pairings[currentCamera].camera.enabled = false;
