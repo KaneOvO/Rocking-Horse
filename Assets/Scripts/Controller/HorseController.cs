@@ -176,7 +176,7 @@ namespace Character
                 currentLap++;
                 Debug.LogWarning("player: " + playerIndex.ToString() + " finished a lap");
 
-                playerLapUI.StartLap2();
+                playerLapUI.StartLap2(playerIndex);
 
             }
 

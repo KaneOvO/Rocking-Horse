@@ -134,7 +134,6 @@ public class GameManager : MonoBehaviour
     private void GameEnd()
     {
         StartCoroutine(HandleGameEndSequence());
-        MusicManager.Instance?.PlayPostRaceTrack();
         OnGameEnded?.Invoke();
     }
 
@@ -224,6 +223,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
 
         ShowPlayerPlacement();
+        MusicManager.Instance?.PlayPostRaceTrack();
 
         // Try to find the EndGameCamera by name
         GameObject endGameCamObj = GameObject.Find("EndGameCamera");

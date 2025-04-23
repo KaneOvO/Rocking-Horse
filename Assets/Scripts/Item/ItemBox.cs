@@ -87,6 +87,7 @@ public class ItemBox : MonoBehaviour
 
         controller.ItemPickUpCooldown += 5;
         StartCoroutine(ItemBoxRespawn());
+        MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.pickItemAudio);
         StartCoroutine(GiveItemAfterScrollAnimation(controller));
     }
 

@@ -12,11 +12,14 @@ public class LapUI : MonoBehaviour
     public GameObject finished;
 
     private bool hasFinished = false;
-    private static bool finalLapMusicStarted = false; 
+    private static bool finalLapMusicStarted = false;
+
+    private bool[] onSecondLap;
 
     private void Start()
     {
         finished.SetActive(false);
+        onSecondLap = new bool[4] { false, false, false, false };
     }
 
     void Update()
@@ -41,11 +44,13 @@ public class LapUI : MonoBehaviour
             // Hide all children except Finish
             foreach (Transform child in transform)
             {
-                if (child.name != "Finish")
+                if (child.name != "Finish" && !child.name.StartsWith("SharedUI"))
                 {
                     child.gameObject.SetActive(false);
                 }
+
             }
+
 
             // Show the Finish banner
             finished.SetActive(true);
@@ -60,17 +65,22 @@ public class LapUI : MonoBehaviour
         }
     }
 
-    public void StartLap2()
+    public void StartLap2(int index)
     {
-        if(!finalLapMusicStarted)
+        if (!finalLapMusicStarted)
         {
             MusicManager.Instance?.SwitchToFinalLapMusic();
             MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.lap1Audio);
             finalLapMusicStarted = true;
+        }
 
+        if (!onSecondLap[index])
+        {
+            onSecondLap[index] = true;
             lap1.SetActive(false);
             lap2.SetActive(true);
         }
+        
     }
 
     public void FinishedRace()
@@ -89,10 +99,14 @@ public class LapUI : MonoBehaviour
         // Hide all children except Finish
         foreach (Transform child in transform)
         {
-            if (child.name != "Finish")
+            if (child.name != "Finish" && !child.name.StartsWith("SharedUI"))
             {
                 child.gameObject.SetActive(false);
             }
+
         }
+
     }
+
+
 }
