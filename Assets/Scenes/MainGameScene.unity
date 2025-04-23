@@ -3453,7 +3453,7 @@ PrefabInstance:
     - target: {fileID: 6862698040805236551, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7013337410362192651, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
@@ -3759,7 +3759,7 @@ PrefabInstance:
     - target: {fileID: 7430693121335859155, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
@@ -26946,7 +26946,7 @@ MonoBehaviour:
   - camera: {fileID: 1319074372}
     dolly: {fileID: 2133824735}
   uiCanvas: {fileID: 1928275824}
-  bSkipIntro: 1
+  bSkipIntro: 0
   endGameCamera: {fileID: 1596906465}
 --- !u!4 &1230104191
 Transform:
