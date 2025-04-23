@@ -210,11 +210,22 @@ public class GameManager : MonoBehaviour
 
         ShowPlayerPlacement();
 
+        // Try to find the EndGameCamera by name
+        GameObject endGameCamObj = GameObject.Find("EndGameCamera");
+        if (endGameCamObj != null)
+        {
+            endGameCamObj.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("EndGameCamera not found in scene!");
+        }
+
         yield return new WaitForSeconds(10f);
 
         endGameCanvas.SetActive(true);
-
     }
+
     public void ReturnToMenuIfEndGameVisible()
     {
         if (endGameCanvas != null && endGameCanvas.activeInHierarchy)
