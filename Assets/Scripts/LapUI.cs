@@ -41,7 +41,7 @@ public class LapUI : MonoBehaviour
             // Hide all children except Finish
             foreach (Transform child in transform)
             {
-                if (child.name != "Finish")
+                if (child.name != "Finish" && child.name != "SharedUI")
                 {
                     child.gameObject.SetActive(false);
                 }
@@ -89,7 +89,7 @@ public class LapUI : MonoBehaviour
         // Hide all children except Finish
         foreach (Transform child in transform)
         {
-            if (child.name != "Finish")
+            if (child.name != "Finish" && child.name != "SharedUI")
             {
                 child.gameObject.SetActive(false);
             }
