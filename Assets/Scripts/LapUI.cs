@@ -94,6 +94,10 @@ public class LapUI : MonoBehaviour
         var horseController = HorseController.Horses[horseIndex];
         horseController.DisableMovement();
 
+        // Set finish time and status
+        horseController.FinishTime = RaceTimer.Instance.timer;
+        horseController.HasFinished = true;
+
         hasFinished = true;
 
         // Hide all children except Finish
@@ -103,10 +107,9 @@ public class LapUI : MonoBehaviour
             {
                 child.gameObject.SetActive(false);
             }
-
         }
-
     }
+
 
 
 }

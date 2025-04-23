@@ -110,6 +110,10 @@ namespace Character
         private LapUI playerLapUI;
         private bool ww_running;
 
+        public float FinishTime { get; set; } = 0f;
+        public bool HasFinished { get; set; } = false;
+
+
         public void SetCullingLayer(int index)
         {
             speedLines.layer = index + 12;
@@ -180,14 +184,18 @@ namespace Character
 
             }
 
-
             if (currentLap > 2)
             {
                 Debug.LogWarning("player: " + playerIndex.ToString() + " won the race");
-                GameManager.Instance.finalRanking.Add((RaceTimer.Instance.timer, GetComponent<HorseController>()));
+
+                FinishTime = RaceTimer.Instance.timer;
+                HasFinished = true;
+
+                GameManager.Instance.finalRanking.Add((FinishTime, this));
 
                 playerLapUI.FinishedRace();
             }
+
         }
 
 

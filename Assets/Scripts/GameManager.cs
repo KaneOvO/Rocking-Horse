@@ -133,53 +133,100 @@ public class GameManager : MonoBehaviour
 
     private void GameEnd()
     {
+        // DNF handling logic
+        for (int i = 0; i < PlayerCount; i++)
+        {
+            string uiName = $"UI{i + 1}";
+            GameObject uiObject = GameObject.Find(uiName);
+
+            if (uiObject != null)
+            {
+                Transform finish = uiObject.transform.Find("Finish");
+                Transform dnf = uiObject.transform.Find("DNF");
+
+                if (finish != null && dnf != null)
+                {
+                    if (!finish.gameObject.activeSelf)
+                    {
+                        dnf.gameObject.SetActive(true);
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"UI object {uiName} not found!");
+            }
+        }
+
         StartCoroutine(HandleGameEndSequence());
         OnGameEnded?.Invoke();
     }
 
+
     private void ShowPlayerPlacement()
     {
+        // Fill final ranking if incomplete
         if (finalRanking.Count != PlayerCount)
         {
-            for (var i = finalRanking.Count - 1; i < PlayerCount; i++)
+            finalRanking.Clear();
+            foreach (var player in Players)
             {
-                foreach (var player in Players)
-                {
-                    var controller = player.GetComponent<HorseController>();
-                    if (controller.Ranking == i)
-                    {
-                        finalRanking.Add((0, controller));
-                    }
-                }
-                
+                var controller = player.GetComponent<HorseController>();
+                float time = controller.HasFinished ? controller.FinishTime : 0f;
+                finalRanking.Add((time, controller));
             }
+
+            // Sort by finish time; DNF (time = 0) goes last
+            finalRanking.Sort((a, b) =>
+            {
+                if (a.Item1 == 0) return 1;
+                if (b.Item1 == 0) return -1;
+                return a.Item1.CompareTo(b.Item1);
+            });
         }
-        
+
         var podium = LevelManager.Instance.Podium;
         podium.SetActive(true);
-        
+
         LevelManager.Instance.EndGameCamera.enabled = true;
         CameraManager.Instance.DisableAllPlayerCamera();
 
-        for (var i = 0; i < finalRanking.Count; i++)
-        {
-            var rank = i + 1;
-            var (time, controller) = finalRanking[i];
-            
-            var playerScoreBoard = podium.transform.GetChild(i).gameObject;
-            string nameDisplay = $"{controller.gameObject.name}" + "\n";
-            string timeDisplay = time == 0 ? "DNF" : $"{TimeSpan.FromSeconds(time):mm\\:ss\\:ff}";
-            playerScoreBoard.transform.GetChild(0).GetComponent<TMP_Text>().text = nameDisplay + timeDisplay;
-            playerScoreBoard.transform.GetChild(0).gameObject.SetActive(true);
-            
-            var playerTransform = LevelManager.Instance.EndGameHorsePos[i];
-            controller.gameObject.transform.SetPositionAndRotation(playerTransform.position, playerTransform.rotation);
+        // Ensure enough podium slots
+        Transform podiumTransform = podium.transform;
+        GameObject podiumSlotTemplate = podiumTransform.childCount > 0
+            ? podiumTransform.GetChild(0).gameObject
+            : new GameObject("PodiumSlotTemplate");
 
-            controller.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        for (int i = podiumTransform.childCount; i < PlayerCount; i++)
+        {
+            GameObject newSlot = Instantiate(podiumSlotTemplate, podiumTransform);
+            newSlot.name = $"Slot{i + 1}";
         }
-        
+
+        // Assign players to podium
+        for (int i = 0; i < finalRanking.Count; i++)
+        {
+            var (time, controller) = finalRanking[i];
+
+            var slot = podiumTransform.GetChild(i).gameObject;
+            var scoreText = slot.transform.GetChild(0).GetComponent<TMP_Text>();
+
+            string name = controller.gameObject.name;
+            string timeDisplay = time == 0 ? "DNF" : $"{TimeSpan.FromSeconds(time):mm\\:ss\\:ff}";
+            scoreText.text = $"{name}\n{timeDisplay}";
+            scoreText.gameObject.SetActive(true);
+
+            // Place the horse on the corresponding position
+            if (i < LevelManager.Instance.EndGameHorsePos.Length)
+            {
+                var pos = LevelManager.Instance.EndGameHorsePos[i];
+                controller.transform.SetPositionAndRotation(pos.position, pos.rotation);
+                controller.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+            }
+        }
     }
-    
+
+
     public void RestartGame()
     {
         TimeBeforeStart = 3;

@@ -299,8 +299,8 @@ MonoBehaviour:
   runDustVFX: {fileID: 7123979222291332138}
   isPlayerHorse: 0
   canMove: 1
-  MaxSpeed: 15
-  Acceleration: 15
+  MaxSpeed: 50
+  Acceleration: 50
   BoosterSpeed: 6
   BoosterAcceleration: 6
   BoosterTime: 2.5
@@ -336,12 +336,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310242483577952872}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e9ad4b3eff6e5b42a91f2762cdc27cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 0
+  Enabled: 1
   DebugMode: 0
   PrintEvent: 0
   MoveKey: 119
