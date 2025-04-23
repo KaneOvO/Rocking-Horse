@@ -37,7 +37,7 @@ public class Blit : ScriptableRendererFeature
             m_TemporaryColorTexture.Init("_TemporaryColorTexture");
         }
 
-        public void Setup(RenderTargetIdentifier e, RenderTargetHandle destination)
+        public void Setup(RenderTargetHandle destination)
         {
             this.destination = destination;
         }
@@ -49,7 +49,9 @@ public class Blit : ScriptableRendererFeature
             RenderTextureDescriptor opaqueDesc = renderingData.cameraData.cameraTargetDescriptor;
             opaqueDesc.depthBufferBits = 0;
 
-            // Can't read and write to same color target, use a TemporaryRT
+            // Correct way to get cameraColorTarget in URP 2022+
+            RenderTargetIdentifier source = renderingData.cameraData.renderer.cameraColorTarget;
+
             if (destination == RenderTargetHandle.CameraTarget)
             {
                 cmd.GetTemporaryRT(m_TemporaryColorTexture.id, opaqueDesc, filterMode);
@@ -104,8 +106,10 @@ public class Blit : ScriptableRendererFeature
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
-        var src = renderer.cameraColorTarget;
-        var dest = (settings.destination == Target.Color) ? RenderTargetHandle.CameraTarget : m_RenderTextureHandle;
+        var source = renderingData.cameraData.renderer.cameraColorTarget;
+        var dest = (settings.destination == Target.Color)
+            ? RenderTargetHandle.CameraTarget
+            : m_RenderTextureHandle;
 
         if (settings.blitMaterial == null)
         {
@@ -113,7 +117,7 @@ public class Blit : ScriptableRendererFeature
             return;
         }
 
-        blitPass.Setup(src, dest);
+        blitPass.Setup(dest);
         renderer.EnqueuePass(blitPass);
     }
 }
