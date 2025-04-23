@@ -9,6 +9,7 @@ public class PlayerItem : MonoBehaviour
 
     public void GetItem<T>() where T : GameItem
     {
+        //MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.pickItemAudio);
         var item = GetComponent<T>();
 
         if (item == null)
@@ -19,7 +20,6 @@ public class PlayerItem : MonoBehaviour
         
         currItem = item;
         currItem.OnReceiveItem();
-        MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.pickItemAudio);
     }
 
     public void UseCurrItem()

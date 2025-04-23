@@ -34,26 +34,31 @@ public class CinemachineManager : MonoBehaviour
 
     private int currentCamera;
 
+    [SerializeField] private GameObject endGameCamera;
+
     // Start is called before the first frame update
     void Start()
     {
-
         foreach (var pairing in pairings)
         {
             pairing.camera.enabled = false;
             pairing.dolly.enabled = false;
         }
 
-        if(bSkipIntro)
+        // Disable EndGameCamera at start
+        if (endGameCamera != null)
+            endGameCamera.SetActive(false);
+
+        if (bSkipIntro)
         {
             IntroComplete();
         }
         else
         {
-            StartIntro();   
+            StartIntro();
         }
-
     }
+
 
     void Update()
     {
@@ -117,10 +122,15 @@ public class CinemachineManager : MonoBehaviour
 
         uiCanvas.enabled = false;
 
+        // Enable EndGameCamera after intro
+        if (endGameCamera != null)
+            endGameCamera.SetActive(true);
+
         FindObjectOfType<LevelManager>().SpawnPlayer();
 
         FindObjectOfType<GameUI.Timer>()?.BeginCountdown();
     }
+
 
     private IEnumerator PlayEndSFXAfterDelay(float delay)
     {

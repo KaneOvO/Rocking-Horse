@@ -3428,7 +3428,7 @@ PrefabInstance:
     - target: {fileID: 6862698040805236551, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7013337410362192651, guid: bb7da580b917ae94d97831d1b00dd751,
         type: 3}
@@ -3625,7 +3625,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mainCamera
       value: 
-      objectReference: {fileID: 1694654861}
+      objectReference: {fileID: 1596906465}
     - target: {fileID: 4013500243370052203, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: baudRate
@@ -3734,7 +3734,7 @@ PrefabInstance:
     - target: {fileID: 7430693121335859155, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
@@ -5716,7 +5716,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -26921,7 +26921,8 @@ MonoBehaviour:
   - camera: {fileID: 1319074372}
     dolly: {fileID: 2133824735}
   uiCanvas: {fileID: 1928275824}
-  bSkipIntro: 0
+  bSkipIntro: 1
+  endGameCamera: {fileID: 1596906465}
 --- !u!4 &1230104191
 Transform:
   m_ObjectHideFlags: 0
@@ -34436,7 +34437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1596906466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34549,7 +34550,7 @@ Transform:
   m_GameObject: {fileID: 1596906465}
   serializedVersion: 2
   m_LocalRotation: {x: 0.015721047, y: -0.8083032, z: 0.014628754, w: 0.5883748}
-  m_LocalPosition: {x: 11.69, y: -11.72, z: 33.22}
+  m_LocalPosition: {x: 11.689999, y: -11.720001, z: 33.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45857,7 +45858,7 @@ MonoBehaviour:
   postRaceTrack: {fileID: 8300000, guid: 1e7acace5aa3cd447b14d58fa4d09297, type: 3}
   lap1Audio: {fileID: 8300000, guid: fe0f68c7766944a4dbfd1c1fee252350, type: 3}
   lap2Audio: {fileID: 8300000, guid: 47bd9a9df6fff2d45bb6a333c212000a, type: 3}
-  pickItemAudio: {fileID: 8300000, guid: dac0c560f73e7464982911d1b6a6f757, type: 3}
+  pickItemAudio: {fileID: 8300000, guid: eb22778eb0593a541ba0eebda79c1888, type: 3}
   boostAudio: {fileID: 8300000, guid: 03be5039787dded4eb726134bd1152fd, type: 3}
   horseFallAudio: {fileID: 8300000, guid: f34acb4210ec1444e8dfb93b072c59df, type: 3}
   horseHitAudio: {fileID: 8300000, guid: 073b18c8c1fad2f4b8f16b99d082aa4c, type: 3}
@@ -46275,7 +46276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0621618742d9ef8489e4da8f30149d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 1596906465}
   MainCameras: []
   UICameras: []
 --- !u!1001 &4056756862983702131
