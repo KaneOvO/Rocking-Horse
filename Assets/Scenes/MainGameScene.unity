@@ -3825,7 +3825,7 @@ PrefabInstance:
     - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: EndGameHorsePos.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
@@ -3846,7 +3846,7 @@ PrefabInstance:
         type: 3}
       propertyPath: EndGameHorsePos.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1812605889}
     - target: {fileID: 9094229663030308453, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
       propertyPath: m_IsActive
@@ -32280,6 +32280,7 @@ Transform:
   - {fileID: 1874522366}
   - {fileID: 1050227996}
   - {fileID: 1982864058}
+  - {fileID: 1812605889}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1505612100
@@ -34266,7 +34267,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 679dd5a86c9b95c4e8617ec16be52c33,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39848,6 +39849,37 @@ Transform:
   - {fileID: 1468671554}
   - {fileID: 2064084871}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1812605888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1812605889}
+  m_Layer: 0
+  m_Name: first (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1812605889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812605888}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.5856685, z: -0, w: 0.8105507}
+  m_LocalPosition: {x: 12.04, y: -1.19, z: 7.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1504199694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1813767802
 PrefabInstance:
@@ -46402,6 +46434,7 @@ MonoBehaviour:
   - {fileID: 1874522366}
   - {fileID: 1050227996}
   - {fileID: 1982864058}
+  - {fileID: 1812605889}
   EndGameCamera: {fileID: 1596906468}
   skipCameraIntro: 0
 --- !u!4 &8044903357283938879
