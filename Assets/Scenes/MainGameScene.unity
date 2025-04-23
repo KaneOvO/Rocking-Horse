@@ -3804,6 +3804,11 @@ PrefabInstance:
       objectReference: {fileID: 1538766204}
     - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
         type: 3}
+      propertyPath: Listeners.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906394598485311903, guid: d1ba21a6183596346ab523971b5d59e2,
+        type: 3}
       propertyPath: SpawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 2000956119}
