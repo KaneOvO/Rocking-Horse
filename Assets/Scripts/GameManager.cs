@@ -67,9 +67,13 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         IsStarted = true;
-        
+
         finalRanking.Clear();
+        endGameTimerStarted = false;
+        endGameTimer = 0f;
+        isGameEnd = false;
     }
+
 
     private void Update()
     {
