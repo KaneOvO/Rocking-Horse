@@ -21,6 +21,8 @@ public class MusicManager : MonoBehaviour
     public AudioClip carrotRocketAudio;
 
     private bool hasSwitched = false;
+    private bool hasPlayedLap1 = false;
+    private bool hasPlayedLap2 = false;
 
     private void Awake()
     {
@@ -62,5 +64,30 @@ public class MusicManager : MonoBehaviour
         mainTrackMusicSource.Stop();
         mainTrackMusicSource.clip = postRaceTrack;
         mainTrackMusicSource.Play();
+    }
+
+    public void PlayLap1Audio()
+    {
+        if (!hasPlayedLap1 && lap1Audio != null)
+        {
+            mainTrackMusicSource.PlayOneShot(lap1Audio);
+            hasPlayedLap1 = true;
+        }
+    }
+
+    public void PlayLap2Audio()
+    {
+        if (!hasPlayedLap2 && lap2Audio != null)
+        {
+            mainTrackMusicSource.PlayOneShot(lap2Audio);
+            hasPlayedLap2 = true;
+        }
+    }
+
+    public void ResetMusicTriggers()
+    {
+        hasSwitched = false;
+        hasPlayedLap1 = false;
+        hasPlayedLap2 = false;
     }
 }

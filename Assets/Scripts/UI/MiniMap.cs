@@ -22,8 +22,8 @@ namespace GameUI
         private Dictionary<PlayerColor, bool> PlayerColors = new Dictionary<PlayerColor, bool>()
         {
             { PlayerColor.Red, false },
-            { PlayerColor.yellow, false },
             { PlayerColor.blue, false },
+            { PlayerColor.yellow, false },
             { PlayerColor.green, false }
         };
         private void Update()

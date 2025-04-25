@@ -30,5 +30,11 @@ public class PlayerItem : MonoBehaviour
         currItem.OnUseItem();
         currItem = null;
     }
-    
+
+    public bool HasItem()
+    {
+        return currItem != null;
+    }
+
+
 }

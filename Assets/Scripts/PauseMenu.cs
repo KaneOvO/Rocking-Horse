@@ -1,20 +1,48 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public Button resumeButton;
+    public Button menuButton;
+
     public static PauseMenu Instance { get; private set; }
 
     public bool IsPaused { get; private set; } = false;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     private void Start()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+
+        // Bind buttons dynamically to avoid reference loss
+        if (resumeButton != null)
+        {
+            resumeButton.onClick.RemoveAllListeners();
+            resumeButton.onClick.AddListener(Resume);
+        }
+
+        if (menuButton != null)
+        {
+            menuButton.onClick.RemoveAllListeners();
+            menuButton.onClick.AddListener(GoToMenu);
+        }
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -47,6 +75,6 @@ public class PauseMenu : MonoBehaviour
     public void GoToMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("TitleScreenScene"); 
+        SceneManager.LoadScene("TitleScreenScene");
     }
 }

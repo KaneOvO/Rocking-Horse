@@ -75,20 +75,25 @@ public class ItemBox : MonoBehaviour
 
     private void OnTriggered(HorseController controller)
     {
-        // Only proceed if this controller has a UI (skip NPCs or unassigned players)
         if (controller.horseUI == null)
-        {
-            //Debug.LogWarning($"{controller.name} does not have a horseUI assigned. Skipping animation.");
             return;
-        }
 
         if (controller.ItemPickUpCooldown >= 0)
             return;
 
-        controller.ItemPickUpCooldown += 5;
+        var playerItem = controller.GetComponent<PlayerItem>();
+        bool alreadyHasItem = playerItem != null && playerItem.HasItem();
+
+        // Always make the box disappear and start its cooldown
         StartCoroutine(ItemBoxRespawn());
-        MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.pickItemAudio);
-        StartCoroutine(GiveItemAfterScrollAnimation(controller));
+        controller.ItemPickUpCooldown += 5;
+
+        // Only play sound and trigger animation/item if player can receive an item
+        if (!alreadyHasItem)
+        {
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.pickItemAudio);
+            StartCoroutine(GiveItemAfterScrollAnimation(controller));
+        }
     }
 
 

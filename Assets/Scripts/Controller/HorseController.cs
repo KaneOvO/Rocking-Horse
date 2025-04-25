@@ -113,6 +113,10 @@ namespace Character
         public float FinishTime { get; set; } = 0f;
         public bool HasFinished { get; set; } = false;
 
+        private bool hasTriggeredLap2Audio = false;
+
+        [HideInInspector] public bool IsInCarrotRocketMode = false;
+
 
         public void SetCullingLayer(int index)
         {
@@ -182,6 +186,12 @@ namespace Character
 
                 playerLapUI.StartLap2(playerIndex);
 
+                if (currentLap == 2 && !hasTriggeredLap2Audio)
+                {
+                    MusicManager.Instance?.SwitchToFinalLapMusic();
+                    MusicManager.Instance?.PlayLap1Audio();
+                    hasTriggeredLap2Audio = true;
+                }
             }
 
             if (currentLap > 2)
@@ -195,7 +205,6 @@ namespace Character
 
                 playerLapUI.FinishedRace();
             }
-
         }
 
 
@@ -225,11 +234,18 @@ namespace Character
                 Vector2 newDir = Vector2.Reflect(HVelocity.normalized, normal2D);
                 newDir += HVelocity.normalized * 0.5f;
                 Direction = newDir.normalized;
-                HVelocity = newDir.normalized * HVelocity.magnitude * 0.3f;
 
-                //Debug.Log($"new Dir:{HVelocity}");
+                float speed = HVelocity.magnitude;
+
+                float bounceFactor = Mathf.Clamp01(1f - (speed / MaxSpeed)); 
+                float speedReduction = Mathf.Lerp(0.1f, 0.4f, bounceFactor); 
+
+                HVelocity = newDir.normalized * speed * speedReduction;
+
+                //Debug.Log($"Wall hit at speed {speed}, bounceFactor: {bounceFactor}, new HVelocity: {HVelocity}");
             }
         }
+
 
         private void Start()
         {
@@ -281,6 +297,8 @@ namespace Character
                     playerLapUI = ui;
                 }
             }
+
+            hasTriggeredLap2Audio = false;
         }
         private void OnDrift()
         {
@@ -292,13 +310,14 @@ namespace Character
         }
         private void OnJump(float value)
         {
-            if (!GameManager.IsGameBegin) return;
+            if (!GameManager.IsGameBegin || IsInCarrotRocketMode) return;
             if (IsOnGround && VVelocity < 0.5f)
             {
                 VVelocity += JumpSpeed * value;
                 HorseAnimator.SetTrigger("Jump");
             }
         }
+
         private void OnUseBooster()
         {
             if (CurrentEnergy < 100f || !GameManager.IsGameBegin) return;
@@ -320,21 +339,28 @@ namespace Character
 
         private void OnUseItem()
         {
+            if (HasFinished || GameManager.IsGameEnded)
+            {
+                return; 
+            }
+
             if (StunTime > 0)
             {
                 return;
             }
+
             playerItem.UseCurrItem();
         }
 
+
         private void OnRotate(float value)
         {
-            if (!GameManager.IsGameBegin) return;
+            if (!GameManager.IsGameBegin || IsInCarrotRocketMode) return;
             if (value == 0 && DriftTime > 0) return;
 
             RotationSpeed = value;
-
         }
+
         private void OnChangeLane(Vector2 direction)
         {
             if (TrackManager.Instance == null || !GameManager.IsGameBegin) return;
@@ -357,7 +383,7 @@ namespace Character
         }
         private void OnAccelerateUpdate(float value)
         {
-            if (!GameManager.IsGameBegin) return;
+            if (!GameManager.IsGameBegin || IsInCarrotRocketMode) return;
             value = value * 2f - 1f;
             value = Mathf.Clamp(value, -1f, 1f);
             CurrentAcceleration = value * Acceleration;
@@ -810,6 +836,16 @@ namespace Character
             ww_running = false;
             wrongWayIndicator.SetActive(true);
         }
+
+        public void ResetRaceState()
+        {
+            HasFinished = false;
+            FinishTime = 0f;
+            currentLap = 1;
+            currentNode = 0;
+            hasTriggeredLap2Audio = false;
+        }
+
 
     }
 

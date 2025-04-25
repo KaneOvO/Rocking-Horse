@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Windows;
 
-
 namespace GameSystem.Input
 {
+    [DefaultExecutionOrder(100)]
     public class UIController : MonoBehaviour
     {
         public int ListenerIndex;
@@ -26,27 +26,69 @@ namespace GameSystem.Input
 
         private float WaitTime = 0;
 
-        public bool IsHolding {  get; private set; }
+        public bool IsHolding { get; private set; }
         public bool IsConnected => (Listener != null && Listener.isConnected) || KeyboardDebug;
-        public int Direction {  get; private set; }
+        public int Direction { get; private set; }
 
         private const float WAIT_SWITCH_TIME = 0.75f;
 
         private void Awake()
         {
-            Listener = MultiSerialManager.Instance.listeners[ListenerIndex].GetComponent<MyListener>();
-            Listener.OnSensorDataUpdated += OnMessageUpdate;
+            WaitTime = Time.realtimeSinceStartup;
         }
 
         private void OnEnable()
         {
             WaitTime = Time.realtimeSinceStartup;
+
+            if (Listener != null)
+                Listener.OnSensorDataUpdated += OnMessageUpdate;
+        }
+
+        private void OnDisable()
+        {
+            if (Listener != null)
+                Listener.OnSensorDataUpdated -= OnMessageUpdate;
         }
 
         private void OnDestroy()
         {
-            Listener.OnSensorDataUpdated -= OnMessageUpdate;
+            if (Listener != null)
+                Listener.OnSensorDataUpdated -= OnMessageUpdate;
         }
+
+        private IEnumerator Start()
+        {
+            // Wait for MultiSerialManager and listeners to be ready
+            float timeout = 2f;
+            float timer = 0f;
+
+            while ((MultiSerialManager.Instance == null || MultiSerialManager.Instance.listeners.Length <= ListenerIndex) && timer < timeout)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            if (MultiSerialManager.Instance != null && MultiSerialManager.Instance.listeners.Length > ListenerIndex)
+            {
+                Listener = MultiSerialManager.Instance.listeners[ListenerIndex].GetComponent<MyListener>();
+
+                if (Listener != null)
+                {
+                    Listener.OnSensorDataUpdated += OnMessageUpdate;
+                    Debug.Log($"[UIController] Hooked to listener {ListenerIndex} ({gameObject.name})");
+                }
+                else
+                {
+                    Debug.LogWarning($"[UIController] MyListener not found on listener {ListenerIndex}");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"[UIController] Listener index {ListenerIndex} not available in build.");
+            }
+        }
+
         private void Update()
         {
             if (KeyboardDebug)
@@ -58,6 +100,7 @@ namespace GameSystem.Input
                 OnMessageUpdate(data);
             }
         }
+
         private void OnMessageUpdate(SensorData data)
         {
             if (!isActiveAndEnabled || WaitTime + WAIT_SWITCH_TIME > Time.realtimeSinceStartup)
@@ -67,7 +110,7 @@ namespace GameSystem.Input
                 return;
             }
 
-            if(data.rotationZ < -8)
+            if (data.rotationZ < -8)
             {
                 Direction = -1;
             }
@@ -95,7 +138,7 @@ namespace GameSystem.Input
             if (IsPressed && !IsTriggered)
             {
                 if (Time.realtimeSinceStartup > HoldTime + HoldTriggerTime)
-                {   
+                {
                     IsPressed = false;
                     IsTriggered = true;
                     OnHoldButton.Invoke();

@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Diagnostics;
 using System;
 
+[DefaultExecutionOrder(-100)]
 public class MultiSerialManager : MonoBehaviour
 {
     public static MultiSerialManager Instance { get; private set; }

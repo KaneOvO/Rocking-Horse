@@ -33,16 +33,19 @@ namespace Items
         public override void OnUseItem()
         {
             base.OnUseItem();
-            
-            //Controller.Collider.enabled = true;
-            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.carrotRocketAudio);
 
-            float cloestDistance = 99999999;
+            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.carrotRocketAudio);
 
             horseObject.SetActive(false);
             carrotObject.SetActive(true);
 
-            for(int i = 0; i < NPCMap.Instance.Path.Count; i++)
+            // Disable player control
+            Controller.IsInCarrotRocketMode = true;
+
+            // Find closest path point
+            float cloestDistance = float.MaxValue;
+
+            for (int i = 0; i < NPCMap.Instance.Path.Count; i++)
             {
                 float distance = Vector3.Distance(this.transform.position, NPCMap.Instance.Path[i].transform.position);
                 if (distance < cloestDistance)
@@ -53,21 +56,11 @@ namespace Items
             }
 
             Vector2 currentPos = new Vector2(this.transform.position.x, this.transform.position.z);
-            Vector3 cpPos3 = NPCMap.GetAt(Index).transform.position;
             Vector3 npPos3 = NPCMap.GetAt(Index + 1).transform.position;
-
-            Vector2 cpPos = new Vector2(cpPos3.x, cpPos3.z);
             Vector2 npPos = new Vector2(npPos3.x, npPos3.z);
 
-            if(Vector2.Angle(cpPos - currentPos, npPos - currentPos) > 90)
-            {
-                Index++;
-                Direction = (npPos - currentPos).normalized;
-            }
-            else
-            {
-                Direction = (cpPos - currentPos).normalized;
-            }
+            // Always move toward the next path point
+            Direction = (npPos - currentPos).normalized;
 
             CurrentTime = 0;
         }
@@ -75,58 +68,50 @@ namespace Items
         public void LateUpdate()
         {
             CurrentTime += Time.deltaTime;
-            if(CurrentTime > LastTime)
+
+            if (CurrentTime > LastTime)
             {
                 horseObject.SetActive(true);
                 carrotObject.SetActive(false);
+
+                // Re-enable player control
+                Controller.IsInCarrotRocketMode = false;
 
                 return;
             }
 
             Vector3 target = NPCMap.GetAt(Index).transform.position;
 
-            if(Vector3.Distance(target, this.transform.position) < 2)
+            if (Vector3.Distance(target, this.transform.position) < 2)
             {
                 Index++;
             }
 
+            // Turn toward the next waypoint smoothly
             Vector3 diff = (target - this.transform.position).normalized;
-
-            Vector2 direction = new Vector2(diff.x, diff.z);
-            float targetAngle = Mathf.Atan2(direction.y, direction.x) / Mathf.PI * 180;
-            float currentAngle = Mathf.Atan2(Direction.y, Direction.x) / Mathf.PI * 180;
+            Vector2 directionToTarget = new Vector2(diff.x, diff.z);
+            float targetAngle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+            float currentAngle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
 
             float angleDiff = targetAngle - currentAngle;
-            while(angleDiff > 180)
-            {
-                angleDiff -= 360;
-            }
-            while(angleDiff < -180)
-            {
-                angleDiff += 360;
-            }
+            while (angleDiff > 180) angleDiff -= 360;
+            while (angleDiff < -180) angleDiff += 360;
 
             float deltaAngle = ORIENTATION * Time.deltaTime;
             if (Mathf.Abs(angleDiff) < deltaAngle)
             {
                 currentAngle = targetAngle;
             }
-            else if (angleDiff > 0)
-            {
-                currentAngle += deltaAngle;
-            }
             else
             {
-                currentAngle -= deltaAngle;
+                currentAngle += Mathf.Sign(angleDiff) * deltaAngle;
             }
 
-
-            float currentArc = currentAngle / 180 * Mathf.PI;
+            float currentArc = currentAngle * Mathf.Deg2Rad;
             Direction = new Vector2(Mathf.Cos(currentArc), Mathf.Sin(currentArc));
 
             Controller.HVelocity = Direction * Speed;
             Controller.Direction = Direction;
         }
     }
-
 }

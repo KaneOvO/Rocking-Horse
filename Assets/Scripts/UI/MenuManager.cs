@@ -31,13 +31,15 @@ public class MenuManager : MonoBehaviour
 
     private bool hasPlayedCountdown = false;
 
+    public static bool InputLocked = false;
+
     private void Start()
     {
         GameManager.Instance.CleanPlayers();
 
         // TEMP: Reset all preferences every time the game starts (for testing)
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
+        //PlayerPrefs.DeleteAll();
+        //PlayerPrefs.Save();
 
         // Show only main menu at launch
         mainMenuPanel.SetActive(true);
@@ -51,11 +53,10 @@ public class MenuManager : MonoBehaviour
         volumeSlider.value = savedVolume;
         if (menuMusic != null)
             menuMusic.volume = savedVolume;
-        
+
         playerCountSlider.value = GameManager.Instance.PlayerCount;
         playerCountText.text = GameManager.Instance.PlayerCount.ToString();
 
-        // Only apply saved tutorial toggle if it's been saved before
         if (PlayerPrefs.HasKey("SkipTutorial"))
         {
             bool savedSkipTutorial = PlayerPrefs.GetInt("SkipTutorial") == 1;
@@ -63,14 +64,16 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void OnEnable()
+    private void OnEnable()
     {
         UpdatePlayerCount();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (InputLocked) return; 
+
+        if (Input.GetKeyDown(KeyCode.M))
         {
             StartRace();
         }
@@ -78,6 +81,8 @@ public class MenuManager : MonoBehaviour
 
     public void OpenJoin()
     {
+        if (InputLocked) return;
+
         mainMenuPanel.SetActive(false);
         tutorialPanel.SetActive(false);
         joinPanel.SetActive(true);
@@ -85,11 +90,15 @@ public class MenuManager : MonoBehaviour
 
     public void StartRace()
     {
+        if (InputLocked) return;
+
         SceneManager.LoadScene("MainGameScene");
     }
 
     public void OpenTutorial()
     {
+        if (InputLocked) return;
+
         bool skipTutorial = PlayerPrefs.GetInt("SkipTutorial", 0) == 1;
 
         if (skipTutorial)
@@ -99,18 +108,23 @@ public class MenuManager : MonoBehaviour
         }
 
         joinPanel.SetActive(false);
-        tutorialPanel.SetActive(true);
+
         if (!hasPlayedCountdown && countdownObject != null && countdownVideoPlayer != null)
         {
-            countdownObject.SetActive(true);
-            countdownVideoPlayer.Play();
-            StartCoroutine(HandleCountdown());
+            StartCoroutine(HandleCountdownAndShowTutorial());
             hasPlayedCountdown = true;
+        }
+        else
+        {
+            tutorialPanel.SetActive(true);
         }
     }
 
-    private IEnumerator HandleCountdown()
+
+    private IEnumerator HandleCountdownAndShowTutorial()
     {
+        InputLocked = true;
+
         if (menuMusic != null)
             menuMusic.volume = 0f;
 
@@ -120,14 +134,19 @@ public class MenuManager : MonoBehaviour
         if (countdownVideoPlayer != null)
             countdownVideoPlayer.Play();
 
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(6f); 
 
         if (menuMusic != null)
             menuMusic.volume = 1f;
 
         if (countdownObject != null)
             Destroy(countdownObject);
+
+        tutorialPanel.SetActive(true); 
+
+        InputLocked = false;
     }
+
 
     public void OnVolumeChanged(float value)
     {
@@ -135,45 +154,55 @@ public class MenuManager : MonoBehaviour
             menuMusic.volume = value;
 
         PlayerPrefs.SetFloat("MasterVolume", value);
-        PlayerPrefs.Save(); // optional but good to be safe
+        PlayerPrefs.Save();
     }
 
     public void OnPlayerSliderPlayerCountChanged(float value)
     {
+        if (InputLocked) return;
+
         playerCountText.text = value.ToString("0");
-        if(GameManager.Instance.PlayerCount != 0)
+        if (GameManager.Instance.PlayerCount != 0)
         {
             GameManager.Instance.PlayerCount = (int)value;
         }
-        
     }
-
 
     public void OnTutorialToggleChanged(bool isOn)
     {
+        if (InputLocked) return;
+
         PlayerPrefs.SetInt("SkipTutorial", isOn ? 1 : 0);
     }
 
     public void BackToJoin()
     {
+        if (InputLocked) return;
+
         joinPanel.SetActive(true);
         tutorialPanel.SetActive(false);
     }
 
     public void OpenSettings()
     {
+        if (InputLocked) return;
+
         mainMenuPanel.SetActive(false);
         settingsPanel.SetActive(true);
     }
 
     public void OpenCredits()
     {
+        if (InputLocked) return;
+
         mainMenuPanel.SetActive(false);
         creditsPanel.SetActive(true);
     }
 
     public void BackToMenu()
     {
+        if (InputLocked) return;
+
         joinPanel.SetActive(false);
         settingsPanel.SetActive(false);
         tutorialPanel.SetActive(false);
@@ -183,6 +212,8 @@ public class MenuManager : MonoBehaviour
 
     public void QuitGame()
     {
+        if (InputLocked) return;
+
         Application.Quit();
         Debug.Log("Game Quit");
     }
@@ -193,8 +224,5 @@ public class MenuManager : MonoBehaviour
         playerCountSlider.maxValue = GameManager.Instance.deviceCount > 0 ? GameManager.Instance.deviceCount : 1;
         playerCountSlider.value = GameManager.Instance.PlayerCount;
         playerCountText.text = GameManager.Instance.PlayerCount.ToString();
-
     }
-
-
 }

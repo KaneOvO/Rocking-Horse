@@ -16,7 +16,7 @@ namespace Items
         public float Height = 1;
         public float LastTime = 30;
 
-        public float Speed = 20;
+        public float Speed = 30;
         public float SeekRange = 5;
 
         private HorseController Target;

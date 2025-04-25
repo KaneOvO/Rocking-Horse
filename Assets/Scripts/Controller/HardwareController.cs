@@ -126,7 +126,7 @@ namespace GameSystem.Input
             //    InputLayer.UpdateRotation(CID, rotation);
             //}
 
-            float minRotationSpeed = 15f; 
+            float minRotationSpeed = 45f; 
             float maxRotationSpeed = 75f;  
             float rotationSpeed = Mathf.Lerp(minRotationSpeed, maxRotationSpeed, acceleration);
 

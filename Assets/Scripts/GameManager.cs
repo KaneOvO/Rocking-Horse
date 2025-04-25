@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     private bool isGameEnd;
     public static event Action OnGameEnded;
 
+    public static bool IsGameEnded => Instance != null && Instance.isGameEnd;
+
+
     public static bool IsGameBegin
     {
         get => TimeBeforeStart <= 0;
@@ -48,21 +51,23 @@ public class GameManager : MonoBehaviour
 
     public int lapCount;
     public List<(float, HorseController)> finalRanking = new();
-    
+
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
 
-        //IsStarted = !RequiredAltController;
+        Instance = this;
+
+        if (SceneManager.GetActiveScene().name != "TitleScreenScene")
+        {
+            DontDestroyOnLoad(gameObject); // Only persist in gameplay scenes
+        }
     }
+
 
     public void StartGame()
     {
@@ -72,7 +77,16 @@ public class GameManager : MonoBehaviour
         endGameTimerStarted = false;
         endGameTimer = 0f;
         isGameEnd = false;
+
+        MusicManager.Instance?.ResetMusicTriggers();
+
+        foreach (var horse in HorseController.Horses)
+        {
+            horse.ResetRaceState();
+        }
     }
+
+
 
 
     private void Update()
@@ -266,8 +280,15 @@ public class GameManager : MonoBehaviour
     public void GoToMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("TitleScreenScene", LoadSceneMode.Single);
+
+        // Clean up game state before returning to menu
+        Instance = null; // Important so new scene can assign it again
+
+        Destroy(gameObject); // Remove this persistent GameManager
+
+        SceneManager.LoadScene("TitleScreenScene");
     }
+
 
     private IEnumerator HandleGameEndSequence()
     {

@@ -14,12 +14,10 @@ public class LapUI : MonoBehaviour
     private bool hasFinished = false;
     private static bool finalLapMusicStarted = false;
 
-    private bool[] onSecondLap;
-
     private void Start()
     {
         finished.SetActive(false);
-        onSecondLap = new bool[4] { false, false, false, false };
+        finalLapMusicStarted = false; 
     }
 
     void Update()
@@ -36,32 +34,13 @@ public class LapUI : MonoBehaviour
             lap2.SetActive(true);
 
             MusicManager.Instance?.SwitchToFinalLapMusic();
-            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.lap1Audio);
+            MusicManager.Instance?.PlayLap1Audio();
+
             finalLapMusicStarted = true;
         }
         else if (lapCount == 2 && !hasFinished)
         {
-            // Hide all children except Finish
-            foreach (Transform child in transform)
-            {
-                if (child.name != "Finish" && !child.name.StartsWith("SharedUI"))
-                {
-                    child.gameObject.SetActive(false);
-                }
-
-            }
-
-
-            // Show the Finish banner
-            finished.SetActive(true);
-
-            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.lap2Audio);
-
-            // Disable player movement
-            var horseController = controller.GetComponent<HorseController>();
-            horseController.DisableMovement();
-
-            hasFinished = true;
+            FinishLap(controller);
         }
     }
 
@@ -70,37 +49,35 @@ public class LapUI : MonoBehaviour
         if (!finalLapMusicStarted)
         {
             MusicManager.Instance?.SwitchToFinalLapMusic();
-            MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.lap1Audio);
+            MusicManager.Instance?.PlayLap1Audio();
+
             finalLapMusicStarted = true;
         }
 
-        if (!onSecondLap[index])
-        {
-            onSecondLap[index] = true;
-            lap1.SetActive(false);
-            lap2.SetActive(true);
-        }
-        
+        lap1.SetActive(false);
+        lap2.SetActive(true);
     }
 
     public void FinishedRace()
     {
-        // Show the Finish banner
-        finished.SetActive(true);
+        if (hasFinished) return;
 
-        MusicManager.Instance?.mainTrackMusicSource?.PlayOneShot(MusicManager.Instance.lap2Audio);
-
-        // Disable player movement
         var horseController = HorseController.Horses[horseIndex];
-        horseController.DisableMovement();
+        FinishLap(horseController);
+    }
 
-        // Set finish time and status
+    private void FinishLap(HorseController horseController)
+    {
+        hasFinished = true;
+
+        horseController.DisableMovement();
         horseController.FinishTime = RaceTimer.Instance.timer;
         horseController.HasFinished = true;
 
-        hasFinished = true;
+        finished.SetActive(true);
 
-        // Hide all children except Finish
+        MusicManager.Instance?.PlayLap2Audio();
+
         foreach (Transform child in transform)
         {
             if (child.name != "Finish" && !child.name.StartsWith("SharedUI"))
@@ -109,7 +86,4 @@ public class LapUI : MonoBehaviour
             }
         }
     }
-
-
-
 }

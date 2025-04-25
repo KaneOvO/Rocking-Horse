@@ -13,6 +13,9 @@ namespace GameUI
         public UIController Controller;
         public Selectable[] UIS = new Selectable[0];
 
+        private float sliderStepDelay = 0.2f;
+        private float sliderTimer = 0f;
+
         private void OnEnable()
         {
             if(UIS.Length <= 0)
@@ -57,11 +60,29 @@ namespace GameUI
 
         public void Update()
         {
+            if (UIS.Length <= 0 || Controller == null || Controller.Direction == 0)
+                return;
+
+            sliderTimer += Time.deltaTime;
+
             Selectable ui = UIS[Index];
-            if (ui.GetType() == typeof(Slider))
+            if (ui is Slider slider)
             {
-                Slider slider = ui as Slider;
-                slider.value += Controller.Direction * Mathf.Abs(slider.maxValue - slider.minValue) * Time.deltaTime * 0.5f;
+                if (sliderTimer >= sliderStepDelay)
+                {
+                    float stepSize = 1f; // can be fractional if needed
+                    float direction = Controller.Direction;
+
+                    float newValue = slider.value + direction * stepSize;
+                    newValue = Mathf.Clamp(newValue, slider.minValue, slider.maxValue);
+
+                    slider.value = newValue;
+                    sliderTimer = 0f;
+                }
+            }
+            else
+            {
+                sliderTimer = 0f; // reset timer if not a slider
             }
         }
 
