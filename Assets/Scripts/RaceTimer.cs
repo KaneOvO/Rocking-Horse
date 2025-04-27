@@ -45,4 +45,10 @@ public class RaceTimer : MonoBehaviour
     {
         isTiming = true;
     }
+
+    public void ResetTimer()
+    {
+        timer = 0f;
+        isTiming = false;
+    }
 }

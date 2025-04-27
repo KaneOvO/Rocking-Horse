@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         endGameTimer = 0f;
         isGameEnd = false;
 
+        RaceTimer.Instance?.ResetTimer();
         MusicManager.Instance?.ResetMusicTriggers();
 
         foreach (var horse in HorseController.Horses)
@@ -279,6 +280,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToMenu()
     {
+        RaceTimer.Instance?.ResetTimer();
         Time.timeScale = 1f;
 
         // Clean up game state before returning to menu
